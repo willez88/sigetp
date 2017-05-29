@@ -1,0 +1,23 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container"> <!-- container -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h4 class="box-title">
+                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Vivienda' %}
+                    </h4>
+                    <hr/>
+                    <p>¿Estás seguro que deseas borrar los datos de la Vivienda "{{ object.numero_vivienda }} | {{ object.direccion }}"?</p>
+                </div>
+                <div class="box-footer text-right">
+                    <a href="{% url 'vivienda_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
+                    <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip">{% trans 'Eliminar' %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container"> <!-- container -->
+        <div class="row">
+            <h3>Gestionar los datos del Grupo Familiar</h3>
+        </div>
+
+        <div class="row">
+            <p><a href="{% url 'grupo_familiar_registro' %}" class="btn btn-success">Crear</a></p>
+        </div>
+
+        <div class="row" style="overflow:scroll;height:500px;">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Vivienda</th>
+                        <th>Apellido de la Familia</th>
+                        <th>¿La Familia ha sido beneficiada por el CLAP?</th>
+                        <th>Tipo de Tenencia</th>
+                        <th>¿Cree Ud. que se deba consultar a las comunidades para los precios del pasaje?</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grupo_familiar in object_list %}
+                        <tr>
+                        <td> {{ grupo_familiar.vivienda.numero_vivienda }} | {{ grupo_familiar.vivienda.direccion }} </td>
+                        <td> {{ grupo_familiar.apellido_familia }} </td>
+
+                        {% if grupo_familiar.familia_beneficiada %}
+                            <td> Si </td>
+                        {% else %}
+                            <td> No </td>
+                        {% endif %}
+
+                        {% if grupo_familiar.tenencia == 'AL' %}
+                            <td title="Tiempo de Alquiler: {{ grupo_familiar.alquilada }} años"> {{ grupo_familiar.get_tenencia_display }} </td>
+                        {% else %}
+                            <td> {{ grupo_familiar.tenencia }} </td>
+                        {% endif %}
+
+                        {% if grupo_familiar.pasaje %}
+                            <td> Si </td>
+                        {% else %}
+                            <td> No </td>
+                        {% endif %}
+
+                        <td> <a href="{% url 'grupo_familiar_editar' grupo_familiar.id %}">Editar</a> | <a href="{% url 'grupo_familiar_borrar' grupo_familiar.id %}">Eliminar</a> </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer text-right">
+            <a href="{% url 'vivienda_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
+            <a href="{% url 'persona_lista' %}" class="btn btn-primary btn-sm">Siguiente</a>
+        </div><br>
+    </div> <!-- end container -->
+{% endblock %}

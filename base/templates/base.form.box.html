@@ -1,0 +1,52 @@
+{% load i18n %}
+{# Formulario para la selección de coordenadas geográficas #}
+<script type="text/html" id="sel-coordenada">
+    <div class="row">
+        <div class="col-md-12">
+            <form id="sel-coordenada-form" class="form-horizontal" method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputLongitud" class="col-md-3 control-label">
+                        {% trans 'Longitud' %}
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="inputLongitud" name="inputLongitud"
+                               data-toggle="tooltip" readonly placeholder="{% trans 'Coordenada de Longitud' %}"
+                               title="{% trans 'Seleccione en el mapa la coordenada de Longitud' %}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputLatitud" class="col-md-3 control-label">
+                        {% trans 'Latitud' %}
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="inputLatitud" name="inputLatitud"
+                               data-toggle="tooltip" readonly placeholder="{% trans 'Coordenada de Latitud' %}"
+                               title="{% trans 'Seleccione en el mapa la coordenada de Latitud' %}">
+                    </div>
+                </div>
+                <h3>{% trans 'Seleccione su ubicacion en el mapa' %}</h3>
+                <hr>
+                <span class="help-block">
+                    <ul>
+                        <li>
+                            {% trans 'Para acercar la imagen del mapa, se debe hacer doble click con el raton' %}.
+                        </li>
+                        <li>
+                            {% trans 'Mueva el marcador en el mapa hasta las coordenadas de su ubicación' %},
+                            {% trans 'o bien, con el puntero del raton posicione su ubicacion y haga un solo click con el boton izquierdo' %}.
+                        </li>
+                    </ul>
+                </span>
+                <div class="form-group">
+                    <div id="map" class="map" tabindex="0"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div id="coordenadas"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

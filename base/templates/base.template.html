@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:"es-ve" }}">
+	{% include 'base.head.template.html' %}
+	<body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'inicio' %}" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica">SIGETP</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a data-toggle="modal" data-target="#myModal" href="#">Exportar Datos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Manual</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block contenido %}
+        <div class="container-fluid bg-3 text-center">
+            <div class="row">
+                <div class="col-xs-12">
+                    <a class="btn btn-info btn-sm button" href="{% url 'encuestador_lista' %}">
+                        {% trans 'Iniciar Registro' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% include 'base.footer.info.template.html' %}
+		{% include 'base.footer.template.html' %}
+		{% block extra_footer %}{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,89 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container"> <!-- container -->
+        <div class="row">
+            <h3>Gestionar los datos de las Personas de un Grupo Familiar</h3>
+        </div>
+
+        <div class="row">
+            <p><a href="{% url 'persona_registro' %}" class="btn btn-success">Crear</a></p>
+        </div>
+
+        <div class="row" style="overflow:scroll;height:500px;">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Grupo Familiar</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Cédula</th>
+                        <th>Teléfono</th>
+                        <th>correo</th>
+                        <th>Sexo</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Parentesco</th>
+                        <th>Estado civil</th>
+                        <th>Grado de instrucción</th>
+                        <th>Misión educativa</th>
+                        <th>Profesión</th>
+                        <th>Ocupación</th>
+                        <th>Ingresos</th>
+                        <th>Deporte que practica</th>
+                        <th>Enfermedad que presenta</th>
+                        <th>Discapacidad que presenta</th>
+                        <th>¿Ha leído la ley de consejos comunales?</th>
+                        <th>¿Qué cursos le gustaría hacer?</th>
+                        <th>¿Qué organizaciones comunitarias conoce?</th>
+                        <th>¿Qué hace en sus horas de ocio?</th>
+                        <th>¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?</th>
+                        <th>¿Qué inseguridad presenta la comunidad?</th>
+                        <th>Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for persona in object_list %}
+                        <tr>
+                        <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
+                        <td>{{ persona.nombre }}</td>
+                        <td>{{ persona.apellido }}</td>
+                        <td>{{ persona.cedula }}</td>
+                        <td>{{ persona.telefono }}</td>
+                        <td>{{ persona.correo }}</td>
+                        <td>{{ persona.get_sexo_display }}</td>
+                        <td>{{ persona.fecha_nacimiento }}</td>
+                        <td>{{ persona.get_parentesco_display }}</td>
+                        <td>{{ persona.get_estado_civil_display }}</td>
+                        <td>{{ persona.get_grado_instruccion_display }}</td>
+                        <td>{{ persona.get_mision_educativa_display }}</td>
+                        <td>{{ persona.profesion }}</td>
+                        <td>{{ persona.ocupacion }}</td>
+                        <td>{{ persona.get_ingreso_display }}</td>
+                        <td>{{ persona.deporte }}</td>
+                        <td>{{ persona.enfermedad }}</td>
+                        <td>{{ persona.discapacidad }}</td>
+                        {% if persona.ley_consejo_comunal %}
+                            <td>Si</td>
+                        {% else %}
+                            <td>No</td>
+                        {% endif %}
+                        <td>{{ persona.curso }}</td>
+                        <td>{{ persona.organizacion_comunitaria }}</td>
+                        <td>{{ persona.ocio }}</td>
+                        <td>{{ persona.mejorar_comunicacion }}</td>
+                        <td>{{ persona.inseguridad }}</td>
+                        <td>{{ persona.comentario }}</td>
+                        <td> <a href="{% url 'persona_editar' persona.id %}">Editar</a> | <a href="#">Eliminar</a> </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer text-right">
+            <a href="{% url 'grupo_familiar_lista' %}" class="btn btn-primary btn-sm">Arás</a>
+            <a href="{% url 'inicio' %}" class="btn btn-primary btn-sm">Finalizar</a>
+        </div><br>
+    </div> <!-- end container -->
+{% endblock %}

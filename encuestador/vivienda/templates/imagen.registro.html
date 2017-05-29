@@ -1,0 +1,46 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container"> <!-- container -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h4 class="box-title">
+                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Imágenes de la Vivienda' %}
+                    </h4>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.vivienda.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.vivienda.auto_id }}">
+                                    {{ form.vivienda.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">{{ form.vivienda }}</div>
+                                    {% include 'base.form.errors.html' with form_errors=form.vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.imagen.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.imagen.auto_id }}">
+                                    {{ form.imagen.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">{{ form.imagen }}</div>
+                                    {% include 'base.form.errors.html' with form_errors=form.imagen.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer text-right">
+                    <a href="{% url 'vivienda_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
+                    <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Registrar' %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

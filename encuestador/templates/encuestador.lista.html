@@ -1,0 +1,44 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container"> <!-- container -->
+        <div class="row">
+            <h3>Gestionar los datos de los Encuestadores</h3>
+        </div>
+
+        <div class="row">
+            <p><a href="{% url 'encuestador_registro' %}" class="btn btn-success">Crear</a></p>
+        </div>
+
+        <div class="row" style="overflow:scroll;height:500px;">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cédula</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Operación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for encuestador in object_list %}
+                        <tr>
+                        <td> {{ encuestador.nombre }} </td>
+                        <td> {{ encuestador.apellido }} </td>
+                        <td> {{ encuestador.cedula }} </td>
+                        <td> {{ encuestador.telefono }} </td>
+                        <td> {{ encuestador.correo }} </td>
+                        <td> <a href="{% url "encuestador_editar" encuestador.id %}">Editar</a> | <a href="{% url "encuestador_borrar" encuestador.id %}">Eliminar</a> </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="box-footer text-right">
+            <a href="{% url 'vivienda_lista' %}" class="btn btn-primary btn-sm">Siguiente</a>
+        </div><br>
+    </div> <!-- end container -->
+{% endblock %}

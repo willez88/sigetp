@@ -1,0 +1,105 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block contenido %}
+    <div class="container">
+	    <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+            {% csrf_token %}
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h4 class="box-title">
+                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Encuestador' %}
+                    </h4>
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.nombre.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.nombre.auto_id }}">
+                                    {{ form.nombre.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.nombre }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.nombre.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.apellido.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.apellido.auto_id }}">
+                                    {{ form.apellido.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.apellido }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.apellido.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.cedula.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.cedula.auto_id }}">
+                                    {{ form.cedula.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.cedula }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.cedula.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.telefono.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.telefono.auto_id }}">
+                                    {{ form.telefono.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.telefono }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.telefono.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.correo.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.correo.auto_id }}">
+                                    {{ form.correo.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.correo }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.correo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box-footer text-right">
+                    <a href="{% url 'encuestador_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
+                    <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
+                    <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+{% endblock %}
