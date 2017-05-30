@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^imagen/registro$', ImagenCreate.as_view(), name='imagen_registro'),
     url(r'^imagen$', ImagenList.as_view(), name='imagen_lista'),
     url(r'^imagen/(?P<vivienda_id>[0-9]+)$', imagenes, name='ver_imagen'),
-    url(r'^grupo_familiar/', include('encuestador.vivienda.grupo_familiar.urls')),
+    url(r'^grupo-familiar/', include('encuestador.vivienda.grupo_familiar.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,5 @@
 -r base.txt
 ipython
 django-extensions
-Sphinx
+#Sphinx
 pygraphviz

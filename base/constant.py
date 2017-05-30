@@ -196,6 +196,7 @@ GRADO_INSTRUCCION = (
 
 ## Misión Educativa
 MISION_EDUCATIVA = (
+    ("NI",_("Ninguna")),
     ("R1",_("Misión Robinson 1")),
     ("R2",_("Misión Robinson 2")),
     ("MR",_("Misión Rivas")),

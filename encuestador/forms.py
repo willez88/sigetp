@@ -8,21 +8,19 @@ from .models import Encuestador
 
 class EncuestadorForm(ModelForm):
     nombre = CharField(
-        label=_("Nombre: "),
+        label=_("Nombres:"),
         widget=TextInput(
             attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'title': _("Nombre del Encuestador"),
-                'size': '30',
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'title': _("Indique los Nombres del Encuestador"),
             }
         )
     )
 
     apellido = CharField(
-        label=_("Apellido: "),
+        label=_("Apellidos:"),
         widget=TextInput(
             attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'title': _("Apellido del Encuestador"),
-                'size': '30',
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'title': _("Indique los Apellidos del Encuestador"),
             }
         )
     )
@@ -31,7 +29,7 @@ class EncuestadorForm(ModelForm):
 
     ## Número telefónico de contacto con el usuario
     telefono = CharField(
-        label=_("Teléfono: "),
+        label=_("Teléfono:"),
         max_length=20,
         widget=TextInput(
             attrs={

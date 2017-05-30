@@ -36,7 +36,7 @@ class ViviendaForm(ModelForm):
     )
 
     fecha_hora = CharField(
-        label=_("Fecha y hora: "),
+        label=_("Fecha y hora:"),
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;', 'readonly':'true',
@@ -46,7 +46,7 @@ class ViviendaForm(ModelForm):
     )
 
     numero_vivienda = CharField(
-        label=_("Número de la Vivienda: "),
+        label=_("Número de la Vivienda:"),
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
@@ -56,7 +56,7 @@ class ViviendaForm(ModelForm):
     )
 
     servicio_electrico = ChoiceField(
-        label=_("Servicio Eléctrico: "),
+        label=_("Servicio Eléctrico:"),
         choices=(('',_('Seleccione...')),)+SERVICIO_ELECTRICO,
         widget=Select(
             attrs={
@@ -67,7 +67,7 @@ class ViviendaForm(ModelForm):
     )
 
     situacion_sanitaria = ChoiceField(
-        label=_("Situación Sanitaria: "),
+        label=_("Situación Sanitaria:"),
         choices=(('',_('Seleccione...')),)+SITUACION_SANITARIA,
         widget=Select(
             attrs={
@@ -78,7 +78,7 @@ class ViviendaForm(ModelForm):
     )
 
     disposicion_basura = ChoiceField(
-        label=_("Disposición de la Basura: "),
+        label=_("Disposición de la Basura:"),
         choices=(('',_('Seleccione...')),)+DISPOSICION_BASURA,
         widget=Select(
             attrs={
@@ -89,7 +89,7 @@ class ViviendaForm(ModelForm):
     )
 
     tipo_vivienda = ChoiceField(
-        label=_("Tipo de la Vivienda: "),
+        label=_("Tipo de la Vivienda:"),
         choices=(('',_('Seleccione...')),)+TIPO_VIVIENDA,
         widget=Select(
             attrs={
@@ -100,7 +100,7 @@ class ViviendaForm(ModelForm):
     )
 
     tipo_techo = ChoiceField(
-        label=_("Tipo del Techo: "),
+        label=_("Tipo del Techo:"),
         choices=(('',_('Seleccione...')),)+TIPO_TECHO,
         widget=Select(
             attrs={
@@ -111,7 +111,7 @@ class ViviendaForm(ModelForm):
     )
 
     tipo_pared = ChoiceField(
-        label=_("Tipo de la Pared: "),
+        label=_("Tipo de la Pared:"),
         choices=(('',_('Seleccione...')),)+TIPO_PARED,
         widget=Select(
             attrs={

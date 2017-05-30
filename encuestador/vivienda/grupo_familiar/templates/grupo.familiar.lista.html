@@ -26,7 +26,7 @@
                 <tbody>
                     {% for grupo_familiar in object_list %}
                         <tr>
-                        <td> {{ grupo_familiar.vivienda.numero_vivienda }} | {{ grupo_familiar.vivienda.direccion }} </td>
+                        <td> {{ grupo_familiar.vivienda.numero_vivienda }}-{{ grupo_familiar.vivienda.id }} </td>
                         <td> {{ grupo_familiar.apellido_familia }} </td>
 
                         {% if grupo_familiar.familia_beneficiada %}
@@ -38,7 +38,7 @@
                         {% if grupo_familiar.tenencia == 'AL' %}
                             <td title="Tiempo de Alquiler: {{ grupo_familiar.alquilada }} años"> {{ grupo_familiar.get_tenencia_display }} </td>
                         {% else %}
-                            <td> {{ grupo_familiar.tenencia }} </td>
+                            <td> {{ grupo_familiar.get_tenencia_display }} </td>
                         {% endif %}
 
                         {% if grupo_familiar.pasaje %}

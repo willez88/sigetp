@@ -8,7 +8,7 @@
             <div class="box box-primary">
                 <div class="box-body">
                     <h4 class="box-title">
-                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Vivienda' %}
+                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Grupo Familiar' %}
                     </h4>
                     <hr/>
 
@@ -58,17 +58,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.alquilada.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.alquilada.auto_id }}">
-                                    {{ form.alquilada.label }}
-                                </label>
-                                <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">
-                                        {{ form.alquilada }}
-                                        <i class="ion ion-ios-medical item-requerido"></i>
+                        <div id="bloque_alquilada" style="display:none;">
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group {% if form.alquilada.errors %}has-error{% endif %}">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.alquilada.auto_id }}">
+                                        {{ form.alquilada.label }}
+                                    </label>
+                                    <div class="col-md-9 col-xs-9 col-sm-9">
+                                        <div class="form-inline">
+                                            {{ form.alquilada }}
+                                        </div>
+                                        {% include 'base.form.errors.html' with form_errors=form.alquilada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.alquilada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -83,7 +84,6 @@
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
                                         {{ form.pasaje }}
-                                        <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
                                     {% include 'base.form.errors.html' with form_errors=form.pasaje.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
@@ -97,7 +97,6 @@
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
                                         {{ form.familia_beneficiada }}
-                                        <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
                                     {% include 'base.form.errors.html' with form_errors=form.familia_beneficiada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
@@ -120,15 +119,15 @@
 {% endblock %}
 {% block extra_footer %}
     <script>
-        function frizada(val)
+        function __tenencia(val)
         {
-            if( val == "BL")
+            if( val == "AL")
             {
-                $("#bloque_pared_frizada").css("display", "block");
+                $("#bloque_alquilada").css("display", "block");
             }
             else
             {
-                $("#bloque_pared_frizada").css("display", "none");
+                $("#bloque_alquilada").css("display", "none");
             }
         }
     </script>

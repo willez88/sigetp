@@ -12,7 +12,7 @@ class GrupoFamiliarForm(forms.ModelForm):
 
         lista_vivienda = [('','Selecione...')]
         for vi in Vivienda.objects.all():
-            lista_vivienda.append( (vi.id,vi.numero_vivienda+" "+vi.direccion) )
+            lista_vivienda.append( (vi.id,vi.numero_vivienda+"-"+str(vi.id)) )
         self.fields['vivienda'].choices = lista_vivienda
 
     vivienda = forms.ChoiceField(
@@ -26,7 +26,7 @@ class GrupoFamiliarForm(forms.ModelForm):
     )
 
     apellido_familia = forms.CharField(
-        label=_("Apellido de la Familia:"),
+        label=_("Apellidos de la Familia:"),
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
@@ -46,13 +46,13 @@ class GrupoFamiliarForm(forms.ModelForm):
         widget=Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Seleccione el Tipo de Tenencia de la Vivienda"),
+                'title': _("Seleccione el Tipo de Tenencia de la Vivienda"), 'onchange': '__tenencia(this.value)',
             }
         )
     )
 
     alquilada = forms.CharField(
-        label=_("Tiempo que tiene como Alquilado:"), widget=NumberInput(attrs={
+        label=_("Tiempo Alquilado:"), widget=NumberInput(attrs={
             'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique el tiempo que tiene como alquilado"), 'min':'0.1', 'step':'0.1',
         }), required=False
@@ -68,3 +68,4 @@ class GrupoFamiliarForm(forms.ModelForm):
         exclude = [
             'vivienda'
         ]
+

@@ -13,7 +13,7 @@ class PersonaForm(forms.ModelForm):
         super(PersonaForm, self).__init__(*args, **kwargs)
         lista_grupo_familiar = [('','Selecione...')]
         for gf in GrupoFamiliar.objects.all():
-            lista_grupo_familiar.append( (gf.id,gf.apellido_familia) )
+            lista_grupo_familiar.append( (gf.id,gf.apellido_familia+"-"+str(gf.id)) )
         self.fields['grupo_familiar'].choices = lista_grupo_familiar
         self.fields['tiene_cedula'].initial = True
 
@@ -28,21 +28,21 @@ class PersonaForm(forms.ModelForm):
     )
 
     nombre = forms.CharField(
-        label=_("Nombre:"),
+        label=_("Nombres:"),
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Nombre de la Persona"),
+                'title': _("Indique los Nombres de la Persona"),
             }
         )
     )
 
     apellido = forms.CharField(
-        label=_("Apellido:"),
+        label=_("Apellidos:"),
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Apellido de la Persona"),
+                'title': _("Indique los Apellidos de la Persona"),
             }
         )
     )
@@ -113,7 +113,7 @@ class PersonaForm(forms.ModelForm):
         widget=TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;', 'readonly':'true',
-                'title': _("Indica la edad de la Persona"),
+                'title': _("Muestra la edad de la Persona"),
             }
         ),
         required = False
@@ -171,7 +171,7 @@ class PersonaForm(forms.ModelForm):
                 'title': _("Indique la Profesión de la Persona"),
             }
         ),
-        required = True
+        required = False
     )
 
     ocupacion = forms.CharField(

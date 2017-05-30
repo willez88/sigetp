@@ -24,7 +24,7 @@
                         <th>Disposición de la Basura</th>
                         <th>Tipo de la Vivienda</th>
                         <th>Tipo de la Pared</th>
-                        <th>Tipo del del Piso</th>
+                        <th>Tipo del Piso</th>
                         <th>Condición de la Vivienda</th>
                         <th>Condición del Techo</th>
                         <th>Condición de la Pared</th>
@@ -126,7 +126,7 @@
                         <td title="Estado: {{ vivienda.consejo_comunal.parroquia.municipio.estado }}&#10;Municipio: {{ vivienda.consejo_comunal.parroquia.municipio }}&#10;Parroquia: {{ vivienda.consejo_comunal.parroquia }}"> {{ vivienda.consejo_comunal }} </td>
 
                         <td> {{ vivienda.direccion }} </td>
-                        <td> {{ vivienda.numero_vivienda }} </td>
+                        <td> {{ vivienda.numero_vivienda }}-{{ vivienda.id }} </td>
 
                         <td> <a href="{% url 'vivienda_editar' vivienda.id %}">Editar</a> | <a href="{% url 'vivienda_borrar' vivienda.id %}">Eliminar</a> | <a href="{% url 'ver_imagen' vivienda.id %}">Ver Imágenes</a> </td>
                         </tr>
