@@ -42,7 +42,7 @@ class Vivienda(models.Model):
     animales = models.CharField(max_length=500)
     numero_vivienda = models.CharField(max_length=20)
     direccion = models.CharField(max_length=500)
-    #coordenadas = models.CharField(max_length=100)
+    #coordenadas = models.CharField(max_length=255)
     consejo_comunal = models.ForeignKey(ConsejoComunal)
     encuestador = models.ForeignKey(Encuestador)
 

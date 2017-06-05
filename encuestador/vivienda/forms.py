@@ -338,9 +338,13 @@ class ViviendaForm(ModelForm):
         required = False
     )
 
-    animales = forms.MultipleChoiceField(
-        label = ('Seleccione los Animales que tiene:'),choices = ANIMALES,
-        widget=forms.CheckboxSelectMultiple(),required=False
+    animales = CharField(
+        label = ('Animales que tiene:'),
+        widget=TextInput(attrs={
+            'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Indique los animales que tiene"),
+        }),
+        required=False
     )
 
     estado = ModelChoiceField(
@@ -400,6 +404,7 @@ class ViviendaUpdateForm(ViviendaForm):
     def __init__(self, *args, **kwargs):
         super(ViviendaUpdateForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].initial = ""
+        self.fields['fecha_hora'].required = False
 
     class Meta:
         model = Vivienda
@@ -413,7 +418,7 @@ class ImagenForm(ModelForm):
 
         lista_vivienda = [('','Selecione...')]
         for vi in Vivienda.objects.all():
-            lista_vivienda.append( (vi.id,vi.numero_vivienda+" "+vi.direccion) )
+            lista_vivienda.append( (vi.id,vi.numero_vivienda+"-"+str(vi.id)) )
         self.fields['vivienda'].choices = lista_vivienda
 
     vivienda = forms.ChoiceField(

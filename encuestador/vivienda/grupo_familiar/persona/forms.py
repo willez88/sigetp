@@ -245,10 +245,12 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
-    organizacion_comunitaria = forms.MultipleChoiceField(
+    organizacion_comunitaria = forms.CharField(
         label = ('Organizaciones Comunitarias que conoce:'),
-        choices = ORGANIZACION_COMUNITARIA,
-        widget=forms.CheckboxSelectMultiple(),
+        widget=TextInput(attrs={
+            'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Indique las organizaciones comunitarias que conoce"),
+        }),
         required=False,
     )
 

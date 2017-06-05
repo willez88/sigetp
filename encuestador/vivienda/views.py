@@ -83,12 +83,14 @@ class ViviendaCreate(CreateView):
 
         self.object.direccion = form.cleaned_data['direccion']
         self.object.numero_vivienda = form.cleaned_data['numero_vivienda']
-        #self.object.coordenadas = form.cleaned_data['coordenada']
+
+        #self.object.coordenada = form.cleaned_data['coordenada_0']+","+form.cleaned_data['coordenada_1']
 
         self.object.save()
         return super(ViviendaCreate, self).form_valid(form)
 
     def form_invalid(self, form):
+        print(form.errors)
         return super(ViviendaCreate, self).form_invalid(form)
 
 class ViviendaUpdate(UpdateView):

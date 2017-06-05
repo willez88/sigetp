@@ -521,15 +521,13 @@
                     </div>
 
                     <!--<div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group {% if form.coordenada.errors %}has-error{% endif %}">
                                 <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.coordenada.auto_id }}">
                                     {{ form.coordenada.label }}
                                 </label>
-                                <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">
+                                <div class="col-md-8 col-xs-8 col-sm-8 form-inline">
                                         {{ form.coordenada }}
-                                    </div>
                                     {% include 'base.form.errors.html' with form_errors=form.coordenada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                     <i class="btn btn-info btn-sm" data-toggle="tooltip"
                                         title="{% trans 'Presione el botón para seleccionar su ubicación' %}"

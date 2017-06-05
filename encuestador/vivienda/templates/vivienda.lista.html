@@ -128,7 +128,7 @@
                         <td> {{ vivienda.direccion }} </td>
                         <td> {{ vivienda.numero_vivienda }}-{{ vivienda.id }} </td>
 
-                        <td> <a href="{% url 'vivienda_editar' vivienda.id %}">Editar</a> | <a href="{% url 'vivienda_borrar' vivienda.id %}">Eliminar</a> | <a href="{% url 'ver_imagen' vivienda.id %}">Ver Imágenes</a> </td>
+                        <td> <a href="{% url 'vivienda_editar' vivienda.id %}">Editar</a> | <a href="{% url 'vivienda_borrar' vivienda.id %}">Eliminar</a> </td>
                         </tr>
                     {% endfor %}
                 </tbody>

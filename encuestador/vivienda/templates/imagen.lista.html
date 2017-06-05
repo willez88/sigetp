@@ -18,8 +18,8 @@
                 <tbody>
                     {% for imagen in object_list %}
                         <tr>
-                        <td> {{ imagen.vivienda }} </td>
-                        <td> <img src="{{ imagen.imagen.url }}" class="img-responsive" width="600px" height="600px"> </td>
+                        <td> {{ imagen.vivienda.numero_vivienda }}-{{ imagen.vivienda.id }} </td>
+                        <td> <img src="{{ imagen.imagen.url }}" class="img-responsive" width="500px" height="500px"> </td>
                         </tr>
                     {% endfor %}
                 </tbody>
