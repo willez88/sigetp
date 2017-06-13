@@ -394,7 +394,18 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    #coordenada = CoordenadaField()
+    coordenada = CoordenadaField()
+
+    def clean(self):
+        cleaned_data = super(ViviendaForm, self).clean()
+        metro_cuadrado = self.cleaned_data['metro_cuadrado']
+        productivo = self.cleaned_data['productivo']
+        por_producir = self.cleaned_data['por_producir']
+        if metro_cuadrado != (productivo+por_producir):
+            msg = str(_("El terreno productivo y por producir debe ser igual al total de metros cuadrados"))
+            self.add_error('metro_cuadrado', msg)
+            self.add_error('productivo', msg)
+            self.add_error('por_producir', msg)
 
     class Meta:
         model = Vivienda

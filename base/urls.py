@@ -22,13 +22,5 @@ urlpatterns = [
 
 ## URLs de peticiones AJAX
 urlpatterns += [
-    #url(r'^ajax/get-data-rif/?$', get_data_rif, name='get_data_rif'),
-    #url(r'^ajax/validar-rif-seniat/?$', validar_rif_seniat, name='validar_rif_seniat'),
     url(r'^ajax/actualizar-combo/?$', actualizar_combo, name='actualizar_combo'),
-    #url(r'^ajax/eliminar-registro/$', eliminar_registro, name="eliminar_registro"),
-    #url(r'^ajax/cargar-combo/?$', cargar_combo, name='cargar_combo'),
-    #url(r'^ajax/anho-registro/$', anho_registro, name='anho_registro'),
-    #url(r'^ajax/cliente-data$', client_data ,name="ajax_cliente_data"),
-    #url(r'^ajax/count-model$', count_model ,name="ajax_count_model"),
-    #url(r'^datatable-espanol$', datatable_json ,name="datatable_espanol"),
 ]

@@ -46,6 +46,7 @@
                         <th>¿Qué Animales Tiene?</th>
                         <th>Consejo Comunal</th>
                         <th>Dirección</th>
+                        <th>Coordenadas</th>
                         <th>Número de la Vivienda</th>
                         <th>Operación</th>
                     </tr>
@@ -121,11 +122,12 @@
                             <td> No </td>
                         {% endif %}
 
-                        <td> {{ vivienda.get_animales_display }} </td>
+                        <td> {{ vivienda.animales }} </td>
 
                         <td title="Estado: {{ vivienda.consejo_comunal.parroquia.municipio.estado }}&#10;Municipio: {{ vivienda.consejo_comunal.parroquia.municipio }}&#10;Parroquia: {{ vivienda.consejo_comunal.parroquia }}"> {{ vivienda.consejo_comunal }} </td>
 
                         <td> {{ vivienda.direccion }} </td>
+                        <td> {{ vivienda.coordenadas }} </td>
                         <td> {{ vivienda.numero_vivienda }}-{{ vivienda.id }} </td>
 
                         <td> <a href="{% url 'vivienda_editar' vivienda.id %}">Editar</a> | <a href="{% url 'vivienda_borrar' vivienda.id %}">Eliminar</a> </td>

@@ -20,7 +20,7 @@ class Encuestador(models.Model):
         validators=[
             validators.RegexValidator(
                 r'^\(\d{3}\)-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números, y los signos + o -")
+                _("Número telefónico inválido. Solo se permiten números, y el signo -")
             ),
         ]
     )

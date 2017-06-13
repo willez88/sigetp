@@ -83,8 +83,7 @@ class ViviendaCreate(CreateView):
 
         self.object.direccion = form.cleaned_data['direccion']
         self.object.numero_vivienda = form.cleaned_data['numero_vivienda']
-
-        #self.object.coordenada = form.cleaned_data['coordenada_0']+","+form.cleaned_data['coordenada_1']
+        self.object.coordenadas = form.cleaned_data['coordenada']
 
         self.object.save()
         return super(ViviendaCreate, self).form_valid(form)
@@ -126,9 +125,3 @@ class ImagenCreate(CreateView):
         print(form.errors)
         return super(ImagenCreate, self).form_invalid(form)
 
-def imagenes(request, vivienda_id=None):
-    imagen = Imagen.objects.filter(vivienda_id=vivienda_id).all()
-    for im in imagen:
-        print(im.imagen.url)
-    context = {'imagen': imagen}
-    return render(request, 'imagen.html', context)

@@ -60,8 +60,13 @@ class EncuestadorForm(ModelForm):
             raise forms.ValidationError(_("El Encuestador ya se encuentra registrado"))
         return cedula
 
+    def clean_correo(self):
+        correo = self.cleaned_data['correo']
+        if User.objects.filter(email=correo):
+            raise forms.ValidationError(_("El correo ya esta registrado"))
+        return correo
+
     class Meta:
         model = Encuestador
-        fields = [
-            'nombre', 'apellido', 'cedula', 'telefono', 'correo'
-        ]
+        fields = '__all__'
+

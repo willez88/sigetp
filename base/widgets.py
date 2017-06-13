@@ -91,3 +91,4 @@ class CoordenadaWidgetReadOnly(MultiWidget):
         if value:
             return [value]
         return [None, None]
+
