@@ -1,13 +1,18 @@
 {% load static from staticfiles %}
 {% load i18n %}
-<script src="{% static 'tools/jquery/jquery-3.1.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'tools/jQuery/jquery-3.1.1.min.js' %}" type="text/javascript"></script>
 <!-- Variables javascript generales -->
 {% include 'base.vars.javascript.html' %}
 <script src="{% static 'tools/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/bootbox-4.4.0/bootbox.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/openlayers/ol.js' %}" type="text/javascript"></script>
-<script src="{% static 'tools/select2-4.0.2/js/select2.full.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'tools/select2/select2.full.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/jquery.mask-1.14.0/jquery.mask.min.js' %}" type="text/javascript"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'tools/AdminLTE/js/adminlte.min.js' %}"></script>
+<script src="{% static 'tools/DataTables-1.10.15/media/js/jquery.dataTables.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'tools/DataTables-1.10.15/media/js/dataTables.bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'tools/DataTables-1.10.15/extensions/Responsive/js/dataTables.responsive.min.js' %}" type="text/javascript"></script>
 <!-- Formularios de ventanas modales -->
 {% include 'base.form.box.html' %}
 <script src="{% static 'js/ajax.request.js' %}" type="text/javascript"></script>

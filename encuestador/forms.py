@@ -62,7 +62,7 @@ class EncuestadorForm(ModelForm):
 
     def clean_correo(self):
         correo = self.cleaned_data['correo']
-        if User.objects.filter(email=correo):
+        if Encuestador.objects.filter(correo=correo):
             raise forms.ValidationError(_("El correo ya esta registrado"))
         return correo
 
