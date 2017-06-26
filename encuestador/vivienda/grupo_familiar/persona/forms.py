@@ -102,7 +102,8 @@ class PersonaForm(forms.ModelForm):
         label=_("Fecha de Nacimieno:"),
         widget=TextInput(
             attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip', 'data-placement':'right',
+                'style':'width:100%;', 'readonly':'true',
                 'title': _("Indique la Fecha de Nacimiento de la Persona"), 'onblur':'calcular_edad(this.value)',
             }
         )
@@ -112,7 +113,7 @@ class PersonaForm(forms.ModelForm):
         label=_("Edad:"),
         widget=TextInput(
             attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;', 'readonly':'true',
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;','readonly':'true',
                 'title': _("Muestra la edad de la Persona"),
             }
         ),

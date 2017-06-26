@@ -140,7 +140,10 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
-                                        {{ form.fecha_nacimiento }}
+                                        <div class="input-group">
+                                            {{ form.fecha_nacimiento }}
+                                            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                        </div>
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
                                     {% include 'base.form.errors.html' with form_errors=form.fecha_nacimiento.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
@@ -426,6 +429,15 @@
 {% endblock %}
 {% block extra_footer %}
     <script>
+        $(document).ready(function(){
+            $('.datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                language: "es",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+
         function _tiene_cedula(opcion)
         {
             if( !opcion )
