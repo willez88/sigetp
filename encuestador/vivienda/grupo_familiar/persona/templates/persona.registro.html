@@ -1,17 +1,32 @@
 {% extends 'base.template.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
+{% block content_header_title %}{% trans 'Persona' %}{% endblock %}
 {% block contenido %}
-    <div class="container">
-	    <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+	        <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
             {% csrf_token %}
-            <div class="box box-primary">
-                <div class="box-body">
-                    <h4 class="box-title">
-                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Persona' %}
-                    </h4>
-                    <hr/>
-
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="form-group {% if form.grupo_familiar.errors %}has-error{% endif %}">
+                            <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.grupo_familiar.auto_id }}">
+                                {{ form.grupo_familiar.label }}
+                            </label>
+                            <div class="col-md-9 col-xs-9 col-sm-9">
+                                <div class="form-inline">
+                                    {{ form.grupo_familiar }}
+                                <i class="ion ion-ios-medical item-requerido"></i>
+                            </div>
+                                {% include 'base.form.errors.html' with form_errors=form.grupo_familiar.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.nombre.errors %}has-error{% endif %}">
@@ -400,35 +415,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.grupo_familiar.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.grupo_familiar.auto_id }}">
-                                    {{ form.grupo_familiar.label }}
-                                </label>
-                                <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">
-                                        {{ form.grupo_familiar }}
-                                        <i class="ion ion-ios-medical item-requerido"></i>
-                                    </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.grupo_familiar.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
                 <div class="box-footer text-right">
                     <a href="{% url 'persona_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
                     <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
                 </div>
-                <br>
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock %}
 {% block extra_footer %}
@@ -438,7 +431,8 @@
             if( !opcion )
             {
                 $("#bloque_cedula").css("display", "none");
-                $("#bloque_cedula").val("none");
+                $("#id_cedula_0").val(null);
+                $("#id_cedula_1").val(null);
             }
             else
             {

@@ -1,17 +1,16 @@
 {% extends 'base.template.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
+{% block content_header_title %}{% trans 'Grupo Familiar' %}{% endblock %}
 {% block contenido %}
-    <div class="container">
-	    <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+	        <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
             {% csrf_token %}
-            <div class="box box-primary">
-                <div class="box-body">
-                    <h4 class="box-title">
-                        <i class="glyphicon glyphicon-edit"></i>&#160;{% trans 'Grupo Familiar' %}
-                    </h4>
-                    <hr/>
-
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.vivienda.errors %}has-error{% endif %}">
@@ -104,17 +103,13 @@
                         </div>
                     </div>
 
-                </div>
-
                 <div class="box-footer text-right">
                     <a href="{% url 'grupo_familiar_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
                     <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
                 </div>
-                <br>
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock %}
 {% block extra_footer %}

@@ -298,6 +298,28 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    def clean_cedula(self):
+        cedula = self.cleaned_data['cedula']
+        if cedula == '':
+            return cedula
+        else:
+            if Persona.objects.filter(cedula=cedula):
+                raise forms.ValidationError(_("La Persona ya se encuentra registrada"))
+        return cedula
+
+    def clean(self):
+        cleaned_data = super(PersonaForm, self).clean()
+        grupo_familiar = self.cleaned_data['grupo_familiar']
+        parentesco = self.cleaned_data['parentesco']
+
+        persona = Persona()
+        if Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF"):
+            persona = Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF").all()
+
+        if persona.count() > 0:
+            msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
+            self.add_error('parentesco', msg)
+
     class Meta:
         model = Persona
         exclude = [

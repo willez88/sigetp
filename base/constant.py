@@ -100,27 +100,6 @@ DISPOSICION_BASURA = (
     ("EN",_("Enterrada")),
 )
 
-## Tipos de Animales
-ANIMALES = (
-    (1,_("Gatos")),
-    (2,_("Perros")),
-    (3,_("Vacas")),
-    (4,_("Cochinos")),
-    (5,_("Caballos")),
-    (6,_("Gallinas")),
-    (7,_("Serpientes")),
-    (8,_("Hamster")),
-    (10,_("Conejos")),
-    (11,_("Peces")),
-    (12,_("Ratones")),
-    (13,_("Iguanas")),
-    (14,_("Obejas")),
-    (15,_("Loros")),
-    (16,_("Guacamayas")),
-    (17,_("Chivos")),
-    (18,_("Arañas")),
-)
-
 ## Tipo de Tenencia
 TIPO_TENENCIA = (
     ("PR",_("Propia")),
@@ -142,7 +121,6 @@ PARENTESCO = (
     ## Parentesco de primer grado
     ("MA",_("Madre")),
     ("PA",_("Padre")),
-    ("CO",_("cónyuge")),
     ("CN",_("Concubino(a)")),
     ("HI",_("Hijo(a)")),
     ("YE",_("Yerno(a)")),

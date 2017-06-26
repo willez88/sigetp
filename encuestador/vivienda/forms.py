@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Vivienda, Imagen
 from base.constant import (
     SERVICIO_ELECTRICO, SITUACION_SANITARIA, DISPOSICION_BASURA, TIPO_VIVIENDA, TIPO_TECHO, TIPO_PARED, TIPO_PISO, TIPO_CEMENTO,
-    VALORACION, ANIMALES
+    VALORACION
 )
 from base.models import Estado, Municipio, Parroquia, ConsejoComunal
 from encuestador.models import Encuestador

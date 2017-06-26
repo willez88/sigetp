@@ -24,8 +24,6 @@ class Persona(models.Model):
                 _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
             ),
         ],
-        null = True,
-        unique = True,
     )
 
     ## Establece el teléfono de la Persona

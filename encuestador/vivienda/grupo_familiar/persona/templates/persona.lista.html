@@ -1,89 +1,122 @@
 {% extends 'base.template.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
+{% block content_header_title %}{% trans 'Persona' %}{% endblock %}
 {% block contenido %}
-    <div class="container"> <!-- container -->
-        <div class="row">
-            <h3>Gestionar los datos de las Personas de un Grupo Familiar</h3>
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Listar</h3><br>
         </div>
 
-        <div class="row">
-            <p><a href="{% url 'persona_registro' %}" class="btn btn-success">Crear</a></p>
+        <div class="box-header">
+            <a href="{% url 'persona_registro' %}" class="btn btn-success pull-left">Crear</a>
         </div>
 
-        <div class="row" style="overflow:scroll;height:500px;">
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Grupo Familiar</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Cédula</th>
-                        <th>Teléfono</th>
-                        <th>correo</th>
-                        <th>Sexo</th>
-                        <th>Fecha de nacimiento</th>
-                        <th>Parentesco</th>
-                        <th>Estado civil</th>
-                        <th>Grado de instrucción</th>
-                        <th>Misión educativa</th>
-                        <th>Profesión</th>
-                        <th>Ocupación</th>
-                        <th>Ingresos</th>
-                        <th>Deporte que practica</th>
-                        <th>Enfermedad que presenta</th>
-                        <th>Discapacidad que presenta</th>
-                        <th>¿Ha leído la ley de consejos comunales?</th>
-                        <th>¿Qué cursos le gustaría hacer?</th>
-                        <th>¿Qué organizaciones comunitarias conoce?</th>
-                        <th>¿Qué hace en sus horas de ocio?</th>
-                        <th>¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?</th>
-                        <th>¿Qué inseguridad presenta la comunidad?</th>
-                        <th>Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad</th>
-                        <th>Operación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for persona in object_list %}
-                        <tr>
-                        <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
-                        <td>{{ persona.nombre }}</td>
-                        <td>{{ persona.apellido }}</td>
-                        <td>{{ persona.cedula }}</td>
-                        <td>{{ persona.telefono }}</td>
-                        <td>{{ persona.correo }}</td>
-                        <td>{{ persona.get_sexo_display }}</td>
-                        <td>{{ persona.fecha_nacimiento }}</td>
-                        <td>{{ persona.get_parentesco_display }}</td>
-                        <td>{{ persona.get_estado_civil_display }}</td>
-                        <td>{{ persona.get_grado_instruccion_display }}</td>
-                        <td>{{ persona.get_mision_educativa_display }}</td>
-                        <td>{{ persona.profesion }}</td>
-                        <td>{{ persona.ocupacion }}</td>
-                        <td>{{ persona.get_ingreso_display }}</td>
-                        <td>{{ persona.deporte }}</td>
-                        <td>{{ persona.enfermedad }}</td>
-                        <td>{{ persona.discapacidad }}</td>
-                        {% if persona.ley_consejo_comunal %}
-                            <td>Si</td>
-                        {% else %}
-                            <td>No</td>
-                        {% endif %}
-                        <td>{{ persona.curso }}</td>
-                        <td>{{ persona.organizacion_comunitaria }}</td>
-                        <td>{{ persona.ocio }}</td>
-                        <td>{{ persona.mejorar_comunicacion }}</td>
-                        <td>{{ persona.inseguridad }}</td>
-                        <td>{{ persona.comentario }}</td>
-                        <td> <a href="{% url 'persona_editar' persona.id %}">Editar</a> | <a href="#">Eliminar</a> </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="box-body">
+            <div class="row box-body table-responsive">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona">
+                        <thead>
+                            <tr>
+                                <th>Grupo Familiar</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Cédula</th>
+                                <th>Teléfono</th>
+                                <th>correo</th>
+                                <th>Sexo</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Parentesco</th>
+                                <th>Estado civil</th>
+                                <th>Grado de instrucción</th>
+                                <th>Misión educativa</th>
+                                <th>Profesión</th>
+                                <th>Ocupación</th>
+                                <th>Ingresos</th>
+                                <th>Deporte que practica</th>
+                                <th>Enfermedad que presenta</th>
+                                <th>Discapacidad que presenta</th>
+                                <th>¿Ha leído la ley de consejos comunales?</th>
+                                <th>¿Qué cursos le gustaría hacer?</th>
+                                <th>¿Qué organizaciones comunitarias conoce?</th>
+                                <th>¿Qué hace en sus horas de ocio?</th>
+                                <th>¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?</th>
+                                <th>¿Qué inseguridad presenta la comunidad?</th>
+                                <th>Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad</th>
+                                <th>Operación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for persona in object_list %}
+                                <tr>
+                                <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
+                                <td>{{ persona.nombre }}</td>
+                                <td>{{ persona.apellido }}</td>
+                                <td>{{ persona.cedula }}</td>
+                                <td>{{ persona.telefono }}</td>
+                                <td>{{ persona.correo }}</td>
+                                <td>{{ persona.get_sexo_display }}</td>
+                                <td>{{ persona.fecha_nacimiento }}</td>
+                                <td>{{ persona.get_parentesco_display }}</td>
+                                <td>{{ persona.get_estado_civil_display }}</td>
+                                <td>{{ persona.get_grado_instruccion_display }}</td>
+                                <td>{{ persona.get_mision_educativa_display }}</td>
+                                <td>{{ persona.profesion }}</td>
+                                <td>{{ persona.ocupacion }}</td>
+                                <td>{{ persona.get_ingreso_display }}</td>
+                                <td>{{ persona.deporte }}</td>
+                                <td>{{ persona.enfermedad }}</td>
+                                <td>{{ persona.discapacidad }}</td>
+                                {% if persona.ley_consejo_comunal %}
+                                    <td>Si</td>
+                                {% else %}
+                                    <td>No</td>
+                                {% endif %}
+                                <td>{{ persona.curso }}</td>
+                                <td>{{ persona.organizacion_comunitaria }}</td>
+                                <td>{{ persona.ocio }}</td>
+                                <td>{{ persona.mejorar_comunicacion }}</td>
+                                <td>{{ persona.inseguridad }}</td>
+                                <td>{{ persona.comentario }}</td>
+                                <td> <a href="{% url 'persona_editar' persona.id %}">Editar</a> | <a href="{% url 'persona_borrar' persona.id %}">Eliminar</a> </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="box-footer text-right">
-            <a href="{% url 'grupo_familiar_lista' %}" class="btn btn-primary btn-sm">Arás</a>
-            <a href="{% url 'inicio' %}" class="btn btn-primary btn-sm">Finalizar</a>
-        </div><br>
-    </div> <!-- end container -->
+    </div>
+{% endblock %}
+{% block extra_footer %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var tabla= $('#tabla-persona').DataTable({
+                "language": {
+                    "sProcessing":     "Procesando...",
+	                "sLengthMenu":     "Mostrar _MENU_ registros",
+	                "sZeroRecords":    "No se encontraron resultados",
+	                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+	                "sInfoPostFix":    "",
+	                "sSearch":         "Buscar:",
+	                "sUrl":            "",
+	                "sInfoThousands":  ",",
+	                "sLoadingRecords": "Cargando...",
+	                "oPaginate": {
+		                "sFirst":    "Primero",
+		                "sLast":     "Último",
+		                "sNext":     "Siguiente",
+		                "sPrevious": "Anterior"
+	                },
+	                "oAria": {
+		                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+	                },
+                },
+            });
+        });
+    </script>
 {% endblock %}

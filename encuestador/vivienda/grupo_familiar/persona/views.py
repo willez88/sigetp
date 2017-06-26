@@ -24,7 +24,7 @@ class PersonaCreate(CreateView):
         self.object.nombre = form.cleaned_data['nombre']
         self.object.apellido = form.cleaned_data['apellido']
         if form.cleaned_data['tiene_cedula']:
-            self.object.nombre = form.cleaned_data['cedula']
+            self.object.cedula = form.cleaned_data['cedula']
         self.object.telefono = form.cleaned_data['telefono']
         self.object.correo = form.cleaned_data['correo']
         self.object.sexo = form.cleaned_data['sexo']

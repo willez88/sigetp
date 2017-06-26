@@ -1,8 +1,24 @@
 {% load static from staticfiles %}
 {% load i18n %}
 <script src="{% static 'tools/jQuery/jquery-3.1.1.min.js' %}" type="text/javascript"></script>
+
 <!-- Variables javascript generales -->
-{% include 'base.vars.javascript.html' %}
+<script type="text/javascript">
+    /// URL de archivos estáticos
+    var URL_STATIC_FILES = "{% static '' %}";
+
+    /// URL para actualizar combos anidados
+    var URL_ACTUALIZAR_SELECT = "{% url 'actualizar_combo' %}";
+
+    /// Mensaje de error en peticiones AJAX
+    var MSG_PETICION_AJAX_FALLIDA = "{% trans 'Petición fallida. Verifique el error: ' %}";
+
+    /// Texto a mostrar para el botón de agregar registros a un formulario desde una ventana modal
+    var BTN_AGREGAR = "{% trans 'Agregar' %}";
+
+    /// Texto a mostrar para el botón de cancelar acción
+    var BTN_CANCELAR = "{% trans 'Cancelar' %}";
+</script>
 <script src="{% static 'tools/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/bootbox-4.4.0/bootbox.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/openlayers/ol.js' %}" type="text/javascript"></script>
@@ -18,11 +34,11 @@
 <script src="{% static 'js/ajax.request.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/funciones.js' %}" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-    //muestra los mensajes centrados
-    $('[data-toggle="tooltip"]').tooltip();
+    $(document).ready(function(){
+        //muestra los mensajes centrados
+        $('[data-toggle="tooltip"]').tooltip();
 
-    //para agregar el select2 en los respectivos campos de tipo select
-    $(".select2").select2();
-});
+        //para agregar el select2 en los respectivos campos de tipo select
+        $(".select2").select2();
+    });
 </script>
