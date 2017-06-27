@@ -23,6 +23,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% if not form.instance.pk %}
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.fecha_hora.errors %}has-error{% endif %}">
                                 <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.fecha_hora.auto_id }}">
@@ -34,6 +35,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
 
                     <div class="row">

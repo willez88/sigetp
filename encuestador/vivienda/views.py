@@ -101,7 +101,7 @@ class ViviendaUpdate(UpdateView):
 class ViviendaDelete(DeleteView):
     model = Vivienda
     template_name = "vivienda.eliminar.html"
-    success_url = reverse_lazy('encuestador_lista')
+    success_url = reverse_lazy('vivienda_lista')
 
 class ImagenList(ListView):
     model = Imagen
