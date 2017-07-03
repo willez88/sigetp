@@ -12,12 +12,8 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 
 # Create your views here.
 
 def inicio(request):
-    template = loader.get_template('base.template.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+    return render(request, 'base.template.html')

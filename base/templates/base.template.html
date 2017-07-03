@@ -21,8 +21,67 @@
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
+
+                    {% if request.user.is_authenticated %}
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-user"></i>&#160;<span class="hidden-xs">{{ request.user.username }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <p>{{ request.user.first_name }} {{ request.user.last_name }} <small>{{ request.user.date_joined|date }}</small></p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Opción 1</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Opción 2</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Opción 3</a>
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="{% url 'salir' %}" class="btn btn-default btn-flat">
+                                                <i class="glyphicon glyphicon-log-out"></i>&#160;Salir
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+                        </ul>
+                    </div>
+                    {% else %}
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="{% url 'acceso' %}">
+                                    <i class="glyphicon glyphicon-log-in"></i>&#160;<span class="hidden-xs">Iniciar Seción</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </nav>
             </header>
+
+            {% if request.user.is_authenticated %}
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
@@ -39,6 +98,7 @@
                 </section>
                 <!-- /.sidebar -->
             </aside>
+            {% endif %}
             
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -56,8 +116,13 @@
                             <div class="box-header text-center">
                                 <h3 class="box-title">Título</h3>
                             </div>
-                            <div class="box-body">
-                                <p>Algo sobre la página</p>
+                            <div class="box-body text-center">
+                                {% if not request.user.is_authenticated %}
+                                    <p>Bienvenido, inicia en la aplicación para empezar a usarla</p>
+                                    <p><a class="btn btn-info" href="{% url 'acceso' %}">Entrar al Sistema</a></p>
+                                {% else %}
+                                    <p>Bienvenido {{ request.user.username }}, se te ha desplegado un menú. Úsalo para comenzar a registrar los datos</p>
+                                {% endif %}
                             </div>
                         </div>
                     {% endblock %}

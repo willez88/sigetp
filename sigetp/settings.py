@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'encuestador.vivienda',
     'encuestador.vivienda.grupo_familiar',
     'encuestador.vivienda.grupo_familiar.persona',
+    'usuario',
 ]
 
 MIDDLEWARE = [
@@ -63,11 +64,12 @@ ENCUESTADOR_TEMPLATES = os.path.join(BASE_DIR, "encuestador/templates")
 VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/templates")
 GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/grupo_familiar/templates")
 PERSONA_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/grupo_familiar/persona/templates")
+USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_TEMPLATES, ENCUESTADOR_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES],
+        'DIRS': [BASE_TEMPLATES, ENCUESTADOR_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, USUARIO_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -178,11 +180,10 @@ LOCALE_PATHS = [
 ## Registro de mensajes al usuario
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-# Configuración de variables para el envío de correo electrónico
-## Nombre del Servidor de correo SMTP
-#EMAIL_HOST = 'localhost'
-## Puerto del Servidor de correo SMTP
-#EMAIL_PORT = 25
-## Dirección de correo electrónico de quien envía
-#EMAIL_FROM = 'sigesic@cenditel.gob.ve'
-
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'correo@gmail.com'
+#EMAIL_HOST_PASSWORD = 'clave'
+#EMAIL_FROM = EMAIL_HOST_USER
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
