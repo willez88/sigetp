@@ -3,7 +3,7 @@ from django.forms import Select, TextInput, NumberInput, EmailInput
 from django.utils.translation import ugettext_lazy as _
 from .models import Persona
 from base.constant import TIPO_TENENCIA
-from encuestador.vivienda.grupo_familiar.models import GrupoFamiliar
+from vivienda.grupo_familiar.models import GrupoFamiliar
 from base.fields import CedulaField
 from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA
 

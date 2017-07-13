@@ -1,6 +1,6 @@
 from django.db import models
 from base.constant import TIPO_TENENCIA
-from encuestador.vivienda.models import Vivienda
+from vivienda.models import Vivienda
 # Create your models here.
 
 class GrupoFamiliar(models.Model):

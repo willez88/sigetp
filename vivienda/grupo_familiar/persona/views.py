@@ -3,13 +3,17 @@ from django.core.urlresolvers import reverse_lazy
 from .models import Persona
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import PersonaForm
-from encuestador.vivienda.grupo_familiar.models import GrupoFamiliar
+from vivienda.grupo_familiar.models import GrupoFamiliar
 
 # Create your views here.
 
 class PersonaList(ListView):
     model = Persona
     template_name = "persona.lista.html"
+
+    def get_queryset(self):
+        queryset = Persona.objects.filter(grupo_familiar__vivienda__user=self.request.user)
+        return queryset
 
 class PersonaCreate(CreateView):
     model = Persona

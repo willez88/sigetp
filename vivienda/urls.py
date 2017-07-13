@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^borrar/(?P<pk>\d+)$', ViviendaDelete.as_view(), name='vivienda_borrar'),
     url(r'^imagen/registro$', ImagenCreate.as_view(), name='imagen_registro'),
     url(r'^imagen$', ImagenList.as_view(), name='imagen_lista'),
-    url(r'^grupo-familiar/', include('encuestador.vivienda.grupo_familiar.urls')),
+    url(r'^grupo-familiar/', include('vivienda.grupo_familiar.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

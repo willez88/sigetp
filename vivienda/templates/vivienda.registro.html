@@ -12,17 +12,6 @@
 	        <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
             {% csrf_token %}
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.encuestador.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.encuestador.auto_id }}">
-                                    {{ form.encuestador.label }}
-                                </label>
-                                <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">{{ form.encuestador }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.encuestador.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
-                                </div>
-                            </div>
-                        </div>
                         {% if not form.instance.pk %}
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.fecha_hora.errors %}has-error{% endif %}">

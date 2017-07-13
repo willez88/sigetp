@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA
-from encuestador.vivienda.grupo_familiar.models import GrupoFamiliar
+from vivienda.grupo_familiar.models import GrupoFamiliar
 
 # Create your models here.
 

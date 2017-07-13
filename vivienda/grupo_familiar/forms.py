@@ -3,7 +3,7 @@ from django.forms import Select, TextInput, NumberInput
 from django.utils.translation import ugettext_lazy as _
 from .models import GrupoFamiliar
 from base.constant import TIPO_TENENCIA
-from encuestador.vivienda.models import Vivienda
+from vivienda.models import Vivienda
 
 class GrupoFamiliarForm(forms.ModelForm):
 

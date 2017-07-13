@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Vivienda, Imagen
 from .forms import ViviendaForm, ViviendaUpdateForm, ImagenForm
-from encuestador.models import Encuestador
+from django.contrib.auth.models import User
 from base.models import ConsejoComunal
 
 # Create your views here.
@@ -11,6 +11,10 @@ from base.models import ConsejoComunal
 class ViviendaList(ListView):
     model = Vivienda
     template_name = "vivienda.lista.html"
+
+    def get_queryset(self):
+        queryset = Vivienda.objects.filter(user=self.request.user)
+        return queryset
 
 class ViviendaCreate(CreateView):
     model = Vivienda
@@ -21,8 +25,8 @@ class ViviendaCreate(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
 
-        encuestador = Encuestador.objects.filter(pk=form.cleaned_data['encuestador']).get()
-        self.object.encuestador = encuestador
+        user = User.objects.get(user__username=self.request.user.username)
+        self.object.user = user
 
         self.object.fecha_hora = form.cleaned_data['fecha_hora']
         self.object.tipo_techo = form.cleaned_data['tipo_techo']
@@ -89,7 +93,6 @@ class ViviendaCreate(CreateView):
         return super(ViviendaCreate, self).form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
         return super(ViviendaCreate, self).form_invalid(form)
 
 class ViviendaUpdate(UpdateView):
@@ -97,6 +100,21 @@ class ViviendaUpdate(UpdateView):
     form_class = ViviendaUpdateForm
     template_name = "vivienda.registro.html"
     success_url = reverse_lazy('vivienda_lista')
+
+    def get_initial(self):
+        datos_iniciales = super(ViviendaUpdate, self).get_initial()
+        vivienda = Vivienda.objects.get(pk=self.request.user.id)
+        datos_iniciales['coordenada'] = vivienda.coordenadas.split(",")
+        return datos_iniciales
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.coordenadas = form.cleaned_data['coordenada']
+        self.object.save()
+        return super(ViviendaUpdate, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(ViviendaUpdate, self).form_invalid(form)
 
 class ViviendaDelete(DeleteView):
     model = Vivienda
@@ -106,6 +124,10 @@ class ViviendaDelete(DeleteView):
 class ImagenList(ListView):
     model = Imagen
     template_name = "imagen.lista.html"
+
+    def get_queryset(self):
+        queryset = Imagen.objects.filter(vivienda__user=self.request.user)
+        return queryset
 
 class ImagenCreate(CreateView):
     model = Imagen

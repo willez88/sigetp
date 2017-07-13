@@ -3,7 +3,7 @@ from base.constant import (TIPO_VIVIENDA, TIPO_TECHO, TIPO_PARED, TIPO_PISO, VAL
     SITUACION_SANITARIA, DISPOSICION_BASURA
 )
 from base.models import ConsejoComunal
-from encuestador.models import Encuestador
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -44,7 +44,7 @@ class Vivienda(models.Model):
     direccion = models.CharField(max_length=500)
     coordenadas = models.CharField(max_length=255, blank=True)
     consejo_comunal = models.ForeignKey(ConsejoComunal)
-    encuestador = models.ForeignKey(Encuestador)
+    user = models.ForeignKey(User)
 
 class Imagen(models.Model):
     imagen = models.ImageField(upload_to='media/vivienda/')

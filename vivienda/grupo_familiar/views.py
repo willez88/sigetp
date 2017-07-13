@@ -3,13 +3,17 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import GrupoFamiliar
 from .forms import GrupoFamiliarForm
-from encuestador.vivienda.models import Vivienda
+from vivienda.models import Vivienda
 
 # Create your views here.
 
 class GrupoFamiliarList(ListView):
     model = GrupoFamiliar
     template_name = "grupo.familiar.lista.html"
+
+    def get_queryset(self):
+        queryset = GrupoFamiliar.objects.filter(vivienda__user=self.request.user)
+        return queryset
 
 class GrupoFamiliarCreate(CreateView):
     model = GrupoFamiliar

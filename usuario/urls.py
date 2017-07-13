@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from .views import acceso, salir
-from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+from django.contrib.auth.views import (
+    password_reset, password_reset_done, password_reset_confirm, password_reset_complete, password_change, password_change_done
+)
 
 urlpatterns = [
 
@@ -19,4 +21,6 @@ urlpatterns = [
         ),
     url(r'^reset/done', password_reset_complete, {'template_name': 'password_reset_complete.html'},
         name='password_reset_complete'),
+    url(r'^cambiar-clave$', password_change, {'template_name': 'password_change_form.html'}, name='password_change'),
+    url(r'^cambiar-clave-hecho$', password_change_done, {'template_name': 'password_change_done.html'}, name='password_change_done'),
 ]

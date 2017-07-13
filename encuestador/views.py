@@ -4,6 +4,8 @@ from django.views.generic import ListView
 from .models import Encuestador
 from django.views.generic import CreateView, UpdateView, DeleteView
 from .forms import EncuestadorForm
+from django.contrib.auth.decorators import permission_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -35,6 +37,11 @@ class EncuestadorUpdate(UpdateView):
     form_class = EncuestadorForm
     template_name = "encuestador.registro.html"
     success_url = reverse_lazy('encuestador_lista')
+
+    ## ejemplo de permisos
+    @method_decorator(permission_required('encuestador.change_encuestador',reverse_lazy('encuestador_lista')))
+    def dispatch(self, *args, **kwargs):
+        return super(EncuestadorUpdate, self).dispatch(*args, **kwargs)
 
 class EncuestadorDelete(DeleteView):
     model = Encuestador

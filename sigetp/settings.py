@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'base',
     'encuestador',
-    'encuestador.vivienda',
-    'encuestador.vivienda.grupo_familiar',
-    'encuestador.vivienda.grupo_familiar.persona',
+    'vivienda',
+    'vivienda.grupo_familiar',
+    'vivienda.grupo_familiar.persona',
     'usuario',
 ]
 
@@ -61,9 +61,9 @@ ROOT_URLCONF = 'sigetp.urls'
 ## Directorio en donde se encuentran las plantillas del módulo base
 BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
 ENCUESTADOR_TEMPLATES = os.path.join(BASE_DIR, "encuestador/templates")
-VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/templates")
-GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/grupo_familiar/templates")
-PERSONA_TEMPLATES = os.path.join(BASE_DIR, "encuestador/vivienda/grupo_familiar/persona/templates")
+VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
+GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
+PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
 USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
 
 TEMPLATES = [

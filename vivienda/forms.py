@@ -17,23 +17,7 @@ class ViviendaForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ViviendaForm, self).__init__(*args, **kwargs)
-
-        lista_encuestador = [('','Selecione...')]
-        for en in Encuestador.objects.all():
-            lista_encuestador.append( (en.id,en.nombre+" "+en.apellido) )
-        self.fields['encuestador'].choices = lista_encuestador
-
         self.fields['fecha_hora'].initial = datetime.datetime.now()
-
-    encuestador = ChoiceField(
-        label=_("Encuestador:"),
-        widget=Select(
-            attrs={
-                'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Seleccione al Encuestador"),
-            }
-        )
-    )
 
     fecha_hora = CharField(
         label=_("Fecha y hora:"),
@@ -419,7 +403,7 @@ class ViviendaUpdateForm(ViviendaForm):
     class Meta:
         model = Vivienda
         exclude = [
-            'encuestador','fecha_hora'
+            'user','fecha_hora'
         ]
 
 class ImagenForm(ModelForm):

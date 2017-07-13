@@ -18,16 +18,14 @@ class Perfil(models.Model):
     )
 
     telefono = models.CharField(
-        max_length=20, help_text=_("Número telefónico de contacto con el usuario"),
+        max_length=18, help_text=_("Número telefónico de contacto con el usuario"),
         validators=[
             validators.RegexValidator(
-                r'^\(\d{3}\)-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números, y el signo -")
+                r'^\(\+\d{3}\)-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: ( ) - +")
             ),
         ]
     )
-
-    fecha_modpass = models.DateTimeField(null=True, help_text=_("Fecha en la que se modificó la contraseña"))
 
     user = models.OneToOneField(
         User, related_name="perfil",
