@@ -25,11 +25,11 @@ class PerfilAdminForm(ModelForm):
         help_text=_("(país)-área-número")
     )
 
-    def clean_cedula(self):
+    """def clean_cedula(self):
         cedula = self.cleaned_data['cedula']
         if Perfil.objects.filter(cedula=cedula):
             raise forms.ValidationError(_("El Usuario ya se encuentra registrado"))
-        return cedula
+        return cedula"""
 
     class Meta:
         model = Perfil
@@ -37,7 +37,7 @@ class PerfilAdminForm(ModelForm):
 
 class AutenticarForm(forms.Form):
 
-    usuario = CharField(
+    username = CharField(
         label=_("Usuario:"),
         widget=TextInput(
             attrs={
@@ -47,23 +47,36 @@ class AutenticarForm(forms.Form):
         )
     )
 
-    clave = CharField(
+    password = CharField(
         label=_("Contraseña"), max_length=30, widget=PasswordInput(attrs={
             'class': 'form-control input-sm', 'placeholder': _("contraseña de acceso"), 'data-toggle': 'tooltip',
             'title': _("Indique la contraseña de acceso al sistema"),
         })
     )
 
+    def __init__(self, request=None, *args, **kwargs):
+        """
+        The 'request' parameter is set for custom auth use by subclasses.
+        The form data comes in via the standard 'data' kwarg.
+        """
+        self.request = request
+        self.user_cache = None
+        super(AutenticarForm, self).__init__(*args, **kwargs)
+
+
     def clean(self):
         cleaned_data = super(AutenticarForm, self).clean()
-        usuario = self.cleaned_data['usuario']
-        clave = self.cleaned_data['clave']
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
-        if not User.objects.filter(username=usuario):
-            msg = "El Usuario no esta registrado"
-            self.add_error('usuario', msg)
+        if username is not None and password:
+            if not User.objects.filter(username=username):
+                msg = "El Usuario no esta registrado"
+                self.add_error('username', msg)
 
-        if User.objects.filter(username=usuario) and not User.objects.get(username=usuario).check_password(clave):
-            msg = "Contraseña incorrecta"
-            self.add_error('clave', msg)
+            if User.objects.filter(username=username) and not User.objects.get(username=username).check_password(password):
+                msg = "Contraseña incorrecta"
+                self.add_error('password', msg)
 
+    def get_user(self):
+        return self.user_cache

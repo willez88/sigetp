@@ -1,0 +1,41 @@
+{% extends 'base.template.html' %}
+{% load static from staticfiles %}
+{% load i18n %}
+{% block content_header_title %}Portal de Acceso al Sistema{% endblock %}
+{% block contenido %}
+    <div class="login-box">
+        <div class="login-box-body">
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p>
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+            <p class="login-box-msg">Inicia tu sesión</p>
+
+            <form action="" method="post" autocomplete="off">
+                {% csrf_token %}
+                <div class="form-group has-feedback {% if form.username.errors %}has-error{% endif %}">
+                    <input type="text" name="username" class="form-control sm-input" placeholder="usuario" data-toggle="tooltip" title="Indique el nombre de usuario" id="id_username"/>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    {% include 'base.form.errors.html' with form_errors=form.username.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+                <div class="form-group has-feedback {% if form.password.errors %}has-error{% endif %}">
+                    <input type="password" name="password" class="form-control input-sm" placeholder="contraseña de acceso" data-toggle="tooltip" title="Indique la contraseña de acceso al sistema" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    {% include 'base.form.errors.html' with form_errors=form.password.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <a href="{% url 'password_reset' %}">Yo olvidé mi contraseña</a><br>
+            <a href="register.html" class="text-center">Registrar nuevo usuario</a>
+        </div>
+    </div>
+<!-- /.login-box -->
+{% endblock %}

@@ -9,7 +9,6 @@ from base.constant import (
     VALORACION
 )
 from base.models import Estado, Municipio, Parroquia, ConsejoComunal
-from encuestador.models import Encuestador
 from base.fields import CoordenadaField
 import datetime
 

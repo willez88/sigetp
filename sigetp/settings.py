@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+## Identifica a los administradores del sistema
+ADMINS = [
+    ('William Páez', 'wpaez@cenditel.gob.ve'),
+]
 
 # Application definition
 
@@ -39,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'base',
-    'encuestador',
     'vivienda',
     'vivienda.grupo_familiar',
     'vivienda.grupo_familiar.persona',
@@ -60,7 +63,6 @@ ROOT_URLCONF = 'sigetp.urls'
 
 ## Directorio en donde se encuentran las plantillas del módulo base
 BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
-ENCUESTADOR_TEMPLATES = os.path.join(BASE_DIR, "encuestador/templates")
 VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
 GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
 PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
@@ -69,7 +71,7 @@ USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_TEMPLATES, ENCUESTADOR_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, USUARIO_TEMPLATES],
+        'DIRS': [BASE_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, USUARIO_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -167,7 +169,11 @@ STATICFILES_DIRS = (
 )
 
 ## URL de acceso al sistema
-LOGIN_URL = "/login"
+LOGIN_URL = "login"
+
+LOGIN_REDIRECT_URL = 'inicio'
+
+LOGOUT_REDIRECT_URL = 'login'
 
 ## URL de salida del sistema
 LOGOUT_URL = "/logout"

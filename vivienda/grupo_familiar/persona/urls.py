@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
 
 from .views import (
     PersonaList,
@@ -9,9 +10,8 @@ from .views import (
 
 urlpatterns = [
 
-    url(r'^$', PersonaList.as_view(), name='persona_lista'),
-    #url(r'^(?P<pk>\d+)$', CourseDetail.as_view(), name='encuestador_detail'),
-    url(r'^registro$', PersonaCreate.as_view(), name='persona_registro'),
-    url(r'^editar/(?P<pk>\d+)$', PersonaUpdate.as_view(), name='persona_editar'),
-    url(r'^borrar/(?P<pk>\d+)$', PersonaDelete.as_view(), name='persona_borrar'),
+    url(r'^$', login_required(PersonaList.as_view()), name='persona_lista'),
+    url(r'^registro$', login_required(PersonaCreate.as_view()), name='persona_registro'),
+    url(r'^editar/(?P<pk>\d+)$', login_required(PersonaUpdate.as_view()), name='persona_editar'),
+    url(r'^borrar/(?P<pk>\d+)$', login_required(PersonaDelete.as_view()), name='persona_borrar'),
 ]

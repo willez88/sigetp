@@ -56,7 +56,7 @@
                                             <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a href="{% url 'salir' %}" class="btn btn-default btn-flat">
+                                            <a href="{% url 'logout' %}" class="btn btn-default btn-flat">
                                                 <i class="glyphicon glyphicon-log-out"></i>&#160;Salir
                                             </a>
                                         </div>
@@ -71,7 +71,7 @@
                         <ul class="nav navbar-nav">
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
-                                <a href="{% url 'acceso' %}">
+                                <a href="{% url 'login' %}">
                                     <i class="glyphicon glyphicon-log-in"></i>&#160;<span class="hidden-xs">Iniciar Seción</span>
                                 </a>
                             </li>
@@ -90,7 +90,6 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MENÚ PRINCIPAL</li>
                         <li><a href="{% url 'inicio' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Inicio</span></a></li>
-                        <li><a href="{% url 'encuestador_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Encuestador</span></a></li>
                         <li><a href="{% url 'vivienda_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Vivienda</span></a></li>
                         <li><a href="{% url 'grupo_familiar_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Grupo Familiar</span></a></li>
                         <li><a href="{% url 'persona_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Persona</span></a></li>
@@ -119,7 +118,7 @@
                             <div class="box-body text-center">
                                 {% if not request.user.is_authenticated %}
                                     <p>Bienvenido, inicia en la aplicación para empezar a usarla</p>
-                                    <p><a class="btn btn-info" href="{% url 'acceso' %}">Entrar al Sistema</a></p>
+                                    <p><a class="btn btn-info" href="{% url 'login' %}">Entrar al Sistema</a></p>
                                 {% else %}
                                     <p>Bienvenido {{ request.user.username }}, se te ha desplegado un menú. Úsalo para comenzar a registrar los datos</p>
                                 {% endif %}
