@@ -25,7 +25,7 @@ class ViviendaCreate(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
 
-        user = User.objects.get(user__username=self.request.user.username)
+        user = User.objects.get(username=self.request.user.username)
         self.object.user = user
 
         self.object.fecha_hora = form.cleaned_data['fecha_hora']
@@ -93,6 +93,7 @@ class ViviendaCreate(CreateView):
         return super(ViviendaCreate, self).form_valid(form)
 
     def form_invalid(self, form):
+        print(form.errors)
         return super(ViviendaCreate, self).form_invalid(form)
 
 class ViviendaUpdate(UpdateView):
@@ -103,8 +104,12 @@ class ViviendaUpdate(UpdateView):
 
     def get_initial(self):
         datos_iniciales = super(ViviendaUpdate, self).get_initial()
-        vivienda = Vivienda.objects.get(pk=self.request.user.id)
+        vivienda = Vivienda.objects.get(pk=self.object.id)
         datos_iniciales['coordenada'] = vivienda.coordenadas.split(",")
+        datos_iniciales['estado'] = vivienda.consejo_comunal.parroquia.municipio.estado
+        datos_iniciales['municipio'] = vivienda.consejo_comunal.parroquia.municipio
+        datos_iniciales['parroquia'] = vivienda.consejo_comunal.parroquia
+        datos_iniciales['consejo_comunal'] = vivienda.consejo_comunal
         return datos_iniciales
 
     def form_valid(self, form):

@@ -14,7 +14,7 @@ from .views import (
 
 urlpatterns = [
 
-    url('^$', login_required(ViviendaList.as_view()), name='vivienda_lista'),
+    url(r'^$', login_required(ViviendaList.as_view()), name='vivienda_lista'),
     url(r'^registro$', login_required(ViviendaCreate.as_view()), name='vivienda_registro'),
     url(r'^editar/(?P<pk>\d+)$', login_required(ViviendaUpdate.as_view()), name='vivienda_editar'),
     url(r'^borrar/(?P<pk>\d+)$', login_required(ViviendaDelete.as_view()), name='vivienda_borrar'),

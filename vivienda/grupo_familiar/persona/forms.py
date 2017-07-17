@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import Select, TextInput, NumberInput, EmailInput
 from django.utils.translation import ugettext_lazy as _
 from .models import Persona
 from base.constant import TIPO_TENENCIA
@@ -15,11 +14,10 @@ class PersonaForm(forms.ModelForm):
         for gf in GrupoFamiliar.objects.all():
             lista_grupo_familiar.append( (gf.id,gf.apellido_familia+"-"+str(gf.id)) )
         self.fields['grupo_familiar'].choices = lista_grupo_familiar
-        self.fields['tiene_cedula'].initial = True
 
     grupo_familiar = forms.ChoiceField(
         label=_("Grupo Familiar:"),
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione El Grupo Familiar al cual pertenece la Persona"),
@@ -29,7 +27,8 @@ class PersonaForm(forms.ModelForm):
 
     nombre = forms.CharField(
         label=_("Nombres:"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique los Nombres de la Persona"),
@@ -39,7 +38,8 @@ class PersonaForm(forms.ModelForm):
 
     apellido = forms.CharField(
         label=_("Apellidos:"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique los Apellidos de la Persona"),
@@ -48,26 +48,26 @@ class PersonaForm(forms.ModelForm):
     )
 
     tiene_cedula = forms.ChoiceField(
-        label=_("¿Tiene Cédula?"),
-        choices=((True,'Si'), (False,'No')),
-        widget=forms.CheckboxInput(attrs={
-                'class': 'form-control',
-                'onclick': "_tiene_cedula($(this).is(':checked'))",
+        label=_("¿Tiene Cédula?:"),
+        choices=(('S',_('Si')),)+(('N',_('No')),),
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:60px;',
+                'title': _("Seleccione si tiene cédula"), 'onchange': "_tiene_cedula(this.value)",
             }
-        ),
-        required = False
+        ), required = False
     )
 
     cedula = CedulaField(required=False)
 
     telefono = forms.CharField(
         label=_("Teléfono:"),
-        max_length=20,
-        widget=TextInput(
+        max_length=18,
+        widget=forms.TextInput(
             attrs={
-                'class': 'form-control input-sm', 'placeholder': '(058)-000-0000000',
-                'data-rule-required': 'true', 'data-toggle': 'tooltip', 'size': '15',
-                'title': _("Indique el número telefónico de contacto con el usuario"), 'data-mask': '(000)-000-0000000'
+                'class': 'form-control input-sm', 'placeholder': '(+058)-000-0000000',
+                'data-rule-required': 'true', 'data-toggle': 'tooltip',
+                'title': _("Indique el número telefónico de contacto con el usuario"), 'data-mask': '(+000)-000-0000000'
             }
         ),
         help_text=_("(país)-área-número"),
@@ -77,7 +77,7 @@ class PersonaForm(forms.ModelForm):
     correo = forms.EmailField(
         label=_("Correo Electrónico:"),
         max_length=100,
-        widget=EmailInput(
+        widget=forms.EmailInput(
             attrs={
                 'class': 'form-control input-sm email-mask', 'placeholder': _("Correo de contacto"),
                 'data-toggle': 'tooltip', 'size': '30', 'data-rule-required': 'true',
@@ -90,7 +90,7 @@ class PersonaForm(forms.ModelForm):
     sexo = forms.ChoiceField(
         label=_("Sexo:"),
         choices=(('',_('Seleccione...')),)+SEXO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Sexo de la Persona"),
@@ -100,7 +100,7 @@ class PersonaForm(forms.ModelForm):
 
     fecha_nacimiento = forms.CharField(
         label=_("Fecha de Nacimieno:"),
-        widget=TextInput(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip', 'data-placement':'right',
                 'style':'width:100%;', 'readonly':'true',
@@ -111,7 +111,7 @@ class PersonaForm(forms.ModelForm):
 
     edad = forms.CharField(
         label=_("Edad:"),
-        widget=TextInput(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;','readonly':'true',
                 'title': _("Muestra la edad de la Persona"),
@@ -123,7 +123,7 @@ class PersonaForm(forms.ModelForm):
     parentesco = forms.ChoiceField(
         label=_("Parentesco:"),
         choices=(('',_('Seleccione...')),)+PARENTESCO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Parentesco"),
@@ -134,7 +134,7 @@ class PersonaForm(forms.ModelForm):
     estado_civil = forms.ChoiceField(
         label=_("Estado Civil:"),
         choices=(('',_('Seleccione...')),)+ESTADO_CIVIL,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Estado Civil de la Persona"),
@@ -145,7 +145,7 @@ class PersonaForm(forms.ModelForm):
     grado_instruccion = forms.ChoiceField(
         label=_("Grado de Instrucción:"),
         choices=(('',_('Seleccione...')),)+GRADO_INSTRUCCION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Grado de Instrucción de la Persona"),
@@ -156,7 +156,7 @@ class PersonaForm(forms.ModelForm):
     mision_educativa = forms.ChoiceField(
         label=_("Misión Educativa:"),
         choices=(('',_('Seleccione...')),)+MISION_EDUCATIVA,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Misión Educativa que tiene la Persona"),
@@ -166,7 +166,8 @@ class PersonaForm(forms.ModelForm):
 
     profesion = forms.CharField(
         label=_("Profesión:"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la Profesión de la Persona"),
@@ -177,7 +178,8 @@ class PersonaForm(forms.ModelForm):
 
     ocupacion = forms.CharField(
         label=_("Ocupación:"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la Ocupación de la Persona"),
@@ -189,7 +191,7 @@ class PersonaForm(forms.ModelForm):
     ingreso = forms.ChoiceField(
         label=_("Tipo de Ingresos:"),
         choices=(('',_('Seleccione...')),)+TIPO_INGRESO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo de Ingreso que tiene la Persona"),
@@ -199,7 +201,8 @@ class PersonaForm(forms.ModelForm):
 
     deporte = forms.CharField(
         label=_("Deporte que Practica:"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique el Deporte que practica de la Persona"),
@@ -210,7 +213,8 @@ class PersonaForm(forms.ModelForm):
 
     enfermedad = forms.CharField(
         label=_("Enfermedad que Presenta:"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la Enfermedad que Presenta la Persona"),
@@ -221,7 +225,8 @@ class PersonaForm(forms.ModelForm):
 
     discapacidad = forms.CharField(
         label=_("Discapacidad que Presenta:"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la Discapacidad que Presenta la Persona"),
@@ -237,7 +242,8 @@ class PersonaForm(forms.ModelForm):
 
     curso = forms.CharField(
         label=_("¿Qué Cursos le Gustaría Hacer?"),
-        widget=TextInput(
+        max_length=100,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique los Cursos que le gustaría hacer"),
@@ -248,7 +254,8 @@ class PersonaForm(forms.ModelForm):
 
     organizacion_comunitaria = forms.CharField(
         label = ('Organizaciones Comunitarias que conoce:'),
-        widget=TextInput(attrs={
+        max_length=500,
+        widget=forms.TextInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique las organizaciones comunitarias que conoce"),
         }),
@@ -257,7 +264,8 @@ class PersonaForm(forms.ModelForm):
 
     ocio = forms.CharField(
         label=_("¿Que hace Ud. en sus horas de ocio?"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique lo que hace en sus horas de Ocio"),
@@ -268,7 +276,8 @@ class PersonaForm(forms.ModelForm):
 
     mejorar_comunicacion = forms.CharField(
         label=_("¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique alguna sugerencia para mejorar la comunicación en la comunidad"),
@@ -279,7 +288,8 @@ class PersonaForm(forms.ModelForm):
 
     inseguridad = forms.CharField(
         label=_("¿Qué Inseguridad Presenta la Comunidad?"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la inseguridad que presenta la comunidad"),
@@ -290,7 +300,8 @@ class PersonaForm(forms.ModelForm):
 
     comentario = forms.CharField(
         label=_("Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad"),
-        widget=TextInput(
+        max_length=500,
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique algún comentario"),
@@ -315,7 +326,7 @@ class PersonaForm(forms.ModelForm):
 
         persona = Persona()
         if Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF"):
-            persona = Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF").all()
+            persona = Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF")
 
         if persona.count() > 0:
             msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))

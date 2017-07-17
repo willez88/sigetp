@@ -16,10 +16,9 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-vivienda">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-vivienda" style="width:5050px;">
                         <thead>
                             <tr>
-                                <th>Encuestador</th>
                                 <th>Fecha y Hora</th>
                                 <th>Tipo del Techo</th>
                                 <th>Servicio Eléctrico</th>
@@ -57,7 +56,6 @@
                         <tbody>
                             {% for vivienda in object_list %}
                                 <tr>
-                                <td> {{ vivienda.encuestador.nombre }} {{ vivienda.encuestador.apellido }} </td>
                                 <td> {{ vivienda.fecha_hora }} </td>
                                 <td> {{ vivienda.get_tipo_techo_display }}</td>
                                 <td> {{ vivienda.get_servicio_electrico_display }} </td>
@@ -127,7 +125,7 @@
 
                                 <td> {{ vivienda.animales }} </td>
 
-                                <td title="Estado: {{ vivienda.consejo_comunal.parroquia.municipio.estado }}&#10;Municipio: {{ vivienda.consejo_comunal.parroquia.municipio }}&#10;Parroquia: {{ vivienda.consejo_comunal.parroquia }}"> {{ vivienda.consejo_comunal }} </td>
+                                <td title="Consejo Comunal, Parroquia, Municipio, Estado"> {{ vivienda.consejo_comunal }}, {{ vivienda.consejo_comunal.parroquia }}, {{ vivienda.consejo_comunal.parroquia.municipio }}, {{ vivienda.consejo_comunal.parroquia.municipio.estado }} </td>
 
                                 <td> {{ vivienda.direccion }} </td>
                                 <td> {{ vivienda.coordenadas }} </td>
@@ -171,6 +169,41 @@
 		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                },
                 },
+                "autoWidth": false,
+                "columnDefs": [
+                    { "width": "250px", "targets": 0 },
+                    { "width": "150px", "targets": 1 },
+                    { "width": "150px", "targets": 2 },
+                    { "width": "150px", "targets": 3 },
+                    { "width": "150px", "targets": 4 },
+                    { "width": "150px", "targets": 5 },
+                    { "width": "150px", "targets": 6 },
+                    { "width": "150px", "targets": 7 },
+                    { "width": "150px", "targets": 8 },
+                    { "width": "150px", "targets": 9 },
+                    { "width": "150px", "targets": 10 },
+                    { "width": "150px", "targets": 11 },
+                    { "width": "150px", "targets": 12 },
+                    { "width": "150px", "targets": 13 },
+                    { "width": "150px", "targets": 14 },
+                    { "width": "150px", "targets": 15 },
+                    { "width": "150px", "targets": 16 },
+                    { "width": "150px", "targets": 17 },
+                    { "width": "150px", "targets": 18 },
+                    { "width": "150px", "targets": 19 },
+                    { "width": "150px", "targets": 20 },
+                    { "width": "150px", "targets": 21 },
+                    { "width": "100px", "targets": 22 },
+                    { "width": "100px", "targets": 23 },
+                    { "width": "100px", "targets": 24 },
+                    { "width": "100px", "targets": 25 },
+                    { "width": "250px", "targets": 26 },
+                    { "width": "250px", "targets": 27 },
+                    { "width": "250px", "targets": 28 },
+                    { "width": "250px", "targets": 29 },
+                    { "width": "150px", "targets": 30 },
+                    { "width": "100px", "targets": 31 },
+                ],
             });
         });
     </script>

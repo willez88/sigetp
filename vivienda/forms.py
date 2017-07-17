@@ -1,7 +1,4 @@
 from django import forms
-from django.forms import (
-    ModelForm, TextInput, CharField, ChoiceField, Select, BooleanField, NumberInput, ModelChoiceField
-)
 from django.utils.translation import ugettext_lazy as _
 from .models import Vivienda, Imagen
 from base.constant import (
@@ -12,15 +9,30 @@ from base.models import Estado, Municipio, Parroquia, ConsejoComunal
 from base.fields import CoordenadaField
 import datetime
 
-class ViviendaForm(ModelForm):
+class ViviendaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ViviendaForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].initial = datetime.datetime.now()
 
-    fecha_hora = CharField(
+        # Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
+        if 'estado' in self.data and self.data['estado']:
+            self.fields['municipio'].widget.attrs.pop('disabled')
+            self.fields['municipio'].queryset=Municipio.objects.filter(estado=self.data['estado'])
+
+            # Si se ha seleccionado un municipio establece el listado de parroquias y elimina el atributo disable
+            if 'municipio' in self.data and self.data['municipio']:
+                self.fields['parroquia'].widget.attrs.pop('disabled')
+                self.fields['parroquia'].queryset=Parroquia.objects.filter(municipio=self.data['municipio'])
+
+                # Si se ha seleccionado una parroquia establece el listado de consejos comunales y elimina el atributo disable
+                if 'parroquia' in self.data and self.data['parroquia']:
+                    self.fields['consejo_comunal'].widget.attrs.pop('disabled')
+                    self.fields['consejo_comunal'].queryset=ConsejoComunal.objects.filter(parroquia=self.data['parroquia'])
+
+    fecha_hora = forms.CharField(
         label=_("Fecha y hora:"),
-        widget=TextInput(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;', 'readonly':'true',
                 'title': _("Indique la Fecha y Hora del registro"),
@@ -28,9 +40,9 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    numero_vivienda = CharField(
+    numero_vivienda = forms.CharField(
         label=_("Número de la Vivienda:"),
-        widget=TextInput(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique el Número de la vivienda"),
@@ -38,10 +50,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    servicio_electrico = ChoiceField(
+    servicio_electrico = forms.ChoiceField(
         label=_("Servicio Eléctrico:"),
         choices=(('',_('Seleccione...')),)+SERVICIO_ELECTRICO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Servicio Electrico"),
@@ -49,10 +61,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    situacion_sanitaria = ChoiceField(
+    situacion_sanitaria = forms.ChoiceField(
         label=_("Situación Sanitaria:"),
         choices=(('',_('Seleccione...')),)+SITUACION_SANITARIA,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Situación Sanitaria"),
@@ -60,10 +72,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    disposicion_basura = ChoiceField(
+    disposicion_basura = forms.ChoiceField(
         label=_("Disposición de la Basura:"),
         choices=(('',_('Seleccione...')),)+DISPOSICION_BASURA,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Disposición de la Basura"),
@@ -71,10 +83,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    tipo_vivienda = ChoiceField(
+    tipo_vivienda = forms.ChoiceField(
         label=_("Tipo de la Vivienda:"),
         choices=(('',_('Seleccione...')),)+TIPO_VIVIENDA,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo de la Vivienda"),
@@ -82,10 +94,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    tipo_techo = ChoiceField(
+    tipo_techo = forms.ChoiceField(
         label=_("Tipo del Techo:"),
         choices=(('',_('Seleccione...')),)+TIPO_TECHO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo del Techo"),
@@ -93,10 +105,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    tipo_pared = ChoiceField(
+    tipo_pared = forms.ChoiceField(
         label=_("Tipo de la Pared:"),
         choices=(('',_('Seleccione...')),)+TIPO_PARED,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo de la Pared"), 'onchange': 'frizada(this.value)',
@@ -104,15 +116,15 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    pared_frizada = BooleanField(
+    pared_frizada = forms.BooleanField(
         label=_("¿La Pared está Frizada?"),
         required = False
     )
 
-    tipo_piso = ChoiceField(
+    tipo_piso = forms.ChoiceField(
         label=_("Tipo del Piso: "),
         choices=(('',_('Seleccione...')),)+TIPO_PISO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo del Piso"), 'onchange': 'cemento(this.value)',
@@ -120,10 +132,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    tipo_cemento = ChoiceField(
+    tipo_cemento = forms.ChoiceField(
         label=_("Tipo del Cemento: "),
         choices=(('',_('Seleccione...')),)+TIPO_CEMENTO,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione el Tipo del Cemento"),
@@ -131,10 +143,10 @@ class ViviendaForm(ModelForm):
         ), required = False
     )
 
-    condicion_vivienda = ChoiceField(
+    condicion_vivienda = forms.ChoiceField(
         label=_("Condición de la Vivienda:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición de la Vivienda"),
@@ -142,10 +154,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    condicion_techo = ChoiceField(
+    condicion_techo = forms.ChoiceField(
         label=_("Condición del Techo:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición del Techo"),
@@ -153,10 +165,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    condicion_pared = ChoiceField(
+    condicion_pared = forms.ChoiceField(
         label=_("Condición de la Pared:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición de la Pared"),
@@ -164,10 +176,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    condicion_piso = ChoiceField(
+    condicion_piso = forms.ChoiceField(
         label=_("Condición del Piso:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición del Piso"),
@@ -175,10 +187,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    condicion_ventilacion = ChoiceField(
+    condicion_ventilacion = forms.ChoiceField(
         label=_("Condición de la Ventilación:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición de la Ventilación"),
@@ -186,10 +198,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    condicion_iluminacion = ChoiceField(
+    condicion_iluminacion = forms.ChoiceField(
         label=_("Condición de la iluminación:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Condición de la Iluminación"),
@@ -197,10 +209,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    accesibilidad_ambulatorio = ChoiceField(
+    accesibilidad_ambulatorio = forms.ChoiceField(
         label=_("Accecibilidad al Ambulatorio:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Accecibilidad al Ambulatorio"),
@@ -208,10 +220,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    accesibilidad_escuela = ChoiceField(
+    accesibilidad_escuela = forms.ChoiceField(
         label=_("Accecibilidad a la Escuela:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Accecibilidad a la Escuela"),
@@ -219,10 +231,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    accesibilidad_liceo = ChoiceField(
+    accesibilidad_liceo = forms.ChoiceField(
         label=_("Accecibilidad al Liceo:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Accecibilidad al Liceo"),
@@ -230,10 +242,10 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    accesibilidad_centro_abastecimiento = ChoiceField(
+    accesibilidad_centro_abastecimiento = forms.ChoiceField(
         label=_("Accecibilidad al Centro de Abastecimiento:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Accecibilidad al Centro de Abastecimiento"),
@@ -241,98 +253,98 @@ class ViviendaForm(ModelForm):
         )
     )
 
-    numero_habitaciones = CharField(
+    numero_habitaciones = forms.CharField(
         label=_("Número de Habitaciones:"),
-        widget=NumberInput(
+        widget=forms.NumberInput(
             attrs={
                 'class': 'form-control input-sm', 'data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Número de Habitaciones"), 'size': '3', 'min':'0', 'step':'1',
+                'title': _("Indique el Número de Habitaciones"), 'min':'0', 'step':'1',
             }
         )
     )
 
-    numero_salas = CharField(
+    numero_salas = forms.CharField(
         label=_("Número de Salas:"),
-        widget=NumberInput(
+        widget=forms.NumberInput(
             attrs={
                 'class': 'form-control input-sm', 'data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Número de Salas"), 'size': '3', 'min':'0', 'step':'1',
+                'title': _("Indique el Número de Salas"), 'min':'0', 'step':'1',
             }
         )
     )
 
-    numero_banhos = CharField(
+    numero_banhos = forms.CharField(
         label=_("Número de Baños:"),
-        widget=NumberInput(
+        widget=forms.NumberInput(
             attrs={
                 'class': 'form-control input-sm', 'data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Número de Baños"), 'size': '3', 'min':'0', 'step':'1',
+                'title': _("Indique el Número de Baños"), 'min':'0', 'step':'1',
             }
         )
     )
 
-    tiene_terreno = BooleanField(
+    tiene_terreno = forms.BooleanField(
         label=_("¿Tiene Terreno?"),
         widget=forms.CheckboxInput(
             attrs={
-                'onclick':"""terreno($(this).is(':checked'))"""
+                'onclick':"terreno($(this).is(':checked'))"
             }
         ), required = False
     )
 
-    metro_cuadrado = CharField(
-        label=_("Metros Cuadrados:"), widget=NumberInput(attrs={
+    metro_cuadrado = forms.CharField(
+        label=_("Metros Cuadrados:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique la cantidad de Metros Cuadrados del Terreno"), 'min':'0', 'step':'0.001', 'value':'0',
         }), required=False
     )
 
-    productivo = CharField(
-        label=_("Productivo:"), widget=NumberInput(attrs={
+    productivo = forms.CharField(
+        label=_("Productivo:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique la cantidad de Metros Cuadrados que están Productivos"), 'min':'0', 'step':'0.001', 'value':'0',
         }), required=False
     )
 
-    por_producir = CharField(
-        label=_("Por Producir:"), widget=NumberInput(attrs={
+    por_producir = forms.CharField(
+        label=_("Por Producir:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique la cantidad de Metros Cuadrados que faltan por Producir"), 'min':'0', 'step':'0.001', 'value':'0',
         }), required=False
     )
 
-    riesgo_rio = BooleanField(
+    riesgo_rio = forms.BooleanField(
         label=_("¿Riesgo por Ríos?"),
         required = False
     )
 
-    riesgo_quebrada = BooleanField(
+    riesgo_quebrada = forms.BooleanField(
         label=_("¿Riesgo por Quebradas?"),
         required = False
     )
 
-    riesgo_derrumbe = BooleanField(
+    riesgo_derrumbe = forms.BooleanField(
         label=_("¿Riesgo por Derrumbes?"),
         required = False
     )
 
-    riesgo_zona_sismica = BooleanField(
+    riesgo_zona_sismica = forms.BooleanField(
         label=_("¿Riesgo por Zona Sísmica?"),
         required = False
     )
 
-    animales = CharField(
+    animales = forms.CharField(
         label = ('Animales que tiene:'),
-        widget=TextInput(attrs={
+        widget=forms.TextInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique los animales que tiene"),
         }),
         required=False
     )
 
-    estado = ModelChoiceField(
+    estado = forms.ModelChoiceField(
         label=_("Estado"), queryset=Estado.objects.all(), empty_label=_("Seleccione..."),
-        widget=Select(attrs={
+        widget=forms.Select(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Seleccione el estado en donde se encuentra ubicada"),
             'onchange': "actualizar_combo(this.value,'base','Municipio','estado','pk','nombre','id_municipio')"
@@ -340,9 +352,9 @@ class ViviendaForm(ModelForm):
     )
 
     ## Municipio en el que se encuentra ubicada la parroquia
-    municipio = ModelChoiceField(
+    municipio = forms.ModelChoiceField(
         label=_("Municipio"), queryset=Municipio.objects.all(), empty_label=_("Seleccione..."),
-        widget=Select(attrs={
+        widget=forms.Select(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
             'title': _("Seleccione el municipio en donde se encuentra ubicada"),
             'onchange': "actualizar_combo(this.value,'base','Parroquia','municipio','pk','nombre','id_parroquia')"
@@ -350,26 +362,26 @@ class ViviendaForm(ModelForm):
     )
 
     ## Parroquia en donde se encuentra ubicada la dirección suministrada
-    parroquia = ModelChoiceField(
+    parroquia = forms.ModelChoiceField(
         label=_("Parroquia"), queryset=Parroquia.objects.all(), empty_label=_("Seleccione..."),
-        widget=Select(attrs={
+        widget=forms.Select(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
             'title': _("Seleccione la parroquia en donde se encuentra ubicada"),
             'onchange': "actualizar_combo(this.value,'base','ConsejoComunal','parroquia','pk','nombre','id_consejo_comunal')"
         })
     )
 
-    consejo_comunal = ModelChoiceField(
+    consejo_comunal = forms.ModelChoiceField(
         label=_("Consejo Comunal"), queryset=ConsejoComunal.objects.all(), empty_label=_("Seleccione..."),
-        widget=Select(attrs={
+        widget=forms.Select(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
             'title': _("Seleccione el consejo comunal en donde se encuentra ubicado")
         })
     )
 
-    direccion = CharField(
+    direccion = forms.CharField(
         label=_("Dirección:"),
-        widget=TextInput(
+        widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Indique la Dirección de la vivienda"),
@@ -392,12 +404,15 @@ class ViviendaForm(ModelForm):
 
     class Meta:
         model = Vivienda
-        exclude = ['encuestador']
+        exclude = ['user']
 
 class ViviendaUpdateForm(ViviendaForm):
     def __init__(self, *args, **kwargs):
         super(ViviendaUpdateForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].required = False
+        self.fields['municipio'].widget.attrs['disabled'] = False
+        self.fields['parroquia'].widget.attrs['disabled'] = False
+        self.fields['consejo_comunal'].widget.attrs['disabled'] = False
 
     class Meta:
         model = Vivienda
@@ -405,7 +420,7 @@ class ViviendaUpdateForm(ViviendaForm):
             'user','fecha_hora'
         ]
 
-class ImagenForm(ModelForm):
+class ImagenForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ImagenForm, self).__init__(*args, **kwargs)
 
@@ -416,7 +431,7 @@ class ImagenForm(ModelForm):
 
     vivienda = forms.ChoiceField(
         label=_("Vivienda:"),
-        widget=Select(
+        widget=forms.Select(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Vivienda"),

@@ -440,13 +440,13 @@
 
         function _tiene_cedula(opcion)
         {
-            if( !opcion )
+            if( opcion=='N' )
             {
                 $("#bloque_cedula").css("display", "none");
                 $("#id_cedula_0").val(null);
                 $("#id_cedula_1").val(null);
             }
-            else
+            else if( opcion=='S' )
             {
                 $("#bloque_cedula").css("display", "block");
             }

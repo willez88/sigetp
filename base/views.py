@@ -13,7 +13,10 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 
 from django.shortcuts import render
 
-# Create your views here.
+__licence__ = "GNU Public License v2"
+__revision__ = ""
+__docstring__ = "DoxyGen"
+
 
 def inicio(request):
     return render(request, 'base.template.html')

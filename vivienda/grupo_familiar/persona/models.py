@@ -26,13 +26,12 @@ class Persona(models.Model):
         ],
     )
 
-    ## Establece el teléfono de la Persona
     telefono = models.CharField(
-        max_length=20, help_text=_("Número telefónico de contacto con el usuario"),
+        max_length=18, help_text=_("Número telefónico de contacto con el usuario"),
         validators=[
             validators.RegexValidator(
-                r'^\(\d{3}\)-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números, y los signos + o -")
+                r'^\(\+\d{3}\)-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: ( ) - +")
             ),
         ]
     )

@@ -15,7 +15,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-grupo-familiar">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-grupo-familiar" style="width:1300px;">
                         <thead>
                             <tr>
                                 <th>Vivienda</th>
@@ -88,6 +88,15 @@
 		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                },
                 },
+                "autoWidth": false,
+                "columnDefs": [
+                    { "width": "200px", "targets": 0 },
+                    { "width": "200px", "targets": 1 },
+                    { "width": "200px", "targets": 2 },
+                    { "width": "200px", "targets": 3 },
+                    { "width": "350px", "targets": 4 },
+                    { "width": "150px", "targets": 5 },
+                ],
             });
         });
     </script>
