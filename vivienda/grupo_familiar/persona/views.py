@@ -14,10 +14,6 @@ class PersonaList(ListView):
 
     def get_queryset(self):
         queryset = Persona.objects.filter(grupo_familiar__vivienda__user=self.request.user)
-        for q in queryset:
-            #calcula la edad de la persona, falta pasarla por parámetro
-            diff = (datetime.date.today() - q.fecha_nacimiento).days
-            anhos = str(int(diff/365))
         return queryset
 
 class PersonaCreate(CreateView):

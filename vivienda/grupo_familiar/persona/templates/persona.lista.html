@@ -15,7 +15,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:5400px;">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:5500px;">
                         <thead>
                             <tr>
                                 <th>Grupo Familiar</th>
@@ -26,6 +26,7 @@
                                 <th>correo</th>
                                 <th>Sexo</th>
                                 <th>Fecha de nacimiento</th>
+                                <th>Edad</th>
                                 <th>Parentesco</th>
                                 <th>Estado civil</th>
                                 <th>Grado de instrucción</th>
@@ -50,13 +51,14 @@
                             {% for persona in object_list %}
                                 <tr>
                                 <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
-                                <td>{{ persona.nombre }}</td>
+                                <td>{{ persona.nombre }} </td>
                                 <td>{{ persona.apellido }}</td>
                                 <td>{{ persona.cedula }}</td>
                                 <td>{{ persona.telefono }}</td>
                                 <td>{{ persona.correo }}</td>
                                 <td>{{ persona.get_sexo_display }}</td>
                                 <td>{{ persona.fecha_nacimiento }}</td>
+                                <td>{{ persona.edad }}</td>
                                 <td>{{ persona.get_parentesco_display }}</td>
                                 <td>{{ persona.get_estado_civil_display }}</td>
                                 <td>{{ persona.get_grado_instruccion_display }}</td>
@@ -126,14 +128,14 @@
                     { "width": "250px", "targets": 5 },
                     { "width": "100px", "targets": 6 },
                     { "width": "100px", "targets": 7 },
-                    { "width": "150px", "targets": 8 },
+                    { "width": "100px", "targets": 8 },
                     { "width": "150px", "targets": 9 },
                     { "width": "150px", "targets": 10 },
                     { "width": "150px", "targets": 11 },
-                    { "width": "200px", "targets": 12 },
+                    { "width": "150px", "targets": 12 },
                     { "width": "200px", "targets": 13 },
-                    { "width": "150px", "targets": 14 },
-                    { "width": "250px", "targets": 15 },
+                    { "width": "200px", "targets": 14 },
+                    { "width": "150px", "targets": 15 },
                     { "width": "250px", "targets": 16 },
                     { "width": "250px", "targets": 17 },
                     { "width": "250px", "targets": 18 },
@@ -142,8 +144,9 @@
                     { "width": "250px", "targets": 21 },
                     { "width": "250px", "targets": 22 },
                     { "width": "250px", "targets": 23 },
-                    { "width": "400px", "targets": 24 },
-                    { "width": "150px", "targets": 25 },
+                    { "width": "250px", "targets": 24 },
+                    { "width": "400px", "targets": 25 },
+                    { "width": "150px", "targets": 26 },
                 ],
             });
         });

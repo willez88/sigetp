@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO
 from vivienda.grupo_familiar.models import GrupoFamiliar
+import datetime
 
 # Create your models here.
 
@@ -100,3 +101,6 @@ class Persona(models.Model):
 
     ## Establece la relación con el grupo familiar
     grupo_familiar = models.ForeignKey(GrupoFamiliar)
+
+    def edad(self):
+        return int((datetime.date.today() - self.fecha_nacimiento).days / 365.25  )
