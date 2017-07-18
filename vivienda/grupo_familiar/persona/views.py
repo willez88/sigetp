@@ -4,6 +4,7 @@ from .models import Persona
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import PersonaForm
 from vivienda.grupo_familiar.models import GrupoFamiliar
+import datetime
 
 # Create your views here.
 
@@ -13,6 +14,10 @@ class PersonaList(ListView):
 
     def get_queryset(self):
         queryset = Persona.objects.filter(grupo_familiar__vivienda__user=self.request.user)
+        for q in queryset:
+            #calcula la edad de la persona, falta pasarla por parámetro
+            diff = (datetime.date.today() - q.fecha_nacimiento).days
+            anhos = str(int(diff/365))
         return queryset
 
 class PersonaCreate(CreateView):
@@ -22,7 +27,7 @@ class PersonaCreate(CreateView):
     success_url = reverse_lazy('persona_lista')
 
     def form_valid(self, form):
-        grupo_familiar = GrupoFamiliar.objects.filter(pk=form.cleaned_data['grupo_familiar']).get()
+        grupo_familiar = GrupoFamiliar.objects.get(pk=form.cleaned_data['grupo_familiar'])
         self.object = form.save(commit=False)
         self.object.grupo_familiar = grupo_familiar
         self.object.nombre = form.cleaned_data['nombre']

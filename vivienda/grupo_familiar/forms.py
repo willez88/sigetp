@@ -26,6 +26,7 @@ class GrupoFamiliarForm(forms.ModelForm):
 
     apellido_familia = forms.CharField(
         label=_("Apellidos de la Familia:"),
+        max_length=100,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',

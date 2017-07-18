@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA
+from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO
 from vivienda.grupo_familiar.models import GrupoFamiliar
 
 # Create your models here.
@@ -66,7 +66,7 @@ class Persona(models.Model):
     ocupacion = models.CharField(max_length=100)
 
     ## Establece los ingresos de dinero de la Persona (sin categoria de momento)
-    ingreso = models.CharField(max_length=100)
+    ingreso = models.CharField(max_length=100, choices=TIPO_INGRESO)
 
     ## Establece el Deporte que practica la Persona (sin categoria de momento)
     deporte = models.CharField(max_length=100)

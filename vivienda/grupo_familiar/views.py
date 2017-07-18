@@ -23,7 +23,7 @@ class GrupoFamiliarCreate(CreateView):
 
     def form_valid(self, form):
 
-        vivienda = Vivienda.objects.filter(pk=form.cleaned_data['vivienda']).get()
+        vivienda = Vivienda.objects.get(pk=form.cleaned_data['vivienda'])
         self.object = form.save(commit=False)
         self.object.vivienda = vivienda
         self.object.apellido_familia = form.cleaned_data['apellido_familia']

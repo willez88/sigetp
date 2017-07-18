@@ -176,7 +176,7 @@ LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
 
 ## URL de salida del sistema
-LOGOUT_URL = "/logout"
+#LOGOUT_URL = "/logout"
 
 ## configuración que permite obtener la ruta en donde se encuentran las traducciones de la aplicación a otros lenguajes
 LOCALE_PATHS = [

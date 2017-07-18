@@ -453,19 +453,19 @@
         }
 
         function calcular_edad(fecha)
+        {
+            var dateParts = fecha.split("-");
+            var fecha_js = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2), dateParts[2].substr(3, 2), dateParts[2].substr(6, 2), dateParts[2].substr(9, 2));
+            hoy = new Date();
+            edad = (hoy-fecha_js)/365/24/60/60/1000;
+            if(edad < 2.0)
             {
-                var dateParts = fecha.split("-");
-                var fecha_js = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2), dateParts[2].substr(3, 2), dateParts[2].substr(6, 2), dateParts[2].substr(9, 2));
-                hoy = new Date();
-                edad = (hoy-fecha_js)/365/24/60/60/1000;
-                if(edad < 2.0)
-                {
-                    $("#id_edad").val(edad.toFixed(1));
-                }
-                else
-                {
-                    $("#id_edad").val(edad.toFixed(0));
-                }
+                $("#id_edad").val(edad.toFixed(1));
             }
+            else
+            {
+                $("#id_edad").val(edad.toFixed(0));
+            }
+        }
     </script>
 {% endblock %}

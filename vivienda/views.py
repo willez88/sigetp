@@ -105,6 +105,7 @@ class ViviendaUpdate(UpdateView):
     def get_initial(self):
         datos_iniciales = super(ViviendaUpdate, self).get_initial()
         vivienda = Vivienda.objects.get(pk=self.object.id)
+        datos_iniciales['fecha_hora'] = vivienda.fecha_hora
         datos_iniciales['coordenada'] = vivienda.coordenadas.split(",")
         datos_iniciales['estado'] = vivienda.consejo_comunal.parroquia.municipio.estado
         datos_iniciales['municipio'] = vivienda.consejo_comunal.parroquia.municipio
@@ -142,7 +143,7 @@ class ImagenCreate(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        vivienda = Vivienda.objects.filter(pk=form.cleaned_data['vivienda']).get()
+        vivienda = Vivienda.objects.get(pk=form.cleaned_data['vivienda'])
         self.object.vivienda = vivienda
         self.object.imagen = form.cleaned_data['imagen']
         self.object.save()

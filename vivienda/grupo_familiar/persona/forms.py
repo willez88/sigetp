@@ -328,9 +328,9 @@ class PersonaForm(forms.ModelForm):
         if Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF"):
             persona = Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF")
 
-        if persona.count() > 0:
-            msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
-            self.add_error('parentesco', msg)
+            if persona.count() > 0:
+                msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
+                self.add_error('parentesco', msg)
 
     class Meta:
         model = Persona
