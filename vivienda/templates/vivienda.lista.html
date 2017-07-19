@@ -11,12 +11,13 @@
         <div class="box-header">
             <a href="{% url 'vivienda_registro' %}" class="btn btn-success pull-left">Crear</a>
             <a href="{% url 'imagen_registro' %}" class="btn btn-success pull-left">Subir Imagen</a>
+            <a href="{% url 'imagen_lista' %}" class="btn btn-info pull-left">Listar Imágenes</a>
         </div>
 
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-vivienda" style="width:5150px;">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-vivienda" style="width:5750px;">
                         <thead>
                             <tr>
                                 <th>Fecha y Hora</th>
@@ -26,7 +27,9 @@
                                 <th>Disposición de la Basura</th>
                                 <th>Tipo de la Vivienda</th>
                                 <th>Tipo de la Pared</th>
+                                <th>¿Pared Frizada?</th>
                                 <th>Tipo del Piso</th>
+                                <th>Tipo del Cemento</th>
                                 <th>Condición de la Vivienda</th>
                                 <th>Condición del Techo</th>
                                 <th>Condición de la Pared</th>
@@ -41,12 +44,13 @@
                                 <th>Número de Salas</th>
                                 <th>Número de Baños</th>
                                 <th>¿Tiene Terreno?</th>
+                                <th title="Metros Cuadrados">Área | Productivo | Por Producir</th>
                                 <th>¿Riego por Ríos?</th>
                                 <th>¿Riego por Quebradas?</th>
                                 <th>¿Riego por Derrumbes?</th>
                                 <th>¿Riego por Zona Sísmica?</th>
                                 <th>¿Qué Animales Tiene?</th>
-                                <th>Consejo Comunal</th>
+                                <th title="Consejo Comunal, Parroquia, Municipio, Estado">Consejo Comunal</th>
                                 <th>Dirección</th>
                                 <th>Coordenadas</th>
                                 <th>Número de la Vivienda</th>
@@ -63,20 +67,22 @@
                                 <td> {{ vivienda.get_disposicion_basura_display }} </td>
                                 <td> {{ vivienda.get_tipo_vivienda_display }} </td>
 
+                                <td> {{ vivienda.get_tipo_pared_display }} </td>
                                 {% if vivienda.tipo_pared == 'BL' %}
                                     {% if vivienda.pared_frizada %}
-                                        <td title="Frizada: Si"> {{ vivienda.get_tipo_pared_display }} </td>
+                                        <td> Si </td>
                                     {% else %}
-                                        <td title="Frizada: No"> {{ vivienda.get_tipo_pared_display }} </td>
+                                        <td> No </td>
                                     {% endif %}
                                 {% else %}
-                                    <td> {{ vivienda.get_tipo_pared_display }} </td>
+                                    <td> </td>
                                 {% endif %}
 
+                                <td> {{ vivienda.get_tipo_piso_display }} </td>
                                 {% if vivienda.tipo_piso == 'CE' %}
-                                    <td title="Tipo del Cemento: {{ vivienda.get_tipo_cemento_display }}"> {{ vivienda.get_tipo_piso_display }} </td>
+                                    <td> {{ vivienda.get_tipo_cemento_display }} </td>
                                 {% else %}
-                                    <td> {{ vivienda.get_tipo_piso_display }} </td>
+                                    <td> </td>
                                 {% endif %}
 
                                 <td> {{ vivienda.get_condicion_vivienda_display }} </td>
@@ -94,9 +100,11 @@
                                 <td> {{ vivienda.numero_banhos }} </td>
 
                                 {% if vivienda.tiene_terreno %}
-                                    <td title="Área del Terreno: {{ vivienda.metro_cuadrado }}&#10;Terreno Productivo: {{ vivienda.productivo }}&#10;Por Producir: {{ vivienda.por_producir }}"> Si </td>
+                                    <td> Si </td>
+                                    <td> {{ vivienda.metro_cuadrado }} | {{ vivienda.productivo }} | {{ vivienda.por_producir }} </td>
                                 {% else %}
                                     <td> No </td>
+                                    <td> Si </td>
                                 {% endif %}
 
                                 {% if vivienda.riesgo_rio %}
@@ -125,7 +133,7 @@
 
                                 <td> {{ vivienda.animales }} </td>
 
-                                <td title="Consejo Comunal, Parroquia, Municipio, Estado"> {{ vivienda.consejo_comunal }}, {{ vivienda.consejo_comunal.parroquia }}, {{ vivienda.consejo_comunal.parroquia.municipio }}, {{ vivienda.consejo_comunal.parroquia.municipio.estado }} </td>
+                                <td> {{ vivienda.consejo_comunal }}, {{ vivienda.consejo_comunal.parroquia }}, {{ vivienda.consejo_comunal.parroquia.municipio }}, {{ vivienda.consejo_comunal.parroquia.municipio.estado }} </td>
 
                                 <td> {{ vivienda.direccion }} </td>
                                 <td> {{ vivienda.coordenadas }} </td>
@@ -188,21 +196,24 @@
                     { "width": "150px", "targets": 14 },
                     { "width": "150px", "targets": 15 },
                     { "width": "150px", "targets": 16 },
-                    { "width": "200px", "targets": 17 },
+                    { "width": "150px", "targets": 17 },
                     { "width": "150px", "targets": 18 },
-                    { "width": "150px", "targets": 19 },
+                    { "width": "200px", "targets": 19 },
                     { "width": "150px", "targets": 20 },
                     { "width": "150px", "targets": 21 },
-                    { "width": "100px", "targets": 22 },
-                    { "width": "100px", "targets": 23 },
-                    { "width": "100px", "targets": 24 },
-                    { "width": "150px", "targets": 25 },
-                    { "width": "250px", "targets": 26 },
-                    { "width": "250px", "targets": 27 },
-                    { "width": "250px", "targets": 28 },
+                    { "width": "150px", "targets": 22 },
+                    { "width": "150px", "targets": 23 },
+                    { "width": "300px", "targets": 24 },
+                    { "width": "100px", "targets": 25 },
+                    { "width": "100px", "targets": 26 },
+                    { "width": "100px", "targets": 27 },
+                    { "width": "150px", "targets": 28 },
                     { "width": "250px", "targets": 29 },
-                    { "width": "150px", "targets": 30 },
-                    { "width": "100px", "targets": 31 },
+                    { "width": "250px", "targets": 30 },
+                    { "width": "250px", "targets": 31 },
+                    { "width": "250px", "targets": 32 },
+                    { "width": "150px", "targets": 33 },
+                    { "width": "100px", "targets": 34 },
                 ],
             });
         });

@@ -434,21 +434,34 @@
                 format: "yyyy-mm-dd",
                 language: "es",
                 autoclose: true,
-                todayHighlight: true
+                todayHighlight: true,
             });
+
+            //comportamiento del campo tiene_cedula en actualizar
+            {% if form.instance.pk %}
+                if( $("#id_cedula_1").val().length>0 )
+                {
+                    $("#id_tiene_cedula").val("S").change();
+                }
+                else
+                {
+                    $("#id_tiene_cedula").val("N").change();
+                    $("#bloque_cedula").addClass('invisible');
+                }
+            {% endif %}
         });
 
         function _tiene_cedula(opcion)
         {
             if( opcion=='N' )
             {
-                $("#bloque_cedula").css("display", "none");
+                $("#bloque_cedula").addClass('invisible');
                 $("#id_cedula_0").val(null);
                 $("#id_cedula_1").val(null);
             }
             else if( opcion=='S' )
             {
-                $("#bloque_cedula").css("display", "block");
+                $("#bloque_cedula").removeClass('invisible');
             }
         }
 

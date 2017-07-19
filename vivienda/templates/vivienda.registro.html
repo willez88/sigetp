@@ -98,7 +98,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="bloque_pared_frizada" style="display:none;">
+                        <div id="bloque_pared_frizada" class="invisible">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.pared_frizada.errors %}has-error{% endif %}">
                                 <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.pared_frizada.auto_id }}">
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="bloque_cemento" style="display:none;">
+                        <div id="bloque_cemento" class="invisible">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.tipo_cemento.errors %}has-error{% endif %}">
                                 <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.tipo_cemento.auto_id }}">
@@ -315,7 +315,7 @@
                         </div>
                     </div>
 
-                    <div id="bloque_terreno" style="display:none;">
+                    <div id="bloque_terreno" class="invisible">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.metro_cuadrado.errors %}has-error{% endif %}">
@@ -522,15 +522,30 @@
 {% endblock %}
 {% block extra_footer %}
     <script>
+        $(document).ready(function() {
+            //mostrar campos dependientes del valor de otros a la hora de actualizar
+            var tipo_pared = $("#id_tipo_pared").val();
+            var bpf = $("#bloque_pared_frizada");
+            (tipo_pared==="BL") ? bpf.removeClass('invisible') : bpf.addClass('invisible');
+
+            var tipo_piso = $("#id_tipo_piso").val();
+            var bc = $("#bloque_cemento");
+            (tipo_piso==="CE") ? bc.removeClass('invisible') : bc.addClass('invisible');
+
+            var tiene_terreno = $("#id_tiene_terreno").val();
+            var bt = $("#bloque_terreno");
+            (tiene_terreno) ? bt.removeClass('invisible') : bt.addClass('invisible');
+        });
+
         function frizada(val)
         {
             if( val == "BL")
             {
-                $("#bloque_pared_frizada").css("display", "block");
+                $("#bloque_pared_frizada").removeClass('invisible');
             }
             else
             {
-                $("#bloque_pared_frizada").css("display", "none");
+                $("#bloque_pared_frizada").addClass('invisible');
             }
         }
 
@@ -538,11 +553,11 @@
         {
             if( val == "CE")
             {
-                $("#bloque_cemento").css("display", "block");
+                $("#bloque_cemento").removeClass('invisible');
             }
             else
             {
-                $("#bloque_cemento").css("display", "none");
+                $("#bloque_cemento").addClass('invisible');
             }
         }
 
@@ -550,11 +565,11 @@
         {
             if( opcion )
             {
-                $("#bloque_terreno").css("display", "block");
+                $("#bloque_terreno").removeClass('invisible');
             }
             else
             {
-                $("#bloque_terreno").css("display", "none");
+                $("#bloque_terreno").addClass('invisible');
             }
         }
     </script>

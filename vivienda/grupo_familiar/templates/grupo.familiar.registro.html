@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="bloque_alquilada" style="display:none;">
+                        <div id="bloque_alquilada" class="invisible">
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group {% if form.alquilada.errors %}has-error{% endif %}">
                                     <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.alquilada.auto_id }}">
@@ -114,15 +114,22 @@
 {% endblock %}
 {% block extra_footer %}
     <script>
+        $(document).ready(function() {
+            //mostrar campos dependientes del valor de otros a la hora de actualizar
+            var tenencia = $("#id_tenencia").val();
+            var ba = $("#bloque_alquilada");
+            (tenencia==="AL") ? ba.removeClass('invisible') : ba.addClass('invisible');
+        });
+
         function __tenencia(val)
         {
             if( val == "AL")
             {
-                $("#bloque_alquilada").css("display", "block");
+                $("#bloque_alquilada").removeClass('invisible');
             }
             else
             {
-                $("#bloque_alquilada").css("display", "none");
+                $("#bloque_alquilada").addClass('invisible');
             }
         }
     </script>

@@ -28,7 +28,7 @@ class PersonaCreate(CreateView):
         self.object.grupo_familiar = grupo_familiar
         self.object.nombre = form.cleaned_data['nombre']
         self.object.apellido = form.cleaned_data['apellido']
-        if form.cleaned_data['tiene_cedula']:
+        if form.cleaned_data['tiene_cedula']=="S":
             self.object.cedula = form.cleaned_data['cedula']
         self.object.telefono = form.cleaned_data['telefono']
         self.object.correo = form.cleaned_data['correo']
@@ -63,6 +63,11 @@ class PersonaUpdate(UpdateView):
     form_class = PersonaForm
     template_name = "persona.registro.html"
     success_url = reverse_lazy('persona_lista')
+
+    def get_initial(self):
+        datos_iniciales = super(PersonaUpdate, self).get_initial()
+        datos_iniciales['edad'] = self.object.edad
+        return datos_iniciales
 
 class PersonaDelete(DeleteView):
     model = Persona

@@ -104,7 +104,7 @@ class PersonaForm(forms.ModelForm):
             attrs={
                 'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip', 'data-placement':'right',
                 'style':'width:100%;', 'readonly':'true',
-                'title': _("Indique la Fecha de Nacimiento de la Persona"), 'onblur':'calcular_edad(this.value)',
+                'title': _("Indique la Fecha de Nacimiento de la Persona"), 'onchange':'calcular_edad(this.value)',
             }
         )
     )
@@ -324,11 +324,12 @@ class PersonaForm(forms.ModelForm):
         grupo_familiar = self.cleaned_data['grupo_familiar']
         parentesco = self.cleaned_data['parentesco']
 
-        persona = Persona()
-        if Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF"):
-            persona = Persona.objects.filter(grupo_familiar=grupo_familiar,parentesco="JF")
+        c = 0
+        for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
+            if p.parentesco == parentesco:
+                c= c+1
 
-            if persona.count() > 0:
+            if c > 0:
                 msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
                 self.add_error('parentesco', msg)
 
