@@ -1,7 +1,11 @@
 {% extends 'base.template.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% block content_header_title %}{% trans 'Vivienda-Imagen' %}{% endblock %}
+{% block content_header_title %}{% trans 'Imagen' %}{% endblock %}
+{% block content_header_roadmap %}
+    <li><a href="{% url 'vivienda_lista' %}">{% trans 'Vivienda' %}</a></li>
+    <li class="active">{% trans 'Imagen' %}</li>
+{% endblock %}
 {% block contenido %}
     <div class="box box-info">
         <div class="box-header with-border">

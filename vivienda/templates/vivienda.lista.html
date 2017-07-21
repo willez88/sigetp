@@ -2,6 +2,9 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% block content_header_title %}{% trans 'Vivienda' %}{% endblock %}
+{% block content_header_roadmap %}
+    <li class="active">{% trans 'Vivienda' %}</li>
+{% endblock %}
 {% block contenido %}
     <div class="box box-info">
         <div class="box-header with-border">
@@ -10,8 +13,6 @@
 
         <div class="box-header">
             <a href="{% url 'vivienda_registro' %}" class="btn btn-success pull-left">Crear</a>
-            <a href="{% url 'imagen_registro' %}" class="btn btn-success pull-left">Subir Imagen</a>
-            <a href="{% url 'imagen_lista' %}" class="btn btn-info pull-left">Listar Imágenes</a>
         </div>
 
         <div class="box-body">

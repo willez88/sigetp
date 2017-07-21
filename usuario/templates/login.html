@@ -1,8 +1,9 @@
 {% extends 'base.template.html' %}
 {% load static from staticfiles %}
 {% load i18n %}
-{% block content_header_title %}Portal de Acceso al Sistema{% endblock %}
+{% block content_header_title %}{% endblock %}
 {% block contenido %}
+    <h3 class="text-center">Portal de Acceso al Sistema</h3>
     <div class="login-box">
         <div class="login-box-body">
             {% if form.non_field_errors %}
@@ -34,7 +35,7 @@
             </form>
             <br>
             <a href="{% url 'password_reset' %}">Yo olvidé mi contraseña</a><br>
-            <a href="register.html" class="text-center">Registrar nuevo usuario</a>
+            <a href="#" class="text-center">Registrar nuevo usuario</a>
         </div>
     </div>
 <!-- /.login-box -->

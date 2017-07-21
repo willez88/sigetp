@@ -2,6 +2,11 @@
 {% load static from staticfiles %}
 {% load i18n %}
 {% block content_header_title %}{% trans 'Grupo Familiar' %}{% endblock %}
+{% block content_header_roadmap %}
+    <li><a href="{% url 'vivienda_lista' %}">{% trans 'Vivienda' %}</a></li>
+    <li><a href="{% url 'grupo_familiar_lista' %}">{% trans 'Grupo Familiar' %}</a></li>
+    <li class="active">{% if not form.instance.pk %}{% trans 'Registro' %}{% else %}{% trans 'Actualizar' %}{% endif %}</li>
+{% endblock %}
 {% block contenido %}
     <div class="box box-info">
         <div class="box-header with-border">

@@ -89,10 +89,21 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MENÚ PRINCIPAL</li>
-                        <li><a href="{% url 'inicio' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Inicio</span></a></li>
-                        <li><a href="{% url 'vivienda_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Vivienda</span></a></li>
-                        <li><a href="{% url 'grupo_familiar_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Grupo Familiar</span></a></li>
-                        <li><a href="{% url 'persona_lista' %}"><i class="fa fa-circle-o text-aqua"></i> <span>Persona</span></a></li>
+                        <li><a href="{% url 'inicio' %}"><i class="fa fa-dashboard"></i> <span>Inicio</span></a></li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-hand-o-right"></i> <span>Vivienda</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{%  url 'vivienda_lista' %}"><i class="fa fa-home"></i> <span>Vivienda</span></a></li>
+                                <li><a href="{%  url 'imagen_lista' %}"><i class="fa fa-camera"></i> <span>Imágenes</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'grupo_familiar_lista' %}"><i class="fa fa-users"></i> <span>Grupo Familiar</span></a></li>
+                        <li><a href="{% url 'persona_lista' %}"><i class="fa fa-user-plus"></i> <span>Persona</span></a></li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -103,10 +114,12 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                  <h1>{% block content_header_title %}{% trans 'Página Principal' %}{% endblock %}</h1>
-                  <ol class="breadcrumb">
-                    <li><a href="{% url 'inicio' %}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                  </ol>
+                    <h1>{% block content_header_title %}{% trans 'Página Principal' %}{% endblock %}</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'inicio' %}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        {% block content_header_roadmap %}
+                        {% endblock %}
+                    </ol>
                 </section>
                 <!-- Main content -->
                 <section class="content">
