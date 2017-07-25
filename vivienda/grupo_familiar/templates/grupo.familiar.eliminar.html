@@ -15,7 +15,7 @@
         <div class="box-body">
             <form method="post">
                 {% csrf_token %}
-                <p>¿Estás seguro que deseas borrar los datos del Grupo Familiar "{{ object.apellido_familia }}-{{ object.id }}"?</p>
+                <p>¿Estás seguro que deseas eliminar los datos del Grupo Familiar "{{ object.apellido_familia }}-{{ object.id }}"?</p>
                 <div class="box-footer text-right">
                     <a href="{% url 'grupo_familiar_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip">{% trans 'Eliminar' %}</button>

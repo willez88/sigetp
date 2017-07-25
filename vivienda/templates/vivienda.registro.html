@@ -536,7 +536,7 @@
             var bc = $("#bloque_cemento");
             (tipo_piso==="CE") ? bc.removeClass('invisible') : bc.addClass('invisible');
 
-            var tiene_terreno = $("#id_tiene_terreno").val();
+            var tiene_terreno = $("#id_tiene_terreno").is(':checked');
             var bt = $("#bloque_terreno");
             (tiene_terreno) ? bt.removeClass('invisible') : bt.addClass('invisible');
         });

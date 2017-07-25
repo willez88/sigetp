@@ -16,7 +16,7 @@
         <div class="box-body">
             <form method="post">
                 {% csrf_token %}
-                <p>¿Estás seguro que deseas borrar los datos de la Persona "{{ object.nombre }} {{ object.apellido }}"?</p>
+                <p>¿Estás seguro que deseas eliminar los datos de la Persona "{{ object.nombre }} {{ object.apellido }}"?</p>
                 <div class="box-footer text-right">
                     <a href="{% url 'persona_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip">{% trans 'Eliminar' %}</button>

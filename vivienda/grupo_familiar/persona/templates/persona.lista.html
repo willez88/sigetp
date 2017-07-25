@@ -85,7 +85,7 @@
                                 <td>{{ persona.mejorar_comunicacion }}</td>
                                 <td>{{ persona.inseguridad }}</td>
                                 <td>{{ persona.comentario }}</td>
-                                <td> <a href="{% url 'persona_editar' persona.id %}">Editar</a> | <a href="{% url 'persona_borrar' persona.id %}">Eliminar</a> </td>
+                                <td> <a href="{% url 'persona_editar' persona.id %}" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> <a href="{% url 'persona_eliminar' persona.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i</a> </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
