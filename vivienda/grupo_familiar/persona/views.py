@@ -22,6 +22,11 @@ class PersonaCreate(CreateView):
     template_name = "persona.registro.html"
     success_url = reverse_lazy('persona_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(PersonaCreate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
         grupo_familiar = GrupoFamiliar.objects.get(pk=form.cleaned_data['grupo_familiar'])
         self.object = form.save(commit=False)

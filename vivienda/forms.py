@@ -375,8 +375,18 @@ class ViviendaForm(forms.ModelForm):
         label=_("Consejo Comunal"), queryset=ConsejoComunal.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
-            'title': _("Seleccione el consejo comunal en donde se encuentra ubicado")
+            'title': _("Seleccione el consejo comunal en donde se encuentra ubicado"),
+            'onchange': "obtener_rif(this.value)",
         })
+    )
+
+    rif_consejo_comunal = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:100px;', 'readonly':'true',
+                'title': _("Muestra el RIF del Consejo Comunal"),
+            }
+        ), required=False
     )
 
     direccion = forms.CharField(
@@ -422,10 +432,11 @@ class ViviendaUpdateForm(ViviendaForm):
 
 class ImagenForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(ImagenForm, self).__init__(*args, **kwargs)
 
         lista_vivienda = [('','Selecione...')]
-        for vi in Vivienda.objects.all():
+        for vi in Vivienda.objects.filter(user=user):
             lista_vivienda.append( (vi.id,vi.numero_vivienda+"-"+str(vi.id)) )
         self.fields['vivienda'].choices = lista_vivienda
 
@@ -439,10 +450,18 @@ class ImagenForm(forms.ModelForm):
         )
     )
 
-    imagen = forms.ImageField()
+    archivo_imagen = forms.ImageField()
+
+    imagen_base64 = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'invisible',
+            }
+        ), required=False
+    )
 
     class Meta:
         model = Imagen
         exclude = [
-            'vivienda'
+            'vivienda', 'nombre'
         ]

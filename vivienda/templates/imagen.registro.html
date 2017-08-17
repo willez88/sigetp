@@ -29,17 +29,18 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.imagen.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.imagen.auto_id }}">
-                                    {{ form.imagen.label }}
+                            <div class="form-group {% if form.archivo_imagen.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.archivo_imagen.auto_id }}">
+                                    {{ form.archivo_imagen.label }}
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">{{ form.imagen }}</div>
+                                    <div class="form-inline">{{ form.archivo_imagen }}</div>
                                     {% include 'base.form.errors.html' with form_errors=form.imagen.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {{ form.imagen_base64 }}
                 <div class="box-footer text-right">
                     <a href="{% url 'vivienda_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Registrar' %}</button>
@@ -47,4 +48,23 @@
             </form>
         </div>
     </div>
+{% endblock %}
+{% block extra_footer %}
+    <script type="text/javascript">
+        /** convierte el archivo de imagen a base64 usando readAsDataURL **/
+        function readFile()
+        {
+            if (this.files && this.files[0])
+            {
+                var FR= new FileReader();
+                FR.addEventListener("load", function(e) {
+                    //document.getElementById("img").src       = e.target.result;
+                    //document.getElementById("b64").innerHTML = e.target.result;
+                    $("#id_imagen_base64").val(e.target.result);
+                });
+                FR.readAsDataURL( this.files[0] );
+              }
+        }
+        document.getElementById("id_archivo_imagen").addEventListener("change", readFile);
+    </script>
 {% endblock %}

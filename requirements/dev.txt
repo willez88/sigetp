@@ -1,4 +1,4 @@
 -r base.txt
 django-extensions
-Sphinx
+#Sphinx
 pygraphviz

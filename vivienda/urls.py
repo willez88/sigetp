@@ -21,4 +21,4 @@ urlpatterns = [
     url(r'^imagen/registro/$', login_required(ImagenCreate.as_view()), name='imagen_registro'),
     url(r'^imagen/$', login_required(ImagenList.as_view()), name='imagen_lista'),
     url(r'^grupo-familiar/', include('vivienda.grupo_familiar.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

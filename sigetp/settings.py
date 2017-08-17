@@ -158,8 +158,8 @@ STATIC_ROOT = ''
 ## Configuración de la url que atenderá las peticiones de los archivos estáticos del sistema
 STATIC_URL = '/static/'
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = ''
+#MEDIA_URL = 'media/'
+#MEDIA_ROOT = ''
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ## Configuración de los directorios en donde se encuentran los archivos estáticos

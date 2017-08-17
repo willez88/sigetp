@@ -21,6 +21,11 @@ class GrupoFamiliarCreate(CreateView):
     template_name = "grupo.familiar.registro.html"
     success_url = reverse_lazy('grupo_familiar_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(GrupoFamiliarCreate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
 
         vivienda = Vivienda.objects.get(pk=form.cleaned_data['vivienda'])
@@ -50,4 +55,3 @@ class GrupoFamiliarDelete(DeleteView):
     model = GrupoFamiliar
     template_name = "grupo.familiar.eliminar.html"
     success_url = reverse_lazy('grupo_familiar_lista')
-

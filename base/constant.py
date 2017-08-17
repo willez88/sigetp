@@ -13,6 +13,11 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 
 from django.utils.translation import ugettext_lazy as _
 
+## Tipo de rif para consejos comunales y comunas
+TIPO_RIF = (
+    ("C", "C"),
+)
+
 ## Nacionalidades (ABREVIADO)
 SHORT_NACIONALIDAD = (
     ("V", "V"), ("E", "E")

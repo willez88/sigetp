@@ -9,9 +9,10 @@ from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MIS
 class PersonaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(PersonaForm, self).__init__(*args, **kwargs)
         lista_grupo_familiar = [('','Selecione...')]
-        for gf in GrupoFamiliar.objects.all():
+        for gf in GrupoFamiliar.objects.filter(vivienda__user=user):
             lista_grupo_familiar.append( (gf.id,gf.apellido_familia+"-"+str(gf.id)) )
         self.fields['grupo_familiar'].choices = lista_grupo_familiar
 

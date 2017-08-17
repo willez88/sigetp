@@ -67,6 +67,9 @@ class Ciudad(models.Model):
 
 class ConsejoComunal(models.Model):
 
+    ## Número de rif del Consejo Comunal
+    rif = models.CharField(max_length=10, primary_key=True)
+
     ## Nombre del Consejo Comunal
     nombre = models.CharField(max_length=500)
 
@@ -74,4 +77,4 @@ class ConsejoComunal(models.Model):
     parroquia = models.ForeignKey(Parroquia)
 
     def __str__(self):
-        return self.nombre
+        return "%s %s" % (self.rif, self.nombre)

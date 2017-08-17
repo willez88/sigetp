@@ -7,10 +7,11 @@ from vivienda.models import Vivienda
 class GrupoFamiliarForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(GrupoFamiliarForm, self).__init__(*args, **kwargs)
 
         lista_vivienda = [('','Selecione...')]
-        for vi in Vivienda.objects.all():
+        for vi in Vivienda.objects.filter(user=user):
             lista_vivienda.append( (vi.id,vi.numero_vivienda+"-"+str(vi.id)) )
         self.fields['vivienda'].choices = lista_vivienda
 
@@ -68,4 +69,3 @@ class GrupoFamiliarForm(forms.ModelForm):
         exclude = [
             'vivienda'
         ]
-

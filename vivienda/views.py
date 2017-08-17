@@ -139,17 +139,23 @@ class ImagenCreate(CreateView):
     model = Imagen
     form_class = ImagenForm
     template_name = "imagen.registro.html"
-    success_url = reverse_lazy('vivienda_lista')
+    success_url = reverse_lazy('imagen_lista')
+
+    def get_form_kwargs(self):
+        kwargs = super(ImagenCreate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
     def form_valid(self, form):
+        print(form.cleaned_data['archivo_imagen'])
         self.object = form.save(commit=False)
+        self.object.nombre = form.cleaned_data['archivo_imagen']
         vivienda = Vivienda.objects.get(pk=form.cleaned_data['vivienda'])
         self.object.vivienda = vivienda
-        self.object.imagen = form.cleaned_data['imagen']
+        self.object.imagen_base64 = form.cleaned_data['imagen_base64']
         self.object.save()
         return super(ImagenCreate, self).form_valid(form)
 
     def form_invalid(self, form):
         print(form.errors)
         return super(ImagenCreate, self).form_invalid(form)
-

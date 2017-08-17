@@ -464,7 +464,10 @@
                                     {{ form.consejo_comunal.label }}
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
-                                    <div class="form-inline">{{ form.consejo_comunal }}</div>
+                                    <div class="form-inline">
+                                        {{ form.consejo_comunal }}
+                                        {{ form.rif_consejo_comunal }}
+                                    </div>
                                     {% include 'base.form.errors.html' with form_errors=form.consejo_comunal.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
@@ -575,6 +578,11 @@
             {
                 $("#bloque_terreno").addClass('invisible');
             }
+        }
+
+        function obtener_rif(val)
+        {
+            $("#id_rif_consejo_comunal").val(val);
         }
     </script>
 {% endblock %}

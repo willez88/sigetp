@@ -47,5 +47,6 @@ class Vivienda(models.Model):
     user = models.ForeignKey(User)
 
 class Imagen(models.Model):
-    imagen = models.ImageField(upload_to='media/vivienda/')
+    nombre = models.CharField(max_length=100)
+    imagen_base64 = models.TextField()
     vivienda = models.ForeignKey(Vivienda)

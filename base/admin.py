@@ -12,5 +12,24 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.contrib import admin
+from .models import ConsejoComunal
+from .forms import ConsejoComunalAdminForm
 
-# Register your models here.
+class ConsejoComunalAdmin(admin.ModelAdmin):
+    form = ConsejoComunalAdminForm
+    change_form_template = 'admin/change_form.html'
+    list_display = ('rif','nombre','parroquia',)
+    list_filter = ('rif','nombre','parroquia',)
+    ordering = ('rif',)
+    search_fields = ('rif','nombre','parroquia',)
+
+    """def get_form(self, request, obj=None, **kwargs):
+        ## Excluye campos del formulario en el registro o actualizacion de informacion
+        self.exclude = []
+        self.exclude.append('estado')
+        self.exclude.append('municipio')
+
+        return super(ConsejoComunalAdmin, self).get_form(request, obj, **kwargs)"""
+
+## Registra el modelo ConsejoComunal en el panel administrativo
+admin.site.register(ConsejoComunal, ConsejoComunalAdmin)
