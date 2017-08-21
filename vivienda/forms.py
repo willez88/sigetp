@@ -15,6 +15,12 @@ class ViviendaForm(forms.ModelForm):
         super(ViviendaForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].initial = datetime.datetime.now()
 
+        """ Cargar la tupla rif y nombre en el select consejo_comunal
+        lista_cc = [('','Selecione...')]
+        for cc in ConsejoComunal.objects.all():
+            lista_cc.append( (cc.rif,cc.nombre) )
+        self.fields['consejo_comunal'].choices = lista_cc"""
+
         # Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
         if 'estado' in self.data and self.data['estado']:
             self.fields['municipio'].widget.attrs.pop('disabled')

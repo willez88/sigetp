@@ -13,7 +13,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>S</b></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>SIGETP</b></span>
+                    <span class="logo-lg" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica"><b>SIGETP</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -33,7 +33,10 @@
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <p>{{ request.user.first_name }} {{ request.user.last_name }} <small>{{ request.user.date_joined|date }}</small></p>
+                                        <p class="text-left"><small>Nombres: {{ request.user.first_name }} {{ request.user.last_name }}</small></p>
+                                        <p class="text-left"><small>Último Inicio de Sesión: {{ request.user.last_login }}</small></p>
+                                        <p class="text-left"><small>Cédula: {{ request.user.perfil.cedula }}</small></p>
+                                        <p class="text-left"><small>Teléfono: {{ request.user.perfil.telefono }}</small></p>
                                     </li>
                                     <!-- Menu Body -->
                                     <li class="user-body">
@@ -109,7 +112,7 @@
                 <!-- /.sidebar -->
             </aside>
             {% endif %}
-            
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->

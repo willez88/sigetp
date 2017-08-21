@@ -12,6 +12,8 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+from django.core import validators
 
 class Pais(models.Model):
 
@@ -68,7 +70,16 @@ class Ciudad(models.Model):
 class ConsejoComunal(models.Model):
 
     ## Número de rif del Consejo Comunal
-    rif = models.CharField(max_length=10, primary_key=True)
+    rif = models.CharField(
+        max_length=10, help_text=_("Rif del Consejo Comunal"),
+        validators=[
+            validators.RegexValidator(
+                r'^C[\d]{9}$',
+                _("Introduzca un rif válido. Solo se permite la letra C, números y una longitud de 10 carácteres.")
+            ),
+        ],
+        primary_key=True
+    )
 
     ## Nombre del Consejo Comunal
     nombre = models.CharField(max_length=500)
@@ -77,4 +88,9 @@ class ConsejoComunal(models.Model):
     parroquia = models.ForeignKey(Parroquia)
 
     def __str__(self):
-        return "%s %s" % (self.rif, self.nombre)
+        return self.nombre
+        #return "%s %s" % (self.rif, self.nombre)
+
+    class Meta:
+        verbose_name = _("Consejo Comunal")
+        verbose_name_plural = _("Consejos Comunales")

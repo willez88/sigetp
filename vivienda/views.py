@@ -115,6 +115,7 @@ class ViviendaUpdate(UpdateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.consejo_comunal = form.cleaned_data['consejo_comunal']
         self.object.coordenadas = form.cleaned_data['coordenada']
         self.object.save()
         return super(ViviendaUpdate, self).form_valid(form)
