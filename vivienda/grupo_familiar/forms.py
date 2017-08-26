@@ -55,7 +55,7 @@ class GrupoFamiliarForm(forms.ModelForm):
     alquilada = forms.CharField(
         label=_("Tiempo Alquilado:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-            'title': _("Indique el tiempo que tiene como alquilado"), 'min':'0.1', 'step':'0.1',
+            'title': _("Indique el tiempo que tiene como alquilado"), 'min':'0', 'step':'1', 'value':'0',
         }), required=False
     )
 

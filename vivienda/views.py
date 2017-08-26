@@ -64,10 +64,10 @@ class ViviendaCreate(CreateView):
             self.object.metro_cuadrado = form.cleaned_data['metro_cuadrado']
             self.object.productivo = form.cleaned_data['productivo']
             self.object.por_producir = form.cleaned_data['por_producir']
-        else:
-            self.object.metro_cuadrado = 0.0
-            self.object.productivo = 0.0
-            self.object.por_producir = 0.0
+        #else:
+        #    self.object.metro_cuadrado = 0.0
+        #    self.object.productivo = 0.0
+        #    self.object.por_producir = 0.0
 
         if form.cleaned_data['riesgo_rio']:
             self.object.riesgo_rio = form.cleaned_data['riesgo_rio']

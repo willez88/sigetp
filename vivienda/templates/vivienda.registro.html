@@ -542,6 +542,9 @@
             var tiene_terreno = $("#id_tiene_terreno").is(':checked');
             var bt = $("#bloque_terreno");
             (tiene_terreno) ? bt.removeClass('invisible') : bt.addClass('invisible');
+
+            var consejo_comunal = $("#id_consejo_comunal").val();
+            $("#id_rif_consejo_comunal").val(consejo_comunal);
         });
 
         function frizada(val)
@@ -573,10 +576,31 @@
             if( opcion )
             {
                 $("#bloque_terreno").removeClass('invisible');
+
+                $("#id_metro_cuadrado").attr('required', 'required');
+                $("#id_metro_cuadrado").attr('min', '0.01');
+
+                $("#id_productivo").attr('required', 'required');
+                $("#id_productivo").attr('min', '0.01');
+
+                $("#id_por_producir").attr('required', 'required');
+                $("#id_por_producir").attr('min', '0.01');
             }
             else
             {
                 $("#bloque_terreno").addClass('invisible');
+
+                $("#id_metro_cuadrado").removeAttr('required');
+                $("#id_metro_cuadrado").attr('min', '0');
+                $("#id_metro_cuadrado").val(0);
+
+                $("#id_productivo").removeAttr('required');
+                $("#id_productivo").attr('min', '0');
+                $("#id_productivo").val(0);
+
+                $("#id_por_producir").removeAttr('required');
+                $("#id_por_producir").attr('min', '0');
+                $("#id_por_producir").val(0);
             }
         }
 

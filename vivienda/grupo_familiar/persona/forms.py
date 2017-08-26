@@ -103,7 +103,7 @@ class PersonaForm(forms.ModelForm):
         label=_("Fecha de Nacimieno:"),
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip', 'data-placement':'right',
+                'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip',
                 'style':'width:100%;', 'readonly':'true',
                 'title': _("Indique la Fecha de Nacimiento de la Persona"), 'onchange':'calcular_edad(this.value)',
             }
@@ -339,3 +339,5 @@ class PersonaForm(forms.ModelForm):
         exclude = [
             'grupo_familiar'
         ]
+
+## Faltan las validaciones en el actualizar de los datos de Persona para que se puedan hacer los cambios

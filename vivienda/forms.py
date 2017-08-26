@@ -301,21 +301,21 @@ class ViviendaForm(forms.ModelForm):
     metro_cuadrado = forms.CharField(
         label=_("Metros Cuadrados:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-            'title': _("Indique la cantidad de Metros Cuadrados del Terreno"), 'min':'0', 'step':'0.001', 'value':'0',
+            'title': _("Indique la cantidad de Metros Cuadrados del Terreno"), 'min':'0', 'step':'0.01', 'value':'0',
         }), required=False
     )
 
     productivo = forms.CharField(
         label=_("Productivo:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-            'title': _("Indique la cantidad de Metros Cuadrados que están Productivos"), 'min':'0', 'step':'0.001', 'value':'0',
+            'title': _("Indique la cantidad de Metros Cuadrados que están Productivos"), 'min':'0', 'step':'0.01', 'value':'0',
         }), required=False
     )
 
     por_producir = forms.CharField(
         label=_("Por Producir:"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-md','data-rule-required': 'true', 'data-toggle': 'tooltip', 'style':'width:250px;',
-            'title': _("Indique la cantidad de Metros Cuadrados que faltan por Producir"), 'min':'0', 'step':'0.001', 'value':'0',
+            'title': _("Indique la cantidad de Metros Cuadrados que faltan por Producir"), 'min':'0', 'step':'0.01', 'value':'0',
         }), required=False
     )
 
@@ -412,11 +412,20 @@ class ViviendaForm(forms.ModelForm):
         metro_cuadrado = float(self.cleaned_data['metro_cuadrado'])
         productivo = float(self.cleaned_data['productivo'])
         por_producir = float(self.cleaned_data['por_producir'])
+
+        tipo_piso = self.cleaned_data['tipo_piso']
+        tipo_cemento = self.cleaned_data['tipo_cemento']
+
         if metro_cuadrado != (productivo+por_producir):
             msg = str(_("El terreno productivo y por producir debe ser igual al total de metros cuadrados"))
             self.add_error('metro_cuadrado', msg)
             self.add_error('productivo', msg)
             self.add_error('por_producir', msg)
+
+        if tipo_piso == 'CE':
+            if tipo_cemento == '':
+                msg = str(_("Este campo es obligatorio."))
+                self.add_error('tipo_cemento', msg)
 
     class Meta:
         model = Vivienda

@@ -51,6 +51,17 @@ class GrupoFamiliarUpdate(UpdateView):
     template_name = "grupo.familiar.registro.html"
     success_url = reverse_lazy('grupo_familiar_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(GrupoFamiliarUpdate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
+    def get_initial(self):
+        datos_iniciales = super(GrupoFamiliarUpdate, self).get_initial()
+        grupo_familiar = GrupoFamiliar.objects.get(pk=self.object.id)
+        datos_iniciales['vivienda'] = grupo_familiar.vivienda.id
+        return datos_iniciales
+
 class GrupoFamiliarDelete(DeleteView):
     model = GrupoFamiliar
     template_name = "grupo.familiar.eliminar.html"

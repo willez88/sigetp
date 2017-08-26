@@ -131,10 +131,15 @@
             if( val == "AL")
             {
                 $("#bloque_alquilada").removeClass('invisible');
+                $("#id_alquilada").attr('required', 'required');
+                $("#id_alquilada").attr('min', '1');
             }
             else
             {
                 $("#bloque_alquilada").addClass('invisible');
+                $("#id_alquilada").removeAttr('required');
+                $("#id_alquilada").attr('min', '0');
+                $("#id_alquilada").val(0);
             }
         }
     </script>

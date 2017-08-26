@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from .models import Persona
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import PersonaForm
+from .forms import PersonaForm, PersonaForm
 from vivienda.grupo_familiar.models import GrupoFamiliar
 import datetime
 
@@ -69,9 +69,16 @@ class PersonaUpdate(UpdateView):
     template_name = "persona.registro.html"
     success_url = reverse_lazy('persona_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(PersonaUpdate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def get_initial(self):
         datos_iniciales = super(PersonaUpdate, self).get_initial()
-        datos_iniciales['edad'] = self.object.edad
+        persona = Persona.objects.get(pk=self.object.id)
+        datos_iniciales['grupo_familiar'] = persona.grupo_familiar.id
+        datos_iniciales['edad'] = persona.edad
         return datos_iniciales
 
 class PersonaDelete(DeleteView):

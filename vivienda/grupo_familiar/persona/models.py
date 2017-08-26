@@ -102,5 +102,6 @@ class Persona(models.Model):
     ## Establece la relación con el grupo familiar
     grupo_familiar = models.ForeignKey(GrupoFamiliar)
 
+    ## Cacula la edad en años que tiene una persona según su fecha de nacimiento
     def edad(self):
         return int((datetime.date.today() - self.fecha_nacimiento).days / 365.25  )

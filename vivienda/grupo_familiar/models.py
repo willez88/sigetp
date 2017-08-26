@@ -7,6 +7,6 @@ class GrupoFamiliar(models.Model):
     apellido_familia = models.CharField(max_length=100)
     familia_beneficiada = models.BooleanField(default=False)
     tenencia = models.CharField(max_length=2, choices=TIPO_TENENCIA)
-    alquilada = models.FloatField()
+    alquilada = models.IntegerField(default=0)
     pasaje = models.BooleanField(default=False)
     vivienda = models.ForeignKey(Vivienda)
