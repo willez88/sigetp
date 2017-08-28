@@ -11,6 +11,7 @@ class PersonaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
         super(PersonaForm, self).__init__(*args, **kwargs)
+
         lista_grupo_familiar = [('','Selecione...')]
         for gf in GrupoFamiliar.objects.filter(vivienda__user=user):
             lista_grupo_familiar.append( (gf.id,gf.apellido_familia+"-"+str(gf.id)) )
@@ -311,14 +312,14 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
-    def clean_cedula(self):
+    """def clean_cedula(self):
         cedula = self.cleaned_data['cedula']
         if cedula == '':
             return cedula
         else:
             if Persona.objects.filter(cedula=cedula):
                 raise forms.ValidationError(_("La Persona ya se encuentra registrada"))
-        return cedula
+        return cedula"""
 
     def clean(self):
         cleaned_data = super(PersonaForm, self).clean()
@@ -326,13 +327,14 @@ class PersonaForm(forms.ModelForm):
         parentesco = self.cleaned_data['parentesco']
 
         c = 0
-        for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
-            if p.parentesco == parentesco:
-                c= c+1
+        if parentesco == 'JF':
+            for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
+                if p.parentesco == parentesco:
+                    c= c+1
 
-            if c > 0:
-                msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
-                self.add_error('parentesco', msg)
+        if c > 0:
+            msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
+            self.add_error('parentesco', msg)
 
     class Meta:
         model = Persona

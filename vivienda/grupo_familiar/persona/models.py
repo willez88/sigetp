@@ -24,7 +24,7 @@ class Persona(models.Model):
                 r'^[VE][\d]{8}$',
                 _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
             ),
-        ],
+        ],unique=True, null=True
     )
 
     telefono = models.CharField(
@@ -39,7 +39,7 @@ class Persona(models.Model):
 
     ## Establece el correo de la persona
     correo = models.CharField(
-        max_length=100, help_text=("correo@correo.com"), null=True,
+        max_length=100, help_text=("correo@correo.com")
     )
 
     ## Establece el sexo de la Persona

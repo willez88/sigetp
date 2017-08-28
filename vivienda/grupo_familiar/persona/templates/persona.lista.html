@@ -58,7 +58,11 @@
                                 <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
                                 <td>{{ persona.nombre }} </td>
                                 <td>{{ persona.apellido }}</td>
-                                <td>{{ persona.cedula }}</td>
+                                {% if persona.cedula %}
+                                    <td>{{ persona.cedula }}</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
                                 <td>{{ persona.telefono }}</td>
                                 <td>{{ persona.correo }}</td>
                                 <td>{{ persona.get_sexo_display }}</td>

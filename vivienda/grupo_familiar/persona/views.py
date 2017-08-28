@@ -35,6 +35,8 @@ class PersonaCreate(CreateView):
         self.object.apellido = form.cleaned_data['apellido']
         if form.cleaned_data['tiene_cedula']=="S":
             self.object.cedula = form.cleaned_data['cedula']
+        else:
+            self.object.cedula = None
         self.object.telefono = form.cleaned_data['telefono']
         self.object.correo = form.cleaned_data['correo']
         self.object.sexo = form.cleaned_data['sexo']
@@ -61,6 +63,7 @@ class PersonaCreate(CreateView):
         return super(PersonaCreate, self).form_valid(form)
 
         def form_invalid(self, form):
+            print(form.errors)
             return super(PersonaCreate, self).form_invalid(form)
 
 class PersonaUpdate(UpdateView):
@@ -80,6 +83,18 @@ class PersonaUpdate(UpdateView):
         datos_iniciales['grupo_familiar'] = persona.grupo_familiar.id
         datos_iniciales['edad'] = persona.edad
         return datos_iniciales
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        if form.cleaned_data['tiene_cedula']=="S":
+            self.object.cedula = form.cleaned_data['cedula']
+        else:
+            self.object.cedula = None
+        self.object.save()
+        return super(PersonaUpdate, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(PersonaUpdate, self).form_invalid(form)
 
 class PersonaDelete(DeleteView):
     model = Persona
