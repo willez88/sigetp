@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 from django.contrib.auth.models import User
+from base.models import ConsejoComunal
 
 # Create your models here.
 
@@ -32,6 +33,8 @@ class Perfil(models.Model):
         User, related_name="perfil",
         help_text=_("Relación entre los datos de registro del encuestador y el usuario con acceso al sistema")
     )
+
+    consejo_comunal = models.OneToOneField(ConsejoComunal)
 
     class Meta:
 

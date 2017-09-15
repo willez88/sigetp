@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'base',
+    'usuario',
     'vivienda',
     'vivienda.grupo_familiar',
     'vivienda.grupo_familiar.persona',
-    'usuario',
+    'reporte',
 ]
 
 MIDDLEWARE = [
@@ -61,17 +62,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sigetp.urls'
 
+## Directorio en donde se encuentran las plantillas en el root de la aplicación
+ROOT_TEMPLATES = os.path.join(BASE_DIR, "templates")
+
 ## Directorio en donde se encuentran las plantillas del módulo base
 BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
+USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
 VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
 GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
 PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
-USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
+REPORTE_TEMPLATES = os.path.join(BASE_DIR, "reporte/templates")
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, USUARIO_TEMPLATES],
+        'DIRS': [ROOT_TEMPLATES, BASE_TEMPLATES, USUARIO_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, REPORTE_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
