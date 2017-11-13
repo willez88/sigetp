@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Persona
 from base.constant import TIPO_TENENCIA
 from vivienda.grupo_familiar.models import GrupoFamiliar
-from base.fields import CedulaField
+from base.fields import CedulaField, TelefonoField
 from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA
 
 class PersonaForm(forms.ModelForm):
@@ -62,19 +62,7 @@ class PersonaForm(forms.ModelForm):
 
     cedula = CedulaField(required=False)
 
-    telefono = forms.CharField(
-        label=_("Teléfono:"),
-        max_length=18,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control input-sm', 'placeholder': '(+058)-000-0000000',
-                'data-rule-required': 'true', 'data-toggle': 'tooltip',
-                'title': _("Indique el número telefónico de contacto con el usuario"), 'data-mask': '(+000)-000-0000000'
-            }
-        ),
-        help_text=_("(país)-área-número"),
-        required = False,
-    )
+    telefono = TelefonoField(required=False)
 
     correo = forms.EmailField(
         label=_("Correo Electrónico:"),
@@ -83,8 +71,7 @@ class PersonaForm(forms.ModelForm):
             attrs={
                 'class': 'form-control input-sm email-mask', 'placeholder': _("Correo de contacto"),
                 'data-toggle': 'tooltip', 'size': '30', 'data-rule-required': 'true',
-                'title': _("Indique el correo electrónico de contacto con el usuario. "
-                           "No se permiten correos de hotmail")
+                'title': _("Indique el correo electrónico de contacto con la persona.")
             }
         ), required = False,
     )
@@ -104,9 +91,9 @@ class PersonaForm(forms.ModelForm):
         label=_("Fecha de Nacimieno:"),
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control input-sm datepicker', 'data-toggle': 'tooltip',
-                'style':'width:100%;', 'readonly':'true',
-                'title': _("Indique la Fecha de Nacimiento de la Persona"), 'onchange':'calcular_edad(this.value)',
+                'class': 'form-control input-sm datepicker','style':'width:100%;',
+                'readonly':'true',
+                'onchange':'calcular_edad(this.value)',
             }
         )
     )
@@ -131,6 +118,11 @@ class PersonaForm(forms.ModelForm):
                 'title': _("Seleccione el Parentesco"),
             }
         )
+    )
+
+    jefe_familiar = forms.BooleanField(
+        label=_("Jefe Familiar"),
+        required = False
     )
 
     estado_civil = forms.ChoiceField(
@@ -199,6 +191,16 @@ class PersonaForm(forms.ModelForm):
                 'title': _("Seleccione el Tipo de Ingreso que tiene la Persona"),
             }
         )
+    )
+
+    pensionado = forms.BooleanField(
+        label=_("¿Es Pensionado?"),
+        required = False
+    )
+
+    jubilado = forms.BooleanField(
+        label=_("¿Es Jubilado?"),
+        required = False
     )
 
     deporte = forms.CharField(
@@ -312,6 +314,16 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    observacion = forms.CharField(
+        label=_("Observación:"),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'title': _("Indique alguna observación que pueda tener la persona"),
+            }
+        ), required = False
+    )
+
     """def clean_cedula(self):
         cedula = self.cleaned_data['cedula']
         if cedula == '':
@@ -324,17 +336,17 @@ class PersonaForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(PersonaForm, self).clean()
         grupo_familiar = self.cleaned_data['grupo_familiar']
-        parentesco = self.cleaned_data['parentesco']
+        jefe_familiar = self.cleaned_data['jefe_familiar']
 
         c = 0
-        if parentesco == 'JF':
+        if jefe_familiar:
             for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
-                if p.parentesco == parentesco:
+                if p.jefe_familiar:
                     c= c+1
-
-        if c > 0:
+        print(c)
+        if c >= 1:
             msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
-            self.add_error('parentesco', msg)
+            self.add_error('jefe_familiar', msg)
 
     class Meta:
         model = Persona
@@ -342,4 +354,18 @@ class PersonaForm(forms.ModelForm):
             'grupo_familiar'
         ]
 
-## Faltan las validaciones en el actualizar de los datos de Persona para que se puedan hacer los cambios
+## Faltan las validaciones en el actualizar de los datos de Persona en campo parentesco
+"""class PersonaUpdateForm(PersonaForm):
+
+    def clean(self):
+        cleaned_data = super(PersonaUpdateForm, self).clean()
+        grupo_familiar = self.cleaned_data['grupo_familiar']
+
+        c = 0
+        for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
+            if p.jefe_familiar:
+                c= c+1
+
+        if c > 0:
+            msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
+            self.add_error('jefe_familiar', msg)"""

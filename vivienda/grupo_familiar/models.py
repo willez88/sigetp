@@ -9,4 +9,5 @@ class GrupoFamiliar(models.Model):
     tenencia = models.CharField(max_length=2, choices=TIPO_TENENCIA)
     alquilada = models.IntegerField(default=0)
     pasaje = models.BooleanField(default=False)
+    observacion = models.TextField()
     vivienda = models.ForeignKey(Vivienda)

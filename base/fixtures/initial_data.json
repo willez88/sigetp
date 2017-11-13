@@ -12950,10 +12950,42 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299742597",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ANTONIO JOSE DE SUCRE (NO INDICA)",
+        "parroquia": 583
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299766828",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN JUAN BAUTISTA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 572
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299784010",
     "fields": {
         "nombre": "CONSEJO COMUNAL QUEBRADA VIRGEN DE LAS MERCEDES (NO INDICA)",
         "parroquia": 577
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299884472",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL DOMINGO SALAZAR ROJAS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 572
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C401453430",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL COLINAS DE LA TRINIDAD 1972 - C (SIN NOMBRE COMERCIAL)",
+        "parroquia": 583
     }
 }
 ]

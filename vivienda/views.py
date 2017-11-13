@@ -22,6 +22,11 @@ class ViviendaCreate(CreateView):
     template_name = "vivienda.registro.html"
     success_url = reverse_lazy('vivienda_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(ViviendaCreate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
 
@@ -64,10 +69,6 @@ class ViviendaCreate(CreateView):
             self.object.metro_cuadrado = form.cleaned_data['metro_cuadrado']
             self.object.productivo = form.cleaned_data['productivo']
             self.object.por_producir = form.cleaned_data['por_producir']
-        #else:
-        #    self.object.metro_cuadrado = 0.0
-        #    self.object.productivo = 0.0
-        #    self.object.por_producir = 0.0
 
         if form.cleaned_data['riesgo_rio']:
             self.object.riesgo_rio = form.cleaned_data['riesgo_rio']
@@ -83,11 +84,14 @@ class ViviendaCreate(CreateView):
 
         self.object.animales = form.cleaned_data['animales']
 
-        self.object.consejo_comunal = form.cleaned_data['consejo_comunal']
+        #self.object.consejo_comunal = form.cleaned_data['consejo_comunal']
+        consejo_comunal = ConsejoComunal.objects.get(rif=user.perfil.consejo_comunal.rif)
+        self.object.consejo_comunal = consejo_comunal
 
         self.object.direccion = form.cleaned_data['direccion']
         self.object.numero_vivienda = form.cleaned_data['numero_vivienda']
         self.object.coordenadas = form.cleaned_data['coordenada']
+        self.object.observacion = form.cleaned_data['observacion']
 
         self.object.save()
         return super(ViviendaCreate, self).form_valid(form)
@@ -102,20 +106,22 @@ class ViviendaUpdate(UpdateView):
     template_name = "vivienda.registro.html"
     success_url = reverse_lazy('vivienda_lista')
 
+    def get_form_kwargs(self):
+        kwargs = super(ViviendaUpdate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def get_initial(self):
         datos_iniciales = super(ViviendaUpdate, self).get_initial()
         vivienda = Vivienda.objects.get(pk=self.object.id)
         datos_iniciales['fecha_hora'] = vivienda.fecha_hora
         datos_iniciales['coordenada'] = vivienda.coordenadas.split(",")
-        datos_iniciales['estado'] = vivienda.consejo_comunal.parroquia.municipio.estado
-        datos_iniciales['municipio'] = vivienda.consejo_comunal.parroquia.municipio
-        datos_iniciales['parroquia'] = vivienda.consejo_comunal.parroquia
-        datos_iniciales['consejo_comunal'] = vivienda.consejo_comunal
         return datos_iniciales
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.consejo_comunal = form.cleaned_data['consejo_comunal']
+        consejo_comunal = ConsejoComunal.objects.get(rif=self.request.user.perfil.consejo_comunal.rif)
+        self.object.consejo_comunal = consejo_comunal
         self.object.coordenadas = form.cleaned_data['coordenada']
         self.object.save()
         return super(ViviendaUpdate, self).form_valid(form)

@@ -12,16 +12,16 @@ import datetime
 class ViviendaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
         super(ViviendaForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].initial = datetime.datetime.now()
+        self.fields['consejo_comunal'].initial = user.perfil.consejo_comunal
+        self.fields['parroquia'].initial = user.perfil.consejo_comunal.parroquia
+        self.fields['municipio'].initial = user.perfil.consejo_comunal.parroquia.municipio
+        self.fields['estado'].initial = user.perfil.consejo_comunal.parroquia.municipio.estado
+        self.fields['rif_consejo_comunal'].initial = user.perfil.consejo_comunal.rif
 
-        """ Cargar la tupla rif y nombre en el select consejo_comunal
-        lista_cc = [('','Selecione...')]
-        for cc in ConsejoComunal.objects.all():
-            lista_cc.append( (cc.rif,cc.nombre) )
-        self.fields['consejo_comunal'].choices = lista_cc"""
-
-        # Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
+        """# Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
         if 'estado' in self.data and self.data['estado']:
             self.fields['municipio'].widget.attrs.pop('disabled')
             self.fields['municipio'].queryset=Municipio.objects.filter(estado=self.data['estado'])
@@ -34,7 +34,7 @@ class ViviendaForm(forms.ModelForm):
                 # Si se ha seleccionado una parroquia establece el listado de consejos comunales y elimina el atributo disable
                 if 'parroquia' in self.data and self.data['parroquia']:
                     self.fields['consejo_comunal'].widget.attrs.pop('disabled')
-                    self.fields['consejo_comunal'].queryset=ConsejoComunal.objects.filter(parroquia=self.data['parroquia'])
+                    self.fields['consejo_comunal'].queryset=ConsejoComunal.objects.filter(parroquia=self.data['parroquia'])"""
 
     fecha_hora = forms.CharField(
         label=_("Fecha y hora:"),
@@ -348,48 +348,53 @@ class ViviendaForm(forms.ModelForm):
         required=False
     )
 
-    estado = forms.ModelChoiceField(
-        label=_("Estado"), queryset=Estado.objects.all(), empty_label=_("Seleccione..."),
-        widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
-            'title': _("Seleccione el estado en donde se encuentra ubicada"),
-            'onchange': "actualizar_combo(this.value,'base','Municipio','estado','pk','nombre','id_municipio')"
-        })
+    estado = forms.CharField(
+        label=_("Estado"),
+        widget=forms.TextInput(attrs={
+            'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Muestra el estado"),
+            'readonly' : 'true',
+            #'onchange': "actualizar_combo(this.value,'base','Municipio','estado','pk','nombre','id_municipio')"
+        }), required=False
     )
 
     ## Municipio en el que se encuentra ubicada la parroquia
-    municipio = forms.ModelChoiceField(
-        label=_("Municipio"), queryset=Municipio.objects.all(), empty_label=_("Seleccione..."),
-        widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
-            'title': _("Seleccione el municipio en donde se encuentra ubicada"),
-            'onchange': "actualizar_combo(this.value,'base','Parroquia','municipio','pk','nombre','id_parroquia')"
-        })
+    municipio = forms.CharField(
+        label=_("Municipio"),
+        widget=forms.TextInput(attrs={
+            'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Muestra el municipio"),
+            'readonly' : 'true',
+            #'onchange': "actualizar_combo(this.value,'base','Parroquia','municipio','pk','nombre','id_parroquia')"
+        }), required=False
     )
 
     ## Parroquia en donde se encuentra ubicada la dirección suministrada
-    parroquia = forms.ModelChoiceField(
-        label=_("Parroquia"), queryset=Parroquia.objects.all(), empty_label=_("Seleccione..."),
-        widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
-            'title': _("Seleccione la parroquia en donde se encuentra ubicada"),
-            'onchange': "actualizar_combo(this.value,'base','ConsejoComunal','parroquia','pk','nombre','id_consejo_comunal')"
-        })
+    parroquia = forms.CharField(
+        label=_("Parroquia"),
+        widget=forms.TextInput(attrs={
+            'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Muestra la parroquia"),
+            'readonly' : 'true',
+            #'onchange': "actualizar_combo(this.value,'base','ConsejoComunal','parroquia','pk','nombre','id_consejo_comunal')"
+        }), required=False
     )
 
-    consejo_comunal = forms.ModelChoiceField(
-        label=_("Consejo Comunal"), queryset=ConsejoComunal.objects.all(), empty_label=_("Seleccione..."),
-        widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
-            'title': _("Seleccione el consejo comunal en donde se encuentra ubicado"),
-            'onchange': "obtener_rif(this.value)",
-        })
+    consejo_comunal = forms.CharField(
+        label=_("Consejo Comunal"),
+        widget=forms.TextInput(attrs={
+            'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Muestra el consejo comunal"),
+            'readonly':'true',
+            #'onchange': "obtener_rif(this.value)",
+        }), required=False
     )
 
     rif_consejo_comunal = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:100px;', 'readonly':'true',
+                'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:100px;',
+                'readonly':'true',
                 'title': _("Muestra el RIF del Consejo Comunal"),
             }
         ), required=False
@@ -406,6 +411,16 @@ class ViviendaForm(forms.ModelForm):
     )
 
     coordenada = CoordenadaField()
+
+    observacion = forms.CharField(
+        label=_("Observación:"),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'title': _("Indique alguna observación que pueda tener la vivienda"),
+            }
+        ), required = False
+    )
 
     def clean(self):
         cleaned_data = super(ViviendaForm, self).clean()
@@ -429,20 +444,20 @@ class ViviendaForm(forms.ModelForm):
 
     class Meta:
         model = Vivienda
-        exclude = ['user']
+        exclude = ['user','consejo_comunal']
 
 class ViviendaUpdateForm(ViviendaForm):
     def __init__(self, *args, **kwargs):
         super(ViviendaUpdateForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].required = False
-        self.fields['municipio'].widget.attrs['disabled'] = False
-        self.fields['parroquia'].widget.attrs['disabled'] = False
-        self.fields['consejo_comunal'].widget.attrs['disabled'] = False
+        #self.fields['municipio'].widget.attrs['disabled'] = False
+        #self.fields['parroquia'].widget.attrs['disabled'] = False
+        #self.fields['consejo_comunal'].widget.attrs['disabled'] = False
 
     class Meta:
         model = Vivienda
         exclude = [
-            'user','fecha_hora'
+            'user','fecha_hora','consejo_comunal'
         ]
 
 class ImagenForm(forms.ModelForm):

@@ -19,7 +19,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-grupo-familiar" style="width:1500px;">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-grupo-familiar" style="width:1750px;">
                         <thead>
                             <tr>
                                 <th>Vivienda</th>
@@ -28,6 +28,7 @@
                                 <th>Tipo de Tenencia</th>
                                 <th> Tiempo de Alquiler (Meses) </th>
                                 <th>¿Cree Ud. que se deba consultar a las comunidades para los precios del pasaje?</th>
+                                <th>Observación</th>
                                 <th>Operación</th>
                             </tr>
                         </thead>
@@ -56,6 +57,8 @@
                                 {% else %}
                                     <td> No </td>
                                 {% endif %}
+
+                                <td> {{ grupo_familiar.observacion }} </td>
 
                                 <td> <a href="{% url 'grupo_familiar_editar' grupo_familiar.id %}" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> <a href="{% url 'grupo_familiar_eliminar' grupo_familiar.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
                                 </tr>
@@ -103,7 +106,8 @@
                     { "width": "200px", "targets": 3 },
                     { "width": "200px", "targets": 4 },
                     { "width": "350px", "targets": 5 },
-                    { "width": "150px", "targets": 6 },
+                    { "width": "300px", "targets": 6 },
+                    { "width": "100px", "targets": 7 },
                 ],
             });
         });

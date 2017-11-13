@@ -10,6 +10,6 @@ def reporte_usuario(request):
     user = User.objects.all()
     for u in user:
         if not u.is_superuser:
-            reporte_usuario.append( (u.first_name,u.last_name,u.perfil.cedula,u.email,u.perfil.telefono,u.perfil.consejo_comunal) )
+            reporte_usuario.append( (u.username,u.first_name,u.last_name,u.perfil.cedula,u.email,u.perfil.telefono,u.perfil.consejo_comunal) )
 
     return render(request, 'reporte.reporte.usuario.template.html', {'reporte_usuario': reporte_usuario})

@@ -27,12 +27,13 @@ class Persona(models.Model):
         ],unique=True, null=True
     )
 
+    # +058-416-0708340
     telefono = models.CharField(
-        max_length=18, help_text=_("Número telefónico de contacto con el usuario"),
+        max_length=16, help_text=_("Número telefónico de contacto con el usuario"),
         validators=[
             validators.RegexValidator(
-                r'^\(\+\d{3}\)-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números y los símbolos: ( ) - +")
+                r'^\+\d{3}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
             ),
         ]
     )
@@ -51,6 +52,8 @@ class Persona(models.Model):
     ## Establece el parentesto que tiene el jefe familiar con el resto del Grupo Familiar
     parentesco = models.CharField(max_length=2, choices=PARENTESCO)
 
+    jefe_familiar = models.BooleanField()
+
     ## Establece el Estado Civil de la Persona
     estado_civil = models.CharField(max_length=2, choices=ESTADO_CIVIL)
 
@@ -66,8 +69,16 @@ class Persona(models.Model):
     ## Establece la Ocupación de la Persona (sin categoria de momento)
     ocupacion = models.CharField(max_length=100)
 
-    ## Establece los ingresos de dinero de la Persona (sin categoria de momento)
+    ## Establece el Lugar de trabajo de la persona
+
+    ## Establece los ingresos de dinero de la Persona
     ingreso = models.CharField(max_length=100, choices=TIPO_INGRESO)
+
+    ## Establece si la persona tiene o no ingresos por ser pensionado
+    pensionado = models.BooleanField()
+
+    ## Establece si la persona tiene o no ingresos por ser jubilado
+    jubilado = models.BooleanField()
 
     ## Establece el Deporte que practica la Persona (sin categoria de momento)
     deporte = models.CharField(max_length=100)
@@ -98,6 +109,9 @@ class Persona(models.Model):
 
     ## Establece algún comentario que la Persona quiera hacer en relación a las necesidades de la comunidad
     comentario = models.CharField(max_length=500)
+
+    ## Establece alguna observación que se tenga sobre la persona
+    observacion = models.TextField()
 
     ## Establece la relación con el grupo familiar
     grupo_familiar = models.ForeignKey(GrupoFamiliar)

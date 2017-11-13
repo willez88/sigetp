@@ -20,11 +20,11 @@ class Perfil(models.Model):
     )
 
     telefono = models.CharField(
-        max_length=18, help_text=_("Número telefónico de contacto con el usuario"),
+        max_length=16, help_text=_("Número telefónico de contacto con el usuario"),
         validators=[
             validators.RegexValidator(
-                r'^\(\+\d{3}\)-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números y los símbolos: ( ) - +")
+                r'^\+\d{3}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
             ),
         ]
     )
@@ -34,7 +34,7 @@ class Perfil(models.Model):
         help_text=_("Relación entre los datos de registro del encuestador y el usuario con acceso al sistema")
     )
 
-    consejo_comunal = models.OneToOneField(ConsejoComunal)
+    consejo_comunal = models.ForeignKey(ConsejoComunal)
 
     class Meta:
 

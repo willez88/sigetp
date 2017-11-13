@@ -65,7 +65,7 @@ TIPO_PISO = (
     ("BA",_("Baldosa")),
     ("MA",_("Madera")),
     ("TE",_("Terracota")),
-    ("OT",_("Otors")),
+    ("OT",_("Otros")),
 )
 
 ## Valoracion
@@ -107,11 +107,14 @@ DISPOSICION_BASURA = (
 
 ## Tipo de Tenencia
 TIPO_TENENCIA = (
-    ("PR",_("Propia")),
+    ("PR",_("Propia Pagada")),
     ("AL",_("Alquilada")),
-    ("PA",_("Pagada")),
+    ("PO",_("Propia Pagando")),
     ("HE",_("Heredada")),
     ("CE",_("Cedida")),
+    ("PE",_("Prestada")),
+    ("EC",_("En Cuido")),
+    ("DE",_("Desocupada")),
 )
 
 ## Sexo
@@ -122,7 +125,7 @@ SEXO = (
 
 ## Tipo del Parentesco
 PARENTESCO = (
-    ("JF",_("Jefe Familiar")),
+    #("JF",_("Jefe Familiar")),
     ## Parentesco de primer grado
     ("MA",_("Madre")),
     ("PA",_("Padre")),
@@ -143,21 +146,21 @@ PARENTESCO = (
     ## Parentesco de cuarto grado
     ("PR",_("Primo(a)")),
     ("TA",_("Tio(a) Abuelo(a)")),
-    ## Otro
-    ("AD",_("Adoptado(a)")),
 )
 
 ## Estado Civil
 ESTADO_CIVIL = (
     ("SO",_("Soltero(a)")),
     ("CA",_("Casado(a)")),
-    ("CO",_("Concubino(a)")),
+    ("CF",_("Concubino(a) Formal")),
+    ("CI",_("Concubino(a) Informal")),
     ("DI",_("Divirciado(a)")),
     ("VI",_("Viudo(a)")),
 )
 
 ## Grado de Instrucción
 GRADO_INSTRUCCION = (
+    ("NE",_("No Estudió")),
     ("LA",_("Lactante")),
     ("PR",_("Preescolar")),
     ("1G",_("Primer Grado")),
@@ -206,6 +209,11 @@ ORGANIZACION_COMUNITARIA = (
     ("ME",_("Mesa Técnica de Energía")),
     ("MT",_("Mesa Técnica de Tierras")),
     ("CC",_("Consejo Comunal")),
+)
+
+TELEFONO_CODIGO_PAIS = (
+    ("+000",_("N/A +000")),
+    ("+058",_("Venezuela +058")),
 )
 
 ## Mensaje de error para peticiones AJAX

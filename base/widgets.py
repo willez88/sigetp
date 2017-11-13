@@ -12,7 +12,7 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.forms import MultiWidget, Select, TextInput
-from .constant import SHORT_NACIONALIDAD, TIPO_RIF
+from .constant import SHORT_NACIONALIDAD, TIPO_RIF, TELEFONO_CODIGO_PAIS
 from django.utils.translation import ugettext_lazy as _
 
 class RifWidget(MultiWidget):
@@ -137,4 +137,33 @@ class CoordenadaWidgetReadOnly(MultiWidget):
     def decompress(self, value):
         if value:
             return [value]
+        return [None, None]
+
+class TelefonoWidget(MultiWidget):
+    def __init__(self, *args, **kwargs):
+
+        widgets = (
+            Select(
+                attrs={
+                    'class': 'select2 form-control', 'data-toggle': 'tooltip',
+                    'title': _("Seleccione el código telefónico de país")
+                }, choices=TELEFONO_CODIGO_PAIS
+            ),
+            TextInput(
+                attrs={
+                    'class': 'form-control input-sm', 'placeholder': '-000-0000000', 'data-mask': '-000-0000000',
+                    'data-toggle': 'tooltip', 'data-rule-required': 'true', 'size': '10',
+                    'title': _("Indique el número de teléfono")
+                }
+            )
+        )
+
+        super(TelefonoWidget, self).__init__(widgets, *args, **kwargs)
+
+    def format_output(self, rendered_widgets):
+        return ' - '.join(rendered_widgets)
+
+    def decompress(self, value):
+        if value:
+            return [value[0:3], value[4:]]
         return [None, None]

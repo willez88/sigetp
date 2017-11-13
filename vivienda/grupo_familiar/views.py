@@ -39,6 +39,7 @@ class GrupoFamiliarCreate(CreateView):
             self.object.alquilada = form.cleaned_data['alquilada']
         if form.cleaned_data['pasaje']:
             self.object.pasaje = form.cleaned_data['pasaje']
+        self.object.observacion = form.cleaned_data['observacion']
         self.object.save()
         return super(GrupoFamiliarCreate, self).form_valid(form)
 

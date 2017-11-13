@@ -108,6 +108,22 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.observacion.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.observacion.auto_id }}">
+                                    {{ form.observacion.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.observacion }}
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 <div class="box-footer text-right">
                     <a href="{% url 'grupo_familiar_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>

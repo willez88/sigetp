@@ -64,6 +64,16 @@ class GrupoFamiliarForm(forms.ModelForm):
         required = False,
     )
 
+    observacion = forms.CharField(
+        label=_("Observación:"),
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'title': _("Indique alguna observación que pueda tener el grupo familiar"),
+            }
+        ), required = False
+    )
+
     class Meta:
         model = GrupoFamiliar
         exclude = [

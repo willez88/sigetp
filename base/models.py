@@ -89,7 +89,6 @@ class ConsejoComunal(models.Model):
 
     def __str__(self):
         return self.nombre
-        #return "%s %s" % (self.rif, self.nombre)
 
     class Meta:
         verbose_name = _("Consejo Comunal")

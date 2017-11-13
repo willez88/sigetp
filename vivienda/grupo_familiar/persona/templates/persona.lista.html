@@ -20,7 +20,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:5500px;">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:5950px;">
                         <thead>
                             <tr>
                                 <th>Grupo Familiar</th>
@@ -33,12 +33,15 @@
                                 <th>Fecha de nacimiento</th>
                                 <th>Edad</th>
                                 <th>Parentesco</th>
+                                <th>Jefe Familiar</th>
                                 <th>Estado civil</th>
                                 <th>Grado de instrucción</th>
                                 <th>Misión educativa</th>
                                 <th>Profesión</th>
                                 <th>Ocupación</th>
                                 <th>Ingresos</th>
+                                <th>Pensionado</th>
+                                <th>Jubilado</th>
                                 <th>Deporte que practica</th>
                                 <th>Enfermedad que presenta</th>
                                 <th>Discapacidad que presenta</th>
@@ -49,6 +52,7 @@
                                 <th>¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?</th>
                                 <th>¿Qué inseguridad presenta la comunidad?</th>
                                 <th>Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad</th>
+                                <th>Observación</th>
                                 <th>Operación</th>
                             </tr>
                         </thead>
@@ -69,12 +73,27 @@
                                 <td>{{ persona.fecha_nacimiento }}</td>
                                 <td>{{ persona.edad }}</td>
                                 <td>{{ persona.get_parentesco_display }}</td>
+                                {% if persona.jefe_familiar %}
+                                    <td>Si</td>
+                                {% else %}
+                                    <td>No</td>
+                                {% endif %}
                                 <td>{{ persona.get_estado_civil_display }}</td>
                                 <td>{{ persona.get_grado_instruccion_display }}</td>
                                 <td>{{ persona.get_mision_educativa_display }}</td>
                                 <td>{{ persona.profesion }}</td>
                                 <td>{{ persona.ocupacion }}</td>
                                 <td>{{ persona.get_ingreso_display }}</td>
+                                {% if persona.pensionado %}
+                                    <td>Si</td>
+                                {% else %}
+                                    <td>No</td>
+                                {% endif %}
+                                {% if persona.jubilado %}
+                                    <td>Si</td>
+                                {% else %}
+                                    <td>No</td>
+                                {% endif %}
                                 <td>{{ persona.deporte }}</td>
                                 <td>{{ persona.enfermedad }}</td>
                                 <td>{{ persona.discapacidad }}</td>
@@ -89,6 +108,7 @@
                                 <td>{{ persona.mejorar_comunicacion }}</td>
                                 <td>{{ persona.inseguridad }}</td>
                                 <td>{{ persona.comentario }}</td>
+                                <td>{{ persona.observacion }}</td>
                                 <td> <a href="{% url 'persona_editar' persona.id %}" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> <a href="{% url 'persona_eliminar' persona.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i</a> </td>
                                 </tr>
                             {% endfor %}
@@ -139,23 +159,27 @@
                     { "width": "100px", "targets": 7 },
                     { "width": "100px", "targets": 8 },
                     { "width": "150px", "targets": 9 },
-                    { "width": "150px", "targets": 10 },
+                    { "width": "100px", "targets": 10 },
                     { "width": "150px", "targets": 11 },
                     { "width": "150px", "targets": 12 },
-                    { "width": "200px", "targets": 13 },
+                    { "width": "150px", "targets": 13 },
                     { "width": "200px", "targets": 14 },
-                    { "width": "150px", "targets": 15 },
-                    { "width": "250px", "targets": 16 },
-                    { "width": "250px", "targets": 17 },
-                    { "width": "250px", "targets": 18 },
+                    { "width": "200px", "targets": 15 },
+                    { "width": "150px", "targets": 16 },
+                    { "width": "150px", "targets": 17 },
+                    { "width": "150px", "targets": 18 },
                     { "width": "250px", "targets": 19 },
                     { "width": "250px", "targets": 20 },
                     { "width": "250px", "targets": 21 },
                     { "width": "250px", "targets": 22 },
                     { "width": "250px", "targets": 23 },
                     { "width": "250px", "targets": 24 },
-                    { "width": "400px", "targets": 25 },
-                    { "width": "150px", "targets": 26 },
+                    { "width": "250px", "targets": 25 },
+                    { "width": "250px", "targets": 26 },
+                    { "width": "250px", "targets": 27 },
+                    { "width": "400px", "targets": 28 },
+                    { "width": "300px", "targets": 29 },
+                    { "width": "100px", "targets": 30 },
                 ],
             });
         });

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from .models import Persona
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import PersonaForm, PersonaForm
+from .forms import PersonaForm
 from vivienda.grupo_familiar.models import GrupoFamiliar
 import datetime
 
@@ -42,11 +42,17 @@ class PersonaCreate(CreateView):
         self.object.sexo = form.cleaned_data['sexo']
         self.object.fecha_nacimiento = form.cleaned_data['fecha_nacimiento']
         self.object.parentesco = form.cleaned_data['parentesco']
+        if form.cleaned_data['jefe_familiar']:
+            self.object.jefe_familiar = form.cleaned_data['jefe_familiar']
         self.object.estado_civil = form.cleaned_data['estado_civil']
         self.object.grado_instruccion = form.cleaned_data['grado_instruccion']
         self.object.mision_educativa = form.cleaned_data['mision_educativa']
         self.object.profesion = form.cleaned_data['profesion']
         self.object.ocupacion = form.cleaned_data['ocupacion']
+        if form.cleaned_data['jubilado']:
+            self.object.jubilado = form.cleaned_data['jubilado']
+        if form.cleaned_data['pensionado']:
+            self.object.pensionado = form.cleaned_data['pensionado']
         self.object.ingreso = form.cleaned_data['ingreso']
         self.object.deporte = form.cleaned_data['deporte']
         self.object.enfermedad = form.cleaned_data['enfermedad']
@@ -59,6 +65,7 @@ class PersonaCreate(CreateView):
         self.object.mejorar_comunicacion = form.cleaned_data['mejorar_comunicacion']
         self.object.inseguridad = form.cleaned_data['inseguridad']
         self.object.comentario = form.cleaned_data['comentario']
+        self.object.observacion = form.cleaned_data['observacion']
         self.object.save()
         return super(PersonaCreate, self).form_valid(form)
 

@@ -104,7 +104,9 @@
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
                                         {{ form.telefono }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
+                                    <span style="font-size:12px">{{ form.telefono.help_text }}</span>
                                     {% include 'base.form.errors.html' with form_errors=form.telefono.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
@@ -173,6 +175,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <div class="form-group {% if form.parentesco.errors %}has-error{% endif %}">
                                 <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.parentesco.auto_id }}">
@@ -184,6 +189,19 @@
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
                                     {% include 'base.form.errors.html' with form_errors=form.parentesco.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.jefe_familiar.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.jefe_familiar.auto_id }}">
+                                    {{ form.jefe_familiar.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.jefe_familiar }}
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.jefe_familiar.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -275,6 +293,35 @@
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
                                     {% include 'base.form.errors.html' with form_errors=form.ingreso.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.pensionado.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.pensionado.auto_id }}">
+                                    {{ form.pensionado.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.pensionado }}
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.pensionado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.jubilado.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.jubilado.auto_id }}">
+                                    {{ form.jubilado.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.jubilado }}
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.jubilado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -424,6 +471,22 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group {% if form.observacion.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.observacion.auto_id }}">
+                                    {{ form.observacion.label }}
+                                </label>
+                                <div class="col-md-9 col-xs-9 col-sm-9">
+                                    <div class="form-inline">
+                                        {{ form.observacion }}
+                                    </div>
+                                    {% include 'base.form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="box-footer text-right">
                     <a href="{% url 'persona_lista' %}" class="btn btn-primary btn-sm">Atrás</a>
                     <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
@@ -477,14 +540,7 @@
             var fecha_js = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2), dateParts[2].substr(3, 2), dateParts[2].substr(6, 2), dateParts[2].substr(9, 2));
             hoy = new Date();
             edad = (hoy-fecha_js)/365/24/60/60/1000;
-            if(edad < 2.0)
-            {
-                $("#id_edad").val(edad.toFixed(1));
-            }
-            else
-            {
-                $("#id_edad").val(edad.toFixed(0));
-            }
+            $("#id_edad").val(edad.toFixed(0));
         }
     </script>
 {% endblock %}

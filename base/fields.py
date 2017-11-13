@@ -12,8 +12,8 @@ Copyleft (@) 2016 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.forms import MultiValueField, ChoiceField, CharField, TextInput
-from .constant import SHORT_NACIONALIDAD, TIPO_RIF
-from .widgets import RifWidget, CedulaWidget, CoordenadaWidgetReadOnly
+from .constant import SHORT_NACIONALIDAD, TIPO_RIF, TELEFONO_CODIGO_PAIS
+from .widgets import RifWidget, CedulaWidget, CoordenadaWidgetReadOnly, TelefonoWidget
 from django.utils.translation import ugettext_lazy as _
 
 class RifField(MultiValueField):
@@ -129,4 +129,36 @@ class CoordenadaField(MultiValueField):
 
         if data_list:
             return ','.join(data_list)
+        return ''
+
+class TelefonoField(MultiValueField):
+    widget = TelefonoWidget
+    default_error_messages = {
+        'invalid_choices': _("Debe seleccionar un codigo telefónico de país válido")
+    }
+
+    def __init__(self, *args, **kwargs):
+
+        error_messages = {
+            'required': _("Debe indicar un número de Teléfono"),
+            'invalid': _("El valor indicado no es válido"),
+            'incomplete': _("El número de teléfono esta incompleto")
+        }
+
+        fields = (
+            ChoiceField(choices=TELEFONO_CODIGO_PAIS),
+            CharField(max_length=12)
+        )
+
+        label = _("Teléfono:")
+
+        help_text = _("Rellenar con ceros en caso de no poseer teléfono.")
+
+        super(TelefonoField, self).__init__(
+            error_messages=error_messages, fields=fields, label=label, require_all_fields=True, help_text=help_text, *args, **kwargs
+        )
+
+    def compress(self, data_list):
+        if data_list:
+            return ''.join(data_list)
         return ''

@@ -43,6 +43,7 @@ class Vivienda(models.Model):
     numero_vivienda = models.CharField(max_length=20)
     direccion = models.CharField(max_length=500)
     coordenadas = models.CharField(max_length=255, blank=True)
+    observacion = models.TextField()
     consejo_comunal = models.ForeignKey(ConsejoComunal)
     user = models.ForeignKey(User)
 
