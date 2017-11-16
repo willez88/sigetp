@@ -60,7 +60,7 @@
 
                                 <td> {{ grupo_familiar.observacion }} </td>
 
-                                <td> <a href="{% url 'grupo_familiar_editar' grupo_familiar.id %}" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> <a href="{% url 'grupo_familiar_eliminar' grupo_familiar.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+                                <td> <a href="{% url 'grupo_familiar_actualizar' grupo_familiar.id %}" data-toggle="tooltip" title="Actualizar"><i class="fa fa-pencil"></i></a> <a href="{% url 'grupo_familiar_eliminar' grupo_familiar.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

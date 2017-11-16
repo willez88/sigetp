@@ -62,7 +62,7 @@ class PersonaForm(forms.ModelForm):
 
     cedula = CedulaField(required=False)
 
-    telefono = TelefonoField(required=False)
+    telefono = TelefonoField()
 
     correo = forms.EmailField(
         label=_("Correo Electrónico:"),
@@ -122,6 +122,7 @@ class PersonaForm(forms.ModelForm):
 
     jefe_familiar = forms.BooleanField(
         label=_("Jefe Familiar"),
+        help_text=_("Para actualizar los datos de un Jefe Familiar es necesario quitar esta selección y guardar. Hecho los cambios se puede seleccionar de nuevo si el Jefe Familiar se mantiene o se elige otro."),
         required = False
     )
 
@@ -324,15 +325,6 @@ class PersonaForm(forms.ModelForm):
         ), required = False
     )
 
-    """def clean_cedula(self):
-        cedula = self.cleaned_data['cedula']
-        if cedula == '':
-            return cedula
-        else:
-            if Persona.objects.filter(cedula=cedula):
-                raise forms.ValidationError(_("La Persona ya se encuentra registrada"))
-        return cedula"""
-
     def clean(self):
         cleaned_data = super(PersonaForm, self).clean()
         grupo_familiar = self.cleaned_data['grupo_familiar']
@@ -343,7 +335,6 @@ class PersonaForm(forms.ModelForm):
             for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
                 if p.jefe_familiar:
                     c= c+1
-        print(c)
         if c >= 1:
             msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
             self.add_error('jefe_familiar', msg)
@@ -353,19 +344,3 @@ class PersonaForm(forms.ModelForm):
         exclude = [
             'grupo_familiar'
         ]
-
-## Faltan las validaciones en el actualizar de los datos de Persona en campo parentesco
-"""class PersonaUpdateForm(PersonaForm):
-
-    def clean(self):
-        cleaned_data = super(PersonaUpdateForm, self).clean()
-        grupo_familiar = self.cleaned_data['grupo_familiar']
-
-        c = 0
-        for p in Persona.objects.filter(grupo_familiar=grupo_familiar):
-            if p.jefe_familiar:
-                c= c+1
-
-        if c > 0:
-            msg = str(_("Solo puede haber un Jefe Familiar por Grupo Familiar."))
-            self.add_error('jefe_familiar', msg)"""

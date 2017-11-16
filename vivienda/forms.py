@@ -21,21 +21,6 @@ class ViviendaForm(forms.ModelForm):
         self.fields['estado'].initial = user.perfil.consejo_comunal.parroquia.municipio.estado
         self.fields['rif_consejo_comunal'].initial = user.perfil.consejo_comunal.rif
 
-        """# Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
-        if 'estado' in self.data and self.data['estado']:
-            self.fields['municipio'].widget.attrs.pop('disabled')
-            self.fields['municipio'].queryset=Municipio.objects.filter(estado=self.data['estado'])
-
-            # Si se ha seleccionado un municipio establece el listado de parroquias y elimina el atributo disable
-            if 'municipio' in self.data and self.data['municipio']:
-                self.fields['parroquia'].widget.attrs.pop('disabled')
-                self.fields['parroquia'].queryset=Parroquia.objects.filter(municipio=self.data['municipio'])
-
-                # Si se ha seleccionado una parroquia establece el listado de consejos comunales y elimina el atributo disable
-                if 'parroquia' in self.data and self.data['parroquia']:
-                    self.fields['consejo_comunal'].widget.attrs.pop('disabled')
-                    self.fields['consejo_comunal'].queryset=ConsejoComunal.objects.filter(parroquia=self.data['parroquia'])"""
-
     fecha_hora = forms.CharField(
         label=_("Fecha y hora:"),
         widget=forms.TextInput(
@@ -450,9 +435,6 @@ class ViviendaUpdateForm(ViviendaForm):
     def __init__(self, *args, **kwargs):
         super(ViviendaUpdateForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].required = False
-        #self.fields['municipio'].widget.attrs['disabled'] = False
-        #self.fields['parroquia'].widget.attrs['disabled'] = False
-        #self.fields['consejo_comunal'].widget.attrs['disabled'] = False
 
     class Meta:
         model = Vivienda

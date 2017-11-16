@@ -69,9 +69,8 @@ class PersonaCreate(CreateView):
         self.object.save()
         return super(PersonaCreate, self).form_valid(form)
 
-        def form_invalid(self, form):
-            print(form.errors)
-            return super(PersonaCreate, self).form_invalid(form)
+    def form_invalid(self, form):    
+        return super(PersonaCreate, self).form_invalid(form)
 
 class PersonaUpdate(UpdateView):
     model = Persona

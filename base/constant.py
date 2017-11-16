@@ -213,7 +213,7 @@ ORGANIZACION_COMUNITARIA = (
 
 TELEFONO_CODIGO_PAIS = (
     ("+000",_("N/A +000")),
-    ("+058",_("Venezuela +058")),
+    ("+058",_("VE +058")),
 )
 
 ## Mensaje de error para peticiones AJAX

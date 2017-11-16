@@ -10,7 +10,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered blue-table display dataTable" id="reporte">
+                    <table class="table table-striped table-hover table-bordered blue-table display dataTable" id="reporte" style="width:2100px;">
                         <thead>
                             <tr>
                                 <th>{% trans 'Nombre de Usuario' %}</th>
@@ -20,6 +20,9 @@
                                 <th>{% trans 'Correo' %}</th>
                                 <th>{% trans 'Teléfono' %}</th>
                                 <th>{% trans 'Consejo Comunal' %}</th>
+                                <th>{% trans 'Número de Personas' %}</th>
+                                <th>{% trans 'Número de Grupos Familiares' %}</th>
+                                <th>{% trans 'Números de Viviendas' %}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,6 +35,9 @@
                                     <td>{{ value.4 }}</td>
                                     <td>{{ value.5 }}</td>
                                     <td>{{ value.6 }}</td>
+                                    <td>{{ value.7 }}</td>
+                                    <td>{{ value.8 }}</td>
+                                    <td>{{ value.9 }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -75,6 +81,19 @@
 		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
 	                },
                 },
+                "autoWidth": false,
+                "columnDefs": [
+                    { "width": "200px", "targets": 0 },
+                    { "width": "250px", "targets": 1 },
+                    { "width": "250px", "targets": 2 },
+                    { "width": "150px", "targets": 3 },
+                    { "width": "250px", "targets": 4 },
+                    { "width": "250px", "targets": 5 },
+                    { "width": "300px", "targets": 6 },
+                    { "width": "150px", "targets": 7 },
+                    { "width": "150px", "targets": 8 },
+                    { "width": "150px", "targets": 9 },
+                ],
             });
         });
     </script>

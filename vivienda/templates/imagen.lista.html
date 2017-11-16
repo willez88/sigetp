@@ -34,7 +34,7 @@
                                 <td> {{ imagen.vivienda.numero_vivienda }}-{{ imagen.vivienda.id }} </td>
                                 <td> {{ imagen.nombre }} </td>
                                 <td> <img src="{{ imagen.imagen_base64 }}" class="img-responsive" width="500px" height="500px"> </td>
-                                <td> <a href="#" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+                                <td> <a href="{% url 'imagen_eliminar' imagen.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

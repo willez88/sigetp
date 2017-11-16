@@ -201,6 +201,7 @@
                                     <div class="form-inline">
                                         {{ form.jefe_familiar }}
                                     </div>
+                                    <span style="font-size:12px">{{ form.jefe_familiar.help_text }}</span>
                                     {% include 'base.form.errors.html' with form_errors=form.jefe_familiar.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>

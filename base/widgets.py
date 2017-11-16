@@ -145,14 +145,14 @@ class TelefonoWidget(MultiWidget):
         widgets = (
             Select(
                 attrs={
-                    'class': 'select2 form-control', 'data-toggle': 'tooltip',
+                    'class': 'select2 form-control', 'data-toggle': 'tooltip', 'style':'width:110px',
                     'title': _("Seleccione el código telefónico de país")
                 }, choices=TELEFONO_CODIGO_PAIS
             ),
             TextInput(
                 attrs={
                     'class': 'form-control input-sm', 'placeholder': '-000-0000000', 'data-mask': '-000-0000000',
-                    'data-toggle': 'tooltip', 'data-rule-required': 'true', 'size': '10',
+                    'data-toggle': 'tooltip', 'data-rule-required': 'true', 'style': 'width:140px',
                     'title': _("Indique el número de teléfono")
                 }
             )
@@ -165,5 +165,5 @@ class TelefonoWidget(MultiWidget):
 
     def decompress(self, value):
         if value:
-            return [value[0:3], value[4:]]
+            return [value[0:4], value[4:]]
         return [None, None]

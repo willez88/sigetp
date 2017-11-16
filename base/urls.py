@@ -13,11 +13,11 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 
 from __future__ import unicode_literals
 from django.conf.urls import url
-from . import views
+from .views import inicio
 from .ajax import *
 
 urlpatterns = [
-    url(r'^$', views.inicio, name='inicio'),
+    url(r'^$', inicio, name='inicio'),
 ]
 
 ## URLs de peticiones AJAX

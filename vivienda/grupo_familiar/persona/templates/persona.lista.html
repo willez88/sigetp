@@ -109,7 +109,7 @@
                                 <td>{{ persona.inseguridad }}</td>
                                 <td>{{ persona.comentario }}</td>
                                 <td>{{ persona.observacion }}</td>
-                                <td> <a href="{% url 'persona_editar' persona.id %}" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil"></i></a> <a href="{% url 'persona_eliminar' persona.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i</a> </td>
+                                <td> <a href="{% url 'persona_actualizar' persona.id %}" data-toggle="tooltip" title="Actualizar"><i class="fa fa-pencil"></i></a> <a href="{% url 'persona_eliminar' persona.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i</a> </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -97,7 +97,6 @@ class ViviendaCreate(CreateView):
         return super(ViviendaCreate, self).form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
         return super(ViviendaCreate, self).form_invalid(form)
 
 class ViviendaUpdate(UpdateView):
@@ -164,5 +163,9 @@ class ImagenCreate(CreateView):
         return super(ImagenCreate, self).form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
         return super(ImagenCreate, self).form_invalid(form)
+
+class ImagenDelete(DeleteView):
+    model = Imagen
+    template_name = "imagen.eliminar.html"
+    success_url = reverse_lazy('imagen_lista')
