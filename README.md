@@ -82,24 +82,24 @@ Creada la base de datos, moverse a la carpeta donde está el servidor de desarro
 
 Instalamos los requemientos que el sistema necesita en el entorno virtual
 
-    ~$ pip install -r requirements.txt
+    (sigetp) ~$ pip install -r requirements.txt
 
 Hacer las migraciones
 
-    ~$ python manage.py makemigrations base usuario vivienda grupo_familiar persona
+    (sigetp) ~$ python manage.py makemigrations base usuario vivienda grupo_familiar persona
 
-    ~$ python manage.py migrate
+    (sigetp) ~$ python manage.py migrate
 
 Crear usuario administrador del __SIGETP__
 
-    ~$ python manage.py createsuperuser
+    (sigetp) ~$ python manage.py createsuperuser
 
 Poblar las tablas de la base de datos que lo requieran
 
-    ~$ python manage.py loaddata initial_data.json
+    (sigetp) ~$ python manage.py loaddata initial_data.json
 
 Ejecutar el servidor de django
 
-    ~$ python manage.py runserver
+    (sigetp) ~$ python manage.py runserver
 
 Poner en el navegador la url que sale en el terminal para usar el sistema
