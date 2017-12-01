@@ -12,11 +12,15 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 # @copyright <a href='http://www.gnu.org/licenses/gpl-3.0.html'>GNU Public License versión 3 (GPLv3)</a>
 
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 __licence__ = "GNU Public License v2"
 __revision__ = ""
 __docstring__ = "DoxyGen"
 
 
-def inicio(request):
-    return render(request, 'base.template.html')
+class Inicio(TemplateView):
+    template_name = "base.template.html"
+
+class Error403(TemplateView):
+    template_name = "base.403.html"

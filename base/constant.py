@@ -193,6 +193,20 @@ MISION_EDUCATIVA = (
     ("MM",_("Misión Música")),
 )
 
+MISION_SOCIAL = (
+    ("NI",_("Ninguna")),
+    ("HP",_("Hogares de la Patria")),
+    ("NH",_("Negra Hipólita")),
+    ("JG",_("José Gregorio Hernández")),
+    ("BA",_("Barrio Adentro Deportivo")),
+    ("EA",_("En Amor Mayor")),
+    ("NE",_("Nevado")),
+    ("JP",_("Jóvenes de la Patria")),
+    ("ID",_("Identidad")),
+    ("GP",_("Guaicaipuro y Piar")),
+    ("MB",_("Madres del Barrio")),
+)
+
 TIPO_INGRESO = (
     ("NI",_("Ninguno")),
     ("ME",_("Menos de un Sueldo Mínimo")),

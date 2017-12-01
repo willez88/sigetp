@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Vivienda, Imagen
@@ -38,7 +38,7 @@ class ViviendaCreate(CreateView):
         self.object.servicio_electrico = form.cleaned_data['servicio_electrico']
         self.object.situacion_sanitaria = form.cleaned_data['situacion_sanitaria']
         self.object.disposicion_basura = form.cleaned_data['disposicion_basura']
-        self.object.disposicion_basura = form.cleaned_data['disposicion_basura']
+        #self.object.disposicion_basura = form.cleaned_data['disposicion_basura']
         self.object.tipo_vivienda = form.cleaned_data['tipo_vivienda']
         self.object.tipo_pared = form.cleaned_data['tipo_pared']
 
@@ -110,6 +110,12 @@ class ViviendaUpdate(UpdateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not Vivienda.objects.filter(pk=self.kwargs['pk'],user=user):
+            return redirect('base_403')
+        return super(ViviendaUpdate, self).dispatch(request, *args, **kwargs)
+
     def get_initial(self):
         datos_iniciales = super(ViviendaUpdate, self).get_initial()
         vivienda = Vivienda.objects.get(pk=self.object.id)
@@ -118,8 +124,8 @@ class ViviendaUpdate(UpdateView):
         return datos_iniciales
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
         consejo_comunal = ConsejoComunal.objects.get(rif=self.request.user.perfil.consejo_comunal.rif)
+        self.object = form.save(commit=False)
         self.object.consejo_comunal = consejo_comunal
         self.object.coordenadas = form.cleaned_data['coordenada']
         self.object.save()
@@ -132,6 +138,12 @@ class ViviendaDelete(DeleteView):
     model = Vivienda
     template_name = "vivienda.eliminar.html"
     success_url = reverse_lazy('vivienda_lista')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not Vivienda.objects.filter(pk=self.kwargs['pk'],user=user):
+            return redirect('base_403')
+        return super(ViviendaDelete, self).dispatch(request, *args, **kwargs)
 
 class ImagenList(ListView):
     model = Imagen
@@ -169,3 +181,9 @@ class ImagenDelete(DeleteView):
     model = Imagen
     template_name = "imagen.eliminar.html"
     success_url = reverse_lazy('imagen_lista')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not Imagen.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
+            return redirect('base_403')
+        return super(ImagenDelete, self).dispatch(request, *args, **kwargs)

@@ -25,7 +25,7 @@ SECRET_KEY = '#a#q#x4m^zb0j*-j1s(%%#=y)&1cb@n0z=*%kbnvaq!i(v5nvv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 ## Identifica a los administradores del sistema
 ADMINS = [

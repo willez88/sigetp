@@ -13,11 +13,12 @@ Copyleft (@) 2017 CENDITEL nodo Mérida
 
 from __future__ import unicode_literals
 from django.conf.urls import url
-from .views import inicio
+from .views import Inicio, Error403
 from .ajax import *
 
 urlpatterns = [
-    url(r'^$', inicio, name='inicio'),
+    url(r'^$', Inicio.as_view(), name='inicio'),
+    url(r'^403/$', Error403.as_view(), name = "base_403"),
 ]
 
 ## URLs de peticiones AJAX

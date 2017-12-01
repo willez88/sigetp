@@ -4,7 +4,7 @@ from .models import Persona
 from base.constant import TIPO_TENENCIA
 from vivienda.grupo_familiar.models import GrupoFamiliar
 from base.fields import CedulaField, TelefonoField
-from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA
+from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA, MISION_SOCIAL
 
 class PersonaForm(forms.ModelForm):
 
@@ -155,6 +155,17 @@ class PersonaForm(forms.ModelForm):
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
                 'title': _("Seleccione la Misión Educativa que tiene la Persona"),
+            }
+        )
+    )
+
+    mision_social = forms.ChoiceField(
+        label=_("Misión Social:"),
+        choices=(('',_('Seleccione...')),)+MISION_SOCIAL,
+        widget=forms.Select(
+            attrs={
+                'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'title': _("Seleccione la Misión Social que tiene la Persona"),
             }
         )
     )

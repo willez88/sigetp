@@ -20,7 +20,7 @@
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:5950px;">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-persona" style="width:6100px;">
                         <thead>
                             <tr>
                                 <th>Grupo Familiar</th>
@@ -36,7 +36,8 @@
                                 <th>Jefe Familiar</th>
                                 <th>Estado civil</th>
                                 <th>Grado de instrucción</th>
-                                <th>Misión educativa</th>
+                                <th>Misión Educativa</th>
+                                <th>Misión Social</th>
                                 <th>Profesión</th>
                                 <th>Ocupación</th>
                                 <th>Ingresos</th>
@@ -81,6 +82,7 @@
                                 <td>{{ persona.get_estado_civil_display }}</td>
                                 <td>{{ persona.get_grado_instruccion_display }}</td>
                                 <td>{{ persona.get_mision_educativa_display }}</td>
+                                <td>{{ persona.get_mision_social_display }}</td>
                                 <td>{{ persona.profesion }}</td>
                                 <td>{{ persona.ocupacion }}</td>
                                 <td>{{ persona.get_ingreso_display }}</td>
@@ -163,12 +165,12 @@
                     { "width": "150px", "targets": 11 },
                     { "width": "150px", "targets": 12 },
                     { "width": "150px", "targets": 13 },
-                    { "width": "200px", "targets": 14 },
+                    { "width": "150px", "targets": 14 },
                     { "width": "200px", "targets": 15 },
-                    { "width": "150px", "targets": 16 },
+                    { "width": "200px", "targets": 16 },
                     { "width": "150px", "targets": 17 },
                     { "width": "150px", "targets": 18 },
-                    { "width": "250px", "targets": 19 },
+                    { "width": "150px", "targets": 19 },
                     { "width": "250px", "targets": 20 },
                     { "width": "250px", "targets": 21 },
                     { "width": "250px", "targets": 22 },
@@ -177,9 +179,10 @@
                     { "width": "250px", "targets": 25 },
                     { "width": "250px", "targets": 26 },
                     { "width": "250px", "targets": 27 },
-                    { "width": "400px", "targets": 28 },
-                    { "width": "300px", "targets": 29 },
-                    { "width": "100px", "targets": 30 },
+                    { "width": "250px", "targets": 28 },
+                    { "width": "400px", "targets": 29 },
+                    { "width": "300px", "targets": 30 },
+                    { "width": "100px", "targets": 31 },
                 ],
             });
         });

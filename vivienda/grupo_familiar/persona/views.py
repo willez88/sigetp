@@ -69,7 +69,7 @@ class PersonaCreate(CreateView):
         self.object.save()
         return super(PersonaCreate, self).form_valid(form)
 
-    def form_invalid(self, form):    
+    def form_invalid(self, form):
         return super(PersonaCreate, self).form_invalid(form)
 
 class PersonaUpdate(UpdateView):
@@ -82,6 +82,12 @@ class PersonaUpdate(UpdateView):
         kwargs = super(PersonaUpdate, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         return kwargs
+
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__user=user):
+            return redirect('base_403')
+        return super(PersonaUpdate, self).dispatch(request, *args, **kwargs)
 
     def get_initial(self):
         datos_iniciales = super(PersonaUpdate, self).get_initial()
@@ -106,3 +112,9 @@ class PersonaDelete(DeleteView):
     model = Persona
     template_name = "persona.eliminar.html"
     success_url = reverse_lazy('persona_lista')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__user=user):
+            return redirect('base_403')
+        return super(PersonaDelete, self).dispatch(request, *args, **kwargs)

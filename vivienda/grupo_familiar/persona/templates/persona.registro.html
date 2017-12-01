@@ -255,19 +255,36 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.profesion.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.profesion.auto_id }}">
-                                    {{ form.profesion.label }}
+                            <div class="form-group {% if form.mision_social.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.mision_social.auto_id }}">
+                                    {{ form.mision_social.label }}
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
-                                        {{ form.profesion }}
+                                        {{ form.mision_social }}
+                                        <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.profesion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base.form.errors.html' with form_errors=form.mision_social.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                          <div class="form-group {% if form.profesion.errors %}has-error{% endif %}">
+                              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.profesion.auto_id }}">
+                                  {{ form.profesion.label }}
+                              </label>
+                              <div class="col-md-9 col-xs-9 col-sm-9">
+                                  <div class="form-inline">
+                                      {{ form.profesion }}
+                                  </div>
+                                  {% include 'base.form.errors.html' with form_errors=form.profesion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">

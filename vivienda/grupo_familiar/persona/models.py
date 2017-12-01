@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO
+from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, MISION_SOCIAL
 from vivienda.grupo_familiar.models import GrupoFamiliar
 import datetime
 
@@ -62,6 +62,9 @@ class Persona(models.Model):
 
     ## Establece la Misión Educativa que tiene la Persona
     mision_educativa = models.CharField(max_length=2, choices=MISION_EDUCATIVA)
+
+    ## Establece la Misión Social ue tiene la Persona
+    mision_social = models.CharField(max_length=2, choices=MISION_SOCIAL)
 
     ## Establece la Profesión de la Persona (sin categoria de momento)
     profesion = models.CharField(max_length=100)

@@ -57,6 +57,12 @@ class GrupoFamiliarUpdate(UpdateView):
         kwargs.update({'user': self.request.user})
         return kwargs
 
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
+            return redirect('base_403')
+        return super(GrupoFamiliarUpdate, self).dispatch(request, *args, **kwargs)
+
     def get_initial(self):
         datos_iniciales = super(GrupoFamiliarUpdate, self).get_initial()
         grupo_familiar = GrupoFamiliar.objects.get(pk=self.object.id)
@@ -67,3 +73,9 @@ class GrupoFamiliarDelete(DeleteView):
     model = GrupoFamiliar
     template_name = "grupo.familiar.eliminar.html"
     success_url = reverse_lazy('grupo_familiar_lista')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = User.objects.get(username=self.request.user.username)
+        if not GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
+            return redirect('base_403')
+        return super(GrupoFamiliarDelete, self).dispatch(request, *args, **kwargs)
