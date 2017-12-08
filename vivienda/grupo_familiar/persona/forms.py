@@ -5,6 +5,7 @@ from base.constant import TIPO_TENENCIA
 from vivienda.grupo_familiar.models import GrupoFamiliar
 from base.fields import CedulaField, TelefonoField
 from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA, MISION_SOCIAL
+from django.core import validators
 
 class PersonaForm(forms.ModelForm):
 
@@ -60,9 +61,24 @@ class PersonaForm(forms.ModelForm):
         ), required = False
     )
 
-    cedula = CedulaField(required=False)
+    cedula = CedulaField(
+        required=False,
+        validators=[
+            validators.RegexValidator(
+                r'^[VE][\d]{8}$',
+                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
+            ),
+        ]
+    )
 
-    telefono = TelefonoField()
+    telefono = TelefonoField(
+        validators=[
+            validators.RegexValidator(
+                r'^\+\d{3}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
+            ),
+        ]
+    )
 
     correo = forms.EmailField(
         label=_("Correo Electrónico:"),

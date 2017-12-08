@@ -84,10 +84,12 @@ class CedulaField(MultiValueField):
             CharField(max_length=8)
         )
 
-        label = _("Cedula de Identidad:")
+        label = _("Cédula de Identidad:")
+
+        help_text = _("Cédula de Identidad del usuario")
 
         super(CedulaField, self).__init__(
-            error_messages=error_messages, fields=fields, label=label, require_all_fields=True, *args, **kwargs
+            error_messages=error_messages, fields=fields, label=label, help_text=help_text, require_all_fields=True, *args, **kwargs
         )
 
     def compress(self, data_list):

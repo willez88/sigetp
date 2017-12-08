@@ -3,16 +3,31 @@ from base.fields import CedulaField, TelefonoField
 from django.utils.translation import ugettext_lazy as _
 from .models import Perfil
 from django.contrib.auth.models import User
+from django.core import validators
 
 class PerfilAdminForm(forms.ModelForm):
 
-    cedula = CedulaField()
+    cedula = CedulaField(
+        validators=[
+            validators.RegexValidator(
+                r'^[VE][\d]{8}$',
+                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
+            ),
+        ],
+    )
 
     ## Número telefónico de contacto con el usuario
-    telefono = TelefonoField()
+    telefono = TelefonoField(
+        validators=[
+            validators.RegexValidator(
+                r'^\+\d{3}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
+            ),
+        ]
+    )
 
     class Meta:
-        model = Perfil
+        model = User
         fields = '__all__'
 
 class PerfilUpdateForm(forms.ModelForm):
@@ -62,9 +77,23 @@ class PerfilUpdateForm(forms.ModelForm):
         )
     )
 
-    cedula = CedulaField()
+    cedula = CedulaField(
+        validators=[
+            validators.RegexValidator(
+                r'^[VE][\d]{8}$',
+                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
+            ),
+        ],
+    )
 
-    telefono = TelefonoField()
+    telefono = TelefonoField(
+        validators=[
+            validators.RegexValidator(
+                r'^\+\d{3}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
+            ),
+        ]
+    )
 
     consejo_comunal_temp = forms.CharField(
         label=_("Consejo Comunal:"),
@@ -78,6 +107,14 @@ class PerfilUpdateForm(forms.ModelForm):
         required = False
     )
 
+    def clean_cedula(self):
+        cedula = self.cleaned_data['cedula']
+        username = self.cleaned_data['username']
+
+        if Perfil.objects.filter(cedula=cedula).exclude(user__username=username):
+            raise forms.ValidationError(_("Este Perfil ya esta registrado"))
+        return cedula
+
     class Meta:
-        model = Perfil
-        exclude = ['user','consejo_comunal','consejo_comunal_temp']
+        model = User
+        exclude = ['perfil','consejo_comunal_temp','password','date_joined','is_superuser','is_staff','is_active','last_login']

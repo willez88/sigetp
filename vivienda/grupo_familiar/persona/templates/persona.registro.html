@@ -545,10 +545,12 @@
                 $("#bloque_cedula").addClass('invisible');
                 $("#id_cedula_0").val(null);
                 $("#id_cedula_1").val(null);
+                $("#id_cedula_1").removeAttr('required');
             }
             else if( opcion=='S' )
             {
                 $("#bloque_cedula").removeClass('invisible');
+                $("#id_cedula_1").attr('required', 'required');
             }
         }
 

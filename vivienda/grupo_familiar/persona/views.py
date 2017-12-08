@@ -4,6 +4,7 @@ from .models import Persona
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import PersonaForm
 from vivienda.grupo_familiar.models import GrupoFamiliar
+from django.contrib.auth.models import User
 import datetime
 
 # Create your views here.

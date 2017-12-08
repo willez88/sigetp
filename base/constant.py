@@ -226,7 +226,6 @@ ORGANIZACION_COMUNITARIA = (
 )
 
 TELEFONO_CODIGO_PAIS = (
-    ("+000",_("N/A +000")),
     ("+058",_("VE +058")),
 )
 

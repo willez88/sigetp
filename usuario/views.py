@@ -8,7 +8,7 @@ from .models import Perfil
 # Create your views here.
 
 class PerfilUpdate(UpdateView):
-    model = Perfil
+    model = User
     form_class = PerfilUpdateForm
     template_name = "usuario.actualizar.html"
     success_url = reverse_lazy('inicio')
@@ -20,13 +20,12 @@ class PerfilUpdate(UpdateView):
 
     def get_initial(self):
         datos_iniciales = super(PerfilUpdate, self).get_initial()
-        user = User.objects.get(pk=self.request.user.pk)
-        print(user.first_name)
-        datos_iniciales['username'] = user.username
-        datos_iniciales['nombre'] = user.first_name
-        datos_iniciales['apellido'] = user.last_name
-        datos_iniciales['correo'] = user.email
-        perfil = Perfil.objects.get(user=user)
+        #user = User.objects.get(pk=self.request.user.pk)
+        datos_iniciales['username'] = self.object.username
+        datos_iniciales['nombre'] = self.object.first_name
+        datos_iniciales['apellido'] = self.object.last_name
+        datos_iniciales['correo'] = self.object.email
+        perfil = Perfil.objects.get(user=self.object)
         datos_iniciales['cedula'] = perfil.cedula
         datos_iniciales['telefono'] = perfil.telefono
         datos_iniciales['consejo_comunal_temp'] = perfil.consejo_comunal
@@ -34,18 +33,28 @@ class PerfilUpdate(UpdateView):
 
     def form_valid(self, form):
 
-        if User.objects.filter(username=self.request.user.username):
-            user = User.objects.get(username=self.request.user.username)
-            user.username = form.cleaned_data['username']
-            user.first_name = form.cleaned_data['nombre']
-            user.last_name = form.cleaned_data['apellido']
-            user.email = form.cleaned_data['correo']
-            user.save()
-
         self.object = form.save(commit=False)
-        self.object.cedula = form.cleaned_data['cedula']
-        self.object.telefono = form.cleaned_data['telefono']
+        self.object.username = form.cleaned_data['username']
+        self.object.first_name = form.cleaned_data['nombre']
+        self.object.last_name = form.cleaned_data['apellido']
+        self.object.email = form.cleaned_data['correo']
         self.object.save()
+
+        perfil = Perfil.objects.get(user=self.object)
+
+        ## Forma alternativa
+        """Perfil.objects.update_or_create(
+            pk=perfil.pk, defaults={
+                'cedula': form.cleaned_data['cedula'],
+                'telefono': form.cleaned_data['telefono'],
+            }
+        )"""
+
+        if Perfil.objects.filter(user__username=str(self.object.username)):
+            perfil = Perfil.objects.get(user__username=str(self.object.username))
+            perfil.cedula = form.cleaned_data['cedula']
+            perfil.telefono = form.cleaned_data['telefono']
+            perfil.save()
 
         return super(PerfilUpdate, self).form_valid(form)
 
