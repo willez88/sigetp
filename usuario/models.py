@@ -18,11 +18,11 @@ class Perfil(models.Model):
     )
 
     user = models.OneToOneField(
-        User, related_name="perfil",
+        User, related_name="perfil",on_delete=models.CASCADE,
         help_text=_("Relación entre los datos de registro del encuestador y el usuario con acceso al sistema")
     )
 
-    consejo_comunal = models.ForeignKey(ConsejoComunal)
+    consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
 
     class Meta:
 

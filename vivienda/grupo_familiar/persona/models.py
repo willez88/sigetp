@@ -108,7 +108,7 @@ class Persona(models.Model):
     observacion = models.TextField()
 
     ## Establece la relación con el grupo familiar
-    grupo_familiar = models.ForeignKey(GrupoFamiliar)
+    grupo_familiar = models.ForeignKey(GrupoFamiliar,on_delete=models.CASCADE)
 
     ## Cacula la edad en años que tiene una persona según su fecha de nacimiento
     def edad(self):

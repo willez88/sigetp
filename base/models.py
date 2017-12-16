@@ -29,7 +29,7 @@ class Estado(models.Model):
     nombre = models.CharField(max_length=50)
 
     ## Pais en donde esta ubicado el Estado
-    pais = models.ForeignKey(Pais)
+    pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -40,7 +40,7 @@ class Municipio(models.Model):
     nombre = models.CharField(max_length=50)
 
     ## Estado en donde se encuentra el Municipio
-    estado = models.ForeignKey(Estado)
+    estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -51,7 +51,7 @@ class Parroquia(models.Model):
     nombre = models.CharField(max_length=50)
 
     ## Municipio en el que se encuentra ubicada la Parroquia
-    municipio = models.ForeignKey(Municipio)
+    municipio = models.ForeignKey(Municipio,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -62,7 +62,7 @@ class Ciudad(models.Model):
     nombre = models.CharField(max_length=50)
 
     ## Estado en donde se encuentra ubicada la Ciudad
-    estado = models.ForeignKey(Estado)
+    estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre
@@ -85,7 +85,7 @@ class ConsejoComunal(models.Model):
     nombre = models.CharField(max_length=500)
 
     ## Parroquia en el que se encuetra ubicado el Consejo Comunal
-    parroquia = models.ForeignKey(Parroquia)
+    parroquia = models.ForeignKey(Parroquia,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nombre

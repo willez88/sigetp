@@ -44,10 +44,10 @@ class Vivienda(models.Model):
     direccion = models.CharField(max_length=500)
     coordenadas = models.CharField(max_length=255, blank=True)
     observacion = models.TextField()
-    consejo_comunal = models.ForeignKey(ConsejoComunal)
-    user = models.ForeignKey(User)
+    consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
 class Imagen(models.Model):
     nombre = models.CharField(max_length=100)
     imagen_base64 = models.TextField()
-    vivienda = models.ForeignKey(Vivienda)
+    vivienda = models.ForeignKey(Vivienda,on_delete=models.CASCADE)

@@ -10,4 +10,4 @@ class GrupoFamiliar(models.Model):
     alquilada = models.IntegerField(default=0)
     pasaje = models.BooleanField(default=False)
     observacion = models.TextField()
-    vivienda = models.ForeignKey(Vivienda)
+    vivienda = models.ForeignKey(Vivienda,on_delete=models.CASCADE)

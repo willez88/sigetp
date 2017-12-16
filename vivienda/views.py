@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Vivienda, Imagen
 from .forms import ViviendaForm, ViviendaUpdateForm, ImagenForm

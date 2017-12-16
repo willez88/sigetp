@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.views.generic import UpdateView
 from .forms import PerfilUpdateForm
