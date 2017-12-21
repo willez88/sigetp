@@ -1,7 +1,7 @@
 django
-psycopg2
 pillow
-pyinstaller
 django-extensions
+psycopg2
+pyinstaller
 Sphinx
 pygraphviz
