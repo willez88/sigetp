@@ -416,6 +416,10 @@ class ViviendaForm(forms.ModelForm):
         tipo_piso = self.cleaned_data['tipo_piso']
         tipo_cemento = self.cleaned_data['tipo_cemento']
 
+        if metro_cuadrado <= 0:
+            msg = str(_("El valor de los metros cuadrados del terreno debe ser mayor a 0"))
+            self.add_error('metro_cuadrado', msg)
+
         if metro_cuadrado != (productivo+por_producir):
             msg = str(_("El terreno productivo y por producir debe ser igual al total de metros cuadrados"))
             self.add_error('metro_cuadrado', msg)
