@@ -6,10 +6,12 @@ Sistema Integrado de Información y Documentación Geoestadística y Tecnopolít
 
 Para el correcto funcionamiento del __SIGETP__ se requiere tener instalado previamente los siguientes paquetes:
 
-    apache2
     git
+    graphviz
+    graphviz-dev
     postgresql
-    python3.6
+    phppgadmin
+    python3-dev
     virtualenv
 
 # Proceso de instalación
@@ -18,7 +20,7 @@ Cuando somos un usuario normal del sistema, en el terminal se mostrará el sigui
 
 Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
 
-    ~# apt install git python3.6 postgresql phppgadmin virtualenv
+    ~# apt install git graphviz graphviz-dev postgresql phppgadmin python3-dev virtualenv
 
 Crear las siguientes carpetas
 
@@ -26,11 +28,11 @@ Crear las siguientes carpetas
 
 Dentro de Programación, ejecutar
 
-    ~$ mkdir EntornosVirtuales ProyectosDjango Repositorios
+    ~$ mkdir EntornosVirtuales ProyectosDjango
 
 Dentro de la carpeta EntornosVirtuales, crearemos nuestro entorno
 
-    ~$ virtualenv -p python3.6 sigetp
+    ~$ virtualenv -p python3 sigetp
 
 Para activar el entorno
 
@@ -38,20 +40,17 @@ Para activar el entorno
 
 Para salir del entorno virtual se puede ejecutar desde cualquier lugar del terminal: deactivate
 
-Nos movemos a la Carpeta Repositorios para descargar el sistema con el siguiente comando
+Nos movemos a la Carpeta ProyectosDjango para descargar el sistema con el siguiente comando
 
     ~$ git clone https://github.com/willez88/sigetp.git
 
-Copiamos la carpeta que se creó hacia ProyectosDjango, allí estará el servidor de desarrollo. De momento tendremos nuestras carpetas estructuradas de la siguiente manera:
+Tendremos nuestras carpetas estructuradas de la siguiente manera:
 
     // Entorno virtual
     Programación/EntornosVirtuales/sigetp
 
     // Servidor de desarrollo
     Programación/ProyectosDjango/sigetp
-
-    // Sistema descargado de los repositorios
-    Programación/Repositorios/sigetp
 
 Crear la base de datos para el __SIGETP__
 
