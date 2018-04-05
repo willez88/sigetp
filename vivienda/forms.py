@@ -416,7 +416,7 @@ class ViviendaForm(forms.ModelForm):
         tipo_piso = self.cleaned_data['tipo_piso']
         tipo_cemento = self.cleaned_data['tipo_cemento']
 
-        if metro_cuadrado <= 0:
+        if metro_cuadrado < 0:
             msg = str(_("El valor de los metros cuadrados del terreno debe ser mayor a 0"))
             self.add_error('metro_cuadrado', msg)
 
