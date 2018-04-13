@@ -36,7 +36,7 @@
                             {% for grupo_familiar in object_list %}
                                 <tr>
                                 <td> {{ grupo_familiar.vivienda.numero_vivienda }}-{{ grupo_familiar.vivienda.id }} </td>
-                                <td> {{ grupo_familiar.apellido_familia }} </td>
+                                <td> {{ grupo_familiar.apellido_familia }}-{{ grupo_familiar.id }} </td>
 
                                 {% if grupo_familiar.familia_beneficiada %}
                                     <td> Si </td>
