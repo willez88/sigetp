@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import GrupoFamiliar
 from .forms import GrupoFamiliarForm
 from vivienda.models import Vivienda
+from django.contrib.auth.models import User
 
 # Create your views here.
 
