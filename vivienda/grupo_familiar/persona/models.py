@@ -64,6 +64,7 @@ class Persona(models.Model):
     ocupacion = models.CharField(max_length=100)
 
     ## Establece el Lugar de trabajo de la persona
+    lugar_trabajo = models.CharField(max_length=100)
 
     ## Establece los ingresos de dinero de la Persona
     ingreso = models.CharField(max_length=100, choices=TIPO_INGRESO)

@@ -77,7 +77,7 @@ VALORACION = (
 
 # Tipo del Cemento
 TIPO_CEMENTO = (
-    ("RO",_("Robusto")),
+    ("RU",_("Rústico")),
     ("PU",_("Pulido")),
 )
 
@@ -129,6 +129,7 @@ PARENTESCO = (
     ## Parentesco de primer grado
     ("MA",_("Madre")),
     ("PA",_("Padre")),
+    ("ES",_("Esposo(a)")),
     ("CN",_("Concubino(a)")),
     ("HI",_("Hijo(a)")),
     ("YE",_("Yerno(a)")),

@@ -50,6 +50,7 @@ class PersonaCreate(CreateView):
         self.object.mision_educativa = form.cleaned_data['mision_educativa']
         self.object.profesion = form.cleaned_data['profesion']
         self.object.ocupacion = form.cleaned_data['ocupacion']
+        self.object.lugar_trabajo = form.cleaned_data['lugar_trabajo']
         if form.cleaned_data['jubilado']:
             self.object.jubilado = form.cleaned_data['jubilado']
         if form.cleaned_data['pensionado']:

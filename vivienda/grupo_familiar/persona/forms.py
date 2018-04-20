@@ -210,6 +210,18 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    lugar_trabajo = forms.CharField(
+        label=_("Lugar de Trabajo:"),
+        max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
+                'title': _("Indique el lugar de trabajo de la persona"),
+            }
+        ),
+        required = False
+    )
+
     ingreso = forms.ChoiceField(
         label=_("Tipo de Ingresos:"),
         choices=(('',_('Seleccione...')),)+TIPO_INGRESO,

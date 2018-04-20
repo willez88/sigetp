@@ -284,19 +284,32 @@
                               </div>
                           </div>
                       </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                          <div class="form-group {% if form.ocupacion.errors %}has-error{% endif %}">
+                              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ocupacion.auto_id }}">
+                                  {{ form.ocupacion.label }}
+                              </label>
+                              <div class="col-md-9 col-xs-9 col-sm-9">
+                                  <div class="form-inline">
+                                      {{ form.ocupacion }}
+                                  </div>
+                                  {% include 'base.form.errors.html' with form_errors=form.ocupacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                              </div>
+                          </div>
+                      </div>
                   </div>
 
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="form-group {% if form.ocupacion.errors %}has-error{% endif %}">
-                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ocupacion.auto_id }}">
-                                    {{ form.ocupacion.label }}
+                            <div class="form-group {% if form.lugar_trabajo.errors %}has-error{% endif %}">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.lugar_trabajo.auto_id }}">
+                                    {{ form.lugar_trabajo.label }}
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">
-                                        {{ form.ocupacion }}
+                                        {{ form.lugar_trabajo }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.ocupacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base.form.errors.html' with form_errors=form.lugar_trabajo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
