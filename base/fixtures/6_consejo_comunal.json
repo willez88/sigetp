@@ -1,0 +1,114 @@
+[
+{
+    "model": "base.consejocomunal",
+    "pk": "C299398616",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS CA\u00d1ADITAS (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299401196",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL DON SAMUEL (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299448753",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL PE\u00d1A COLORADA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299455253",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA ASOMADA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299455806",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CAMINO REAL (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299456500",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL DESECHO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299460672",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN ISIDRO APARTADEROS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299613320",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LLANO DEL HATO (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299742597",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ANTONIO JOSE DE SUCRE (NO INDICA)",
+        "parroquia": 583
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299766828",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN JUAN BAUTISTA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 572
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299784010",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL QUEBRADA VIRGEN DE LAS MERCEDES (NO INDICA)",
+        "parroquia": 577
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299784230",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ALEXANDER QUINTERO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299884472",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL DOMINGO SALAZAR ROJAS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 572
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C401453430",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL COLINAS DE LA TRINIDAD 1972 - C (SIN NOMBRE COMERCIAL)",
+        "parroquia": 583
+    }
+}
+]
