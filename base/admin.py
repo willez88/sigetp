@@ -21,7 +21,7 @@ class ConsejoComunalAdmin(admin.ModelAdmin):
     list_display = ('rif','nombre','parroquia',)
     list_filter = ('rif','nombre','parroquia',)
     list_per_page = 25
-    ordering = ('rif',)
+    ordering = ('parroquia',)
     search_fields = ('rif','nombre','parroquia',)
 
 ## Registra el modelo ConsejoComunal en el panel administrativo
