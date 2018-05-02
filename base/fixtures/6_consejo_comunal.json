@@ -1,10 +1,74 @@
 [
 {
     "model": "base.consejocomunal",
+    "pk": "C299397210",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS PI\u00d1UELAS (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299398446",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MIXTEQUE (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299398616",
     "fields": {
         "nombre": "CONSEJO COMUNAL LAS CA\u00d1ADITAS (NO INDICA)",
         "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400254",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CC ALTO ANDINO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400394",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL CACUTICO (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400459",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CACUTE ALTO (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400572",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ESCAGUEY (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400700",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LOS CORRALES (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299400769",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS HIERBAS BUENAS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
     }
 },
 {
@@ -25,10 +89,82 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299450910",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MISASOTE (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299451266",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MUCUPICHE (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299451428",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL AV BOLIVAR CON PABLO VI (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299453137",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA BIGUZNOS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299453838",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CORPOANDES (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299454346",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA GRANJA (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299455253",
     "fields": {
         "nombre": "CONSEJO COMUNAL LA ASOMADA (SIN NOMBRE COMERCIAL)",
         "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299455482",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS FLORES DEL PARAMO (NO INDICA)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299455598",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CC TOMA ALTA EL BANCO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299455750",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA MUCUMPATE (NO INDICA)",
+        "parroquia": 597
     }
 },
 {
@@ -41,10 +177,106 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299455970",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MUCURUBA (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299456071",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA LAGUNITA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299456357",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MESA DE MOCOCON (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299456420",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CASCO DE CACUTE (SIN NOMBRE COMERCIAL)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299456500",
     "fields": {
         "nombre": "CONSEJO COMUNAL EL DESECHO (SIN NOMBRE COMERCIAL)",
         "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299456586",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL CAMBOTE (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299457272",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA BOMBA NUEVA PROVIDENCIA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299458104",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ALBERTO CARNEVALI (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299458260",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL NI\u00d1O JESUS (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299458554",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL FRAILEJON DEL PARAMO 72 (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299459666",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA TOMA BAJA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299460052",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN RAFAEL DEL PARAMO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299460192",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN BENITO DE PALERMO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
     }
 },
 {
@@ -57,6 +289,158 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299460788",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL JAUREGUI (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299465348",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MACAO ALTO (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299477788",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL ROYAL (NO INDICA)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299575224",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL NUEVA ESCAGUEY (SIN NOMBRE COMERCIAL)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299575364",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA CARABOBO (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299576441",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL PLAZA INMACULADA LOS DOS CAMINOS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299579831",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MESA DE LOS MICUYES (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299580317",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MISINTA (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299581755",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA MUCUCHACHE (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299581887",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN FRANCISCO (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299584126",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS COLINAS (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299587265",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL DO\u00d1A LULA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299588377",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL PEDREGAL (NO INDICA)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299589144",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL GAVIDIA (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299596507",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL LLANO DE MISINTA (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299596809",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MITIBIBO (NO INDICA)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299597597",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LAS CUEVAS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299598542",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA BECERRERA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299612588",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA CRUZ (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299613320",
     "fields": {
         "nombre": "CONSEJO COMUNAL LLANO DEL HATO (NO INDICA)",
@@ -65,10 +449,42 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299615269",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA MUSUY (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299622664",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA BOMBA (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299623660",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA RANCHERIA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299742597",
     "fields": {
         "nombre": "CONSEJO COMUNAL ANTONIO JOSE DE SUCRE (NO INDICA)",
         "parroquia": 583
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299765740",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CARORITA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
     }
 },
 {
@@ -97,6 +513,78 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299794503",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SANTA ELENA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299795569",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LETICIA (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299795615",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MOCOCON ALTO (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299878839",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL EL TROPICON (SIN NOMBRE COMERCIAL)",
+        "parroquia": 597
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299878901",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL ARZOBISPO CHACON (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299879061",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN PEDRO (NO INDICA)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299879134",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SANTA EDUVIGES (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299879169",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL PEDRO MARIA PARRA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299884316",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA PROVINCIA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 600
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C299884472",
     "fields": {
         "nombre": "CONSEJO COMUNAL DOMINGO SALAZAR ROJAS (SIN NOMBRE COMERCIAL)",
@@ -105,10 +593,98 @@
 },
 {
     "model": "base.consejocomunal",
+    "pk": "C299897310",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL MOCONOQUE MISIGUA (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299897540",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL CHACHOPITO (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299897639",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA HECHICERA TIBISAY (SIN NOMBRE COMERCIAL)",
+        "parroquia": 572
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299900940",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL SAN BENITO DE ESCAGUEY (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299902284",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LOS GRANATES (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299902420",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LOS APOSENTOS (SIN NOMBRE COMERCIAL)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299952745",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LOS RANCHOS (NO INDICA)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C299952885",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA CA\u00d1ADA (SIN NOMBRE COMERCIAL)",
+        "parroquia": 596
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C400736501",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL JORGE RAMOS (NO INDICA)",
+        "parroquia": 598
+    }
+},
+{
+    "model": "base.consejocomunal",
     "pk": "C401453430",
     "fields": {
         "nombre": "CONSEJO COMUNAL COLINAS DE LA TRINIDAD 1972 - C (SIN NOMBRE COMERCIAL)",
         "parroquia": 583
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C404828486",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL LA LOMA DE LOS LIMONES (SIN NOMBRE COMERCIAL)",
+        "parroquia": 599
+    }
+},
+{
+    "model": "base.consejocomunal",
+    "pk": "C404998640",
+    "fields": {
+        "nombre": "CONSEJO COMUNAL RENACER BOLIVARIANO (NO INDICA)",
+        "parroquia": 598
     }
 }
 ]
