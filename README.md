@@ -95,7 +95,7 @@ Crear usuario administrador del __SIGETP__
 
 Poblar las tablas de la base de datos que lo requieran
 
-    (sigetp) ~$ python manage.py loaddata initial_data.json
+    (sigetp) ~$ python manage.py loaddata 1_pais.json 2_estado.json 3_municipio.json 4_ciudad.json 5_parroquia.json 6_consejo_comunal.json
 
 Ejecutar el servidor de django
 
