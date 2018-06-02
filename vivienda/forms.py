@@ -503,7 +503,7 @@ class ViviendaForm(forms.ModelForm):
 
     def clean(self):
         """!
-        Método que permite validar el formulario incluyendo todos los campos
+        Método que permite validar el formulario incluyendo varios campos
 
         @author William Páez (wpaez at cenditel.gob.ve)
         @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
@@ -645,7 +645,7 @@ class ImagenForm(forms.ModelForm):
         @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
         @date 24-05-2017
         """
-        
+
         model = Imagen
         exclude = [
             'vivienda', 'nombre'

@@ -53,43 +53,118 @@ class Vivienda(models.Model):
     @date 24-05-2017
     """
 
+    ## Fecha y hora del registro de la vivienda
     fecha_hora = models.DateTimeField()
+
+    ## Servicio eléctrico
     servicio_electrico = models.CharField(max_length=2, choices=SERVICIO_ELECTRICO)
+
+    ## Situación sanitaria
     situacion_sanitaria = models.CharField(max_length=2, choices=SITUACION_SANITARIA)
+
+    ## Disposición de la basura
     disposicion_basura = models.CharField(max_length=2, choices=DISPOSICION_BASURA)
+
+    ## Tipo de la vivienda
     tipo_vivienda = models.CharField(max_length=2, choices=TIPO_VIVIENDA)
+
+    ## Tipo del techo
     tipo_techo = models.CharField(max_length=2, choices=TIPO_TECHO)
+
+    #Tipo de la pared
     tipo_pared = models.CharField(max_length=2, choices=TIPO_PARED)
+
+    ## La pared está frizada o no
     pared_frizada = models.BooleanField(default=False)
+
+    ## Tipo del piso
     tipo_piso = models.CharField(max_length=2, choices=TIPO_PISO)
+
+    ## Tipo del cemento del piso
     tipo_cemento = models.CharField(max_length=2, choices=TIPO_CEMENTO)
+
+    ## Condición de la vivienda
     condicion_vivienda = models.CharField(max_length=1, choices=VALORACION)
+
+    ## COndición del techo
     condicion_techo = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Condición de la pared
     condicion_pared = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Condición del piso
     condicion_piso = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Condición de la ventilación
     condicion_ventilacion = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Condición de la iluminación
     condicion_iluminacion = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Accesibilidad al ambulatorio
     accesibilidad_ambulatorio = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Accesibilidad a la escuela
     accesibilidad_escuela = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Accesibilidad al liceo
     accesibilidad_liceo = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Accesibilidad al centro de abastecimiento
     accesibilidad_centro_abastecimiento = models.CharField(max_length=1, choices=VALORACION)
+
+    ## Número de habitaciones
     numero_habitaciones = models.IntegerField()
+
+    ## Número de salas
     numero_salas = models.IntegerField()
+
+    ## Número de baños
     numero_banhos = models.IntegerField()
+
+    ## ¿Tiene terreno?
     tiene_terreno = models.BooleanField()
+
+    ## Metros cuadrados del terreno
     metro_cuadrado = models.DecimalField(max_digits=18, decimal_places=2, default=0.0)
+
+    ## Terreno que está productivo
     productivo = models.DecimalField(max_digits=18, decimal_places=2, default=0.0)
+
+    ## Terreno que está por producir
     por_producir = models.DecimalField(max_digits=18, decimal_places=2, default=0.0)
+
+    ## Riesgo por río
     riesgo_rio = models.BooleanField()
+
+    ## Riesgo por quebrada
     riesgo_quebrada = models.BooleanField()
+
+    ## Riesgo por derrumbe
     riesgo_derrumbe = models.BooleanField()
+
+    ## Riesgo por zona sísmica
     riesgo_zona_sismica = models.BooleanField()
+
+    ## Animales que hay en la vivienda
     animales = models.CharField(max_length=500)
+
+    ## Número de identificación de la vivienda
     numero_vivienda = models.CharField(max_length=20)
+
+    ## Dirección exacta de la vivienda
     direccion = models.CharField(max_length=500)
+
+    ## Coordenadas geográficas
     coordenadas = models.CharField(max_length=255, blank=True)
+
+    ## Observación
     observacion = models.TextField()
+
+    ## Establece la relación de la vivienda con el consejo comunal
     consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
+
+    ## Establece la relación de la vivienda con el usuario
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
 class Imagen(models.Model):

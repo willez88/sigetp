@@ -87,13 +87,13 @@ class ViviendaCreate(CreateView):
 
     def get_form_kwargs(self):
         """!
-        Método que permite pasar valores de la vista al formulario
+        Método que permite pasar el usuario actualmente logueado al formulario
 
         @author William Páez (wpaez at cenditel.gob.ve)
         @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
         @date 24-05-2017
         @param self <b>{object}</b> Objeto que instancia la clase
-        @return Retorna los datos en un diccionario
+        @return Retorna un diccionario con el usuario actualmente logueado
         """
 
         kwargs = super(ViviendaCreate, self).get_form_kwargs()
@@ -199,13 +199,13 @@ class ViviendaUpdate(UpdateView):
 
     def get_form_kwargs(self):
         """!
-        Método que permite pasar valores de la vista al formulario
+        Método que permite pasar el usuario actualmente logueado al formulario
 
         @author William Páez (wpaez at cenditel.gob.ve)
         @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
         @date 24-05-2017
         @param self <b>{object}</b> Objeto que instancia la clase
-        @return Retorna los datos en un diccionario
+        @return Retorna un diccionario con el usuario actualmente logueado
         """
 
         kwargs = super(ViviendaUpdate, self).get_form_kwargs()
@@ -273,7 +273,7 @@ class ViviendaUpdate(UpdateView):
 
 class ViviendaDelete(DeleteView):
     """!
-    Clase que permite borrar los datos de una vivienda
+    Clase que permite borrar los datos de las vivienda
 
     @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
@@ -410,7 +410,7 @@ class ImagenDelete(DeleteView):
         @return Redirecciona al usuario a la página de error de permisos en caso
                 de no ser el usuario logueado
         """
-        
+
         user = User.objects.get(username=self.request.user.username)
         if not Imagen.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
             return redirect('base_403')
