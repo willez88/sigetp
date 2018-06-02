@@ -1,674 +1,452 @@
-                    GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
-
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-
-                            Preamble
-
-  The GNU General Public License is a free, copyleft license for
-software and other kinds of works.
-
-  The licenses for most software and other practical works are designed
-to take away your freedom to share and change the works.  By contrast,
-the GNU General Public License is intended to guarantee your freedom to
-share and change all versions of a program--to make sure it remains free
-software for all its users.  We, the Free Software Foundation, use the
-GNU General Public License for most of our software; it applies also to
-any other work released this way by its authors.  You can apply it to
-your programs, too.
-
-  When we speak of free software, we are referring to freedom, not
-price.  Our General Public Licenses are designed to make sure that you
-have the freedom to distribute copies of free software (and charge for
-them if you wish), that you receive source code or can get it if you
-want it, that you can change the software or use pieces of it in new
-free programs, and that you know you can do these things.
-
-  To protect your rights, we need to prevent others from denying you
-these rights or asking you to surrender the rights.  Therefore, you have
-certain responsibilities if you distribute copies of the software, or if
-you modify it: responsibilities to respect the freedom of others.
-
-  For example, if you distribute copies of such a program, whether
-gratis or for a fee, you must pass on to the recipients the same
-freedoms that you received.  You must make sure that they, too, receive
-or can get the source code.  And you must show them these terms so they
-know their rights.
-
-  Developers that use the GNU GPL protect your rights with two steps:
-(1) assert copyright on the software, and (2) offer you this License
-giving you legal permission to copy, distribute and/or modify it.
-
-  For the developers' and authors' protection, the GPL clearly explains
-that there is no warranty for this free software.  For both users' and
-authors' sake, the GPL requires that modified versions be marked as
-changed, so that their problems will not be attributed erroneously to
-authors of previous versions.
-
-  Some devices are designed to deny users access to install or run
-modified versions of the software inside them, although the manufacturer
-can do so.  This is fundamentally incompatible with the aim of
-protecting users' freedom to change the software.  The systematic
-pattern of such abuse occurs in the area of products for individuals to
-use, which is precisely where it is most unacceptable.  Therefore, we
-have designed this version of the GPL to prohibit the practice for those
-products.  If such problems arise substantially in other domains, we
-stand ready to extend this provision to those domains in future versions
-of the GPL, as needed to protect the freedom of users.
-
-  Finally, every program is threatened constantly by software patents.
-States should not allow patents to restrict development and use of
-software on general-purpose computers, but in those that do, we wish to
-avoid the special danger that patents applied to a free program could
-make it effectively proprietary.  To prevent this, the GPL assures that
-patents cannot be used to render the program non-free.
-
-  The precise terms and conditions for copying, distribution and
-modification follow.
-
-                       TERMS AND CONDITIONS
-
-  0. Definitions.
-
-  "This License" refers to version 3 of the GNU General Public License.
-
-  "Copyright" also means copyright-like laws that apply to other kinds of
-works, such as semiconductor masks.
-
-  "The Program" refers to any copyrightable work licensed under this
-License.  Each licensee is addressed as "you".  "Licensees" and
-"recipients" may be individuals or organizations.
-
-  To "modify" a work means to copy from or adapt all or part of the work
-in a fashion requiring copyright permission, other than the making of an
-exact copy.  The resulting work is called a "modified version" of the
-earlier work or a work "based on" the earlier work.
-
-  A "covered work" means either the unmodified Program or a work based
-on the Program.
-
-  To "propagate" a work means to do anything with it that, without
-permission, would make you directly or secondarily liable for
-infringement under applicable copyright law, except executing it on a
-computer or modifying a private copy.  Propagation includes copying,
-distribution (with or without modification), making available to the
-public, and in some countries other activities as well.
-
-  To "convey" a work means any kind of propagation that enables other
-parties to make or receive copies.  Mere interaction with a user through
-a computer network, with no transfer of a copy, is not conveying.
-
-  An interactive user interface displays "Appropriate Legal Notices"
-to the extent that it includes a convenient and prominently visible
-feature that (1) displays an appropriate copyright notice, and (2)
-tells the user that there is no warranty for the work (except to the
-extent that warranties are provided), that licensees may convey the
-work under this License, and how to view a copy of this License.  If
-the interface presents a list of user commands or options, such as a
-menu, a prominent item in the list meets this criterion.
-
-  1. Source Code.
-
-  The "source code" for a work means the preferred form of the work
-for making modifications to it.  "Object code" means any non-source
-form of a work.
-
-  A "Standard Interface" means an interface that either is an official
-standard defined by a recognized standards body, or, in the case of
-interfaces specified for a particular programming language, one that
-is widely used among developers working in that language.
-
-  The "System Libraries" of an executable work include anything, other
-than the work as a whole, that (a) is included in the normal form of
-packaging a Major Component, but which is not part of that Major
-Component, and (b) serves only to enable use of the work with that
-Major Component, or to implement a Standard Interface for which an
-implementation is available to the public in source code form.  A
-"Major Component", in this context, means a major essential component
-(kernel, window system, and so on) of the specific operating system
-(if any) on which the executable work runs, or a compiler used to
-produce the work, or an object code interpreter used to run it.
-
-  The "Corresponding Source" for a work in object code form means all
-the source code needed to generate, install, and (for an executable
-work) run the object code and to modify the work, including scripts to
-control those activities.  However, it does not include the work's
-System Libraries, or general-purpose tools or generally available free
-programs which are used unmodified in performing those activities but
-which are not part of the work.  For example, Corresponding Source
-includes interface definition files associated with source files for
-the work, and the source code for shared libraries and dynamically
-linked subprograms that the work is specifically designed to require,
-such as by intimate data communication or control flow between those
-subprograms and other parts of the work.
-
-  The Corresponding Source need not include anything that users
-can regenerate automatically from other parts of the Corresponding
-Source.
-
-  The Corresponding Source for a work in source code form is that
-same work.
-
-  2. Basic Permissions.
-
-  All rights granted under this License are granted for the term of
-copyright on the Program, and are irrevocable provided the stated
-conditions are met.  This License explicitly affirms your unlimited
-permission to run the unmodified Program.  The output from running a
-covered work is covered by this License only if the output, given its
-content, constitutes a covered work.  This License acknowledges your
-rights of fair use or other equivalent, as provided by copyright law.
-
-  You may make, run and propagate covered works that you do not
-convey, without conditions so long as your license otherwise remains
-in force.  You may convey covered works to others for the sole purpose
-of having them make modifications exclusively for you, or provide you
-with facilities for running those works, provided that you comply with
-the terms of this License in conveying all material for which you do
-not control copyright.  Those thus making or running the covered works
-for you must do so exclusively on your behalf, under your direction
-and control, on terms that prohibit them from making any copies of
-your copyrighted material outside their relationship with you.
-
-  Conveying under any other circumstances is permitted solely under
-the conditions stated below.  Sublicensing is not allowed; section 10
-makes it unnecessary.
-
-  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
-
-  No covered work shall be deemed part of an effective technological
-measure under any applicable law fulfilling obligations under article
-11 of the WIPO copyright treaty adopted on 20 December 1996, or
-similar laws prohibiting or restricting circumvention of such
-measures.
-
-  When you convey a covered work, you waive any legal power to forbid
-circumvention of technological measures to the extent such circumvention
-is effected by exercising rights under this License with respect to
-the covered work, and you disclaim any intention to limit operation or
-modification of the work as a means of enforcing, against the work's
-users, your or third parties' legal rights to forbid circumvention of
-technological measures.
-
-  4. Conveying Verbatim Copies.
-
-  You may convey verbatim copies of the Program's source code as you
-receive it, in any medium, provided that you conspicuously and
-appropriately publish on each copy an appropriate copyright notice;
-keep intact all notices stating that this License and any
-non-permissive terms added in accord with section 7 apply to the code;
-keep intact all notices of the absence of any warranty; and give all
-recipients a copy of this License along with the Program.
-
-  You may charge any price or no price for each copy that you convey,
-and you may offer support or warranty protection for a fee.
-
-  5. Conveying Modified Source Versions.
-
-  You may convey a work based on the Program, or the modifications to
-produce it from the Program, in the form of source code under the
-terms of section 4, provided that you also meet all of these conditions:
-
-    a) The work must carry prominent notices stating that you modified
-    it, and giving a relevant date.
-
-    b) The work must carry prominent notices stating that it is
-    released under this License and any conditions added under section
-    7.  This requirement modifies the requirement in section 4 to
-    "keep intact all notices".
-
-    c) You must license the entire work, as a whole, under this
-    License to anyone who comes into possession of a copy.  This
-    License will therefore apply, along with any applicable section 7
-    additional terms, to the whole of the work, and all its parts,
-    regardless of how they are packaged.  This License gives no
-    permission to license the work in any other way, but it does not
-    invalidate such permission if you have separately received it.
-
-    d) If the work has interactive user interfaces, each must display
-    Appropriate Legal Notices; however, if the Program has interactive
-    interfaces that do not display Appropriate Legal Notices, your
-    work need not make them do so.
-
-  A compilation of a covered work with other separate and independent
-works, which are not by their nature extensions of the covered work,
-and which are not combined with it such as to form a larger program,
-in or on a volume of a storage or distribution medium, is called an
-"aggregate" if the compilation and its resulting copyright are not
-used to limit the access or legal rights of the compilation's users
-beyond what the individual works permit.  Inclusion of a covered work
-in an aggregate does not cause this License to apply to the other
-parts of the aggregate.
-
-  6. Conveying Non-Source Forms.
-
-  You may convey a covered work in object code form under the terms
-of sections 4 and 5, provided that you also convey the
-machine-readable Corresponding Source under the terms of this License,
-in one of these ways:
-
-    a) Convey the object code in, or embodied in, a physical product
-    (including a physical distribution medium), accompanied by the
-    Corresponding Source fixed on a durable physical medium
-    customarily used for software interchange.
-
-    b) Convey the object code in, or embodied in, a physical product
-    (including a physical distribution medium), accompanied by a
-    written offer, valid for at least three years and valid for as
-    long as you offer spare parts or customer support for that product
-    model, to give anyone who possesses the object code either (1) a
-    copy of the Corresponding Source for all the software in the
-    product that is covered by this License, on a durable physical
-    medium customarily used for software interchange, for a price no
-    more than your reasonable cost of physically performing this
-    conveying of source, or (2) access to copy the
-    Corresponding Source from a network server at no charge.
-
-    c) Convey individual copies of the object code with a copy of the
-    written offer to provide the Corresponding Source.  This
-    alternative is allowed only occasionally and noncommercially, and
-    only if you received the object code with such an offer, in accord
-    with subsection 6b.
-
-    d) Convey the object code by offering access from a designated
-    place (gratis or for a charge), and offer equivalent access to the
-    Corresponding Source in the same way through the same place at no
-    further charge.  You need not require recipients to copy the
-    Corresponding Source along with the object code.  If the place to
-    copy the object code is a network server, the Corresponding Source
-    may be on a different server (operated by you or a third party)
-    that supports equivalent copying facilities, provided you maintain
-    clear directions next to the object code saying where to find the
-    Corresponding Source.  Regardless of what server hosts the
-    Corresponding Source, you remain obligated to ensure that it is
-    available for as long as needed to satisfy these requirements.
-
-    e) Convey the object code using peer-to-peer transmission, provided
-    you inform other peers where the object code and Corresponding
-    Source of the work are being offered to the general public at no
-    charge under subsection 6d.
-
-  A separable portion of the object code, whose source code is excluded
-from the Corresponding Source as a System Library, need not be
-included in conveying the object code work.
-
-  A "User Product" is either (1) a "consumer product", which means any
-tangible personal property which is normally used for personal, family,
-or household purposes, or (2) anything designed or sold for incorporation
-into a dwelling.  In determining whether a product is a consumer product,
-doubtful cases shall be resolved in favor of coverage.  For a particular
-product received by a particular user, "normally used" refers to a
-typical or common use of that class of product, regardless of the status
-of the particular user or of the way in which the particular user
-actually uses, or expects or is expected to use, the product.  A product
-is a consumer product regardless of whether the product has substantial
-commercial, industrial or non-consumer uses, unless such uses represent
-the only significant mode of use of the product.
-
-  "Installation Information" for a User Product means any methods,
-procedures, authorization keys, or other information required to install
-and execute modified versions of a covered work in that User Product from
-a modified version of its Corresponding Source.  The information must
-suffice to ensure that the continued functioning of the modified object
-code is in no case prevented or interfered with solely because
-modification has been made.
-
-  If you convey an object code work under this section in, or with, or
-specifically for use in, a User Product, and the conveying occurs as
-part of a transaction in which the right of possession and use of the
-User Product is transferred to the recipient in perpetuity or for a
-fixed term (regardless of how the transaction is characterized), the
-Corresponding Source conveyed under this section must be accompanied
-by the Installation Information.  But this requirement does not apply
-if neither you nor any third party retains the ability to install
-modified object code on the User Product (for example, the work has
-been installed in ROM).
-
-  The requirement to provide Installation Information does not include a
-requirement to continue to provide support service, warranty, or updates
-for a work that has been modified or installed by the recipient, or for
-the User Product in which it has been modified or installed.  Access to a
-network may be denied when the modification itself materially and
-adversely affects the operation of the network or violates the rules and
-protocols for communication across the network.
-
-  Corresponding Source conveyed, and Installation Information provided,
-in accord with this section must be in a format that is publicly
-documented (and with an implementation available to the public in
-source code form), and must require no special password or key for
-unpacking, reading or copying.
-
-  7. Additional Terms.
-
-  "Additional permissions" are terms that supplement the terms of this
-License by making exceptions from one or more of its conditions.
-Additional permissions that are applicable to the entire Program shall
-be treated as though they were included in this License, to the extent
-that they are valid under applicable law.  If additional permissions
-apply only to part of the Program, that part may be used separately
-under those permissions, but the entire Program remains governed by
-this License without regard to the additional permissions.
-
-  When you convey a copy of a covered work, you may at your option
-remove any additional permissions from that copy, or from any part of
-it.  (Additional permissions may be written to require their own
-removal in certain cases when you modify the work.)  You may place
-additional permissions on material, added by you to a covered work,
-for which you have or can give appropriate copyright permission.
-
-  Notwithstanding any other provision of this License, for material you
-add to a covered work, you may (if authorized by the copyright holders of
-that material) supplement the terms of this License with terms:
-
-    a) Disclaiming warranty or limiting liability differently from the
-    terms of sections 15 and 16 of this License; or
-
-    b) Requiring preservation of specified reasonable legal notices or
-    author attributions in that material or in the Appropriate Legal
-    Notices displayed by works containing it; or
-
-    c) Prohibiting misrepresentation of the origin of that material, or
-    requiring that modified versions of such material be marked in
-    reasonable ways as different from the original version; or
-
-    d) Limiting the use for publicity purposes of names of licensors or
-    authors of the material; or
-
-    e) Declining to grant rights under trademark law for use of some
-    trade names, trademarks, or service marks; or
-
-    f) Requiring indemnification of licensors and authors of that
-    material by anyone who conveys the material (or modified versions of
-    it) with contractual assumptions of liability to the recipient, for
-    any liability that these contractual assumptions directly impose on
-    those licensors and authors.
-
-  All other non-permissive additional terms are considered "further
-restrictions" within the meaning of section 10.  If the Program as you
-received it, or any part of it, contains a notice stating that it is
-governed by this License along with a term that is a further
-restriction, you may remove that term.  If a license document contains
-a further restriction but permits relicensing or conveying under this
-License, you may add to a covered work material governed by the terms
-of that license document, provided that the further restriction does
-not survive such relicensing or conveying.
-
-  If you add terms to a covered work in accord with this section, you
-must place, in the relevant source files, a statement of the
-additional terms that apply to those files, or a notice indicating
-where to find the applicable terms.
-
-  Additional terms, permissive or non-permissive, may be stated in the
-form of a separately written license, or stated as exceptions;
-the above requirements apply either way.
-
-  8. Termination.
-
-  You may not propagate or modify a covered work except as expressly
-provided under this License.  Any attempt otherwise to propagate or
-modify it is void, and will automatically terminate your rights under
-this License (including any patent licenses granted under the third
-paragraph of section 11).
-
-  However, if you cease all violation of this License, then your
-license from a particular copyright holder is reinstated (a)
-provisionally, unless and until the copyright holder explicitly and
-finally terminates your license, and (b) permanently, if the copyright
-holder fails to notify you of the violation by some reasonable means
-prior to 60 days after the cessation.
-
-  Moreover, your license from a particular copyright holder is
-reinstated permanently if the copyright holder notifies you of the
-violation by some reasonable means, this is the first time you have
-received notice of violation of this License (for any work) from that
-copyright holder, and you cure the violation prior to 30 days after
-your receipt of the notice.
-
-  Termination of your rights under this section does not terminate the
-licenses of parties who have received copies or rights from you under
-this License.  If your rights have been terminated and not permanently
-reinstated, you do not qualify to receive new licenses for the same
-material under section 10.
-
-  9. Acceptance Not Required for Having Copies.
-
-  You are not required to accept this License in order to receive or
-run a copy of the Program.  Ancillary propagation of a covered work
-occurring solely as a consequence of using peer-to-peer transmission
-to receive a copy likewise does not require acceptance.  However,
-nothing other than this License grants you permission to propagate or
-modify any covered work.  These actions infringe copyright if you do
-not accept this License.  Therefore, by modifying or propagating a
-covered work, you indicate your acceptance of this License to do so.
-
-  10. Automatic Licensing of Downstream Recipients.
-
-  Each time you convey a covered work, the recipient automatically
-receives a license from the original licensors, to run, modify and
-propagate that work, subject to this License.  You are not responsible
-for enforcing compliance by third parties with this License.
-
-  An "entity transaction" is a transaction transferring control of an
-organization, or substantially all assets of one, or subdividing an
-organization, or merging organizations.  If propagation of a covered
-work results from an entity transaction, each party to that
-transaction who receives a copy of the work also receives whatever
-licenses to the work the party's predecessor in interest had or could
-give under the previous paragraph, plus a right to possession of the
-Corresponding Source of the work from the predecessor in interest, if
-the predecessor has it or can get it with reasonable efforts.
-
-  You may not impose any further restrictions on the exercise of the
-rights granted or affirmed under this License.  For example, you may
-not impose a license fee, royalty, or other charge for exercise of
-rights granted under this License, and you may not initiate litigation
-(including a cross-claim or counterclaim in a lawsuit) alleging that
-any patent claim is infringed by making, using, selling, offering for
-sale, or importing the Program or any portion of it.
-
-  11. Patents.
-
-  A "contributor" is a copyright holder who authorizes use under this
-License of the Program or a work on which the Program is based.  The
-work thus licensed is called the contributor's "contributor version".
-
-  A contributor's "essential patent claims" are all patent claims
-owned or controlled by the contributor, whether already acquired or
-hereafter acquired, that would be infringed by some manner, permitted
-by this License, of making, using, or selling its contributor version,
-but do not include claims that would be infringed only as a
-consequence of further modification of the contributor version.  For
-purposes of this definition, "control" includes the right to grant
-patent sublicenses in a manner consistent with the requirements of
-this License.
-
-  Each contributor grants you a non-exclusive, worldwide, royalty-free
-patent license under the contributor's essential patent claims, to
-make, use, sell, offer for sale, import and otherwise run, modify and
-propagate the contents of its contributor version.
-
-  In the following three paragraphs, a "patent license" is any express
-agreement or commitment, however denominated, not to enforce a patent
-(such as an express permission to practice a patent or covenant not to
-sue for patent infringement).  To "grant" such a patent license to a
-party means to make such an agreement or commitment not to enforce a
-patent against the party.
-
-  If you convey a covered work, knowingly relying on a patent license,
-and the Corresponding Source of the work is not available for anyone
-to copy, free of charge and under the terms of this License, through a
-publicly available network server or other readily accessible means,
-then you must either (1) cause the Corresponding Source to be so
-available, or (2) arrange to deprive yourself of the benefit of the
-patent license for this particular work, or (3) arrange, in a manner
-consistent with the requirements of this License, to extend the patent
-license to downstream recipients.  "Knowingly relying" means you have
-actual knowledge that, but for the patent license, your conveying the
-covered work in a country, or your recipient's use of the covered work
-in a country, would infringe one or more identifiable patents in that
-country that you have reason to believe are valid.
-
-  If, pursuant to or in connection with a single transaction or
-arrangement, you convey, or propagate by procuring conveyance of, a
-covered work, and grant a patent license to some of the parties
-receiving the covered work authorizing them to use, propagate, modify
-or convey a specific copy of the covered work, then the patent license
-you grant is automatically extended to all recipients of the covered
-work and works based on it.
-
-  A patent license is "discriminatory" if it does not include within
-the scope of its coverage, prohibits the exercise of, or is
-conditioned on the non-exercise of one or more of the rights that are
-specifically granted under this License.  You may not convey a covered
-work if you are a party to an arrangement with a third party that is
-in the business of distributing software, under which you make payment
-to the third party based on the extent of your activity of conveying
-the work, and under which the third party grants, to any of the
-parties who would receive the covered work from you, a discriminatory
-patent license (a) in connection with copies of the covered work
-conveyed by you (or copies made from those copies), or (b) primarily
-for and in connection with specific products or compilations that
-contain the covered work, unless you entered into that arrangement,
-or that patent license was granted, prior to 28 March 2007.
-
-  Nothing in this License shall be construed as excluding or limiting
-any implied license or other defenses to infringement that may
-otherwise be available to you under applicable patent law.
-
-  12. No Surrender of Others' Freedom.
-
-  If conditions are imposed on you (whether by court order, agreement or
-otherwise) that contradict the conditions of this License, they do not
-excuse you from the conditions of this License.  If you cannot convey a
-covered work so as to satisfy simultaneously your obligations under this
-License and any other pertinent obligations, then as a consequence you may
-not convey it at all.  For example, if you agree to terms that obligate you
-to collect a royalty for further conveying from those to whom you convey
-the Program, the only way you could satisfy both those terms and this
-License would be to refrain entirely from conveying the Program.
-
-  13. Use with the GNU Affero General Public License.
-
-  Notwithstanding any other provision of this License, you have
-permission to link or combine any covered work with a work licensed
-under version 3 of the GNU Affero General Public License into a single
-combined work, and to convey the resulting work.  The terms of this
-License will continue to apply to the part which is the covered work,
-but the special requirements of the GNU Affero General Public License,
-section 13, concerning interaction through a network will apply to the
-combination as such.
-
-  14. Revised Versions of this License.
-
-  The Free Software Foundation may publish revised and/or new versions of
-the GNU General Public License from time to time.  Such new versions will
-be similar in spirit to the present version, but may differ in detail to
-address new problems or concerns.
-
-  Each version is given a distinguishing version number.  If the
-Program specifies that a certain numbered version of the GNU General
-Public License "or any later version" applies to it, you have the
-option of following the terms and conditions either of that numbered
-version or of any later version published by the Free Software
-Foundation.  If the Program does not specify a version number of the
-GNU General Public License, you may choose any version ever published
-by the Free Software Foundation.
-
-  If the Program specifies that a proxy can decide which future
-versions of the GNU General Public License can be used, that proxy's
-public statement of acceptance of a version permanently authorizes you
-to choose that version for the Program.
-
-  Later license versions may give you additional or different
-permissions.  However, no additional obligations are imposed on any
-author or copyright holder as a result of your choosing to follow a
-later version.
-
-  15. Disclaimer of Warranty.
-
-  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
-APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
-HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
-OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
-IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
-ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-
-  16. Limitation of Liability.
-
-  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
-THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
-GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
-USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
-DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
-PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
-EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
-
-  17. Interpretation of Sections 15 and 16.
-
-  If the disclaimer of warranty and limitation of liability provided
-above cannot be given local legal effect according to their terms,
-reviewing courts shall apply local law that most closely approximates
-an absolute waiver of all civil liability in connection with the
-Program, unless a warranty or assumption of liability accompanies a
-copy of the Program in return for a fee.
-
-                     END OF TERMS AND CONDITIONS
-
-            How to Apply These Terms to Your New Programs
-
-  If you develop a new program, and you want it to be of the greatest
-possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.
-
-  To do so, attach the following notices to the program.  It is safest
-to attach them to the start of each source file to most effectively
-state the exclusion of warranty; and each file should have at least
-the "copyright" line and a pointer to where the full notice is found.
-
-    {one line to give the program's name and a brief idea of what it does.}
-    Copyright (C) {year}  {name of author}
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Also add information on how to contact you by electronic and paper mail.
-
-  If the program does terminal interaction, make it output a short
-notice like this when it starts in an interactive mode:
-
-    {project}  Copyright (C) {year}  {fullname}
-    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
-    This is free software, and you are welcome to redistribute it
-    under certain conditions; type `show c' for details.
-
-The hypothetical commands `show w' and `show c' should show the appropriate
-parts of the General Public License.  Of course, your program's commands
-might be different; for a GUI interface, you would use an "about box".
-
-  You should also get your employer (if you work as a programmer) or school,
-if any, to sign a "copyright disclaimer" for the program, if necessary.
-For more information on this, and how to apply and follow the GNU GPL, see
-<http://www.gnu.org/licenses/>.
-
-  The GNU General Public License does not permit incorporating your program
-into proprietary programs.  If your program is a subroutine library, you
-may consider it more useful to permit linking proprietary applications with
-the library.  If this is what you want to do, use the GNU Lesser General
-Public License instead of this License.  But first, please read
-<http://www.gnu.org/philosophy/why-not-lgpl.html>.
+                    LICENCIA DE SOFTWARE
+
+                        Versión 1.2
+
+Autores: Daisy Villasana, Elisabeth Benítez, Maricela Montilla,
+Nelevis Báez, Rodolfo Sumoza y Santiago Roca.
+
+                        PREÁMBULO
+
+El conocimiento se entiende como un constructo individual y colectivo que
+enriquece la diversidad cognitiva, espiritual y cultural de los pueblos, por
+tanto es un bien intangible que pertenece a la humanidad y que constituye un
+medio para el ejercicio de la soberanía popular y el desarrollo humano integral.
+Esta concepción del conocimiento plantea la necesidad de estructurar e
+implementar mecanismos que contrarresten los lineamientos del Capitalismo
+Cognitivo, para preservar su naturaleza como bien de carácter público. En la
+actualidad estamos en presencia de un escenario mundial que no reconoce esta
+condición, sino que favorece el auge de vicios que privilegian la privatización
+y mercantilización del conocimiento como si fuese un bien agotable y susceptible
+de disminución en el proceso de apropiación.
+
+Ahora bien, el Estado venezolano está fundado en un esquema de desarrollo que
+contempla como eje medular de la acción gubernamental a la sociedad; concebida
+como sujeto activo del proceso de transformación que pretende generar bienestar
+y condiciones favorables para vivir bien, por tanto, toda acción que se ejecute
+no debe privilegiar a las estructuras que, por ejemplo, sostienen a la
+producción exclusiva de riqueza, sino que debe fortalecer el empoderamiento y
+el desarrollo social.
+
+En este contexto es preciso indicar que el software es un conocimiento dotado de
+las características de pertinencia para el desarrollo social y económico de la
+nación, y por tanto, resulta necesario estructurar una propuesta de licencia de
+software que anclada en el contexto político y jurídico venezolano tenga la
+pretensión de preservar la libertad de este conocimiento. De modo que la
+licencia que se propone tiene su principal sustento en la Constitución de la
+República Bolivariana de Venezuela que consagra el proyecto nacional aprobado
+por el pueblo venezolano en el año 1999. Este instrumento jurídico plantea en
+el Artículo 98 que “La creación cultural es libre…” y ello puede entenderse como
+el despliegue de distintas prácticas que enriquecen el imaginario y potencian la
+emancipación de nuestro pueblo hacia la consolidación de un entorno cultural
+autónomo.
+
+La licencia también encuentra sentido en la Ley de Infogobierno, específicamente
+en el Artículo 35 que se refiere al uso de licencias para garantizar la libertad
+del conocimiento vinculado al software utilizado por el poder público, cuando
+establece “Las licencias para programas informáticos usados por el poder público
+deben permitir el acceso al código fuente y a la transferencia del conocimiento
+asociado para su comprensión, la libertad de modificación, libertad de uso y
+libertad de publicación y distribución del código fuente y sus modificaciones…”.
+La existencia de esta norma da cuenta del proceso de generación de software en
+un sustrato caracterizado por la libertad que engloba buenas prácticas asociadas
+a los modos a través de los cuales éste se construye, pues es posible observar
+formas de compartir, de intercambiar, de dialogar, de participar, de colaborar y
+de mejorar. En consecuencia, el ejercicio de la libertad demanda de la sociedad
+un rol activo que sustente la toma de decisiones en propósitos conscientes y sin
+la injerencia de razones, causas y actores externos, como una forma de cultivar
+la cultura a partir de la cual se es y se puede ser en sociedad.
+
+En adelante se presentan los términos y condiciones de la Licencia de Software:
+
+                    CONSIDERACIONES GENERALES
+
+Cláusula Primera: Objeto.
+
+La presente licencia tiene por objeto establecer los fundamentos, términos y
+condiciones que determinan el uso, copia, modificación y distribución del
+software que se genera con aporte total o parcial de recursos públicos.
+
+Cuando se trate de software generado con recursos privados, corresponderá al
+autor del software manifestar la voluntad de acogerse a la presente licencia en
+todos sus términos y condiciones.
+
+Cláusula Segunda: Definiciones.
+
+En el marco de la presente licencia se entenderá por:
+
+Autor: Persona natural o jurídica que crea algo o que ha hecho alguna obra
+científica, literaria, tecnológica o artística.
+
+Autor del software: es la persona natural o jurídica que toma la iniciativa y la
+responsabilidad de crear y desarrollar el software.
+
+Apropiación social del conocimiento: proceso que implica la disposición del
+conocimiento en un escenario y lenguaje comunes para la sociedad y la
+posibilidad de que el ser humano lo haga suyo como elemento útil y necesario
+para su beneficio y provecho. En otras palabras, es la democratización del
+acceso, uso y desarrollo del conocimiento como estrategia para su adecuada
+transmisión y aprovechamiento entre los distintos actores sociales, que
+derivará en el mejoramiento de la calidad de vida de su entorno.
+
+Código ejecutable: también llamado archivo ejecutable es un archivo binario,
+escrito en lenguaje máquina, que puede ser ejecutado por un computador.
+
+Código fuente: texto escrito en un lenguaje de programación específico,
+contentivo de un conjunto de instrucciones que se puede compilar, traducir o
+interpretar para generar un código equivalente, por ejemplo, puede generar
+código ejecutable.
+
+Conocimiento libre: es todo aquel conocimiento que puede ser aprendido,
+interpretado, aplicado, enseñado y compartido libremente y sin restricciones,
+pudiendo ser utilizado para la resolución de problemas o como punto de partida
+para la generación de nuevos conocimientos. Ello implica que el conocimiento se
+genera, adquiere y comparte sin ninguna atadura ni sujeción, puesto que
+contribuye al bien común de la humanidad y al desarrollo pleno de los pueblos.
+Las libertades de crear, modificar o mejorar, adquirir, usar, distribuir y
+compartir serán consideradas condiciones fundamentales para la liberación del
+conocimiento como bien común. En consecuencia, el conocimiento se concibe como
+un constructo individual y colectivo que enriquece la diversidad cognitiva,
+espiritual y cultural de los pueblos, dado que pertenece a la humanidad y
+constituye un medio para el ejercicio de la soberanía popular y el desarrollo
+humano integral.
+
+Derecho de autor: Es el derecho que posee el autor sobre sus creaciones sean
+estas obras científicas, literarias, tecnológicas o artísticas. El derecho de
+autor protege exclusivamente la forma mediante la cual las ideas del autor son
+descritas, explicadas, ilustradas o incorporadas a las obras.
+
+Derechos morales: Son los derechos inherentes al ser humano del autor, son de
+naturaleza inalienable, inembargable, imprescriptible e irrenunciable, y
+comprenden la divulgación, paternidad, arrepentimiento y modificación,
+revelación o intimidad, e integridad.
+
+Derechos patrimoniales: Son los derechos que posee el autor o el titular del
+derecho y se caracterizan por ser transferibles, temporales y renunciables.
+Comprenden el derecho de reproducción, distribución, comunicación pública y
+transformación.
+
+Destinatario o usuario: persona natural o jurídica que usa, copia, modifica o
+distribuye el software.
+
+Distribución: acción mediante la cual a través de medios físicos o digitales se
+pone a disposición o entrega el software a otro usuario.
+
+Interfaz: se refiere a la conexión o al medio de conexión que se da de manera
+física o funcional entre dispositivos, sistemas o entes (persona-máquina), es
+decir, es el medio que permite la interacción entre dos entidades diferentes.
+
+Liberación de software: acción mediante la cual se publica y se otorga permiso
+a terceros para ejercer determinados derechos sobre el software en los términos
+y condiciones planteados por el licenciante.
+
+Licencia: es un contrato mediante el cual el autor y/o el titular de los
+derechos de una obra tangible o intangible establece los permisos de uso de la
+misma, conforme a los términos y condiciones que en ella se otorgan, preservando
+el reconocimiento moral del autor y estableciendo los modos en los cuales la
+misma será utilizada, modificada y distribuida. La licencia de software
+permitirá el estudio, modificación, uso, aplicación, distribución, incluyendo la
+difusión pública y la creación de obras derivadas, con cualquier propósito
+legal; responsable y enmarcado en el ordenamiento jurídico vigente. La licencia
+será irrevocable, de carácter extraterritorial y garantizará que el software se
+licencie cumpliendo con los principios del conocimiento libre, y las obras
+derivadas se licencien bajo los términos y condiciones previstos en la licencia
+original.
+
+Licencia en extenso: se refiere al documento que contiene ampliamente
+desarrollados los términos y condiciones que conforman el contrato de licencia.
+
+Licencia resumida: hace referencia al texto que debe colocarse en el encabezado
+del código fuente y que contiene una síntesis de los términos y condiciones
+básicas que sostienen la licencia.
+
+Licenciamiento múltiple: es la práctica de conceder dos o más licencias para una
+misma obra con el objetivo de compatibilizar licencias.
+
+Licenciante: persona natural o jurídica que libera el software a partir de los
+términos y condiciones de la presente licencia.
+
+Licenciatario: Persona natural o jurídica que ejerce los derechos otorgados por
+el licenciante conforme a los términos y condiciones de la presente licencia.
+
+Medidas tecnológicas de restricción del conocimiento: conjunto de tecnologías y
+procedimientos implementados en software y/o en hardware con el objeto de
+controlar la copia y distribución de obras en formatos digitales.
+
+Modificación: acción mediante la cual se modifica o se cambia algo en el
+software, variando sus características o cualidades.
+
+Obra derivada: La obra que crea el licenciatario a partir de la obra original o
+de alguna de las modificaciones de ésta.
+
+Programa de computación: conjunto de instrucciones que se ejecutan en un
+computador para llevar a cabo una o más tareas.
+
+Recursos Públicos: Son los recursos pertenecientes al patrimonio público de la
+Nación que son entregados a personas naturales o jurídicas por los entes y
+órganos de la Administración Pública Nacional mediante transferencias, aportes,
+subsidios, contribuciones o alguna otra modalidad similar para el cumplimiento
+de finalidades de interés o utilidad pública, hasta que se demuestre el logro
+de dichas finalidades.
+
+Repositorio digital libre: Es una plataforma informática que contiene el
+respaldo de programas, bases de datos y archivos creados para garantizar la
+reposición de la información, en caso de ser necesaria, y facilitar la libre
+distribución de creaciones intelectuales, a fin de propiciar y promover la
+libertad del conocimiento.
+
+Responsabilidad contractual: deber de responder por los perjuicios derivados
+del incumplimiento de una obligación proveniente de una relación contractual.
+
+Responsabilidad: capacidad existente en todo sujeto activo de derecho para
+reconocer y aceptar las consecuencias de un hecho realizado libremente.
+
+Reporte: documento generado por el sistema que presenta de manera estructurada
+y/o resumida, datos relevantes guardados o generados por el software,
+importantes para un fin determinado.
+
+Software: equipamiento lógico o soporte lógico de un sistema informático que
+comprende el conjunto de componentes necesarios para hacer posible la
+realización de tareas específicas.
+
+Software libre: Programa de computación en cuya licencia el autor garantiza al
+usuario el acceso al código fuente y lo autoriza a usar el programa con
+cualquier propósito legal; responsable y enmarcado en el ordenamiento jurídico
+vigente, copiarlo, modificarlo y distribuirlo con o sin modificaciones,
+preservando en todo caso el derecho moral al reconocimiento de autoría.
+
+                          TÉRMINOS Y CONDICIONES
+
+Cláusula Tercera: Tipo de Licencia.
+
+El licenciante otorga al licenciatario una licencia gratuita y no exclusiva
+mediante la cual puede usar, copiar, modificar y distribuir el software que se
+genera con aporte total o parcial de recursos públicos, siempre que cumpla con
+los términos y condiciones de la presente licencia.
+
+El empleo de la presente licencia promoverá y fomentará la apropiación y la
+articulación social para estimular el uso, desarrollo, distribución y
+modificación del software.
+
+Cláusula Cuarta: Términos de Uso.
+
+El licenciante le otorga al licenciatario una licencia que le permite usar el
+software libremente, el cual deberá estar publicado en un repositorio digital
+libre y no podrá ser objeto de intercambio mercantil. Las licencias resumida y
+en extenso deberán estar siempre accesibles para el usuario.
+
+Cláusula Quinta: Términos de Copia.
+
+El licenciatario puede hacer copias del software en cualquier medio siempre y
+cuando publique de forma adecuada y visible en cada copia la licencia resumida,
+y suministre una copia de la licencia en extenso con el software, a fin de
+preservar la titularidad moral del autor del software.
+
+El licenciatario en ningún caso podrá percibir una contraprestación económica
+por la copia del software. Queda entendido que cuando el propósito de la copia
+sea su posterior distribución, el licenciatario sólo podrá percibir una
+contraprestación por el soporte físico y/o el servicio, siempre que los recursos
+e instrumentos utilizados para generar la copia no sean públicos.
+
+Cláusula Sexta: Términos de Modificación.
+
+El licenciatario puede realizar modificaciones del código fuente del software
+siempre y cuando cumpla con las siguientes condiciones:
+
+1. Publicar en el software modificado la licencia resumida y proporcionar una
+copia de la licencia en extenso.
+
+2. Publicar la licencia resumida y los anuncios que indiquen los cambios, la
+fecha de modificación, el nombre del autor de los cambios y su correo
+electrónico.
+
+3. Preservar el uso, copia, modificación y distribución libre del software
+modificado en los términos y condiciones de la presente licencia.
+
+Cláusula Séptima: Obras Derivadas.
+
+Las obras derivadas del software licenciado seguirán manteniendo los términos y
+condiciones establecidas en esta licencia.
+
+Cláusula Octava: Licenciamiento de Nuevas Versiones del Software.
+
+Las nuevas versiones que se generen de un software amparado con la presente
+licencia se deberán licenciar en los mismos términos de la versión anterior.
+
+Cláusula Novena: Compatibilidad de Licencias.
+
+La presente licencia será compatible con las licencias que no nieguen los
+términos y condiciones contenidas en el presente contrato. Será incompatible
+con cualquier licencia que condicione el uso, copia, modificación y distribución
+del software al empleo de medidas tecnológicas que restrinjan el acceso al
+conocimiento e impongan limitaciones adicionales al ejercicio de las libertades
+aquí contempladas.
+
+En el caso de uso de software:
+
+Si se combina esta licencia con una o varias licencias compatibles que no
+determinen su uso preeminente se utilizará la presente licencia, mientras que
+si se combina esta licencia con una o varias licencias compatibles que dispongan
+su uso preeminente se procederá como sigue:
+
+1. Cuando se integran en un mismo software partes de software amparados por
+licencias que implican su uso preeminente, se empleará esta última licencia.
+
+2. Cuando se usen software amparados por licencias preeminentes como
+dependencias para un nuevo software, éste se publicará con la presente licencia.
+
+En el caso de modificación de software:
+
+1. Cuando se genere un software a partir del empleo de partes modificadas de
+otros software amparados con licencias compatibles que no establezcan su uso
+preeminente, el mismo se publicará bajo la presente licencia colocando los
+anuncios referentes a las licencias compatibles en la versión resumida.
+
+2. Cuando se genere un software a partir del empleo de partes modificadas de
+otros software amparados con licencias compatibles que establezcan su uso
+preeminente, se licenciará de forma múltiple con las licencias preeminentes.
+
+Cláusula Décima: Términos de Distribución.
+
+La distribución del software y de las modificaciones de éste, se entenderá
+limitada al tiempo de duración de la presente licencia y se informará sobre las
+modificaciones a que hubiese sido sometido el código, y las copias de éstos que
+hubiesen sido realizadas.
+
+El licenciatario puede distribuir copias exactas del código fuente del software
+en cualquier medio siempre y cuando publique de forma visible en cada copia la
+licencia resumida, y suministre una copia de la licencia en extenso con el
+software, a fin de preservar la titularidad moral del autor del software. El
+licenciatario, conforme a las condiciones antes descritas, puede distribuir el
+código ejecutable del software, el cual deberá estar disponible en un
+repositorio digital libre.
+
+El licenciatario en ningún caso podrá percibir una contraprestación económica
+por el software. Queda entendido que sólo podrá percibirla por el soporte físico
+y/o el servicio de distribución, siempre que los recursos e instrumentos
+utilizados no sean públicos.
+
+Cláusula Décima Primera: Repositorio Digital Libre.
+
+El software amparado bajo la presente licencia deberá estar almacenado en un
+repositorio digital libre que permita en todo momento la búsqueda, revisión,
+descarga, recuperación y distribución del software sin restricciones legales o
+técnicas, que sea de uso gratuito, desarrollado bajo estándares y licencias
+libres.
+
+La publicación del software en el repositorio digital libre se constituye en
+elemento probatorio de la titularidad moral del licenciante.
+
+Cláusula Décima Segunda: Preservación de la Licencia.
+
+Los términos y condiciones establecidos en la presente licencia de software
+deberán preservarse en cualquier medio, soporte, formato, instrumento,
+representación gráfica o simbólica, conocidos en el presente o que puedan
+crearse en el futuro, en la medida en que así lo permita la legislación
+venezolana.
+
+Cláusula Décima Tercera: Propagación de la Licencia.
+
+Cuando se realicen procesos de modificación, adaptación, integración del
+software o generación de una obra derivada sólo podrá distribuirse bajo los
+mismos términos y condiciones estipuladas en la presente licencia.
+El licenciatario, ahora en calidad de licenciante, no podrá ofrecer ni imponer
+condiciones adicionales sobre la obra o las obras derivadas que modifiquen o
+limiten las condiciones de la licencia.
+
+Cláusula Décima Cuarta: Visibilidad de la Licencia.
+
+Se deberá colocar de forma visible en el código fuente un archivo de licencia
+en el que se declare que su uso, copia, modificación y distribución se realiza
+en los términos y condiciones de la presente licencia, de modo que se tenga
+conocimiento de éstos desde el comienzo del desarrollo y en cualquier momento
+de su despliegue. Asimismo, se colocarán los anuncios correspondientes a la
+licencia en extenso para que el usuario pueda acceder a ésta en toda
+su amplitud.
+
+Dado que los procesos de uso, copia, modificación y distribución se realizan a
+través de medios de almacenamiento digital se deberá ofrecer información
+accesible sobre el licenciante, la licencia y la forma en que el licenciatario
+puede usar, copiar, modificar y distribuir el software en dichos medios.
+
+Cláusula Décima Quinta: Irrenunciabilidad de los Derechos Morales.
+
+Se reconocerán los derechos morales que correspondan, de conformidad con el
+régimen jurídico vigente sobre la materia, a quienes participen en la autoría
+del software. La presente licencia supone la cesión de derechos derivados de la
+propiedad intelectual en favor de terceros, lo cual implica que el autor del
+software renuncia a los derechos patrimoniales en aras de favorecer el bien
+común y el desarrollo pleno e integral de la Nación. La publicación del software
+bajo esta licencia se constituye en elemento probatorio de la titularidad
+moral del licenciante.
+
+Cláusula Décima Sexta: Protección de los Productos del Software.
+
+Los reportes o documentos asociados al software amparado por la presente
+licencia, serán protegidos bajo términos y condiciones de licenciamiento libre
+para contenidos y documentación.
+
+Cláusula Décima Séptima: Aceptación de la Licencia.
+
+La aceptación de la presente licencia se realizará de forma tácita y/o expresa.
+Cuando el licenciatario use, copie, modifique o distribuya el software o copias
+de éste, en el ejercicio de los derechos que otorga la presente licencia, se
+entenderá que acepta tácitamente la misma. La aceptación será expresa cuando se
+utiliza un mecanismo para manifestar la voluntad de aceptar los términos y
+condiciones de esta licencia durante el uso del software, lo cual implica una
+manifestación inequívoca de aceptación.
+
+Cláusula Décima Octava: Vigencia de la Licencia.
+
+La vigencia de los derechos conferidos a través de la presente licencia se
+regirá por las normas que establece el ordenamiento jurídico en materia de
+duración de los derechos de autor en la República Bolivariana de Venezuela.
+
+Cláusula Décima Novena: Nuevas Versiones de la Licencia.
+
+La Fundación CENDITEL podrá publicar nuevas versiones de la licencia en la
+medida en que resulte necesario y razonable, sin reducir el ámbito de los
+derechos concedidos y preservando su espíritu, razón y propósito. Las nuevas
+versiones de la licencia se publicarán con un número de versión único y se
+garantizará su compatibilidad con las anteriores. El licenciante podrá elegir
+la versión de la licencia que más se adecue a sus necesidades.
+
+Cláusula Vigésima: Cese o Terminación de la Licencia.
+
+La ejecución de acciones que contravengan los términos y condiciones previstos
+en esta licencia implica la extinción de los derechos concedidos.
+
+Cláusula Vigésima Primera: Ausencia de Garantía.
+
+El software es en el marco del conocimiento libre una creación del intelecto
+que está en continua revisión, modificación y mejora por parte de distintos
+actores, lo que significa que no es un resultado acabado, por tanto puede
+contener defectos o fallos inherentes a la naturaleza del mismo. Por esta razón,
+en virtud de la presente licencia, el software se suministra sin garantía
+alguna, vinculada a la adecuación a un propósito determinado, a la ausencia de
+defectos o errores, o a cualquier otro aspecto que pueda surgir como resultado
+de su uso. La ausencia de garantía es condición necesaria para la cesión de
+cualquier derecho respecto al software.
+
+Cláusula Vigésima Segunda: Ausencia de Responsabilidad.
+
+El licenciante no será responsable de los daños y perjuicios de cualquier clase,
+directos o indirectos, materiales o morales, que puedan derivarse del software,
+excepto cuando del uso, copia, modificación o distribución hecho por el mismo
+licenciante se evidencie dolo y se ocasionen daños directamente a personas
+naturales o jurídicas.
+
+Cláusula Vigésima Tercera: Prohibición de Patentes.
+
+Queda terminantemente prohibida la solicitud y el registro de patentes para el
+software que se encuentre amparado bajo los términos y condiciones de la
+presente licencia.
+
+Cláusula Vigésima Cuarta: Resolución de Conflictos.
+
+Los conflictos que puedan presentarse en ocasión de la interpretación o
+cumplimiento del presente contrato de licencia se resolverán por la vía
+amistosa, pues el mismo es producto de la decisión de las partes de liberar el
+software y de contribuir con el enriquecimiento cognitivo, espiritual y cultural
+de la sociedad. Agotada la vía amistosa sin acuerdo, se procederá a través de la
+vía jurisdiccional establecida por la legislación de la
+República Bolivariana de Venezuela.

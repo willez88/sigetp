@@ -20,7 +20,7 @@ Cuando somos un usuario normal del sistema, en el terminal se mostrará el sigui
 
 Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
 
-    ~# apt install git graphviz graphviz-dev postgresql phppgadmin python3-dev virtualenv
+    ~# apt install git graphviz graphviz-dev libjpeg-dev postgresql phppgadmin python3-dev virtualenv zlib1g-dev
 
 Crear las siguientes carpetas
 
@@ -82,6 +82,10 @@ Creada la base de datos, moverse a la carpeta donde está el servidor de desarro
 Instalamos los requemientos que el sistema necesita en el entorno virtual
 
     (sigetp) ~$ pip install -r requirements.txt
+
+Para instalar los requerimientos de forma local
+
+    (sigetp) ~$ pip install requirements/pip/Django-2.0.3.tar.gz requirements/pip/django-extensions-2.0.6.tar.gz requirements/pip/Pillow-5.0.0.tar.gz requirements/pip/psycopg2-2.7.4.tar.gz
 
 Hacer las migraciones
 
