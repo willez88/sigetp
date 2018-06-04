@@ -1,23 +1,83 @@
+"""
+Nombre del software: SIGETP
+
+Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
+
+Nombre del licenciante y año: Fundación CIDA (2017)
+
+Autores: William Páez
+
+La Fundación Centro Nacional de Desarrollo e Investigación en Tecnologías Libres (CENDITEL),
+ente adscrito al Ministerio del Poder Popular para Educación Universitaria, Ciencia y Tecnología
+(MPPEUCT), concede permiso para usar, copiar, modificar y distribuir libremente y sin fines
+comerciales el "Software - Registro de bienes de CENDITEL", sin garantía
+alguna, preservando el reconocimiento moral de los autores y manteniendo los mismos principios
+para las obras derivadas, de conformidad con los términos y condiciones de la licencia de
+software de la Fundación CENDITEL.
+
+El software es una creación intelectual necesaria para el desarrollo económico y social
+de la nación, por tanto, esta licencia tiene la pretensión de preservar la libertad de
+este conocimiento para que contribuya a la consolidación de la soberanía nacional.
+
+Cada vez que copie y distribuya el "Software - Registro de bienes de CENDITEL"
+debe acompañarlo de una copia de la licencia. Para más información sobre los términos y condiciones
+de la licencia visite la siguiente dirección electrónica:
+http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
+"""
+## @namespace persona.forms
+#
+# Contiene las clases, atributos y métodos para los formularios a implementar en la aplicación persona
+# @author William Páez (wpaez at cenditel.gob.ve)
+# @author <a href='http://www.cenditel.gob.ve'>Centro Nacional de Desarrollo e Investigación en Tecnologías Libres
+# (CENDITEL) nodo Mérida - Venezuela</a>
+# @author <a href='www.cida.gob.ve/'>Centro de Investigaciones de Astronomía "Francisco J. Duarte"</a>
+# @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+# @date 24-05-2017
+# @version 1.0
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from .models import Persona
 from base.constant import TIPO_TENENCIA
 from vivienda.grupo_familiar.models import GrupoFamiliar
 from base.fields import CedulaField, TelefonoField
-from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, ORGANIZACION_COMUNITARIA, MISION_SOCIAL
+from base.constant import (
+    SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO,
+    ORGANIZACION_COMUNITARIA, MISION_SOCIAL
+)
 from django.core import validators
 
 class PersonaForm(forms.ModelForm):
+    """!
+    Clase que contiene los campos del formulario de persona
+
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 24-05-2017
+    """
 
     def __init__(self, *args, **kwargs):
+        """!
+        Método que permite inicializar el formulario
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 24-05-2017
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
+        @param *kwargs <b>{dict}</b> Diccionario de datos, inicialmente vacio
+        @return Retorna el formulario con una configuración inicializada de forma manual
+        """
+
         user = kwargs.pop('user')
         super(PersonaForm, self).__init__(*args, **kwargs)
 
         lista_grupo_familiar = [('','Selecione...')]
         for gf in GrupoFamiliar.objects.filter(vivienda__user=user):
-            lista_grupo_familiar.append( (gf.id,gf.apellido_familia+"-"+str(gf.id)) )
+            lista_grupo_familiar.append( (gf.id,gf) )
         self.fields['grupo_familiar'].choices = lista_grupo_familiar
 
+    ## Grupo familiar al que la persona pertenece
     grupo_familiar = forms.ChoiceField(
         label=_("Grupo Familiar:"),
         widget=forms.Select(
@@ -28,6 +88,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Nonbres
     nombre = forms.CharField(
         label=_("Nombres:"),
         max_length=100,
@@ -39,6 +100,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Apellidos
     apellido = forms.CharField(
         label=_("Apellidos:"),
         max_length=100,
@@ -50,6 +112,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## ¿Tiene cédula?
     tiene_cedula = forms.ChoiceField(
         label=_("¿Tiene Cédula?:"),
         choices=(('S',_('Si')),)+(('N',_('No')),),
@@ -61,6 +124,7 @@ class PersonaForm(forms.ModelForm):
         ), required = False
     )
 
+    ## Cédula
     cedula = CedulaField(
         required=False,
         validators=[
@@ -71,6 +135,7 @@ class PersonaForm(forms.ModelForm):
         ]
     )
 
+    ## Número de teléfono
     telefono = TelefonoField(
         validators=[
             validators.RegexValidator(
@@ -80,6 +145,7 @@ class PersonaForm(forms.ModelForm):
         ]
     )
 
+    ## Correo electrónico
     correo = forms.EmailField(
         label=_("Correo Electrónico:"),
         max_length=100,
@@ -92,6 +158,7 @@ class PersonaForm(forms.ModelForm):
         ), required = False,
     )
 
+    ## Sexo de la persona
     sexo = forms.ChoiceField(
         label=_("Sexo:"),
         choices=(('',_('Seleccione...')),)+SEXO,
@@ -103,6 +170,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Fecha de nacimiento
     fecha_nacimiento = forms.CharField(
         label=_("Fecha de Nacimieno:"),
         widget=forms.TextInput(
@@ -114,6 +182,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Edad calculada a partir de la fecha de nacimiento
     edad = forms.CharField(
         label=_("Edad:"),
         widget=forms.TextInput(
@@ -125,6 +194,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Parentesco
     parentesco = forms.ChoiceField(
         label=_("Parentesco:"),
         choices=(('',_('Seleccione...')),)+PARENTESCO,
@@ -136,12 +206,14 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Jefe familiar
     jefe_familiar = forms.BooleanField(
         label=_("Jefe Familiar"),
         help_text=_("Para actualizar los datos de un Jefe Familiar es necesario quitar esta selección y guardar. Hecho los cambios se puede seleccionar de nuevo si el Jefe Familiar se mantiene o se elige otro."),
         required = False
     )
 
+    ## Estado civil
     estado_civil = forms.ChoiceField(
         label=_("Estado Civil:"),
         choices=(('',_('Seleccione...')),)+ESTADO_CIVIL,
@@ -153,6 +225,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Grado de instrucción
     grado_instruccion = forms.ChoiceField(
         label=_("Grado de Instrucción:"),
         choices=(('',_('Seleccione...')),)+GRADO_INSTRUCCION,
@@ -164,6 +237,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Misión educativa
     mision_educativa = forms.ChoiceField(
         label=_("Misión Educativa:"),
         choices=(('',_('Seleccione...')),)+MISION_EDUCATIVA,
@@ -175,6 +249,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Misión social
     mision_social = forms.ChoiceField(
         label=_("Misión Social:"),
         choices=(('',_('Seleccione...')),)+MISION_SOCIAL,
@@ -186,6 +261,7 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## Profesión
     profesion = forms.CharField(
         label=_("Profesión:"),
         max_length=100,
@@ -198,6 +274,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Ocupación
     ocupacion = forms.CharField(
         label=_("Ocupación:"),
         max_length=100,
@@ -210,6 +287,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Lugar de trabajo
     lugar_trabajo = forms.CharField(
         label=_("Lugar de Trabajo:"),
         max_length=100,
@@ -222,6 +300,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Ingresos
     ingreso = forms.ChoiceField(
         label=_("Tipo de Ingresos:"),
         choices=(('',_('Seleccione...')),)+TIPO_INGRESO,
@@ -233,16 +312,19 @@ class PersonaForm(forms.ModelForm):
         )
     )
 
+    ## ¿Es pensionado?
     pensionado = forms.BooleanField(
         label=_("¿Es Pensionado?"),
         required = False
     )
 
+    ## ¿Es jubilado?
     jubilado = forms.BooleanField(
         label=_("¿Es Jubilado?"),
         required = False
     )
 
+    ## Deporte que practica la persona
     deporte = forms.CharField(
         label=_("Deporte que Practica:"),
         max_length=100,
@@ -255,6 +337,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Enfermedad que presenta la persona
     enfermedad = forms.CharField(
         label=_("Enfermedad que Presenta:"),
         max_length=500,
@@ -267,6 +350,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Discapacidad que presenta la persona
     discapacidad = forms.CharField(
         label=_("Discapacidad que Presenta:"),
         max_length=500,
@@ -279,11 +363,13 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## ¿Conoce la ley de los consejos comunales?
     ley_consejo_comunal = forms.BooleanField(
         label=_("¿Ha Leído la Ley de Consejos Comunales?"),
         required = False
     )
 
+    ## Cursos que ha realizado la persona
     curso = forms.CharField(
         label=_("¿Qué Cursos le Gustaría Hacer?"),
         max_length=100,
@@ -296,6 +382,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Organización comunitaria que conoce la persona
     organizacion_comunitaria = forms.CharField(
         label = ('Organizaciones Comunitarias que conoce:'),
         max_length=500,
@@ -306,6 +393,7 @@ class PersonaForm(forms.ModelForm):
         required=False,
     )
 
+    ## actividades que la persona realiza en momentos de ocio
     ocio = forms.CharField(
         label=_("¿Que hace Ud. en sus horas de ocio?"),
         max_length=500,
@@ -318,6 +406,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## ¿Cómo mejorar la comunicación en la comunidad?
     mejorar_comunicacion = forms.CharField(
         label=_("¿Qué sugiere Ud. para mejorar la comunicación en la comunidad?"),
         max_length=500,
@@ -330,6 +419,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Inseguridad que se presenta en la comunidad
     inseguridad = forms.CharField(
         label=_("¿Qué Inseguridad Presenta la Comunidad?"),
         max_length=500,
@@ -342,6 +432,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Comentario que la persona quiera hacer
     comentario = forms.CharField(
         label=_("Algún comentario que desee hacer en relación a las necesidades y soluciones en la comunidad"),
         max_length=500,
@@ -354,6 +445,7 @@ class PersonaForm(forms.ModelForm):
         required = False
     )
 
+    ## Observación
     observacion = forms.CharField(
         label=_("Observación:"),
         widget=forms.Textarea(
@@ -365,6 +457,16 @@ class PersonaForm(forms.ModelForm):
     )
 
     def clean(self):
+        """!
+        Método que permite validar el formulario incluyendo varios campos
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 24-05-2017
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Retorna el formulario con los rectpectivos errores
+        """
+
         cleaned_data = super(PersonaForm, self).clean()
         grupo_familiar = self.cleaned_data['grupo_familiar']
         jefe_familiar = self.cleaned_data['jefe_familiar']
@@ -379,6 +481,14 @@ class PersonaForm(forms.ModelForm):
             self.add_error('jefe_familiar', msg)
 
     class Meta:
+        """!
+        Meta clase del formulario que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 24-05-2017
+        """
+
         model = Persona
         exclude = [
             'grupo_familiar'

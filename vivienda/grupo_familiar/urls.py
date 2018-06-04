@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -35,7 +35,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.contrib.auth.decorators import login_required
 
 from .views import (
@@ -44,9 +44,9 @@ from .views import (
 
 urlpatterns = [
 
-    url(r'^$', login_required(GrupoFamiliarList.as_view()), name='grupo_familiar_lista'),
-    url(r'^registro/$', login_required(GrupoFamiliarCreate.as_view()), name='grupo_familiar_registro'),
-    url(r'^actualizar/(?P<pk>\d+)/$', login_required(GrupoFamiliarUpdate.as_view()), name='grupo_familiar_actualizar'),
-    url(r'^eliminar/(?P<pk>\d+)/$', login_required(GrupoFamiliarDelete.as_view()), name='grupo_familiar_eliminar'),
-    url(r'^persona/', include('vivienda.grupo_familiar.persona.urls')),
+    path('', login_required(GrupoFamiliarList.as_view()), name='grupo_familiar_lista'),
+    path('registro/', login_required(GrupoFamiliarCreate.as_view()), name='grupo_familiar_registro'),
+    path('actualizar/<int:pk>/', login_required(GrupoFamiliarUpdate.as_view()), name='grupo_familiar_actualizar'),
+    path('eliminar/<int:pk>/', login_required(GrupoFamiliarDelete.as_view()), name='grupo_familiar_eliminar'),
+    path('persona/', include('vivienda.grupo_familiar.persona.urls')),
 ]

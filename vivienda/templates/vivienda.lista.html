@@ -12,7 +12,7 @@
         </div>
 
         <div class="box-header">
-            <a href="{% url 'vivienda_registro' %}" class="btn btn-success pull-left">Crear</a>
+            <a href="{% url 'vivienda_registro' %}" class="btn btn-success pull-left">Registrar</a>
         </div>
 
         <div class="box-body">
@@ -139,7 +139,7 @@
 
                                 <td> {{ vivienda.direccion }} </td>
                                 <td> {{ vivienda.coordenadas }} </td>
-                                <td> {{ vivienda.numero_vivienda }}-{{ vivienda.id }} </td>
+                                <td> {{ vivienda }} </td>
                                 <td> {{ vivienda.observacion }} </td>
 
                                 <td> <a href="{% url 'vivienda_actualizar' vivienda.id %}" data-toggle="tooltip" title="Actualizar"><i class="fa fa-pencil"></i></a> <a href="{% url 'vivienda_eliminar' vivienda.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>

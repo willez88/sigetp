@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -103,17 +103,17 @@ ROOT_URLCONF = 'sigetp.urls'
 ROOT_TEMPLATES = os.path.join(BASE_DIR, "templates")
 
 ## Directorio en donde se encuentran las plantillas del módulo base
-BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
-USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
-VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
-GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
-PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
-REPORTE_TEMPLATES = os.path.join(BASE_DIR, "reporte/templates")
+#BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
+#USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
+#VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
+#GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
+#PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
+#REPORTE_TEMPLATES = os.path.join(BASE_DIR, "reporte/templates")
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ROOT_TEMPLATES, BASE_TEMPLATES, USUARIO_TEMPLATES, GRUPO_FAMILIAR_TEMPLATES, PERSONA_TEMPLATES, REPORTE_TEMPLATES],
+        'DIRS': [ROOT_TEMPLATES],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,19 +134,19 @@ WSGI_APPLICATION = 'sigetp.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-
     #'default': {
-    #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #    'NAME': 'sigetp',
-    #    'USER': 'admin',
-    #    'PASSWORD': '123',
-    #    'HOST': 'localhost',
-    #    'PORT': '5432',
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     #}
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'sigetp',
+        'USER': 'admin',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 

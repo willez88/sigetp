@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -35,7 +35,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.decorators import login_required
@@ -47,12 +47,12 @@ from .views import (
 
 urlpatterns = [
 
-    url(r'^$', login_required(ViviendaList.as_view()), name='vivienda_lista'),
-    url(r'^registro/$', login_required(ViviendaCreate.as_view()), name='vivienda_registro'),
-    url(r'^actualizar/(?P<pk>\d+)/$', login_required(ViviendaUpdate.as_view()), name='vivienda_actualizar'),
-    url(r'^eliminar/(?P<pk>\d+)/$', login_required(ViviendaDelete.as_view()), name='vivienda_eliminar'),
-    url(r'^imagen/registro/$', login_required(ImagenCreate.as_view()), name='imagen_registro'),
-    url(r'^imagen/$', login_required(ImagenList.as_view()), name='imagen_lista'),
-    url(r'^imagen/eliminar/(?P<pk>\d+)/$', login_required(ImagenDelete.as_view()), name='imagen_eliminar'),
-    url(r'^grupo-familiar/', include('vivienda.grupo_familiar.urls')),
+    path('', login_required(ViviendaList.as_view()), name='vivienda_lista'),
+    path('registro/', login_required(ViviendaCreate.as_view()), name='vivienda_registro'),
+    path('actualizar/(<int:pk>/', login_required(ViviendaUpdate.as_view()), name='vivienda_actualizar'),
+    path('eliminar/<int:pk>/', login_required(ViviendaDelete.as_view()), name='vivienda_eliminar'),
+    path('imagen/registro/', login_required(ImagenCreate.as_view()), name='imagen_registro'),
+    path('imagen/', login_required(ImagenList.as_view()), name='imagen_lista'),
+    path('imagen/eliminar/<int:pk>/', login_required(ImagenDelete.as_view()), name='imagen_eliminar'),
+    path('grupo-familiar/', include('vivienda.grupo_familiar.urls')),
 ]

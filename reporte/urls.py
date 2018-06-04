@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -35,9 +35,9 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.conf.urls import url
+from django.urls import path
 from .views import reporte_usuario
 
 urlpatterns = [
-    url(r'^reporte-usuario/$', reporte_usuario, name='reporte_usuario'),
+    path('reporte-usuario/', reporte_usuario, name='reporte_usuario'),
 ]

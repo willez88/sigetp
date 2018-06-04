@@ -14,7 +14,7 @@
         </div>
 
         <div class="box-header">
-            <a href="{% url 'persona_registro' %}" class="btn btn-success pull-left">Crear</a>
+            <a href="{% url 'persona_registro' %}" class="btn btn-success pull-left">Registrar</a>
         </div>
 
         <div class="box-body">
@@ -61,7 +61,7 @@
                         <tbody>
                             {% for persona in object_list %}
                                 <tr>
-                                <td>{{ persona.grupo_familiar.apellido_familia }}-{{ persona.grupo_familiar.id }}</td>
+                                <td>{{ persona.grupo_familiar }}</td>
                                 <td>{{ persona.nombre }} </td>
                                 <td>{{ persona.apellido }}</td>
                                 {% if persona.cedula %}

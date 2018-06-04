@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -59,7 +59,7 @@ class GrupoFamiliarList(ListView):
 
     def get_queryset(self):
         """!
-        Método que obtiene la consulta según algún filtro especificado
+        Método que obtiene la lista de grupos familiares que están asociados al usuario
 
         @author William Páez (wpaez at cenditel.gob.ve)
         @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
@@ -222,7 +222,7 @@ class GrupoFamiliarDelete(DeleteView):
         @return Redirecciona al usuario a la página de error de permisos en caso
                 de no ser el usuario logueado
         """
-        
+
         user = User.objects.get(username=self.request.user.username)
         if not GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
             return redirect('base_403')

@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -50,13 +50,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.urls import include, path
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('base.urls')),
-    url(r'^usuario/', include('usuario.urls')),
-    url(r'vivienda/', include('vivienda.urls')),
-    url(r'^reporte/', include('reporte.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('base.urls')),
+    path('usuario/', include('usuario.urls')),
+    path('vivienda/', include('vivienda.urls')),
+    path('reporte/', include('reporte.urls')),
 ]

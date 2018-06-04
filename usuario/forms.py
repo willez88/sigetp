@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -41,6 +41,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Perfil
 from django.contrib.auth.models import User
 from django.core import validators
+from base.models import Estado, Municipio, Parroquia, ConsejoComunal
 
 class PerfilAdminForm(forms.ModelForm):
     """!
@@ -69,6 +70,33 @@ class PerfilAdminForm(forms.ModelForm):
                 _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
             ),
         ]
+    )
+
+    ## Estado donde se ecnuetra ubicado el municipio
+    estado = forms.ModelChoiceField(
+        label=_("Estado"), queryset=Estado.objects.all(), empty_label=_("Seleccione..."),
+        widget=forms.Select(attrs={
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'title': _("Seleccione el estado en donde se encuentra ubicada"),
+        })
+    )
+
+    ## Municipio donde se encuentra ubicada la parroquia
+    municipio = forms.ModelChoiceField(
+        label=_("Municipio"), queryset=Municipio.objects.all(), empty_label=_("Seleccione..."),
+        widget=forms.Select(attrs={
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'title': _("Seleccione el municipio en donde se encuentra ubicada"),
+        })
+    )
+
+    ## Parroquia donde se encuentra ubicado el consejo comunal
+    parroquia = forms.ModelChoiceField(
+        label=_("Parroquia"), queryset=Parroquia.objects.all(), empty_label=_("Seleccione..."),
+        widget=forms.Select(attrs={
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'title': _("Seleccione la parroquia en donde se encuentra ubicada"),
+        })
     )
 
     class Meta:

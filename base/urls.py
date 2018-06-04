@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -36,16 +36,16 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from __future__ import unicode_literals
-from django.conf.urls import url
+from django.urls import path
 from .views import Inicio, Error403
 from .ajax import *
 
 urlpatterns = [
-    url(r'^$', Inicio.as_view(), name='inicio'),
-    url(r'^403/$', Error403.as_view(), name = "base_403"),
+    path('', Inicio.as_view(), name='inicio'),
+    path('403/', Error403.as_view(), name = "base_403"),
 ]
 
 ## URLs de peticiones AJAX
 urlpatterns += [
-    url(r'^ajax/actualizar-combo/?$', actualizar_combo, name='actualizar_combo'),
+    path('ajax/actualizar-combo/?', actualizar_combo, name='actualizar_combo'),
 ]

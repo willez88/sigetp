@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -49,9 +49,9 @@ class ConsejoComunalAdmin(admin.ModelAdmin):
     """
 
     form = ConsejoComunalAdminForm
-    change_form_template = 'admin/change_form.html'
+    change_form_template = 'change_form.html'
     list_display = ('rif','nombre','parroquia',)
-    list_filter = ('rif','nombre','parroquia',)
+    list_filter = ('parroquia',)
     list_per_page = 25
     ordering = ('parroquia',)
     search_fields = ('rif','nombre','parroquia',)

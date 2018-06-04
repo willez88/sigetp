@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -167,6 +167,19 @@ class Vivienda(models.Model):
     ## Establece la relación de la vivienda con el usuario
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
+    def __str__(self):
+        """!
+        Método para representar la clase de forma amigable
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 14-01-2018
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Devuelve una cadena de caracteres con el número de identificación y el id de la vivienda
+        """
+
+        return self.numero_vivienda + ' | ' + str(self.id)
+
 class Imagen(models.Model):
     """!
     Clase que contiene los datos de imágenes de la vivienda
@@ -184,3 +197,16 @@ class Imagen(models.Model):
 
     ## Establece la relación de las imágenes con la vivienda
     vivienda = models.ForeignKey(Vivienda,on_delete=models.CASCADE)
+
+    def __str__(self):
+        """!
+        Método para representar la clase de forma amigable
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 14-01-2018
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Devuelve una cadena de caracteres con el nombre de la imagen
+        """
+
+        return self.nombre

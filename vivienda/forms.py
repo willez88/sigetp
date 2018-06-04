@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -611,7 +611,7 @@ class ImagenForm(forms.ModelForm):
 
         lista_vivienda = [('','Selecione...')]
         for vi in Vivienda.objects.filter(user=user):
-            lista_vivienda.append( (vi.id,vi.numero_vivienda+"-"+str(vi.id)) )
+            lista_vivienda.append( (vi.id,vi) )
         self.fields['vivienda'].choices = lista_vivienda
 
     ## Viviendas

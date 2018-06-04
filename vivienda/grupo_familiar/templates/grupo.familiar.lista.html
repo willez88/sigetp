@@ -13,7 +13,7 @@
         </div>
 
         <div class="box-header">
-            <a href="{% url 'grupo_familiar_registro' %}" class="btn btn-success pull-left">Crear</a>
+            <a href="{% url 'grupo_familiar_registro' %}" class="btn btn-success pull-left">Registrar</a>
         </div>
 
         <div class="box-body">
@@ -35,8 +35,8 @@
                         <tbody>
                             {% for grupo_familiar in object_list %}
                                 <tr>
-                                <td> {{ grupo_familiar.vivienda.numero_vivienda }}-{{ grupo_familiar.vivienda.id }} </td>
-                                <td> {{ grupo_familiar.apellido_familia }}-{{ grupo_familiar.id }} </td>
+                                <td> {{ grupo_familiar.vivienda }} </td>
+                                <td> {{ grupo_familiar }} </td>
 
                                 {% if grupo_familiar.familia_beneficiada %}
                                     <td> Si </td>

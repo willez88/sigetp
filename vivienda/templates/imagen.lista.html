@@ -13,7 +13,7 @@
         </div>
 
         <div class="box-header">
-            <a href="{% url 'imagen_registro' %}" class="btn btn-success pull-left">Crear</a>
+            <a href="{% url 'imagen_registro' %}" class="btn btn-success pull-left">Registrar</a>
         </div>
 
         <div class="box-body">
@@ -31,7 +31,7 @@
                         <tbody>
                             {% for imagen in object_list %}
                                 <tr>
-                                <td> {{ imagen.vivienda.numero_vivienda }}-{{ imagen.vivienda.id }} </td>
+                                <td> {{ imagen.vivienda }} </td>
                                 <td> {{ imagen.nombre }} </td>
                                 <td> <img src="{{ imagen.imagen_base64 }}" class="img-responsive" width="500px" height="500px"> </td>
                                 <td> <a href="{% url 'imagen_eliminar' imagen.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>

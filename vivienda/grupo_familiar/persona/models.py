@@ -1,13 +1,59 @@
+"""
+Nombre del software: SIGETP
+
+Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
+
+Nombre del licenciante y año: Fundación CIDA (2017)
+
+Autores: William Páez
+
+La Fundación Centro Nacional de Desarrollo e Investigación en Tecnologías Libres (CENDITEL),
+ente adscrito al Ministerio del Poder Popular para Educación Universitaria, Ciencia y Tecnología
+(MPPEUCT), concede permiso para usar, copiar, modificar y distribuir libremente y sin fines
+comerciales el "Software - Registro de bienes de CENDITEL", sin garantía
+alguna, preservando el reconocimiento moral de los autores y manteniendo los mismos principios
+para las obras derivadas, de conformidad con los términos y condiciones de la licencia de
+software de la Fundación CENDITEL.
+
+El software es una creación intelectual necesaria para el desarrollo económico y social
+de la nación, por tanto, esta licencia tiene la pretensión de preservar la libertad de
+este conocimiento para que contribuya a la consolidación de la soberanía nacional.
+
+Cada vez que copie y distribuya el "Software - Registro de bienes de CENDITEL"
+debe acompañarlo de una copia de la licencia. Para más información sobre los términos y condiciones
+de la licencia visite la siguiente dirección electrónica:
+http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
+"""
+## @namespace persona.models
+#
+# Contiene las clases, atributos y métodos para los modelos a implementar en la aplicación persona
+# @author William Páez (wpaez at cenditel.gob.ve)
+# @author <a href='http://www.cenditel.gob.ve'>Centro Nacional de Desarrollo e Investigación en Tecnologías Libres
+# (CENDITEL) nodo Mérida - Venezuela</a>
+# @author <a href='www.cida.gob.ve/'>Centro de Investigaciones de Astronomía "Francisco J. Duarte"</a>
+# @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+# @date 24-05-2017
+# @version 1.0
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from base.constant import SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, MISION_SOCIAL
+from base.constant import (
+    SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO, MISION_SOCIAL
+)
 from vivienda.grupo_familiar.models import GrupoFamiliar
 import datetime
 
 # Create your models here.
 
 class Persona(models.Model):
+    """!
+    Clase que contiene los datos de las personas
+
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 24-05-2017
+    """
 
     ## Nombre de la Persona
     nombre = models.CharField(max_length=100)
@@ -43,6 +89,7 @@ class Persona(models.Model):
     ## Establece el parentesto que tiene el jefe familiar con el resto del Grupo Familiar
     parentesco = models.CharField(max_length=2, choices=PARENTESCO)
 
+    ## Estalece si la persona es jefe familiar o no
     jefe_familiar = models.BooleanField()
 
     ## Establece el Estado Civil de la Persona
@@ -113,4 +160,27 @@ class Persona(models.Model):
 
     ## Cacula la edad en años que tiene una persona según su fecha de nacimiento
     def edad(self):
+        """!
+        Método que calcula la edad de la persona
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 24-05-2017
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Retorna un número entero que representa la edad
+        """
+
         return int((datetime.date.today() - self.fecha_nacimiento).days / 365.25  )
+
+    def __str__(self):
+        """!
+        Método para representar la clase de forma amigable
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 14-01-2018
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Devuelve una cadena de caracteres con el nombre, apellido y cédula de la persona
+        """
+
+        return self.nombre + ' ' + self.apellido + ', ' + self.cedula

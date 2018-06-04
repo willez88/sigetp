@@ -3,7 +3,7 @@ Nombre del software: SIGETP
 
 Descripción: Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica
 
-Nombre del licenciante y año: Fundación CENDITEL (2017)
+Nombre del licenciante y año: Fundación CIDA (2017)
 
 Autores: William Páez
 
@@ -50,7 +50,7 @@ class Pais(models.Model):
     """
 
     ## Nombre del país
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=80)
 
     def __str__(self):
         """!
