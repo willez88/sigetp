@@ -39,7 +39,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 
-class Pais(models.Model):
+class Country(models.Model):
     """!
     Clase que contiene los paises
 
@@ -50,7 +50,7 @@ class Pais(models.Model):
     """
 
     ## Nombre del país
-    nombre = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
 
     def __str__(self):
         """!
@@ -63,9 +63,9 @@ class Pais(models.Model):
         @return Devuelve una cadena de caracteres con el nombre del país
         """
 
-        return self.nombre
+        return self.name
 
-class Estado(models.Model):
+class State(models.Model):
     """!
     Clase que contiene los estados
 
@@ -76,10 +76,10 @@ class Estado(models.Model):
     """
 
     ## Nombre del Estado
-    nombre = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     ## Establece la relación del estado con el país
-    pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
+    country = models.ForeignKey(Country,on_delete=models.CASCADE)
 
     def __str__(self):
         """!
@@ -92,9 +92,9 @@ class Estado(models.Model):
         @return Devuelve una cadena de caracteres con el nombre del estado
         """
 
-        return self.nombre
+        return self.name
 
-class Municipio(models.Model):
+class Municipality(models.Model):
     """!
     Clase que contiene los municipios
 
@@ -105,10 +105,10 @@ class Municipio(models.Model):
     """
 
     ## Nombre del Municipio
-    nombre = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     ## Establece la relación del municipio con el estado
-    estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
+    state = models.ForeignKey(State,on_delete=models.CASCADE)
 
     def __str__(self):
         """!
@@ -121,9 +121,9 @@ class Municipio(models.Model):
         @return Devuelve una cadena de caracteres con el nombre del municipio
         """
 
-        return self.nombre
+        return self.name
 
-class Ciudad(models.Model):
+class City(models.Model):
     """!
     Clase que contiene las ciudades
 
@@ -133,10 +133,10 @@ class Ciudad(models.Model):
     """
 
     ## Nombre de la Ciudad
-    nombre = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     ## Establece la relación de la ciudad con el estado
-    estado = models.ForeignKey(Estado,on_delete=models.CASCADE)
+    state = models.ForeignKey(State,on_delete=models.CASCADE)
 
     def __str__(self):
         """!
@@ -149,9 +149,9 @@ class Ciudad(models.Model):
         @return Devuelve una cadena de caracteres con el nombre de la ciudad
         """
 
-        return self.nombre
+        return self.name
 
-class Parroquia(models.Model):
+class Parish(models.Model):
     """!
     Clase que contiene las parroquias
 
@@ -162,10 +162,10 @@ class Parroquia(models.Model):
     """
 
     ## Nombre de la Parroquia
-    nombre = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     ## Establece la relación de la parroquia con el municipio
-    municipio = models.ForeignKey(Municipio,on_delete=models.CASCADE)
+    municipality = models.ForeignKey(Municipality,on_delete=models.CASCADE)
 
     def __str__(self):
         """!
@@ -178,9 +178,9 @@ class Parroquia(models.Model):
         @return Devuelve una cadena de caracteres con el nombre de la parroquia
         """
 
-        return self.nombre
+        return self.name
 
-class ConsejoComunal(models.Model):
+class CommunalCouncil(models.Model):
     """!
     Clase que contiene los consejos comunales
 
@@ -195,17 +195,17 @@ class ConsejoComunal(models.Model):
         validators=[
             validators.RegexValidator(
                 r'^C[\d]{9}$',
-                _("Introduzca un rif válido. Solo se permite la letra C, números y una longitud de 10 carácteres.")
+                _("Introduzca un rif válido. Solo se permite la letra C y 9 números.")
             ),
         ],
         primary_key=True
     )
 
     ## Nombre del Consejo Comunal
-    nombre = models.CharField(max_length=500)
+    name = models.CharField(max_length=500)
 
     ## Establece la relación del consejo comunal con la parroquia
-    parroquia = models.ForeignKey(Parroquia,on_delete=models.CASCADE)
+    parish = models.ForeignKey(Parish,on_delete=models.CASCADE)
 
     def __str__(self):
         """!
@@ -218,7 +218,7 @@ class ConsejoComunal(models.Model):
         @return Devuelve una cadena de caracteres con el nombre del consejo comunal
         """
 
-        return self.nombre
+        return self.name
 
     class Meta:
         """!

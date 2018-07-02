@@ -36,43 +36,13 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
-#from django.contrib.auth.admin import UserAdmin
-from .forms import PerfilAdminForm
-from .models import Perfil
+from .models import Profile, Communal, Pollster
+from .forms import CommunalAdminForm
 from django.contrib.auth.models import User
 
 # Register your models here.
 
-# Se quita del registro User
-#admin.site.unregister(User)
-
-"""class PerfilInline(admin.StackedInline):
-    ""
-    Clase que agrega modelo Perfil en el panel administrativo y lo muestra en línea
-
-    @author William Páez (wpaez at cenditel.gob.ve)
-    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 24-05-2017
-    ""
-
-    model = Perfil
-    form = PerfilAdminForm
-    change_form_template = 'admin/change_form.html'
-
-class PerfilAdmin(UserAdmin):
-    ""
-    Clase que agrega modelo Perfil junto con el modelo User en el panel administrativo
-
-    @author William Páez (wpaez at cenditel.gob.ve)
-    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 24-05-2017
-    ""
-
-    inlines = (PerfilInline,)
-
-admin.site.register(User, PerfilAdmin)"""
-
-class PerfilAdmin(admin.ModelAdmin):
+class ProfileAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Perfil del usuario en el panel administrativo
 
@@ -81,23 +51,40 @@ class PerfilAdmin(admin.ModelAdmin):
     @date 24-05-2017
     """
 
-    form = PerfilAdminForm
-    change_form_template = 'change_form.html'
+    #form = ProfileAdminForm
+    #change_form_template = 'change_form.html'
 
     ## Mostrar los campos
-    list_display = ('user','cedula','telefono','consejo_comunal',)
+    list_display = ('user','phone','level',)
 
     ## Filtrar por campos
-    list_filter = ('consejo_comunal',)
+    list_filter = ('level',)
 
     ## Mostrar 25 registros por página
     list_per_page = 25
 
     ## Ordenar por usuario
-    ordering = ('consejo_comunal',)
+    #ordering = ('consejo_comunal',)
 
     ## Buscar por campos
     #search_fields = ('telefono','user',)
 
 ## Registra el modelo Perfil en el panel administrativo
-admin.site.register(Perfil, PerfilAdmin)
+admin.site.register(Profile, ProfileAdmin)
+
+class CommunalAdmin(admin.ModelAdmin):
+    form = CommunalAdminForm
+    change_form_template = 'usuario/admin/change_form.html'
+
+    list_display = ('profile','communal_council',)
+    list_filter = ('communal_council',)
+    list_per_page = 25
+    ordering = ('communal_council',)
+admin.site.register(Communal, CommunalAdmin)
+
+class PollsterAdmin(admin.ModelAdmin):
+    list_display = ('profile','communal',)
+    list_filter = ('communal',)
+    list_per_page = 25
+    ordering = ('communal',)
+admin.site.register(Pollster, PollsterAdmin)

@@ -40,6 +40,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import GrupoFamiliar
 from base.constant import TIPO_TENENCIA
 from vivienda.models import Vivienda
+from usuario.models import Communal, Pollster
 
 class GrupoFamiliarForm(forms.ModelForm):
     """!
@@ -65,10 +66,15 @@ class GrupoFamiliarForm(forms.ModelForm):
 
         user = kwargs.pop('user')
         super(GrupoFamiliarForm, self).__init__(*args, **kwargs)
-
         lista_vivienda = [('','Selecione...')]
-        for vi in Vivienda.objects.filter(user=user):
-            lista_vivienda.append( (vi.id,vi) )
+        if Communal.objects.filter(profile=user.profile):
+            communal = Communal.objects.get(profile=user.profile)
+            for vi in Vivienda.objects.filter(communal_council=communal.communal_council):
+                lista_vivienda.append( (vi.id,vi) )
+        if Pollster.objects.filter(profile=user.profile):
+            pollster = Pollster.objects.get(profile=user.profile)
+            for vi in Vivienda.objects.filter(user=pollster.profile.user):
+                lista_vivienda.append( (vi.id,vi) )
         self.fields['vivienda'].choices = lista_vivienda
 
     ## Vivienda donde habita el grupo familiar
@@ -114,7 +120,7 @@ class GrupoFamiliarForm(forms.ModelForm):
 
     ## Alquiler de la vivienda en meses
     alquilada = forms.CharField(
-        label=_("Tiempo Alquilado:"), widget=forms.NumberInput(attrs={
+        label=_("Tiempo Alquilado (en meses):"), widget=forms.NumberInput(attrs={
             'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Indique el tiempo que tiene como alquilado"), 'min':'0', 'step':'1', 'value':'0',
         }), required=False

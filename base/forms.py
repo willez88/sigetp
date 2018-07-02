@@ -37,10 +37,10 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from .models import Estado, Municipio, Parroquia, ConsejoComunal
+from .models import State, Municipality, Parish, CommunalCouncil
 from .fields import RifField
 
-class ConsejoComunalAdminForm(forms.ModelForm):
+class CommunalCouncilAdminForm(forms.ModelForm):
     """!
     Clase que contiene los campos del formulario del consejo comunal
 
@@ -61,23 +61,23 @@ class ConsejoComunalAdminForm(forms.ModelForm):
         @param *kwargs <b>{dict}</b> Diccionario de datos, inicialmente vacio
         """
 
-        super(ConsejoComunalAdminForm, self).__init__(*args, **kwargs)
+        super(CommunalCouncilAdminForm, self).__init__(*args, **kwargs)
         # Si se ha seleccionado un estado establece el listado de municipios y elimina el atributo disable
-        if 'estado' in self.data and self.data['estado']:
-            self.fields['municipio'].widget.attrs.pop('disabled')
-            self.fields['municipio'].queryset=Municipio.objects.filter(estado=self.data['estado'])
+        if 'state' in self.data and self.data['state']:
+            self.fields['municipality'].widget.attrs.pop('disabled')
+            self.fields['municipality'].queryset=Municipality.objects.filter(state=self.data['state'])
 
             # Si se ha seleccionado un municipio establece el listado de parroquias y elimina el atributo disable
-            if 'municipio' in self.data and self.data['municipio']:
-                self.fields['parroquia'].widget.attrs.pop('disabled')
-                self.fields['parroquia'].queryset=Parroquia.objects.filter(municipio=self.data['municipio'])
+            if 'municipality' in self.data and self.data['municipality']:
+                self.fields['parish'].widget.attrs.pop('disabled')
+                self.fields['parish'].queryset=Parish.objects.filter(municipality=self.data['municipality'])
 
     ## Rif del consejo comunal
     rif = RifField()
 
     ## Nombre del consejo comunal
-    nombre = forms.CharField(
-        label=_("Nombre del Consejo Comunal"),
+    name = forms.CharField(
+        label=_("Nombre del Consejo Comunal:"),
         max_length=500,
         widget=forms.TextInput(
             attrs={
@@ -88,28 +88,28 @@ class ConsejoComunalAdminForm(forms.ModelForm):
     )
 
     ## Estado donde se ecnuetra ubicado el municipio
-    estado = forms.ModelChoiceField(
-        label=_("Estado"), queryset=Estado.objects.all(), empty_label=_("Seleccione..."),
+    state = forms.ModelChoiceField(
+        label=_("Estado:"), queryset=State.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip',
             'title': _("Seleccione el estado en donde se encuentra ubicada"),
         })
     )
 
     ## Municipio donde se encuentra ubicada la parroquia
-    municipio = forms.ModelChoiceField(
-        label=_("Municipio"), queryset=Municipio.objects.all(), empty_label=_("Seleccione..."),
+    municipality = forms.ModelChoiceField(
+        label=_("Municipio:"), queryset=Municipality.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true',
             'title': _("Seleccione el municipio en donde se encuentra ubicada"),
         })
     )
 
     ## Parroquia donde se encuentra ubicado el consejo comunal
-    parroquia = forms.ModelChoiceField(
-        label=_("Parroquia"), queryset=Parroquia.objects.all(), empty_label=_("Seleccione..."),
+    parish = forms.ModelChoiceField(
+        label=_("Parroquia:"), queryset=Parish.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true',
             'title': _("Seleccione la parroquia en donde se encuentra ubicada"),
         })
     )
@@ -123,7 +123,7 @@ class ConsejoComunalAdminForm(forms.ModelForm):
         @date 25-05-2017
         """
 
-        model = ConsejoComunal
+        model = CommunalCouncil
         fields = [
-            'rif','nombre','estado','municipio','parroquia'
+            'rif','name','state','municipality','parish'
         ]

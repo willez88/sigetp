@@ -36,5 +36,18 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
+from .models import Vivienda, Imagen
 
-# Register your models here.
+class ViviendaAdmin(admin.ModelAdmin):
+    list_display = ('user','communal_council',)
+    list_filter = ('user','communal_council',)
+    list_per_page = 25
+    ordering = ('communal_council',)
+admin.site.register(Vivienda, ViviendaAdmin)
+
+class ImagenAdmin(admin.ModelAdmin):
+    list_display = ('vivienda','nombre',)
+    list_filter = ('vivienda',)
+    list_per_page = 25
+    ordering = ('vivienda',)
+admin.site.register(Imagen, ImagenAdmin)

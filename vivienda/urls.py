@@ -49,7 +49,7 @@ urlpatterns = [
 
     path('', login_required(ViviendaList.as_view()), name='vivienda_lista'),
     path('registro/', login_required(ViviendaCreate.as_view()), name='vivienda_registro'),
-    path('actualizar/(<int:pk>/', login_required(ViviendaUpdate.as_view()), name='vivienda_actualizar'),
+    path('actualizar/<int:pk>/', login_required(ViviendaUpdate.as_view()), name='vivienda_actualizar'),
     path('eliminar/<int:pk>/', login_required(ViviendaDelete.as_view()), name='vivienda_eliminar'),
     path('imagen/registro/', login_required(ImagenCreate.as_view()), name='imagen_registro'),
     path('imagen/', login_required(ImagenList.as_view()), name='imagen_lista'),

@@ -64,15 +64,13 @@ class Persona(models.Model):
     ## Cédula de la Persona. Si tiene o no
     cedula = models.CharField(
         max_length=9,
-        help_text=_("Cédula de Identidad del usuario"),
         unique=True,
         null=True
     )
 
     # +058-416-0708340
     telefono = models.CharField(
-        max_length=16,
-        help_text=_("Número telefónico de contacto con el usuario"),
+        max_length=18,
     )
 
     ## Establece el correo de la persona
@@ -183,4 +181,4 @@ class Persona(models.Model):
         @return Devuelve una cadena de caracteres con el nombre, apellido y cédula de la persona
         """
 
-        return self.nombre + ' ' + self.apellido + ', ' + self.cedula
+        return self.nombre + ' ' + self.apellido + ', ' + str(self.cedula)

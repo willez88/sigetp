@@ -2,23 +2,13 @@
 
 Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica (SIGETP): Se encarga de registrar información acerca de como son las condiciones de las viviendas y sus grupos familiares en los consejos comunales
 
-# Pre-requisitos
-
-Para el correcto funcionamiento del __SIGETP__ se requiere tener instalado previamente los siguientes paquetes:
-
-    git
-    graphviz
-    graphviz-dev
-    postgresql
-    phppgadmin
-    python3-dev
-    virtualenv
-
-# Proceso de instalación
+# Pasos para crear el entorno de desarrollo
 
 Cuando somos un usuario normal del sistema, en el terminal se mostrará el siguiente símbolo: ~$
 
 Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
+
+Probado en Debian y Ubuntu. Instalar los siguientes programas
 
     ~# apt install git graphviz graphviz-dev libjpeg-dev postgresql phppgadmin python3-dev virtualenv zlib1g-dev
 
@@ -26,11 +16,27 @@ Crear las siguientes carpetas
 
     ~$ mkdir Programación
 
-Dentro de Programación, ejecutar
+Desde el terminal, moverse a la carpeta Programación y ejecutar
+
+    ~$ cd Programación/
+
+    ~$ mkdir Python
+
+Entrar a la carpeta Python y hacer lo siguiente
+
+    ~$ cd Python/
 
     ~$ mkdir EntornosVirtuales ProyectosDjango
 
-Dentro de la carpeta EntornosVirtuales, crearemos nuestro entorno
+Entrar a EntornosVirtuales
+
+    ~$ cd EntornosVirtuales/
+
+    ~$ mkdir Django
+
+Desde el terminal, moverse a la carpeta Django y ejecutar
+
+    ~$ cd Django/
 
     ~$ virtualenv -p python3 sigetp
 
@@ -38,19 +44,23 @@ Para activar el entorno
 
     ~$ source sigetp/bin/activate
 
-Para salir del entorno virtual se puede ejecutar desde cualquier lugar del terminal: deactivate
+Nos movemos a la carpeta ProyectosDjango, descargamos el sistema y entramos a la carpeta con los siguientes comandos
 
-Nos movemos a la Carpeta ProyectosDjango para descargar el sistema con el siguiente comando
+    (sigetp) ~$ cd ../../ProyectosDjango/
 
-    ~$ git clone https://github.com/willez88/sigetp.git
+    (sigetp) ~$ git clone https://github.com/willez88/sigetp.git
 
-Tendremos nuestras carpetas estructuradas de la siguiente manera:
+    (sigetp) ~$ cd sigetp/
+
+    (sigetp) ~$ cp sigetp/settings.py_example sigetp/settings.py
+
+Tendremos las carpetas estructuradas de la siguiente manera
 
     // Entorno virtual
-    Programación/EntornosVirtuales/sigetp
+    Programación/Python/EntornosVirtuales/Django/sigetp
 
     // Servidor de desarrollo
-    Programación/ProyectosDjango/sigetp
+    Programación/Python/ProyectosDjango/sigetp
 
 Crear la base de datos para el __SIGETP__
 
@@ -61,7 +71,7 @@ Crear la base de datos para el __SIGETP__
     postgres@xxx:$ psql
 
     // Creación del usuario de a base de datos
-    postgres=# CREATE USER admin WITH ENCRYPTED PASSWORD '123' CREATEDB;
+    postgres=# CREATE USER admin WITH LOGIN ENCRYPTED PASSWORD '123' CREATEDB;
     postgres=# \q
 
     // Desautenticar el usuario postgres y regresar al usuario root
@@ -76,8 +86,6 @@ Puedes crear la base de datos usando la interfaz gráfica phppgadmin
     localhost/phppgadmin
 
     // Nombre de la base de datos: sigetp
-
-Creada la base de datos, moverse a la carpeta donde está el servidor de desarrollo
 
 Instalamos los requemientos que el sistema necesita en el entorno virtual
 

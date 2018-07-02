@@ -24,38 +24,44 @@ debe acompañarlo de una copia de la licencia. Para más información sobre los 
 de la licencia visite la siguiente dirección electrónica:
 http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 """
-## @namespace base.views
+## @namespace base.functions
 #
-# Contiene las clases, atributos, métodos y/o funciones a implementar para las vistas de uso general en el sistema
+# Contiene las funcionas básicas de la aplicación
 # @author William Páez (wpaez at cenditel.gob.ve)
 # @author <a href='http://www.cenditel.gob.ve'>Centro Nacional de Desarrollo e Investigación en Tecnologías Libres
 # (CENDITEL) nodo Mérida - Venezuela</a>
 # @author <a href='www.cida.gob.ve/'>Centro de Investigaciones de Astronomía "Francisco J. Duarte"</a>
 # @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-# @date 24-05-2017
+# @date 01-07-2018
 # @version 1.0
 
-from django.shortcuts import render
-from django.views.generic import TemplateView
+import smtplib
+from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import get_template
 
-class HomeView(TemplateView):
+def send_email(email, template, subject, vars = None):
     """!
-    Clase para mostrar la página de inicio del sistema
+    Función que envía correos electrónicos
 
-    @author William Páez (wpaez at cenditel.gob.ve)
+    @author Ing. Roldan Vargas (rvargas at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 24-05-2017
+    @date 22-08-2016
+    @param email    <b>{string}</b> Dirección de correo electrónico del destinatario.
+    @param template <b>{string}</b> Nombre de la plantilla de correo electrónico a utilizar.
+    @param subject  <b>{string}</b> Texto del asunto que contendrá el correo electrónico.
+    @param vars     <b>{object}</b> Diccionario de variables que serán pasadas a la plantilla de correo. El valor por defecto es Ninguno.
+    @return Devuelve verdadero si el correo fue enviado, en caso contrario, devuelve falso
     """
+    if not vars:
+        vars = {}
 
-    template_name = 'base/base.html'
-
-class Error403View(TemplateView):
-    """!
-    Clase para mostrar la página de error de permisos
-
-    @author William Páez (wpaez at cenditel.gob.ve)
-    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 24-05-2017
-    """
-
-    template_name = 'base/error.403.html'
+    try:
+        ## Obtiene la plantilla de correo a implementar
+        t = get_template(template).render(vars)
+        send_mail(subject, t, settings.EMAIL_FROM, [email], fail_silently=False)
+        #logger.info("Correo enviado a %s usando la plantilla %s" % (email, template))
+        return True
+    except smtplib.SMTPException as e:
+        #print("Error al enviar el correo")
+        return False

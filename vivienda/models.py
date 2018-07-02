@@ -36,11 +36,13 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.db import models
-from base.constant import (TIPO_VIVIENDA, TIPO_TECHO, TIPO_PARED, TIPO_PISO, VALORACION, TIPO_CEMENTO, SERVICIO_ELECTRICO,
-    SITUACION_SANITARIA, DISPOSICION_BASURA
+from base.constant import (
+    TIPO_VIVIENDA, TIPO_TECHO, TIPO_PARED, TIPO_PISO, VALORACION,
+    TIPO_CEMENTO, SERVICIO_ELECTRICO, SITUACION_SANITARIA, DISPOSICION_BASURA
 )
-from base.models import ConsejoComunal
+from base.models import CommunalCouncil
 from django.contrib.auth.models import User
+from usuario.models import Pollster
 
 # Create your models here.
 
@@ -162,10 +164,13 @@ class Vivienda(models.Model):
     observacion = models.TextField()
 
     ## Establece la relación de la vivienda con el consejo comunal
-    consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
+    communal_council = models.ForeignKey(CommunalCouncil,on_delete=models.CASCADE)
 
     ## Establece la relación de la vivienda con el usuario
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    ## Establece la relación entre el encuestador y la vivienda
+    #pollster = models.ForeignKey(Pollster,on_delete=models.CASCADE)
 
     def __str__(self):
         """!

@@ -1,5 +1,4 @@
-{% extends 'base.template.html' %}
-{% load static from staticfiles %}
+{% extends 'base/base.html' %}
 {% load i18n %}
 {% block content_header_title %}{% trans 'Vivienda' %}{% endblock %}
 {% block content_header_roadmap %}
@@ -135,7 +134,7 @@
 
                                 <td> {{ vivienda.animales }} </td>
 
-                                <td> {{ vivienda.consejo_comunal }}, {{ vivienda.consejo_comunal.parroquia }}, {{ vivienda.consejo_comunal.parroquia.municipio }}, {{ vivienda.consejo_comunal.parroquia.municipio.estado }} </td>
+                                <td> {{ vivienda.communal_council }}, {{ vivienda.communal_council.parish }}, {{ vivienda.communal_council.parish.municipality }}, {{ vivienda.communal_council.parish.municipality.state }} </td>
 
                                 <td> {{ vivienda.direccion }} </td>
                                 <td> {{ vivienda.coordenadas }} </td>

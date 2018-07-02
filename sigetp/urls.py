@@ -55,8 +55,8 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('base.urls')),
-    path('usuario/', include('usuario.urls')),
+    path('', include('base.urls', namespace='base')),
+    path('usuario/', include('usuario.urls', namespace='usuario')),
     path('vivienda/', include('vivienda.urls')),
     path('reporte/', include('reporte.urls')),
 ]

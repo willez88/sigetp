@@ -35,13 +35,14 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import GrupoFamiliar
 from .forms import GrupoFamiliarForm
 from vivienda.models import Vivienda
 from django.contrib.auth.models import User
+from usuario.models import Communal
 
 # Create your views here.
 
@@ -67,6 +68,11 @@ class GrupoFamiliarList(ListView):
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna la lista de objetos grupo familiar que pertenecen a la vivienda
         """
+
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            queryset = GrupoFamiliar.objects.filter(vivienda__communal_council=communal.communal_council)
+            return queryset
 
         queryset = GrupoFamiliar.objects.filter(vivienda__user=self.request.user)
         return queryset
@@ -174,10 +180,17 @@ class GrupoFamiliarUpdate(UpdateView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
-            return redirect('base_403')
-        return super(GrupoFamiliarUpdate, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__communal_council=communal.communal_council):
+                return super(GrupoFamiliarUpdate, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=self.request.user):
+            return super(GrupoFamiliarUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
 
     def get_initial(self):
         """!
@@ -191,8 +204,7 @@ class GrupoFamiliarUpdate(UpdateView):
         """
 
         datos_iniciales = super(GrupoFamiliarUpdate, self).get_initial()
-        grupo_familiar = GrupoFamiliar.objects.get(pk=self.object.id)
-        datos_iniciales['vivienda'] = grupo_familiar.vivienda.id
+        datos_iniciales['vivienda'] = self.object.vivienda.id
         return datos_iniciales
 
 class GrupoFamiliarDelete(DeleteView):
@@ -223,7 +235,14 @@ class GrupoFamiliarDelete(DeleteView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
-            return redirect('base_403')
-        return super(GrupoFamiliarDelete, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__communal_council=communal.communal_council):
+                return super(GrupoFamiliarDelete, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if GrupoFamiliar.objects.filter(pk=self.kwargs['pk'],vivienda__user=self.request.user):
+            return super(GrupoFamiliarDelete, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')

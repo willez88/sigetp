@@ -36,65 +36,45 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django import forms
-from base.fields import CedulaField, TelefonoField
+from base.fields import IdentificationCardField, PhoneField
 from django.utils.translation import ugettext_lazy as _
-from .models import Perfil
+from .models import Profile, Communal
 from django.contrib.auth.models import User
 from django.core import validators
-from base.models import Estado, Municipio, Parroquia, ConsejoComunal
+from base.models import State, Municipality, Parish, CommunalCouncil
 
-class PerfilAdminForm(forms.ModelForm):
+class CommunalAdminForm(forms.ModelForm):
     """!
     Clase que contiene los campos del formulario del perfil usado en el panel administrativo
 
     @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 24-05-2017
+    @date 01-07-2018
     """
 
-    ## Cédula del usuario del sistema
-    cedula = CedulaField(
-        validators=[
-            validators.RegexValidator(
-                r'^[VE][\d]{8}$',
-                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
-            ),
-        ],
-    )
-
-    ## Número telefónico de contacto con el usuario
-    telefono = TelefonoField(
-        validators=[
-            validators.RegexValidator(
-                r'^\+\d{3}-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
-            ),
-        ]
-    )
-
     ## Estado donde se ecnuetra ubicado el municipio
-    estado = forms.ModelChoiceField(
-        label=_("Estado"), queryset=Estado.objects.all(), empty_label=_("Seleccione..."),
+    state = forms.ModelChoiceField(
+        label=_("Estado:"), queryset=State.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip',
             'title': _("Seleccione el estado en donde se encuentra ubicada"),
         })
     )
 
     ## Municipio donde se encuentra ubicada la parroquia
-    municipio = forms.ModelChoiceField(
-        label=_("Municipio"), queryset=Municipio.objects.all(), empty_label=_("Seleccione..."),
+    municipality = forms.ModelChoiceField(
+        label=_("Municipio:"), queryset=Municipality.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true',
             'title': _("Seleccione el municipio en donde se encuentra ubicada"),
         })
     )
 
     ## Parroquia donde se encuentra ubicado el consejo comunal
-    parroquia = forms.ModelChoiceField(
-        label=_("Parroquia"), queryset=Parroquia.objects.all(), empty_label=_("Seleccione..."),
+    parish = forms.ModelChoiceField(
+        label=_("Parroquia:"), queryset=Parish.objects.all(), empty_label=_("Seleccione..."),
         widget=forms.Select(attrs={
-            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true', 'style':'width:250px;',
+            'class': 'form-control select2', 'data-toggle': 'tooltip', 'disabled': 'true',
             'title': _("Seleccione la parroquia en donde se encuentra ubicada"),
         })
     )
@@ -112,91 +92,241 @@ class PerfilAdminForm(forms.ModelForm):
         model = User
         fields = '__all__'
 
-class PerfilUpdateForm(forms.ModelForm):
+class ProfileForm(forms.ModelForm):
+    """!
+    Clase que contiene los campos del formulario de perfil del usuario
 
-    username = forms.CharField(
-        label=_("Nombre de Usuario:"),
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique el Nombre de Usuario"),
-            }
-        )
-    )
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 25-06-2018
+    """
 
-    nombre = forms.CharField(
-        label=_("Nombres:"),
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique los Nombres de la Persona"),
-            }
-        )
-    )
-
-    apellido = forms.CharField(
-        label=_("Apellidos:"),
-        max_length=100,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
-                'title': _("Indique los Apellidos de la Persona"),
-            }
-        )
-    )
-
-    correo = forms.EmailField(
-        label=_("Correo Electrónico:"),
-        max_length=100,
-        widget=forms.EmailInput(
-            attrs={
-                'class': 'form-control input-sm email-mask', 'placeholder': _("Correo de contacto"),
-                'data-toggle': 'tooltip', 'data-rule-required': 'true', 'style':'width:250px;',
-                'title': _("Indique el correo electrónico de contacto con la persona.")
-            }
-        )
-    )
-
-    cedula = CedulaField(
+    ## Username para identificar al usuario, en este caso se usa la cédula
+    username = IdentificationCardField(
         validators=[
             validators.RegexValidator(
                 r'^[VE][\d]{8}$',
-                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agrega un 0 si la longitud es de 7 carácteres.")
-            ),
-        ],
-    )
-
-    telefono = TelefonoField(
-        validators=[
-            validators.RegexValidator(
-                r'^\+\d{3}-\d{3}-\d{7}$',
-                _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
+                _("Introduzca un número de cédula válido. Solo se permiten números y una longitud de 8 carácteres. Se agregan ceros (0) si la longitud es de 7 o menos caracteres.")
             ),
         ]
     )
 
-    consejo_comunal_temp = forms.CharField(
+    ## Nombres del usuario
+    first_name = forms.CharField(
+        label=_("Nombres:"), max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip',
+                'title': _("Indique los Nombres"),
+            }
+        )
+    )
+
+    ## Apellidos del usuario
+    last_name = forms.CharField(
+        label=_("Apellidos:"), max_length=100,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip',
+                'title': _("Indique los Apellidos"),
+            }
+        )
+    )
+
+    ## Correo del usuario
+    email = forms.EmailField(
+        label=_("Correo Electrónico:"), max_length=100,
+        widget=forms.EmailInput(
+            attrs={
+                'class': 'form-control input-sm email-mask', 'data-toggle': 'tooltip',
+                'title': _("Indique el correo electrónico de contacto")
+            }
+        )
+    )
+
+    ## Teléfono del usuario
+    phone = PhoneField(
+        validators=[
+            validators.RegexValidator(
+                r'^\+\d{2}-\d{3}-\d{7}$',
+                _("Número telefónico inválido. Solo se permiten números.")
+            ),
+        ]
+    )
+
+    ## Clave de acceso del usuario
+    password = forms.CharField(
+        label=_("Contraseña:"), max_length=128,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip',
+                'title': _("Indique una contraseña de aceso al sistema")
+            }
+        )
+    )
+
+    ## Confirmación de clave de acceso del usuario
+    confirm_password = forms.CharField(
+        label=_("Confirmar Contraseña:"), max_length=128,
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip',
+                'title': _("Indique nuevamente la contraseña de aceso al sistema")
+            }
+        )
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email):
+            raise forms.ValidationError(_("El correo ya esta registrado"))
+        return email
+
+    def clean_confirm_password(self):
+        confirm_password = self.cleaned_data['confirm_password']
+        password = self.cleaned_data.get('password')
+        if password != confirm_password:
+            raise forms.ValidationError(_("La contraseña no es la misma"))
+
+        return confirm_password
+
+    class Meta:
+        """!
+        Meta clase del formulario que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 25-06-2018
+        """
+
+        model = User
+        exclude = ['profile','level','date_joined']
+
+class CommunalUpdateForm(ProfileForm):
+
+    def __init__(self, *args, **kwargs):
+        super(CommunalUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['password'].required = False
+        self.fields['confirm_password'].required = False
+        self.fields['password'].widget.attrs['disabled'] = True
+        self.fields['confirm_password'].widget.attrs['disabled'] = True
+
+    communal_council = forms.CharField(
         label=_("Consejo Comunal:"),
         max_length=500,
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:100%;', 'readonly':'true',
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
                 'title': _("Consejo Comunal que tiene asignado"),
             }
-        ),
-        required = False
+        ),required = False
     )
 
-    def clean_cedula(self):
-        cedula = self.cleaned_data['cedula']
-        username = self.cleaned_data['username']
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(email=email).exclude(username=username):
+            raise forms.ValidationError(_("El correo ya esta registrado "))
+        return email
 
-        if Perfil.objects.filter(cedula=cedula).exclude(user__username=username):
-            raise forms.ValidationError(_("Este Perfil ya esta registrado"))
-        return cedula
+    def clean_confirm_password(self):
+        pass
 
     class Meta:
         model = User
-        exclude = ['perfil','consejo_comunal_temp','password','date_joined','is_superuser','is_staff','is_active','last_login']
+        exclude = [
+            'profile','communal_council','password','date_joined','is_superuser',
+            'is_staff','is_active','last_login'
+        ]
+
+class PollsterForm(ProfileForm):
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super(PollsterForm, self).__init__(*args, **kwargs)
+        if Communal.objects.filter(profile=user.profile):
+            communal = Communal.objects.get(profile=user.profile)
+            self.fields['communal_council'].initial = communal.communal_council
+
+    communal_council = forms.CharField(
+        label=_("Consejo Comunal:"),
+        max_length=500,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
+                'title': _("Consejo Comunal que tiene asignado"),
+            }
+        ),required = False
+    )
+
+    class Meta:
+        """!
+        Meta clase del formulario que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 25-06-2018
+        """
+
+        model = User
+        exclude = [
+            'profile','level','password','confirm_password','date_joined','last_login','is_active',
+            'is_superuser','is_staff','communal_council'
+        ]
+
+class PollsterUpdateForm(ProfileForm):
+    def __init__(self, *args, **kwargs):
+        super(PollsterUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['password'].required = False
+        self.fields['confirm_password'].required = False
+        self.fields['password'].widget.attrs['disabled'] = True
+        self.fields['confirm_password'].widget.attrs['disabled'] = True
+
+    communal_council = forms.CharField(
+        label=_("Consejo Comunal:"),
+        max_length=500,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
+                'title': _("Consejo Comunal que tiene asignado"),
+            }
+        ),required = False
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(email=email).exclude(username=username):
+            raise forms.ValidationError(_("El correo ya esta registrado "))
+        return email
+
+    def clean_confirm_password(self):
+        pass
+
+    class Meta:
+        """!
+        Meta clase del formulario que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 25-06-2018
+        """
+
+        model = User
+        exclude = [
+            'profile','level','password','confirm_password','date_joined','last_login','is_active',
+            'is_superuser','is_staff','communal_council'
+        ]
+
+class PollsterStatusForm(forms.ModelForm):
+
+    is_active = forms.BooleanField(
+        label=_("¿Está Activo?"), required=False
+    )
+
+    class Meta:
+
+        model = User
+        exclude = [
+            'username','first_name','last_name','email','password','date_joined',
+            'last_login','is_superuser','is_staff',
+        ]

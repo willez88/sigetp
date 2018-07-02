@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block content_header_title %}{% trans 'Usuario' %}{% endblock %}
+{% block content_header_roadmap %}
+    <li><a href="#">{% trans 'Usuario' %}</a></li>
+    <li class="active">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</li>
+{% endblock %}
+{% block contenido %}
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</h3>
+    </div>
+    <div class="box-body">
+        <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+            {% csrf_token %}
+
+            {% include 'usuario/profile.html' %}
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="form-group {% if form.communal_council.errors %}has-error{% endif %}">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.communal_council.auto_id }}">
+                            {{ form.communal_council.label }}
+                        </label>
+                        <div class="col-md-9 col-xs-9 col-sm-9">
+                            <div class="form-inline">
+                                {{ form.communal_council }}
+                                <i class="ion ion-ios-medical item-requerido"></i>
+                            </div>
+                            {% include 'base/form.errors.html' with form_errors=form.communal_council.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-footer text-right">
+                <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
+                <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

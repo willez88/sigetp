@@ -36,5 +36,11 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
+from .models import GrupoFamiliar
 
-# Register your models here.
+class GrupoFamiliarAdmin(admin.ModelAdmin):
+    list_display = ('vivienda','apellido_familia',)
+    list_filter = ('vivienda',)
+    list_per_page = 25
+    ordering = ('vivienda',)
+admin.site.register(GrupoFamiliar, GrupoFamiliarAdmin)

@@ -40,12 +40,13 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Persona
 from base.constant import TIPO_TENENCIA
 from vivienda.grupo_familiar.models import GrupoFamiliar
-from base.fields import CedulaField, TelefonoField
+from base.fields import IdentificationCardField, PhoneField
 from base.constant import (
     SEXO, PARENTESCO, ESTADO_CIVIL, GRADO_INSTRUCCION, MISION_EDUCATIVA, TIPO_INGRESO,
     ORGANIZACION_COMUNITARIA, MISION_SOCIAL
 )
 from django.core import validators
+from usuario.models import Communal, Pollster
 
 class PersonaForm(forms.ModelForm):
     """!
@@ -71,10 +72,15 @@ class PersonaForm(forms.ModelForm):
 
         user = kwargs.pop('user')
         super(PersonaForm, self).__init__(*args, **kwargs)
-
         lista_grupo_familiar = [('','Selecione...')]
-        for gf in GrupoFamiliar.objects.filter(vivienda__user=user):
-            lista_grupo_familiar.append( (gf.id,gf) )
+        if Communal.objects.filter(profile=user.profile):
+            communal = Communal.objects.get(profile=user.profile)
+            for gf in GrupoFamiliar.objects.filter(vivienda__communal_council=communal.communal_council):
+                lista_grupo_familiar.append( (gf.id,gf) )
+        if Pollster.objects.filter(profile=user.profile):
+            pollster = Pollster.objects.get(profile=user.profile)
+            for gf in GrupoFamiliar.objects.filter(vivienda__user=pollster.profile.user):
+                lista_grupo_familiar.append( (gf.id,gf) )
         self.fields['grupo_familiar'].choices = lista_grupo_familiar
 
     ## Grupo familiar al que la persona pertenece
@@ -125,7 +131,7 @@ class PersonaForm(forms.ModelForm):
     )
 
     ## Cédula
-    cedula = CedulaField(
+    cedula = IdentificationCardField(
         required=False,
         validators=[
             validators.RegexValidator(
@@ -136,10 +142,10 @@ class PersonaForm(forms.ModelForm):
     )
 
     ## Número de teléfono
-    telefono = TelefonoField(
+    telefono = PhoneField(
         validators=[
             validators.RegexValidator(
-                r'^\+\d{3}-\d{3}-\d{7}$',
+                r'^\+\d{2}-\d{3}-\d{7}$',
                 _("Número telefónico inválido. Solo se permiten números y los símbolos: + -")
             ),
         ]
@@ -455,6 +461,16 @@ class PersonaForm(forms.ModelForm):
             }
         ), required = False
     )
+
+    def clean_cedula(self):
+        cedula = self.cleaned_data['cedula']
+        if Persona.objects.filter(cedula=cedula):
+            persona = Persona.objects.get(cedula=cedula)
+            communal = Communal.objects.get(communal_council=persona.grupo_familiar.vivienda.communal_council)
+            raise forms.ValidationError(_('La persona con esta cédula ya existe, se encuentra en '+str(communal.communal_council)+', '+str(communal.communal_council.parish)+', '+ \
+            str(communal.communal_council.parish.municipality)+', '+str(communal.communal_council.parish.municipality.state)+'. Administrador del Consejo Comunal: '+communal.profile.user.first_name+' '+ \
+            communal.profile.user.last_name+', '+communal.profile.user.email+', '+communal.profile.phone))
+        return cedula
 
     def clean(self):
         """!

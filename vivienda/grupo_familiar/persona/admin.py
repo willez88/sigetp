@@ -36,5 +36,11 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
+from .models import Persona
 
-# Register your models here.
+class PersonaAdmin(admin.ModelAdmin):
+    list_display = ('grupo_familiar','nombre','apellido','cedula')
+    list_filter = ('grupo_familiar',)
+    list_per_page = 25
+    ordering = ('grupo_familiar',)
+admin.site.register(Persona, PersonaAdmin)

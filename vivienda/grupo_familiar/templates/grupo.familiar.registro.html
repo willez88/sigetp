@@ -1,5 +1,4 @@
-{% extends 'base.template.html' %}
-{% load static from staticfiles %}
+{% extends 'base/base.html' %}
 {% load i18n %}
 {% block content_header_title %}{% trans 'Grupo Familiar' %}{% endblock %}
 {% block content_header_roadmap %}
@@ -27,7 +26,7 @@
                                         {{ form.vivienda }}
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -41,7 +40,7 @@
                                         {{ form.apellido_familia }}
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.apellido_familia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.apellido_familia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -58,7 +57,7 @@
                                         {{ form.tenencia }}
                                         <i class="ion ion-ios-medical item-requerido"></i>
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tenencia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tenencia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -72,7 +71,7 @@
                                         <div class="form-inline">
                                             {{ form.alquilada }}
                                         </div>
-                                        {% include 'base.form.errors.html' with form_errors=form.alquilada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                        {% include 'base/form.errors.html' with form_errors=form.alquilada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +88,7 @@
                                     <div class="form-inline">
                                         {{ form.pasaje }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.pasaje.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.pasaje.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -102,7 +101,7 @@
                                     <div class="form-inline">
                                         {{ form.familia_beneficiada }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.familia_beneficiada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.familia_beneficiada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -118,7 +117,7 @@
                                     <div class="form-inline">
                                         {{ form.observacion }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>

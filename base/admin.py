@@ -36,10 +36,10 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
-from .models import ConsejoComunal
-from .forms import ConsejoComunalAdminForm
+from .models import CommunalCouncil
+from .forms import CommunalCouncilAdminForm
 
-class ConsejoComunalAdmin(admin.ModelAdmin):
+class CommunalCouncilAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo ConsejoComunal en el panel administrativo
 
@@ -48,12 +48,12 @@ class ConsejoComunalAdmin(admin.ModelAdmin):
     @date 24-05-2017
     """
 
-    form = ConsejoComunalAdminForm
-    change_form_template = 'change_form.html'
-    list_display = ('rif','nombre','parroquia',)
-    list_filter = ('parroquia',)
+    form = CommunalCouncilAdminForm
+    change_form_template = 'base/admin/change_form.html'
+    list_display = ('rif','name','parish',)
+    list_filter = ('parish',)
     list_per_page = 25
-    ordering = ('parroquia',)
-    search_fields = ('rif','nombre','parroquia',)
+    ordering = ('parish',)
+    #search_fields = ('rif','nombre','parroquia',)
 
-admin.site.register(ConsejoComunal, ConsejoComunalAdmin)
+admin.site.register(CommunalCouncil, CommunalCouncilAdmin)

@@ -39,38 +39,35 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
 from django.contrib.auth.models import User
-from base.models import ConsejoComunal
+from base.models import CommunalCouncil
+from base.constant import LEVEL
 
 # Create your models here.
 
-class Perfil(models.Model):
+class Profile(models.Model):
     """!
-    Clase que contiene los datos del perfil de un usuario del sistema
+    Clase que contiene los datos del perfil de un usuario
 
     @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
     @date 24-05-2017
     """
 
-    ## Cédula del usuario
-    cedula = models.CharField(
-        max_length=9,
-        unique=True
-    )
-
     ## Número telefónico del usuario
-    telefono = models.CharField(
+    phone = models.CharField(
         max_length=16,
     )
 
-    ## Establece la relación del perfil con el user
+    ## Nivel del usuario
+    level = models.IntegerField(choices=LEVEL)
+
+    ## Establece la relación entre el perfil y el user
     user = models.OneToOneField(
-        User, related_name="perfil",on_delete=models.CASCADE,
-        help_text=_("Relación entre los datos de registro del encuestador y el usuario con acceso al sistema")
+        User, on_delete=models.CASCADE,
     )
 
     ## Establece la relación del consejo comunal con el perfil del usuario
-    consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
+    #consejo_comunal = models.ForeignKey(ConsejoComunal,on_delete=models.CASCADE)
 
     class Meta:
         """!
@@ -83,7 +80,7 @@ class Perfil(models.Model):
 
         verbose_name = _("Perfil")
         verbose_name_plural = _("Perfiles")
-        ordering = ("cedula",)
+        ordering = ("user",)
 
     def __str__(self):
         """!
@@ -97,3 +94,89 @@ class Perfil(models.Model):
         """
 
         return "%s, %s" % (self.user.first_name, self.user.last_name)
+
+class Communal(models.Model):
+    """!
+    Clase que contiene los datos de un usuario del nivel consejo comunal
+
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 19-06-2018
+    """
+
+    ## Establece la relación entre el modelo ConsejoComunal y el modelo Comunal
+    communal_council = models.OneToOneField(
+        CommunalCouncil, on_delete=models.CASCADE
+    )
+
+    ## Establece la relación entre el modelo Perfil y el modelo Comunal
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        """!
+        Método para representar la clase de forma amigable
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 19-06-2018
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Devuelve una cadena de caracteres con el nombre, apellido del usuario y el consejo comunal que administra
+        """
+
+        return "%s %s | %s" % (self.profile.user.first_name, self.profile.user.last_name, self.communal_council)
+
+    class Meta:
+        """!
+        Meta clase del modelo que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 28-06-2018
+        """
+
+        verbose_name = _("Nivel Consejo Comunal")
+        verbose_name_plural = _("Nivel Consejos Comunales")
+
+class Pollster(models.Model):
+    """!
+    Clase que contiene los datos del perfil de un usuario del nivel encuestador
+
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 19-06-2018
+    """
+
+    communal = models.ForeignKey(
+        Communal, on_delete=models.CASCADE
+    )
+
+    profile = models.OneToOneField(
+        Profile, on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        """!
+        Método para representar la clase de forma amigable
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 19-06-2018
+        @param self <b>{object}</b> Objeto que instancia la clase
+        @return Devuelve una cadena de caracteres con el nombre y apellido del usuario
+        """
+
+        return "%s %s" % (self.communal.profile.user.first_name, self.communal.profile.user.last_name)
+
+    class Meta:
+        """!
+        Meta clase del modelo que establece algunas propiedades
+
+        @author William Páez (wpaez at cenditel.gob.ve)
+        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+        @date 28-06-2018
+        """
+
+        verbose_name = _("Encuestador")
+        verbose_name_plural = _("Encuestadores")

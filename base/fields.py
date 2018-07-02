@@ -35,19 +35,20 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.forms import MultiValueField, ChoiceField, CharField, TextInput
-from .constant import SHORT_NACIONALIDAD, TIPO_RIF, TELEFONO_CODIGO_PAIS
-from .widgets import RifWidget, CedulaWidget, CoordenadaWidgetReadOnly, TelefonoWidget
+from django import forms
+from .constant import NATIONALITY, RIF_TYPE, PHONE_PREFIX
+from .widgets import RifWidget, IdentificationCardWidget, CoordenateWidgetReadOnly, PhoneWidget
 from django.utils.translation import ugettext_lazy as _
 
-class RifField(MultiValueField):
+class RifField(forms.MultiValueField):
     """!
     Clase que agrupa los campos del tipo de rif, número de rif y dígito validador del rif en un solo campo del
     formulario
 
     @author Ing. Roldan Vargas (rvargas at cenditel.gob.ve)
+    @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 26-04-2016
+    @date 26-05-2017
     """
     widget = RifWidget
     default_error_messages = {
@@ -63,15 +64,17 @@ class RifField(MultiValueField):
         }
 
         fields = (
-            ChoiceField(choices=TIPO_RIF),
-            CharField(max_length=8, min_length=8),
-            CharField(max_length=1, min_length=1)
+            forms.ChoiceField(choices=RIF_TYPE),
+            forms.CharField(max_length=8, min_length=8),
+            forms.CharField(max_length=1, min_length=1)
         )
 
         label = _("R.I.F.:")
 
+        help_text=_('C-00000000-0')
+
         super(RifField, self).__init__(
-            error_messages=error_messages, fields=fields, label=label, require_all_fields=True, *args, **kwargs
+            error_messages=error_messages, fields=fields, label=label, help_text=help_text, require_all_fields=True, *args, **kwargs
         )
 
     def compress(self, data_list):
@@ -80,15 +83,16 @@ class RifField(MultiValueField):
             return ''.join(data_list)
         return ''
 
-class CedulaField(MultiValueField):
+class IdentificationCardField(forms.MultiValueField):
     """!
     Clase que agrupa los campos de la nacionalidad y número de cédula de identidad en un solo campo del formulario
 
     @author Ing. Roldan Vargas (rvargas at cenditel.gob.ve)
+    @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 26-04-2016
+    @date 26-05-2017
     """
-    widget = CedulaWidget
+    widget = IdentificationCardWidget
     default_error_messages = {
         'invalid_choices': _("Debe seleccionar una nacionalidad válida")
     }
@@ -102,15 +106,15 @@ class CedulaField(MultiValueField):
         }
 
         fields = (
-            ChoiceField(choices=SHORT_NACIONALIDAD),
-            CharField(max_length=8)
+            forms.ChoiceField(choices=NATIONALITY),
+            forms.CharField(max_length=8)
         )
 
         label = _("Cédula de Identidad:")
 
-        help_text = _("Cédula de Identidad del usuario")
+        help_text=_("V-00000000 ó E-00000000")
 
-        super(CedulaField, self).__init__(
+        super(IdentificationCardField, self).__init__(
             error_messages=error_messages, fields=fields, label=label, help_text=help_text, require_all_fields=True, *args, **kwargs
         )
 
@@ -119,15 +123,15 @@ class CedulaField(MultiValueField):
             return ''.join(data_list)
         return ''
 
-class CoordenadaField(MultiValueField):
+class CoordinateField(forms.MultiValueField):
     """!
     Clase que agrupa los campos de coordenadas geográficas, latitud y longitud
 
     @author Ing. Roldan Vargas (rvargas at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 16-05-2016
+    @date 26-05-2017
     """
-    widget = CoordenadaWidgetReadOnly
+    widget = CoordenateWidgetReadOnly
 
     def __init__(self, *args, **kwargs):
 
@@ -138,13 +142,13 @@ class CoordenadaField(MultiValueField):
         }
 
         fields = (
-            CharField(max_length=100),
-            CharField(max_length=100)
+            forms.CharField(max_length=100),
+            forms.CharField(max_length=100)
         )
 
-        label = _("Coordenadas")
+        label = _("Coordenadas:")
 
-        super(CoordenadaField, self).__init__(
+        super(CoordinateField, self).__init__(
             error_messages=error_messages, fields=fields, label=label, require_all_fields=True, *args, **kwargs
         )
 
@@ -154,18 +158,18 @@ class CoordenadaField(MultiValueField):
             return ','.join(data_list)
         return ''
 
-class TelefonoField(MultiValueField):
+class PhoneField(forms.MultiValueField):
     """!
     Clase que agrupa los campos de un número teléfónico
 
     @author William Páez (wpaez at cenditel.gob.ve)
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-    @date 16-05-2016
+    @date 26-05-2017
     """
 
-    widget = TelefonoWidget
+    widget = PhoneWidget
     default_error_messages = {
-        'invalid_choices': _("Debe seleccionar un codigo telefónico de país válido")
+        'invalid_choices': _("Debe seleccionar un prefijo de teléfono de país válido")
     }
 
     def __init__(self, *args, **kwargs):
@@ -177,15 +181,15 @@ class TelefonoField(MultiValueField):
         }
 
         fields = (
-            ChoiceField(choices=TELEFONO_CODIGO_PAIS),
-            CharField(max_length=12)
+            forms.ChoiceField(choices=PHONE_PREFIX),
+            forms.CharField(max_length=12)
         )
 
         label = _("Teléfono:")
 
-        help_text = _("Rellenar con ceros en caso de no poseer teléfono.")
+        help_text=_("+58-416-0000000")
 
-        super(TelefonoField, self).__init__(
+        super(PhoneField, self).__init__(
             error_messages=error_messages, fields=fields, label=label, require_all_fields=True, help_text=help_text, *args, **kwargs
         )
 

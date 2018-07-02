@@ -42,8 +42,9 @@ from base.constant import (
     SERVICIO_ELECTRICO, SITUACION_SANITARIA, DISPOSICION_BASURA, TIPO_VIVIENDA, TIPO_TECHO, TIPO_PARED, TIPO_PISO, TIPO_CEMENTO,
     VALORACION
 )
-from base.models import Estado, Municipio, Parroquia, ConsejoComunal
-from base.fields import CoordenadaField
+from base.models import State, Municipality, Parish, CommunalCouncil
+from base.fields import CoordinateField
+from usuario.models import Communal, Pollster
 import datetime
 
 class ViviendaForm(forms.ModelForm):
@@ -70,11 +71,20 @@ class ViviendaForm(forms.ModelForm):
         user = kwargs.pop('user')
         super(ViviendaForm, self).__init__(*args, **kwargs)
         self.fields['fecha_hora'].initial = datetime.datetime.now()
-        self.fields['consejo_comunal'].initial = user.perfil.consejo_comunal
-        self.fields['parroquia'].initial = user.perfil.consejo_comunal.parroquia
-        self.fields['municipio'].initial = user.perfil.consejo_comunal.parroquia.municipio
-        self.fields['estado'].initial = user.perfil.consejo_comunal.parroquia.municipio.estado
-        self.fields['rif_consejo_comunal'].initial = user.perfil.consejo_comunal.rif
+        if Communal.objects.filter(profile=user.profile):
+            communal = Communal.objects.get(profile=user.profile)
+            self.fields['consejo_comunal'].initial = communal.communal_council
+            self.fields['parroquia'].initial = communal.communal_council.parish
+            self.fields['municipio'].initial = communal.communal_council.parish.municipality
+            self.fields['estado'].initial = communal.communal_council.parish.municipality.state
+            self.fields['rif_consejo_comunal'].initial = communal.communal_council.rif
+        if Pollster.objects.filter(profile=user.profile):
+            pollster = Pollster.objects.get(profile=user.profile)
+            self.fields['consejo_comunal'].initial = pollster.communal.communal_council
+            self.fields['parroquia'].initial = pollster.communal.communal_council.parish
+            self.fields['municipio'].initial = pollster.communal.communal_council.parish.municipality
+            self.fields['estado'].initial = pollster.communal.communal_council.parish.municipality.state
+            self.fields['rif_consejo_comunal'].initial = pollster.communal.communal_council.rif
 
     ## Fecha y hora del registro de la vivienda
     fecha_hora = forms.CharField(
@@ -274,7 +284,7 @@ class ViviendaForm(forms.ModelForm):
 
     ## Accesibilidad al ambulatorio
     accesibilidad_ambulatorio = forms.ChoiceField(
-        label=_("Accecibilidad al Ambulatorio:"),
+        label=_("Accesibilidad al Ambulatorio:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
         widget=forms.Select(
             attrs={
@@ -286,7 +296,7 @@ class ViviendaForm(forms.ModelForm):
 
     ## Accesibilidad a la escuela
     accesibilidad_escuela = forms.ChoiceField(
-        label=_("Accecibilidad a la Escuela:"),
+        label=_("Accesibilidad a la Escuela:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
         widget=forms.Select(
             attrs={
@@ -298,7 +308,7 @@ class ViviendaForm(forms.ModelForm):
 
     ## Accesibilidad al liceo
     accesibilidad_liceo = forms.ChoiceField(
-        label=_("Accecibilidad al Liceo:"),
+        label=_("Accesibilidad al Liceo:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
         widget=forms.Select(
             attrs={
@@ -310,7 +320,7 @@ class ViviendaForm(forms.ModelForm):
 
     ## Accesibilidad al centro de abastecimiento
     accesibilidad_centro_abastecimiento = forms.ChoiceField(
-        label=_("Accecibilidad al Centro de Abastecimiento:"),
+        label=_("Accesibilidad al Centro de Abastecimiento:"),
         choices=(('',_('Seleccione...')),)+VALORACION,
         widget=forms.Select(
             attrs={
@@ -428,7 +438,6 @@ class ViviendaForm(forms.ModelForm):
             'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Muestra el estado"),
             'readonly' : 'true',
-            #'onchange': "actualizar_combo(this.value,'base','Municipio','estado','pk','nombre','id_municipio')"
         }), required=False
     )
 
@@ -439,7 +448,6 @@ class ViviendaForm(forms.ModelForm):
             'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Muestra el municipio"),
             'readonly' : 'true',
-            #'onchange': "actualizar_combo(this.value,'base','Parroquia','municipio','pk','nombre','id_parroquia')"
         }), required=False
     )
 
@@ -450,7 +458,6 @@ class ViviendaForm(forms.ModelForm):
             'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Muestra la parroquia"),
             'readonly' : 'true',
-            #'onchange': "actualizar_combo(this.value,'base','ConsejoComunal','parroquia','pk','nombre','id_consejo_comunal')"
         }), required=False
     )
 
@@ -461,7 +468,6 @@ class ViviendaForm(forms.ModelForm):
             'class': 'form-control input-sm','data-toggle': 'tooltip', 'style':'width:250px;',
             'title': _("Muestra el consejo comunal"),
             'readonly':'true',
-            #'onchange': "obtener_rif(this.value)",
         }), required=False
     )
 
@@ -488,7 +494,7 @@ class ViviendaForm(forms.ModelForm):
     )
 
     ## Coordenadas geográficas de la vivienda
-    coordenada = CoordenadaField()
+    coordenada = CoordinateField()
 
     ## Alguna observación acerca de la vivienda
     observacion = forms.CharField(
@@ -608,10 +614,15 @@ class ImagenForm(forms.ModelForm):
 
         user = kwargs.pop('user')
         super(ImagenForm, self).__init__(*args, **kwargs)
-
         lista_vivienda = [('','Selecione...')]
-        for vi in Vivienda.objects.filter(user=user):
-            lista_vivienda.append( (vi.id,vi) )
+        if Communal.objects.filter(profile=user.profile):
+            communal = Communal.objects.get(profile=user.profile)
+            for vi in Vivienda.objects.filter(communal_council=communal.communal_council):
+                lista_vivienda.append( (vi.id,vi) )
+        if Pollster.objects.filter(profile=user.profile):
+            pollster = Pollster.objects.get(profile=user.profile)
+            for vi in Vivienda.objects.filter(user=pollster.profile.user):
+                lista_vivienda.append( (vi.id,vi) )
         self.fields['vivienda'].choices = lista_vivienda
 
     ## Viviendas

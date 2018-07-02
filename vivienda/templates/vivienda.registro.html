@@ -1,5 +1,4 @@
-{% extends 'base.template.html' %}
-{% load static from staticfiles %}
+{% extends 'base/base.html' %}
 {% load i18n %}
 {% block content_header_title %}{% trans 'Vivienda' %}{% endblock %}
 {% block content_header_roadmap %}
@@ -23,7 +22,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.fecha_hora }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.fecha_hora.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.fecha_hora.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -34,7 +33,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tipo_techo }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tipo_techo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tipo_techo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -48,7 +47,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.servicio_electrico }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.servicio_electrico.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.servicio_electrico.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -59,7 +58,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.situacion_sanitaria }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.situacion_sanitaria.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.situacion_sanitaria.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -73,7 +72,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.disposicion_basura }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.disposicion_basura.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.disposicion_basura.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -84,7 +83,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tipo_vivienda }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tipo_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tipo_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -98,7 +97,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tipo_pared }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tipo_pared.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tipo_pared.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -110,7 +109,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.pared_frizada }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.pared_frizada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.pared_frizada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -125,7 +124,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tipo_piso }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tipo_piso.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tipo_piso.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -137,7 +136,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tipo_cemento }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tipo_cemento.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tipo_cemento.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -152,7 +151,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_vivienda }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -163,7 +162,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_techo }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_techo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_techo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -177,7 +176,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_pared }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_pared.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_pared.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -188,7 +187,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_piso }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_piso.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_piso.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -202,7 +201,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_ventilacion }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_ventilacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_ventilacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -213,7 +212,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.condicion_iluminacion }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.condicion_iluminacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.condicion_iluminacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -227,7 +226,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.accesibilidad_ambulatorio }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.accesibilidad_ambulatorio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.accesibilidad_ambulatorio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -238,7 +237,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.accesibilidad_escuela }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.accesibilidad_escuela.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.accesibilidad_escuela.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -252,7 +251,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.accesibilidad_liceo }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.accesibilidad_liceo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.accesibilidad_liceo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -263,7 +262,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.accesibilidad_centro_abastecimiento }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.accesibilidad_centro_abastecimiento.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.accesibilidad_centro_abastecimiento.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -277,7 +276,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.numero_habitaciones }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.numero_habitaciones.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.numero_habitaciones.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -288,7 +287,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.numero_salas }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.numero_salas.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.numero_salas.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -302,7 +301,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.numero_banhos }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.numero_banhos.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.numero_banhos.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -313,7 +312,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.tiene_terreno }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.tiene_terreno.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.tiene_terreno.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -328,7 +327,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.metro_cuadrado }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.metro_cuadrado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.metro_cuadrado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -339,7 +338,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.productivo }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.productivo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.productivo.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -350,7 +349,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.por_producir }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.por_producir.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.por_producir.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -365,7 +364,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.riesgo_rio }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.riesgo_rio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.riesgo_rio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -376,7 +375,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.riesgo_quebrada }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.riesgo_quebrada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.riesgo_quebrada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -390,7 +389,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.riesgo_derrumbe }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.riesgo_derrumbe.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.riesgo_derrumbe.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -401,7 +400,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.riesgo_zona_sismica }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.riesgo_zona_sismica.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.riesgo_zona_sismica.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -415,7 +414,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.animales }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.animales.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.animales.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -429,7 +428,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.estado }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.estado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.estado.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -440,7 +439,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.municipio }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.municipio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.municipio.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -454,7 +453,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.parroquia }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.parroquia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.parroquia.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -468,7 +467,7 @@
                                         {{ form.consejo_comunal }}
                                         {{ form.rif_consejo_comunal }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.consejo_comunal.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.consejo_comunal.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -482,7 +481,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.direccion }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.direccion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.direccion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -495,7 +494,7 @@
                                     <div class="form-inline">
                                         {{ form.numero_vivienda }}
                                     </div>
-                                    {% include 'base.form.errors.html' with form_errors=form.numero_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.numero_vivienda.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -509,7 +508,7 @@
                                 </label>
                                 <div class="col-md-8 col-xs-8 col-sm-8 form-inline">
                                         {{ form.coordenada }}
-                                    {% include 'base.form.errors.html' with form_errors=form.coordenada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.coordenada.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                     <i class="btn btn-info btn-sm" data-toggle="tooltip"
                                         title="{% trans 'Presione el botón para seleccionar su ubicación' %}"
                                         onclick="seleccionar_coordenadas('{% trans 'Seleccionar Coordenadas' %}',$('#sel-coordenada').html())">Agregar</i>
@@ -526,7 +525,7 @@
                                 </label>
                                 <div class="col-md-9 col-xs-9 col-sm-9">
                                     <div class="form-inline">{{ form.observacion }}</div>
-                                    {% include 'base.form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                                    {% include 'base/form.errors.html' with form_errors=form.observacion.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
                                 </div>
                             </div>
                         </div>
@@ -556,9 +555,6 @@
             var tiene_terreno = $("#id_tiene_terreno").is(':checked');
             var bt = $("#bloque_terreno");
             (tiene_terreno) ? bt.removeClass('invisible') : bt.addClass('invisible');
-
-            //var consejo_comunal = $("#id_consejo_comunal").val();
-            //$("#id_rif_consejo_comunal").val(consejo_comunal);
         });
 
         function frizada(val)
@@ -616,11 +612,6 @@
                 $("#id_por_producir").attr('min', '0');
                 $("#id_por_producir").val(0);
             }
-        }
-
-        function obtener_rif(val)
-        {
-            $("#id_rif_consejo_comunal").val(val);
         }
     </script>
 {% endblock %}

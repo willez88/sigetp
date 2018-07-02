@@ -37,13 +37,25 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 
 from django.utils.translation import ugettext_lazy as _
 
+## Nombre del Sitio
+APP_NAME = "SIGETP"
+
+## Asunto del mensaje de bienvenida
+EMAIL_SUBJECT = "Bienvenido a %s" % APP_NAME
+
+## Establece los diferentes niveles de un usuario
+LEVEL = (
+    (1, 'Nivel Comunal'),
+    (2, 'Nivel Encuestador'),
+)
+
 ## Tipo de rif para consejos comunales y comunas
-TIPO_RIF = (
+RIF_TYPE = (
     ("C", "C"),
 )
 
 ## Nacionalidades (ABREVIADO)
-SHORT_NACIONALIDAD = (
+NATIONALITY = (
     ("V", "V"), ("E", "E")
 )
 
@@ -250,8 +262,8 @@ ORGANIZACION_COMUNITARIA = (
     ("CC",_("Consejo Comunal")),
 )
 
-TELEFONO_CODIGO_PAIS = (
-    ("+058",_("VE +058")),
+PHONE_PREFIX = (
+    ('+58',_('VE +58')),
 )
 
 ## Mensaje de error para peticiones AJAX

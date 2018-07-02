@@ -1,39 +1,47 @@
 {% extends 'base/base.html' %}
 {% load i18n %}
-{% block content_header_title %}{% trans 'Imagen' %}{% endblock %}
+{% block content_header_title %}{% trans 'Usuario' %}{% endblock %}
 {% block content_header_roadmap %}
-    <li><a href="{% url 'vivienda_lista' %}">{% trans 'Vivienda' %}</a></li>
-    <li class="active">{% trans 'Imagen' %}</li>
+    <li><a href="#">{% trans 'Usuario' %}</a></li>
+    <li class="active">{% trans 'Encuestador' %}</li>
 {% endblock %}
 {% block contenido %}
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Listar</h3><br>
+            <h3 class="box-title">Encuestador - Listar</h3><br>
         </div>
 
         <div class="box-header">
-            <a href="{% url 'imagen_registro' %}" class="btn btn-success pull-left">Registrar</a>
+            <a href="{% url 'usuario:pollster_create' %}" class="btn btn-success pull-left">Registrar</a>
         </div>
 
         <div class="box-body">
             <div class="row box-body table-responsive">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-imagen">
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-grupo-familiar" style="width:1750px;">
                         <thead>
                             <tr>
-                                <th>Vivienda</th>
-                                <th>Nombre de la imagen</th>
-                                <th>Imagen</th>
-                                <th>Operación</th>
+                                <th>Usuario</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Activo</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for imagen in object_list %}
+                            {% for pollster in object_list %}
                                 <tr>
-                                <td> {{ imagen.vivienda }} </td>
-                                <td> {{ imagen.nombre }} </td>
-                                <td> <img src="{{ imagen.imagen_base64 }}" class="img-responsive" width="500px" height="500px"> </td>
-                                <td> <a href="{% url 'imagen_eliminar' imagen.id %}" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+                                <td> {{ pollster.profile.user.username }} </td>
+                                <td> {{ pollster.profile.user.first_name }} </td>
+                                <td> {{ pollster.profile.user.last_name }} </td>
+                                <td> {{ pollster.profile.user.email }} </td>
+                                <td> {{ pollster.profile.phone }} </td>
+                                {% if pollster.profile.user.is_active %}
+                                    <td> Si <a href="{% url 'usuario:pollster_status_update' pollster.profile.user.id %}" data-toggle="tooltip" title="Cambiar Estatus"><i class="fa fa-pencil"></i></a> </td>
+                                {% else %}
+                                    <td> No <a href="{% url 'usuario:pollster_status_update' pollster.profile.user.id %}" data-toggle="tooltip" title="Cambiar Estatus"><i class="fa fa-pencil"></i></a> </td>
+                                {% endif %}
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -46,7 +54,7 @@
 {% block extra_footer %}
     <script type="text/javascript">
         $(document).ready(function() {
-            var tabla= $('#tabla-imagen').DataTable({
+            var tabla= $('#tabla-grupo-familiar').DataTable({
                 "language": {
                     "sProcessing":     "Procesando...",
 	                "sLengthMenu":     "Mostrar _MENU_ registros",

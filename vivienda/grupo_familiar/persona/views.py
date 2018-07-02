@@ -42,6 +42,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import PersonaForm
 from vivienda.grupo_familiar.models import GrupoFamiliar
 from django.contrib.auth.models import User
+from usuario.models import Communal
 import datetime
 
 # Create your views here.
@@ -68,6 +69,11 @@ class PersonaList(ListView):
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna la lista de objetos persona que pertenecen al grupo familiar
         """
+
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            queryset = Persona.objects.filter(grupo_familiar__vivienda__communal_council=communal.communal_council)
+            return queryset
 
         queryset = Persona.objects.filter(grupo_familiar__vivienda__user=self.request.user)
         return queryset
@@ -202,10 +208,17 @@ class PersonaUpdate(UpdateView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__user=user):
-            return redirect('base_403')
-        return super(PersonaUpdate, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__communal_council=communal.communal_council):
+                return super(PersonaUpdate, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if Persona.objects.filter(pk=self.kwargs['pk'],vivienda__grupo_familiar__vivienda__user=user):
+            return super(PersonaUpdate, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
 
     def get_initial(self):
         """!
@@ -219,9 +232,8 @@ class PersonaUpdate(UpdateView):
         """
 
         datos_iniciales = super(PersonaUpdate, self).get_initial()
-        persona = Persona.objects.get(pk=self.object.id)
-        datos_iniciales['grupo_familiar'] = persona.grupo_familiar.id
-        datos_iniciales['edad'] = persona.edad
+        datos_iniciales['grupo_familiar'] = self.object.grupo_familiar.id
+        datos_iniciales['edad'] = self.object.edad
         return datos_iniciales
 
     def form_valid(self, form):
@@ -275,7 +287,14 @@ class PersonaDelete(DeleteView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__user=user):
-            return redirect('base_403')
-        return super(PersonaDelete, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__communal_council=communal.communal_council):
+                return super(PersonaDelete, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if Persona.objects.filter(pk=self.kwargs['pk'],grupo_familiar__vivienda__user=user):
+            return super(PersonaDelete, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')

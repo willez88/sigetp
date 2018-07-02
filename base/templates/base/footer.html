@@ -4,11 +4,6 @@
 
 <!-- Variables javascript generales -->
 <script type="text/javascript">
-    /// URL de archivos estáticos
-    var URL_STATIC_FILES = "{% static '' %}";
-
-    /// URL para actualizar combos anidados
-    var URL_ACTUALIZAR_SELECT = "{% url 'actualizar_combo' %}";
 
     /// Mensaje de error en peticiones AJAX
     var MSG_PETICION_AJAX_FALLIDA = "{% trans 'Petición fallida. Verifique el error: ' %}";
@@ -32,8 +27,7 @@
 <script src="{% static 'tools/datepicker/bootstrap-datepicker.js' %}" type="text/javascript"></script>
 <script src="{% static 'tools/datepicker/locales/bootstrap-datepicker.es.js' %}" type="text/javascript"></script>
 <!-- Formularios de ventanas modales -->
-{% include 'base.form.box.html' %}
-<script src="{% static 'js/ajax.request.js' %}" type="text/javascript"></script>
+{% include 'base/form.box.html' %}
 <script src="{% static 'js/funciones.js' %}" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function(){

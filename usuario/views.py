@@ -38,13 +38,16 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from django.views.generic import UpdateView
-from .forms import PerfilUpdateForm
-from .models import Perfil
+from django.views.generic import UpdateView, ListView, CreateView
+from .forms import CommunalUpdateForm, PollsterForm, PollsterUpdateForm, PollsterStatusForm
+from .models import Profile, Communal, Pollster
+from django.conf import settings
+from base.constant import EMAIL_SUBJECT
+from base.functions import send_email
 
 # Create your views here.
 
-class PerfilUpdate(UpdateView):
+class CommunalUpdateView(UpdateView):
     """!
     Clase que permite a un usuario registrado en el sistema actualizar sus datos de perfil
 
@@ -54,9 +57,9 @@ class PerfilUpdate(UpdateView):
     """
 
     model = User
-    form_class = PerfilUpdateForm
-    template_name = "usuario.actualizar.html"
-    success_url = reverse_lazy('inicio')
+    form_class = CommunalUpdateForm
+    template_name = 'usuario/profile.create.html'
+    success_url = reverse_lazy('base:home')
 
     def dispatch(self, request, *args, **kwargs):
         """!
@@ -72,9 +75,10 @@ class PerfilUpdate(UpdateView):
         @return Redirecciona al usuario a la página de error de permisos si no es su perfil
         """
 
-        if not int(self.request.user.pk) == int(self.kwargs['pk']):
-            return redirect('base_403')
-        return super(PerfilUpdate, self).dispatch(request, *args, **kwargs)
+        if int(self.request.user.pk) == int(self.kwargs['pk']) and self.request.user.profile.level == 1:
+            return super(CommunalUpdateView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
 
     def get_initial(self):
         """!
@@ -87,17 +91,15 @@ class PerfilUpdate(UpdateView):
         @return Retorna un diccionario con los valores predeterminados
         """
 
-        datos_iniciales = super(PerfilUpdate, self).get_initial()
-        #user = User.objects.get(pk=self.request.user.pk)
-        datos_iniciales['username'] = self.object.username
-        datos_iniciales['nombre'] = self.object.first_name
-        datos_iniciales['apellido'] = self.object.last_name
-        datos_iniciales['correo'] = self.object.email
-        perfil = Perfil.objects.get(user=self.object)
-        datos_iniciales['cedula'] = perfil.cedula
-        datos_iniciales['telefono'] = perfil.telefono
-        datos_iniciales['consejo_comunal_temp'] = perfil.consejo_comunal
-        return datos_iniciales
+        initial_data = super(CommunalUpdateView, self).get_initial()
+        initial_data['username'] = self.object.username
+        initial_data['first_name'] = self.object.first_name
+        initial_data['last_name'] = self.object.last_name
+        initial_data['email'] = self.object.email
+        communal = Communal.objects.get(profile=self.object.profile)
+        initial_data['phone'] = communal.profile.phone
+        initial_data['communal_council'] = communal.communal_council
+        return initial_data
 
     def form_valid(self, form):
         """!
@@ -113,28 +115,170 @@ class PerfilUpdate(UpdateView):
 
         self.object = form.save(commit=False)
         self.object.username = form.cleaned_data['username']
-        self.object.first_name = form.cleaned_data['nombre']
-        self.object.last_name = form.cleaned_data['apellido']
-        self.object.email = form.cleaned_data['correo']
+        self.object.first_name = form.cleaned_data['first_name']
+        self.object.last_name = form.cleaned_data['last_name']
+        self.object.email = form.cleaned_data['email']
         self.object.save()
 
-        perfil = Perfil.objects.get(user=self.object)
+        profile = Profile.objects.get(user=self.object)
 
-        ## Forma alternativa
-        """Perfil.objects.update_or_create(
-            pk=perfil.pk, defaults={
-                'cedula': form.cleaned_data['cedula'],
-                'telefono': form.cleaned_data['telefono'],
-            }
-        )"""
+        if Profile.objects.filter(user=self.object):
+            profile = Profile.objects.get(user=self.object)
+            profile.phone = form.cleaned_data['phone']
+            profile.save()
 
-        if Perfil.objects.filter(user__username=str(self.object.username)):
-            perfil = Perfil.objects.get(user__username=str(self.object.username))
-            perfil.cedula = form.cleaned_data['cedula']
-            perfil.telefono = form.cleaned_data['telefono']
-            perfil.save()
-
-        return super(PerfilUpdate, self).form_valid(form)
+        return super(CommunalUpdateView, self).form_valid(form)
 
     def form_invalid(self, form):
-        return super(PerfilUpdate, self).form_invalid(form)
+        return super(CommunalUpdateView, self).form_invalid(form)
+
+class PollsterListView(ListView):
+    model = Pollster
+    template_name = 'usuario/pollster.list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.profile.level == 1:
+            return super(PollsterListView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
+
+    def get_queryset(self):
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            queryset = Pollster.objects.filter(communal=communal)
+            return queryset
+
+class PollsterCreateView(CreateView):
+    model = User
+    form_class = PollsterForm
+    template_name = 'usuario/profile.create.html'
+    success_url = reverse_lazy('usuario:pollster_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.profile.level == 1:
+            return super(PollsterCreateView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
+
+    def get_form_kwargs(self):
+        kwargs = super(PollsterCreateView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.username = form.cleaned_data['username']
+        self.object.first_name = form.cleaned_data['first_name']
+        self.object.last_name = form.cleaned_data['last_name']
+        self.object.email = form.cleaned_data['email']
+        self.object.set_password(form.cleaned_data['password'])
+        self.object.is_active = True
+        self.object.save()
+
+        profile = Profile.objects.create(
+            phone=form.cleaned_data['phone'],
+            level = 2,
+            user= self.object
+        )
+
+        communal = Communal.objects.get(profile=self.request.user.profile)
+        Pollster.objects.create(
+            communal = communal,
+            profile = profile
+        )
+
+        admin, admin_email = '', ''
+        if settings.ADMINS:
+            admin = settings.ADMINS[0][0]
+            admin_email = settings.ADMINS[0][1]
+
+        sent = send_email(self.object.email, 'welcome.mail', EMAIL_SUBJECT, {'first_name':self.request.user.first_name,
+            'last_name':self.request.user.last_name, 'email':self.request.user.email, 'phone':self.request.user.profile.phone,
+            'communal':communal, 'username':self.object.username, 'password':form.cleaned_data['password'],
+            'admin':admin, 'admin_email':admin_email, 'emailapp':settings.EMAIL_FROM
+        })
+
+        return super(PollsterCreateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(PollsterCreateView, self).form_invalid(form)
+
+class PollsterUpdateView(UpdateView):
+    model = User
+    form_class = PollsterUpdateForm
+    template_name = 'usuario/profile.create.html'
+    success_url = reverse_lazy('base:home')
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.id == self.kwargs['pk'] and self.request.user.profile.level == 2:
+            return super(PollsterUpdateView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
+
+    """def get_form_kwargs(self):
+        kwargs = super(PollsterUpdateView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs"""
+
+    def get_initial(self):
+        initial_data = super(PollsterUpdateView, self).get_initial()
+        initial_data['username'] = self.object.username
+        initial_data['first_name'] = self.object.first_name
+        initial_data['last_name'] = self.object.last_name
+        initial_data['email'] = self.object.email
+        initial_data['phone'] = self.object.profile.phone
+        if Pollster.objects.filter(profile=self.object.profile):
+            pollster = Pollster.objects.get(profile=self.object.profile)
+            initial_data['communal_council'] = pollster.communal.communal_council
+        return initial_data
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.username = form.cleaned_data['username']
+        self.object.first_name = form.cleaned_data['first_name']
+        self.object.last_name = form.cleaned_data['last_name']
+        self.object.email = form.cleaned_data['email']
+        self.object.save()
+
+        if Profile.objects.filter(user=self.object):
+            profile = Profile.objects.get(user=self.object)
+            profile.phone = form.cleaned_data['phone']
+            profile.save()
+
+        return super(PollsterUpdateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(PollsterUpdateView, self).form_invalid(form)
+
+class PollsterStatusUpdateView(UpdateView):
+
+    model = User
+    form_class = PollsterStatusForm
+    template_name = 'usuario/pollster.status.update.html'
+    success_url = reverse_lazy('usuario:pollster_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            pollster = Pollster.objects.filter(communal=communal,profile__user__pk=self.kwargs['pk'])
+        if pollster and self.request.user.profile.level == 1:
+            return super(PollsterStatusUpdateView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
+
+    def get_initial(self):
+        initial_data = super(PollsterStatusUpdateView, self).get_initial()
+        initial_data['is_active'] = self.object.is_active
+        return initial_data
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.is_active = form.cleaned_data['is_active']
+        self.object.save()
+        return super(PollsterStatusUpdateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(PollsterStatusUpdateView, self).form_invalid(form)

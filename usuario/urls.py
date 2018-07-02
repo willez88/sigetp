@@ -36,25 +36,33 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.urls import path, include
-from .views import PerfilUpdate
+from .views import CommunalUpdateView, PollsterListView, PollsterCreateView, PollsterUpdateView, PollsterStatusUpdateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
+app_name = 'usuario'
+
 urlpatterns = [
 
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='usuario/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('reset/password_reset/', auth_views.PasswordResetView.as_view(template_name='password_reset_form.html',
+    path('reset/password_reset/', auth_views.PasswordResetView.as_view(template_name='usuario/password_reset_form.html',
         email_template_name='password_reset_email.html'),
         name='password_reset'),
-    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),
+    path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='usuario/password_reset_done.html'),
         name='password_reset_done'),
     path('reset/<uidb64>/<token>/',
-        auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),
+        auth_views.PasswordResetConfirmView.as_view(template_name='usuario/password_reset_confirm.html'),
         name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='usuario/password_reset_complete.html'),
         name='password_reset_complete'),
-    path('cambiar-clave/', auth_views.PasswordChangeView.as_view(template_name='password_change_form.html'), name='password_change'),
-    path('cambiar-clave-hecho/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'), name='password_change_done'),
-    path('actualizar/<int:pk>/', login_required(PerfilUpdate.as_view()), name="usuario_actualizar"),
+    path('cambiar-clave/', auth_views.PasswordChangeView.as_view(template_name='usuario/password_change_form.html'), name='password_change'),
+    path('cambiar-clave-hecho/', auth_views.PasswordChangeDoneView.as_view(template_name='usuario/password_change_done.html'), name='password_change_done'),
+
+    path('comunal/actualizar/<int:pk>/', login_required(CommunalUpdateView.as_view()), name='communal_update'),
+
+    path('encuestador/listar/', login_required(PollsterListView.as_view()), name='pollster_list'),
+    path('encuestador/registrar/', login_required(PollsterCreateView.as_view()), name='pollster_create'),
+    path('encuestador/actualizar/<int:pk>/', login_required(PollsterUpdateView.as_view()), name='pollster_update'),
+    path('encuestador/estatus/<int:pk>/', login_required(PollsterStatusUpdateView.as_view()), name='pollster_status_update'),
 ]

@@ -41,7 +41,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Vivienda, Imagen
 from .forms import ViviendaForm, ViviendaUpdateForm, ImagenForm
 from django.contrib.auth.models import User
-from base.models import ConsejoComunal
+from base.models import CommunalCouncil
+from usuario.models import Profile, Pollster, Communal
 
 # Create your views here.
 
@@ -55,7 +56,7 @@ class ViviendaList(ListView):
     """
 
     model = Vivienda
-    template_name = "vivienda.lista.html"
+    template_name = 'vivienda.lista.html'
 
     def get_queryset(self):
         """!
@@ -67,6 +68,11 @@ class ViviendaList(ListView):
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna la lista de objetos vivienda que pertenecen al usuario
         """
+
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            queryset = Vivienda.objects.filter(communal_council=communal.communal_council)
+            return queryset
 
         queryset = Vivienda.objects.filter(user=self.request.user)
         return queryset
@@ -82,7 +88,7 @@ class ViviendaCreate(CreateView):
 
     model = Vivienda
     form_class = ViviendaForm
-    template_name = "vivienda.registro.html"
+    template_name = 'vivienda.registro.html'
     success_url = reverse_lazy('vivienda_lista')
 
     def get_form_kwargs(self):
@@ -113,16 +119,11 @@ class ViviendaCreate(CreateView):
         """
 
         self.object = form.save(commit=False)
-
-        user = User.objects.get(username=self.request.user.username)
-        self.object.user = user
-
         self.object.fecha_hora = form.cleaned_data['fecha_hora']
         self.object.tipo_techo = form.cleaned_data['tipo_techo']
         self.object.servicio_electrico = form.cleaned_data['servicio_electrico']
         self.object.situacion_sanitaria = form.cleaned_data['situacion_sanitaria']
         self.object.disposicion_basura = form.cleaned_data['disposicion_basura']
-        #self.object.disposicion_basura = form.cleaned_data['disposicion_basura']
         self.object.tipo_vivienda = form.cleaned_data['tipo_vivienda']
         self.object.tipo_pared = form.cleaned_data['tipo_pared']
 
@@ -168,19 +169,30 @@ class ViviendaCreate(CreateView):
 
         self.object.animales = form.cleaned_data['animales']
 
-        #self.object.consejo_comunal = form.cleaned_data['consejo_comunal']
-        consejo_comunal = ConsejoComunal.objects.get(rif=user.perfil.consejo_comunal.rif)
-        self.object.consejo_comunal = consejo_comunal
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            self.object.communal_council = communal.communal_council
+        if Pollster.objects.filter(profile=self.request.user.profile):
+            pollster = Pollster.objects.get(profile=self.request.user.profile)
+            self.object.communal_council = pollster.communal.communal_council
 
         self.object.direccion = form.cleaned_data['direccion']
         self.object.numero_vivienda = form.cleaned_data['numero_vivienda']
         self.object.coordenadas = form.cleaned_data['coordenada']
         self.object.observacion = form.cleaned_data['observacion']
 
+        """if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            self.object.user = communal.profile.user
+        if Pollster.objects.filter(profile=self.request.user.profile):
+            pollster = Pollster.objects.get(profile=self.request.user.profile)
+            self.object.user = pollster.profile.user"""
+        self.object.user = self.request.user
         self.object.save()
         return super(ViviendaCreate, self).form_valid(form)
 
     def form_invalid(self, form):
+        print(form.errors)
         return super(ViviendaCreate, self).form_invalid(form)
 
 class ViviendaUpdate(UpdateView):
@@ -194,7 +206,7 @@ class ViviendaUpdate(UpdateView):
 
     model = Vivienda
     form_class = ViviendaUpdateForm
-    template_name = "vivienda.registro.html"
+    template_name = 'vivienda.registro.html'
     success_url = reverse_lazy('vivienda_lista')
 
     def get_form_kwargs(self):
@@ -227,10 +239,17 @@ class ViviendaUpdate(UpdateView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not Vivienda.objects.filter(pk=self.kwargs['pk'],user=user):
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if Vivienda.objects.filter(pk=self.kwargs['pk'],communal_council=communal.communal_council):
+                return super(ViviendaUpdate, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if Vivienda.objects.filter(pk=self.kwargs['pk'],user=self.request.user):
+            return super(ViviendaUpdate, self).dispatch(request, *args, **kwargs)
+        else:
             return redirect('base_403')
-        return super(ViviendaUpdate, self).dispatch(request, *args, **kwargs)
 
     def get_initial(self):
         """!
@@ -261,9 +280,7 @@ class ViviendaUpdate(UpdateView):
         @return Retorna el formulario validado
         """
 
-        consejo_comunal = ConsejoComunal.objects.get(rif=self.request.user.perfil.consejo_comunal.rif)
         self.object = form.save(commit=False)
-        self.object.consejo_comunal = consejo_comunal
         self.object.coordenadas = form.cleaned_data['coordenada']
         self.object.save()
         return super(ViviendaUpdate, self).form_valid(form)
@@ -281,7 +298,7 @@ class ViviendaDelete(DeleteView):
     """
 
     model = Vivienda
-    template_name = "vivienda.eliminar.html"
+    template_name = 'vivienda.eliminar.html'
     success_url = reverse_lazy('vivienda_lista')
 
     def dispatch(self, request, *args, **kwargs):
@@ -299,10 +316,17 @@ class ViviendaDelete(DeleteView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not Vivienda.objects.filter(pk=self.kwargs['pk'],user=user):
-            return redirect('base_403')
-        return super(ViviendaDelete, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if Vivienda.objects.filter(pk=self.kwargs['pk'],communal_council=communal.communal_council):
+                return super(ViviendaDelete, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if Vivienda.objects.filter(pk=self.kwargs['pk'],user=self.request.user):
+            return super(ViviendaDelete, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
 
 class ImagenList(ListView):
     """!
@@ -327,6 +351,11 @@ class ImagenList(ListView):
         @return Retorna la lista de objetos imágenes que pertenecen al usuario
         """
 
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            queryset = Imagen.objects.filter(vivienda__communal_council=communal.communal_council)
+            return queryset
+
         queryset = Imagen.objects.filter(vivienda__user=self.request.user)
         return queryset
 
@@ -341,7 +370,7 @@ class ImagenCreate(CreateView):
 
     model = Imagen
     form_class = ImagenForm
-    template_name = "imagen.registro.html"
+    template_name = 'imagen.registro.html'
     success_url = reverse_lazy('imagen_lista')
 
     def get_form_kwargs(self):
@@ -371,7 +400,7 @@ class ImagenCreate(CreateView):
         @return Retorna el formulario validado
         """
 
-        print(form.cleaned_data['archivo_imagen'])
+        #print(form.cleaned_data['archivo_imagen'])
         self.object = form.save(commit=False)
         self.object.nombre = form.cleaned_data['archivo_imagen']
         vivienda = Vivienda.objects.get(pk=form.cleaned_data['vivienda'])
@@ -393,7 +422,7 @@ class ImagenDelete(DeleteView):
     """
 
     model = Imagen
-    template_name = "imagen.eliminar.html"
+    template_name = 'imagen.eliminar.html'
     success_url = reverse_lazy('imagen_lista')
 
     def dispatch(self, request, *args, **kwargs):
@@ -411,7 +440,14 @@ class ImagenDelete(DeleteView):
                 de no ser el usuario logueado
         """
 
-        user = User.objects.get(username=self.request.user.username)
-        if not Imagen.objects.filter(pk=self.kwargs['pk'],vivienda__user=user):
-            return redirect('base_403')
-        return super(ImagenDelete, self).dispatch(request, *args, **kwargs)
+        if Communal.objects.filter(profile=self.request.user.profile):
+            communal = Communal.objects.get(profile=self.request.user.profile)
+            if Imagen.objects.filter(pk=self.kwargs['pk'],vivienda__communal_council=communal.communal_council):
+                return super(ImagenDelete, self).dispatch(request, *args, **kwargs)
+            else:
+                return redirect('base:error_403')
+
+        if Imagen.objects.filter(pk=self.kwargs['pk'],vivienda__user=self.request.user):
+            return super(ImagenDelete, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect('base:error_403')
