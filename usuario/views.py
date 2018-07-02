@@ -192,7 +192,7 @@ class PollsterCreateView(CreateView):
             admin = settings.ADMINS[0][0]
             admin_email = settings.ADMINS[0][1]
 
-        sent = send_email(self.object.email, 'welcome.mail', EMAIL_SUBJECT, {'first_name':self.request.user.first_name,
+        sent = send_email(self.object.email, 'usuario/welcome.mail', EMAIL_SUBJECT, {'first_name':self.request.user.first_name,
             'last_name':self.request.user.last_name, 'email':self.request.user.email, 'phone':self.request.user.profile.phone,
             'communal':communal, 'username':self.object.username, 'password':form.cleaned_data['password'],
             'admin':admin, 'admin_email':admin_email, 'emailapp':settings.EMAIL_FROM
