@@ -62,6 +62,16 @@ Tendremos las carpetas estructuradas de la siguiente manera
     // Servidor de desarrollo
     Programación/Python/ProyectosDjango/sigetp
 
+Instalar las dependencias de css y js: moverse a la carpeta static y ejecutar
+
+    (sofi) ~$ cd static/
+
+    // Usa el archivo package.json para instalar lo que está configurado allí
+    (sofi) ~$ npm install
+
+    // Terminado el proceso volver a la carpeta raíz del proyecto
+    (sofi) ~$ cd ../
+
 Crear la base de datos para el __SIGETP__
 
     // Acceso al usuario postgres

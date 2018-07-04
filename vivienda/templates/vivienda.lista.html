@@ -16,8 +16,8 @@
 
         <div class="box-body">
             <div class="row box-body table-responsive">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="tabla-vivienda" style="width:6050px;">
+                <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+                    <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="table" style="width:6050px;">
                         <thead>
                             <tr>
                                 <th>Fecha y Hora</th>
@@ -146,7 +146,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>
+                <!--</div>-->
             </div>
         </div>
     </div>
@@ -154,31 +154,7 @@
 {% block extra_footer %}
     <script type="text/javascript">
         $(document).ready(function() {
-            var tabla= $('#tabla-vivienda').DataTable({
-                "language": {
-                    "sProcessing":     "Procesando...",
-	                "sLengthMenu":     "Mostrar _MENU_ registros",
-	                "sZeroRecords":    "No se encontraron resultados",
-	                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-	                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-	                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-	                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-	                "sInfoPostFix":    "",
-	                "sSearch":         "Buscar:",
-	                "sUrl":            "",
-	                "sInfoThousands":  ",",
-	                "sLoadingRecords": "Cargando...",
-	                "oPaginate": {
-		                "sFirst":    "Primero",
-		                "sLast":     "Último",
-		                "sNext":     "Siguiente",
-		                "sPrevious": "Anterior"
-	                },
-	                "oAria": {
-		                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-		                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-	                },
-                },
+            var table = $('#table').DataTable({
                 "autoWidth": false,
                 "columnDefs": [
                     { "width": "250px", "targets": 0 },
@@ -219,6 +195,8 @@
                     { "width": "100px", "targets": 35 },
                 ],
             });
+
+            button_datatable(table);
         });
     </script>
 {% endblock %}

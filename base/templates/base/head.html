@@ -8,25 +8,23 @@
     <meta name="author" content="William Páez (wpaez at cenditel.gob.ve)">
     <meta name="author" content="Centro Nacional de Desarrollo e Investigación en Tecnologías Libres (CENDITEL)">
 	<meta name="author" content="Centro de Investigaciones de Astronomía 'Francisco J. Duarte' (CIDA)">
-    <link rel="stylesheet" href="{% static 'tools/bootstrap/css/bootstrap.min.css' %}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'tools/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/ionicons-2.0.1/css/ionicons.min.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/ionicons/dist/css/ionicons.min.css' %}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'tools/AdminLTE/css/AdminLTE.min.css' %}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{% static 'tools/AdminLTE/css/skins/_all-skins.min.css' %}">
+
     <!-- se comenta cuando no hay internet -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'tools/openlayers/ol.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/select2/select2.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/DataTables-1.10.15/extensions/Buttons/css/buttons.dataTables.min.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/DataTables-1.10.15/media/css/dataTables.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/DataTables-1.10.15/extensions/Responsive/css/responsive.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/DataTables-1.10.15/extensions/Buttons/css/buttons.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'tools/datepicker/datepicker3.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/select2/dist/css/select2.min.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/datatables.net-buttons-bs/css/buttons.bootstrap.min.css' %}">
+  	<link rel="stylesheet" href="{% static 'node_modules/datatables.net-bs/css/dataTables.bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css' %}">
     {% block extra_head %}
 
     {% endblock %}
