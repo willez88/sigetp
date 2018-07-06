@@ -57,6 +57,38 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299391522",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA CEIBITA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299391638",
+    "fields": {
+        "name": "CONSEJO COMUNAL EL NAZARENO (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299391913",
+    "fields": {
+        "name": "CONSEJO COMUNAL EL SALADITO (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299392162",
+    "fields": {
+        "name": "29939216",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299392286",
     "fields": {
         "name": "CONSEJO COMUNAL LAS CRUCES LOS NARANJOS (SIN NOMBRE COMERCIAL)",
@@ -101,6 +133,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL LA PLAYA PARTE BAJA (NO INDICA)",
         "parish": 558
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299397393",
+    "fields": {
+        "name": "CONSEJO COMUNAL TRASANDINA EL PEDREGAL (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -193,10 +233,26 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299416444",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA PUEBLITA LOMA LA VIRGEN (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299416592",
     "fields": {
         "name": "CONSEJO COMUNAL MANZANO BAJO (SIN NOMBRE COMERCIAL)",
         "parish": 556
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299416720",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA MANO PODEROSA SAN GERONIMO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
@@ -317,6 +373,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL PE\u00d1A COLORADA (SIN NOMBRE COMERCIAL)",
         "parish": 600
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299449091",
+    "fields": {
+        "name": "CONSEJO COMUNAL MESA DEL CUCHARITO (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -621,6 +685,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL JOVENES EN REVOLUCION (NO INDICA)",
         "parish": 555
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299476668",
+    "fields": {
+        "name": "CONSEJO COMUNAL QUEBRADA DE LA VIRGEN (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
@@ -961,6 +1033,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299581593",
+    "fields": {
+        "name": "CONSEJO COMUNAL EL PE\u00d1ON (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299581755",
     "fields": {
         "name": "CONSEJO COMUNAL LA MUCUCHACHE (SIN NOMBRE COMERCIAL)",
@@ -1073,6 +1153,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299607738",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA TOMA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299608432",
     "fields": {
         "name": "CONSEJO COMUNAL LAS MESITAS DE LOS HIGUERONES (SIN NOMBRE COMERCIAL)",
@@ -1125,6 +1213,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL LA BOMBA (NO INDICA)",
         "parish": 599
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299623440",
+    "fields": {
+        "name": "CONSEJO COMUNAL DON PABLO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
@@ -2097,6 +2193,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299688096",
+    "fields": {
+        "name": "CONSEJO COMUNAL AGUA CALIENTE (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299691860",
     "fields": {
         "name": "CONSEJO COMUNAL LAS COCUIZAS (SIN NOMBRE COMERCIAL)",
@@ -2205,6 +2309,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL ANTONIO JOSE DE SUCRE (NO INDICA)",
         "parish": 583
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299747122",
+    "fields": {
+        "name": "CONSEJO COMUNAL ALTO VIENTO PIEDRAS BLANCAS (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -2465,6 +2577,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299793256",
+    "fields": {
+        "name": "CONSEJO COMUNAL MUCUY BAJA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299793795",
     "fields": {
         "name": "CONSEJO COMUNAL CONSEJO COMUNAL LA ESMERALDA (NO INDICA)",
@@ -2489,6 +2609,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299794856",
+    "fields": {
+        "name": "CONSEJO COMUNAL CAPILLA DE LAS MERCEDES (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299795569",
     "fields": {
         "name": "CONSEJO COMUNAL LETICIA (NO INDICA)",
@@ -2501,6 +2629,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL MOCOCON ALTO (NO INDICA)",
         "parish": 599
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299795739",
+    "fields": {
+        "name": "CONSEJO COMUNAL EL TAMPACAL (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -2617,6 +2753,22 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299869627",
+    "fields": {
+        "name": "CONSEJO COMUNAL SECTOR LAS CALAVERAS (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299869686",
+    "fields": {
+        "name": "CONSEJO COMUNAL LOS MICUYES (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299869783",
     "fields": {
         "name": "CONSEJO COMUNAL VILLA ESPERANZA (NO INDICA)",
@@ -2713,6 +2865,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299895288",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA CAPEA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299895415",
     "fields": {
         "name": "CONSEJO COMUNAL LAS CULEBRAS LA VEGA (SIN NOMBRE COMERCIAL)",
@@ -2753,6 +2913,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C299896543",
+    "fields": {
+        "name": "CONSEJO COMUNAL CUCHARITO ALTO Y BAJO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C299897264",
     "fields": {
         "name": "CONSEJO COMUNAL MUCUBANGA ALTA (SIN NOMBRE COMERCIAL)",
@@ -2789,6 +2957,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL SANTA ROSALIA (NO INDICA)",
         "parish": 559
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299897582",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA VEGA DE SAN ANTONIO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
@@ -2885,6 +3061,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL LOS GRANATES (NO INDICA)",
         "parish": 596
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C299902330",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA ESCUELA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
@@ -3017,6 +3201,62 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C300418359",
+    "fields": {
+        "name": "CONSEJO COMUNAL ROSAL PARAMITO 15 (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C300440044",
+    "fields": {
+        "name": "CONSEJO COMUNAL LOMA DEL PUEBLO (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C300445798",
+    "fields": {
+        "name": "CONSEJO COMUNAL FILO DEL LORO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C300494543",
+    "fields": {
+        "name": "CONSEJO COMUNAL LOMA DEL PUEBLO PARTE BAJA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C304890168",
+    "fields": {
+        "name": "CONSEJO COMUNAL SAN EMIGDIO (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C305835810",
+    "fields": {
+        "name": "CONSEJO COMUNAL BUENA VISTA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C306128654",
+    "fields": {
+        "name": "CONSEJO COMUNAL NUBE DE AGUA Y EL MANANTIAL (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C306177299",
     "fields": {
         "name": "CONSEJO COMUNAL UNIDOS POR SIEMPRE LOS TRES SECTORES (SIN NOMBRE COMERCIAL)",
@@ -3081,6 +3321,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C307269200",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA MESA EL PEDREGAL (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C308078484",
     "fields": {
         "name": "CONSEJO COMUNAL ESCUQUE (SIN NOMBRE COMERCIAL)",
@@ -3089,10 +3337,34 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C309371835",
+    "fields": {
+        "name": "CONSEJO COMUNAL HACIENDA Y VEGA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C309372270",
     "fields": {
         "name": "CONSEJO COMUNAL SAN BENITO (SIN NOMBRE COMERCIAL)",
         "parish": 555
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C309395920",
+    "fields": {
+        "name": "CONSEJO COMUNAL AGUA CLARA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C309397214",
+    "fields": {
+        "name": "CONSEJO COMUNAL SAN GERONIMO (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -3161,6 +3433,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C311031472",
+    "fields": {
+        "name": "CONSEJO COMUNAL SECTOR LA BOMBA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C313331970",
     "fields": {
         "name": "CONSEJO COMUNAL LA MONTA\u00d1ITA ANDINA (NO INDICA)",
@@ -3209,6 +3489,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C315376822",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA PLAZUELA (V146808774)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C315444569",
     "fields": {
         "name": "CONSEJO COMUNAL MESA GRANDE (MESA GRANDE)",
@@ -3221,6 +3509,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL MOQUEO (SIN NOMBRE COMERCIAL)",
         "parish": 554
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C317291689",
+    "fields": {
+        "name": "CONSEJO COMUNAL MUCUNUTAN (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -3289,6 +3585,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C400548292",
+    "fields": {
+        "name": "CONSEJO COMUNAL CASCO URBANO DE TABAY (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C400628806",
     "fields": {
         "name": "CONSEJO COMUNAL LAS GONZALEZ PARAISO (SIN NOMBRE COMERCIAL)",
@@ -3353,6 +3657,14 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C401422012",
+    "fields": {
+        "name": "CONSEJO COMUNAL MUCUY ALTA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C401450946",
     "fields": {
         "name": "CONSEJO COMUNAL EL VEGON DE LOS GUAIMAROS (NO INDICA)",
@@ -3401,6 +3713,22 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C403339716",
+    "fields": {
+        "name": "CONSEJO COMUNAL PIEDRAS BLANCAS (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C403357617",
+    "fields": {
+        "name": "CONSEJO COMUNAL RODOLFO MALDONADO (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C403395608",
     "fields": {
         "name": "CONSEJO COMUNAL COMANDANTE ETERNO 4 SECTORES (NO INDICA)",
@@ -3417,10 +3745,34 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C403488010",
+    "fields": {
+        "name": "CONSEJO COMUNAL LA QUEBRADITA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C403511934",
     "fields": {
         "name": "CONSEJO COMUNAL CONSEJO COMUNAL GUAYABAL QUEBRADA DE LAS LAPAS (NO INDICA)",
         "parish": 541
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C403702560",
+    "fields": {
+        "name": "CONSEJO COMUNAL CONSEJO COMUNAL VIRGEN DE LA CANDELARIA (NO INDICA)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C403716633",
+    "fields": {
+        "name": "CONSEJO COMUNAL CAPILLA DE PIEDRA (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -3449,10 +3801,26 @@
 },
 {
     "model": "base.communalcouncil",
+    "pk": "C404521194",
+    "fields": {
+        "name": "CONSEJO COMUNAL VIRGEN DE LA INMACULADA (SIN NOMBRE COMERCIAL)",
+        "parish": 603
+    }
+},
+{
+    "model": "base.communalcouncil",
     "pk": "C404564063",
     "fields": {
         "name": "CONSEJO COMUNAL CONSEJO COMUNAL \"EL MONTE SACRO DE SANTA MARTA\" (NO INDICA)",
         "parish": 541
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C404622411",
+    "fields": {
+        "name": "CONSEJO COMUNAL EL RINCON DE SAN ISIDRO (NO INDICA)",
+        "parish": 603
     }
 },
 {
@@ -3509,6 +3877,14 @@
     "fields": {
         "name": "CONSEJO COMUNAL CHAVEZ PARA SIEMPRE (SIN NOMBRE COMERCIAL)",
         "parish": 559
+    }
+},
+{
+    "model": "base.communalcouncil",
+    "pk": "C404998306",
+    "fields": {
+        "name": "CONSEJO COMUNAL SAN RAFAEL (SIN NOMBRE COMERCIAL)",
+        "parish": 603
     }
 },
 {
