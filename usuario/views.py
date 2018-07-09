@@ -44,6 +44,7 @@ from .models import Profile, Communal, Pollster
 from django.conf import settings
 from base.constant import EMAIL_SUBJECT
 from base.functions import send_email
+from django.contrib.sites.shortcuts import get_current_site
 
 # Create your views here.
 
@@ -195,7 +196,7 @@ class PollsterCreateView(CreateView):
         sent = send_email(self.object.email, 'usuario/welcome.mail', EMAIL_SUBJECT, {'first_name':self.request.user.first_name,
             'last_name':self.request.user.last_name, 'email':self.request.user.email, 'phone':self.request.user.profile.phone,
             'communal':communal, 'username':self.object.username, 'password':form.cleaned_data['password'],
-            'admin':admin, 'admin_email':admin_email, 'emailapp':settings.EMAIL_FROM
+            'admin':admin, 'admin_email':admin_email, 'emailapp':settings.EMAIL_FROM, 'url':get_current_site(self.request).name
         })
 
         return super(PollsterCreateView, self).form_valid(form)
