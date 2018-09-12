@@ -85,7 +85,7 @@ class RifWidget(forms.MultiWidget):
             return [value[0], value[1:-1], value[-1]]
         return [None, None, None]
 
-class IdentificationCardWidget(forms.MultiWidget):
+class IdentityCardWidget(forms.MultiWidget):
     """!
     Clase que agrupa los widgets de los campos de nacionalidad y número de cédula de identidad
 
@@ -112,7 +112,7 @@ class IdentificationCardWidget(forms.MultiWidget):
             )
         )
 
-        super(IdentificationCardWidget, self).__init__(widgets, *args, **kwargs)
+        super(IdentityCardWidget, self).__init__(widgets, *args, **kwargs)
 
     def format_output(self, rendered_widgets):
         return ' - '.join(rendered_widgets)

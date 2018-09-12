@@ -37,18 +37,18 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 
 from __future__ import unicode_literals
 from django.urls import path, re_path
-from .views import HomeView, Error403View
+from .views import HomeTemplateView, Error403TemplateView
 from .ajax import ComboUpdateView
 from django.contrib.auth.decorators import login_required
 
 app_name = 'base'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('error-403/', Error403View.as_view(), name = "error_403"),
+    path('', HomeTemplateView.as_view(), name='home'),
+    path('error-403/', Error403TemplateView.as_view(), name = 'error_403'),
 ]
 
 ## URLs de peticiones AJAX
 urlpatterns += [
-    re_path(r'^ajax/actualizar-combo/?$', login_required(ComboUpdateView.as_view()), name='combo_update'),
+    re_path(r'^ajax/combo-update/?$', login_required(ComboUpdateView.as_view()), name='combo_update'),
 ]

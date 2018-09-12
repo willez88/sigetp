@@ -38,7 +38,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-class HomeView(TemplateView):
+class HomeTemplateView(TemplateView):
     """!
     Clase para mostrar la página de inicio del sistema
 
@@ -49,7 +49,7 @@ class HomeView(TemplateView):
 
     template_name = 'base/base.html'
 
-class Error403View(TemplateView):
+class Error403TemplateView(TemplateView):
     """!
     Clase para mostrar la página de error de permisos
 

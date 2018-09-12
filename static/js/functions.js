@@ -7,21 +7,21 @@
  * @param title Titulo de la ventana emergente
  * @param template Plantilla html a utilizar para mostrar el formulario
  */
-function seleccionar_coordenadas(title, template) {
+function coordinates_select(title, template) {
     var modal = bootbox.dialog({
         title: title,
         message: template,
         buttons: {
             success: {
-                label: BTN_AGREGAR,
+                label: BTN_ADD,
                 className: "btn btn-default btn-sm",
                 callback: function() {
-                    $("#id_coordenada_0").val($(modal).find("#inputLongitud").val());
-                    $("#id_coordenada_1").val($(modal).find("#inputLatitud").val());
+                    $("#id_coordinate_0").val($(modal).find("#inputLongitud").val());
+                    $("#id_coordinate_1").val($(modal).find("#inputLatitud").val());
                 }
             },
             main: {
-                label: BTN_CANCELAR,
+                label: BTN_CANCEL,
                 className: "btn btn-default btn-sm"
             }
         },

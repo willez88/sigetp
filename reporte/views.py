@@ -38,9 +38,9 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
-from vivienda.models import Vivienda
-from vivienda.grupo_familiar.models import GrupoFamiliar
-from vivienda.grupo_familiar.persona.models import Persona
+from living_place.models import LivingPlace
+from living_place.family_group.models import FamilyGroup
+from living_place.family_group.person.models import Person
 
 # Create your views here.
 

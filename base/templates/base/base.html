@@ -1,241 +1,237 @@
 <!DOCTYPE html>
+{% load auth_extra %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE|default:"es-ve" }}">
-    {% include 'base/head.html' %}
-    <body class="hold-transition skin-blue sidebar-mini">
-        <div class="wrapper">
-
-            <header class="main-header">
-            <!-- Logo -->
-                <a href="{% url 'base:home' %}" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>S</b></span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica"><b>SIGETP</b></span>
-                </a>
-                <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top">
-                    <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
-
-                    {% if request.user.is_authenticated %}
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- User Account: style can be found in dropdown.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="glyphicon glyphicon-user"></i>&#160;<span class="hidden-xs">{{ request.user.username }}</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <p class="text-left"><small>Nombres: {{ request.user.first_name }} {{ request.user.last_name }}</small></p>
-                                        <p class="text-left"><small>Último Inicio de Sesión: {{ request.user.last_login }}</small></p>
-                                        <p class="text-left"><small>Teléfono: {{ request.user.profile.phone }}</small></p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="row">
-                                            <div class="col-xs-12 text-center">
-                                                <a href="{% url 'usuario:password_change' %}" class="btn btn-default btn-flat">Cambiar Contraseña</a>
-                                            </div>
-                                        </div>
-                                        <!-- /.row -->
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            {% if request.user.profile.level == 1 %}
-                                                <a href="{% url 'usuario:communal_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
-                                            {% elif request.user.profile.level == 2 %}
-                                                <a href="{% url 'usuario:pollster_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
-                                            {% endif %}
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="{% url 'usuario:logout' %}" class="btn btn-default btn-flat">
-                                                <i class="glyphicon glyphicon-log-out"></i>&#160;Salir
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Control Sidebar Toggle Button -->
-                        </ul>
-                    </div>
-                    {% else %}
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- User Account: style can be found in dropdown.less -->
-                            <li class="dropdown user user-menu">
-                                <a href="{% url 'usuario:login' %}">
-                                    <i class="glyphicon glyphicon-log-in"></i>&#160;<span class="hidden-xs">Iniciar Seción</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                </nav>
-            </header>
-
-            {% if request.user.is_authenticated %}
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu" data-widget="tree">
-                        <li class="header">MENÚ PRINCIPAL</li>
-                        <li id="in"><a href="{% url 'base:home' %}"><i class="fa fa-dashboard"></i> <span>Inicio</span></a></li>
-                        {% if request.user.profile.level == 1 %}
-                        <li id="po"><a href="{% url 'usuario:pollster_list' %}"><i class="fa fa-user-plus"></i> <span>Encuestadores</span></a></li>
-                        {% endif %}
-                        <li class="treeview" id="vi">
-                            <a href="#">
-                                <i class="fa fa-hand-o-right"></i> <span>Viviendas</span>
-                                <span class="pull-right-container">
-                                    <i class="fa fa-angle-left pull-right" id="angle"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li id="viv"><a href="{%  url 'vivienda_lista' %}"><i class="fa fa-home"></i> <span>Vivienda</span></a></li>
-                                <li id="im"><a href="{%  url 'imagen_lista' %}"><i class="fa fa-camera"></i> <span>Imágenes</span></a></li>
-                            </ul>
-                        </li>
-                        <li id="gf"><a href="{% url 'grupo_familiar_lista' %}"><i class="fa fa-users"></i> <span>Grupo Familiar</span></a></li>
-                        <li id="pe"><a href="{% url 'persona_lista' %}"><i class="fa fa-user-plus"></i> <span>Persona</span></a></li>
-                    </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
-            {% endif %}
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <h1>{% block content_header_title %}{% trans 'Página Principal' %}{% endblock %}</h1>
-                    <ol class="breadcrumb">
-                        <li><a href="{% url 'base:home' %}"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                        {% block content_header_roadmap %}
-                        {% endblock %}
-                    </ol>
-                </section>
-                <!-- Main content -->
-                <section class="content">
-                    {% block contenido %}
-                        <div class="box box-info">
-                            <div class="box-header text-center">
-                                <!--<h3 class="box-title">Título</h3>-->
-                            </div>
-                            <div class="box-body text-justify">
-                                <p>La gestión pública en cualquiera de sus niveles, se nutre de información sistematizada, pertinente y oportuna sobre los distintos aspectos involucrados en la toma de decisiones y construcción de políticas públicas. Sin embargo, en el caso venezolano se observan importantes carencias e imprecisiones en la información disponible generada por el Estado. Si bien estas carencias son importantes en el ámbito nacional, sorprenden las fallas en sistematización y disponibilidad de información de áreas tan sensibles como los paisajes urbanos o rurales que conforman las las parroquias de nuestros municipios, caso que se hace más dramático cuando se trata de información comunal. Todo esto representa serias dificultades para la toma de decisiones en la dirección de situaciones. La experiencia de levantamiento a través del proyecto de las Microáreas diseñado por el INE es, sin duda, una excelente iniciativa para solventar los problemas antes descritos.</p>
-                                <p>Urge entonces, potenciar la Nueva Gobernabilidad Bolivariana y la cultura democrática, participativa y protagónica, empleando la ciencia y la tecnología como medio de gestión de información para nutrir procesos de planificación tecnopolítica, en las comunidades y hacia las comunidades, dado el espíritu, el propósito y la razón de la Constitución de la República Bolivariana de Venezuela, el Proyecto Nacional Simón Bolívar 2007, la Ley del Consejo Federal de Gobierno y la Ley Orgánica de los Consejos Comunales.</p>
-                                <p>El proyecto que se presenta a continuación es una respuesta ante esa urgencia.</p>
-                                <h3>Diagnóstico de la Situación Actual</h3>
-                                <p>El problema tiene su origen en una arraigada subestimación de la Planificación como instrumento vital para la elaboración de políticas comunitarias potentes. Aunque en la construcción de la V República  la carencia de información sistematizada ha impedido desarrollar adecuados procesos de dirección, a pesar del mandato Constitucional para los gobiernos locales de elaborar sus planes basándose en explicaciones situacionales obtenidas de la realidad comunal.</p>
-                                <p>El escenario se agudiza si añadimos la inobservancia a estándares y metodologías con pertinencia comprobada en la gestión de la información. Esto acusa baja interoperabilidad entre los sistemas de gestión, que limitan el despliegue de la planificación.</p>
-                                <p>Las situaciones descritas son parte de un conjunto de elementos que afectan negativamente la eficiencia, la eficacia y la efectividad de la Nueva Gobernabilidad Bolivariana, el proyecto político que impulsa la construcción del Estado Comunal.</p>
-                                <p>La persistencia de la situación, entre otros problemas, acusa ingobernabilidad comunal, afectando de manera directa el orden social deseado en el marco del proceso de la democracia protagónica revolucionaria.</p>
-                                <p>Hasta el presente se han dado distintas respuestas a las problemáticas expuestas, pero su carácter aislado, no integrador de los diferentes niveles y entes de gobierno impiden sus resultados. Por ello se sostiene que los innovadores planteamientos de este proyecto no tienen precedentes en el territorio nacional.</p>
-                                <h3>Impacto General del Proyecto</h3>
-                                <p>El proyecto tiene un impacto panorámico en todos los ámbitos de la vida nacional. Hay certeza de que el uso las Ciencias y Técnicas de Gobierno, vinculadas al SIGETP, en la gestión Comunal, marcarán un hito significativo en la construcción del Estado Comunal, porque conduce a un espacio de racionalidad y conciencia del respeto y cuidado colectivo del Bien Público.</p>
-                                <p>En una primera instancia, tan solo la realización del proyecto es una demostración de la presencia de actores tecnopolíticos conciencientes de la importancia y la pertinencia del análisis estratégico situacional comunal, en el marco del ejercicio de gobiernos dotados de métodos y herramientas potentes. A corto plazo, se generarán experiencias locales en el diseño y uso práctico de tecnologías tanto duras como blandas. En el mediano plazo, gracias al potencial que ofrece la tecnología de la información, se podrá replicar estas experiencias en todo el territorio nacional, y servirá, incluso, como ejemplo a los países del ALBA y del planeta como una manifestación tangible del Socialismo del siglo XXI.</p>
-                                <p>Entre otros beneficios, se espera fortalecer las tres variables del triángulo de Gobierno en la República Bolivariana de Venezuela: Capacidad de Gobierno en sus múltiples niveles, y ejecución del Proyecto Nacional Simón Bolívar, como expresión de la Carta Magna Venezolana.</p>
-                                <h3>Impacto Social</h3>
-                                <p>El SIGETP promoverá un marcado desarrollo organizacional social y político, elevará la eficiencia de los métodos de gobierno y fortalecerá la capacidad de toma de decisiones, gracias al despliegue pertinente y oportuno de información concreta, veraz y coherente, requerida.</p>
-                                <h3>Impacto Económico</h3>
-                                <p>El proyecto servirá para racionalizar la elaboración de presupuestos locales y en consecuencia mejorar la efectividad en el uso de los fondos públicos. De igual manera se incrementará la eficiencia en el uso de los recursos, la energía y los talentos, amén de una contraloría social más potente. Además, las comunidades podrán difundir sus experiencias sobre las estrategias de éxito en la gestión de los presupuestos.</p>
-                                <h3>Impacto Ambiental</h3>
-                                <p>Gracias al acceso a la información temática y geoespacial, se reivindica el papel fundamental de los factores ambientales en las decisiones públicas, no sólo en lo atinente a consideraciones técnicas de la incidencia de las decisiones sobre en entorno y medio ambiente, sino también en lo referido a la posibilidad de evaluar la incidencia de los factores ambientales a la luz de su cruce con otras áreas de la política, como por ejemplo la salud pública y la educación.</p>
-                                <p>La propuesta que se presenta, en términos técnicos no implica la afectación negativa del medio ambiente natural y social de las localidades involucradas, muy por el contrario se prevé resultados positivos en capacitación y sensibilización de estas localidades hacia el cultivo y preservación del medio ambiente.</p>
-                                <p>La información comunal es válida para la construcción de la nueva geometría del poder basada en el desarrollo eco-ambiental sustentable que define la Nueva Ordenación Territorial Socialista Bolivariana.</p>
-                                <h3>Impacto de Desarrollo Tecnológico</h3>
-                                <p>La puesta en practica de este proyecto representa un aporte para iniciar la implantación de una infraestructura tecnológica de soporte al Sistema Nacional de Planificación Pública. La conjugación de técnicas de análisis estadístico y geoespacial por un lado, y por el otro de las tecnologías de información con las ciencias y técnicas de gobierno, se traduce en una oportunidad para el despliegue de prácticas exitosas, de las que sin lugar a duda, se beneficiará la Nueva Gobernabilidad Bolivariana.</p>
-                                <p>De esta primera experiencia derivará un saber-hacer que será muy útil en la transferencia de iniciativas del ámbito privado (cooperativas, EPS, entre otras) que quieran incursionar en propuestas similares desarrolladas por si mismos.</p>
-                                <h3>Impacto de Inovación</h3>
-                                <p>Éste proyecto ha de servir de plataforma para facilitar la aplicación de distintas técnicas duras y blandas, en particular para el diseño e implantación, en una primera instancia, de indicadores sociales adaptados al espíritu de la  Gobernabilidad Bolivariana. El diseño de la herramienta buscará ofrecer una plataforma flexible para la experimentación y aplicación de técnicas cuantitativas y cualitativas, tales como: la planificación basada escenarios, técnicas de prospectiva, análisis estadístico multivariante, análisis de redes sociales, dinámica de sistemas, modelado y simulación basado en agentes, etc.</p>
-                                <p>Ello con el fin ultimo de fortalecer el ejercicio de la creatividad e innovación social en la instrumentación de métodos de gobierno que auxilien al sistema nacional de planificación pública en la construcción de la nueva geometría del poder, la ordenación del territorio y la determinación de regiones especiales de desarrollo socialistas.</p>
-                                <h3>Impacto Político</h3>
-                                <p>El SIGETP permitirá dar impulso a la organización social para la construcción del Estado Comunal, basado en el espíritu, propósito y razón de la Constitución de la República Bolivariana de Venezuela, el Proyecto Nacional Simón Bolívar y la recién promulgada Ley del Consejo Federal de Gobierno.</p>
-                            </div>
+  {% include 'base/head.html' %}
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="{% url 'base:home' %}" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>S</b></span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg" title="Sistema Integrado de Información y Documentación Geoestadística y Tecnopolítica"><b>SIGETP</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          {% if request.user.is_authenticated %}
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i>&#160;<span class="hidden-xs">{{ request.user.username }}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                      <p class="text-left"><small>Nombres: {{ request.user.first_name }} {{ request.user.last_name }}</small></p>
+                      <p class="text-left"><small>Último Inicio de Sesión: {{ request.user.last_login }}</small></p>
+                      <p class="text-left"><small>Teléfono: {{ request.user.profile.phone }}</small></p>
+                    </li>
+                    <!-- Menu Body -->
+                    <li class="user-body">
+                      <div class="row">
+                        <div class="col-xs-12 text-center">
+                          <a href="{% url 'user:password_change' %}" class="btn btn-default btn-flat">Cambiar Contraseña</a>
                         </div>
-                    {% endblock %}
-                </section>
-                <!-- /.content -->
+                      </div>
+                      <!-- /.row -->
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        {% if request.user|has_group:'Nivel Consejo Comunal' %}
+                          <a href="{% url 'user:communal_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
+                        {% elif request.user|has_group:'Nivel Encuestador' %}
+                          <a href="{% url 'user:pollster_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
+                        {% endif %}
+                      </div>
+                      <div class="pull-right">
+                        <a href="{% url 'user:logout' %}" class="btn btn-default btn-flat">
+                          <i class="glyphicon glyphicon-log-out"></i>&#160;Salir
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+              </ul>
             </div>
-            <!-- /.content-wrapper -->
+          {% else %}
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                  <a href="{% url 'user:login' %}">
+                    <i class="glyphicon glyphicon-log-in"></i>&#160;<span class="hidden-xs">Iniciar Seción</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          {% endif %}
+        </nav>
+      </header>
+      {% if request.user.is_authenticated %}
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu" data-widget="tree">
+              <li class="header">MENÚ PRINCIPAL</li>
+              <li id="ho"><a href="{% url 'base:home' %}"><i class="fa fa-dashboard"></i> <span>Inicio</span></a></li>
+              {% if request.user|has_group:'Nivel Consejo Comunal' %}
+                <li id="po"><a href="{% url 'user:pollster_list' %}"><i class="fa fa-user-plus"></i> <span>Encuestadores</span></a></li>
+              {% endif %}
+              <li class="treeview" id="li">
+                <a href="#">
+                  <i class="fa fa-hand-o-right"></i> <span>Viviendas</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right" id="angle"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li id="liv"><a href="{%  url 'living_place:list' %}"><i class="fa fa-home"></i> <span>Vivienda</span></a></li>
+                  <li id="ph"><a href="{%  url 'living_place:photograph_list' %}"><i class="fa fa-camera"></i> <span>Imágenes</span></a></li>
+                </ul>
+              </li>
+              <li id="fg"><a href="{% url 'living_place:family_group:list' %}"><i class="fa fa-users"></i> <span>Grupo Familiar</span></a></li>
+              <li id="pe"><a href="{% url 'living_place:family_group:person:list' %}"><i class="fa fa-user-plus"></i> <span>Persona</span></a></li>
+            </ul>
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+      {% endif %}
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>{% block content_header_title %}{% trans 'Página Principal' %}{% endblock %}</h1>
+          <ol class="breadcrumb">
+            <li><a href="{% url 'base:home' %}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            {% block content_header_roadmap %}
+            {% endblock %}
+          </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+          {% block content %}
+            <div class="box box-info">
+              <div class="box-header text-center">
+                <!--<h3 class="box-title">Título</h3>-->
+              </div>
+              <div class="box-body text-justify">
+                <p>La gestión pública en cualquiera de sus niveles, se nutre de información sistematizada, pertinente y oportuna sobre los distintos aspectos involucrados en la toma de decisiones y construcción de políticas públicas. Sin embargo, en el caso venezolano se observan importantes carencias e imprecisiones en la información disponible generada por el Estado. Si bien estas carencias son importantes en el ámbito nacional, sorprenden las fallas en sistematización y disponibilidad de información de áreas tan sensibles como los paisajes urbanos o rurales que conforman las las parroquias de nuestros municipios, caso que se hace más dramático cuando se trata de información comunal. Todo esto representa serias dificultades para la toma de decisiones en la dirección de situaciones. La experiencia de levantamiento a través del proyecto de las Microáreas diseñado por el INE es, sin duda, una excelente iniciativa para solventar los problemas antes descritos.</p>
+                <p>Urge entonces, potenciar la Nueva Gobernabilidad Bolivariana y la cultura democrática, participativa y protagónica, empleando la ciencia y la tecnología como medio de gestión de información para nutrir procesos de planificación tecnopolítica, en las comunidades y hacia las comunidades, dado el espíritu, el propósito y la razón de la Constitución de la República Bolivariana de Venezuela, el Proyecto Nacional Simón Bolívar 2007, la Ley del Consejo Federal de Gobierno y la Ley Orgánica de los Consejos Comunales.</p>
+                <p>El proyecto que se presenta a continuación es una respuesta ante esa urgencia.</p>
+                <h3>Diagnóstico de la Situación Actual</h3>
+                <p>El problema tiene su origen en una arraigada subestimación de la Planificación como instrumento vital para la elaboración de políticas comunitarias potentes. Aunque en la construcción de la V República  la carencia de información sistematizada ha impedido desarrollar adecuados procesos de dirección, a pesar del mandato Constitucional para los gobiernos locales de elaborar sus planes basándose en explicaciones situacionales obtenidas de la realidad comunal.</p>
+                <p>El escenario se agudiza si añadimos la inobservancia a estándares y metodologías con pertinencia comprobada en la gestión de la información. Esto acusa baja interoperabilidad entre los sistemas de gestión, que limitan el despliegue de la planificación.</p>
+                <p>Las situaciones descritas son parte de un conjunto de elementos que afectan negativamente la eficiencia, la eficacia y la efectividad de la Nueva Gobernabilidad Bolivariana, el proyecto político que impulsa la construcción del Estado Comunal.</p>
+                <p>La persistencia de la situación, entre otros problemas, acusa ingobernabilidad comunal, afectando de manera directa el orden social deseado en el marco del proceso de la democracia protagónica revolucionaria.</p>
+                <p>Hasta el presente se han dado distintas respuestas a las problemáticas expuestas, pero su carácter aislado, no integrador de los diferentes niveles y entes de gobierno impiden sus resultados. Por ello se sostiene que los innovadores planteamientos de este proyecto no tienen precedentes en el territorio nacional.</p>
+                <h3>Impacto General del Proyecto</h3>
+                <p>El proyecto tiene un impacto panorámico en todos los ámbitos de la vida nacional. Hay certeza de que el uso las Ciencias y Técnicas de Gobierno, vinculadas al SIGETP, en la gestión Comunal, marcarán un hito significativo en la construcción del Estado Comunal, porque conduce a un espacio de racionalidad y conciencia del respeto y cuidado colectivo del Bien Público.</p>
+                <p>En una primera instancia, tan solo la realización del proyecto es una demostración de la presencia de actores tecnopolíticos conciencientes de la importancia y la pertinencia del análisis estratégico situacional comunal, en el marco del ejercicio de gobiernos dotados de métodos y herramientas potentes. A corto plazo, se generarán experiencias locales en el diseño y uso práctico de tecnologías tanto duras como blandas. En el mediano plazo, gracias al potencial que ofrece la tecnología de la información, se podrá replicar estas experiencias en todo el territorio nacional, y servirá, incluso, como ejemplo a los países del ALBA y del planeta como una manifestación tangible del Socialismo del siglo XXI.</p>
+                <p>Entre otros beneficios, se espera fortalecer las tres variables del triángulo de Gobierno en la República Bolivariana de Venezuela: Capacidad de Gobierno en sus múltiples niveles, y ejecución del Proyecto Nacional Simón Bolívar, como expresión de la Carta Magna Venezolana.</p>
+                <h3>Impacto Social</h3>
+                <p>El SIGETP promoverá un marcado desarrollo organizacional social y político, elevará la eficiencia de los métodos de gobierno y fortalecerá la capacidad de toma de decisiones, gracias al despliegue pertinente y oportuno de información concreta, veraz y coherente, requerida.</p>
+                <h3>Impacto Económico</h3>
+                <p>El proyecto servirá para racionalizar la elaboración de presupuestos locales y en consecuencia mejorar la efectividad en el uso de los fondos públicos. De igual manera se incrementará la eficiencia en el uso de los recursos, la energía y los talentos, amén de una contraloría social más potente. Además, las comunidades podrán difundir sus experiencias sobre las estrategias de éxito en la gestión de los presupuestos.</p>
+                <h3>Impacto Ambiental</h3>
+                <p>Gracias al acceso a la información temática y geoespacial, se reivindica el papel fundamental de los factores ambientales en las decisiones públicas, no sólo en lo atinente a consideraciones técnicas de la incidencia de las decisiones sobre en entorno y medio ambiente, sino también en lo referido a la posibilidad de evaluar la incidencia de los factores ambientales a la luz de su cruce con otras áreas de la política, como por ejemplo la salud pública y la educación.</p>
+                <p>La propuesta que se presenta, en términos técnicos no implica la afectación negativa del medio ambiente natural y social de las localidades involucradas, muy por el contrario se prevé resultados positivos en capacitación y sensibilización de estas localidades hacia el cultivo y preservación del medio ambiente.</p>
+                <p>La información comunal es válida para la construcción de la nueva geometría del poder basada en el desarrollo eco-ambiental sustentable que define la Nueva Ordenación Territorial Socialista Bolivariana.</p>
+                <h3>Impacto de Desarrollo Tecnológico</h3>
+                <p>La puesta en practica de este proyecto representa un aporte para iniciar la implantación de una infraestructura tecnológica de soporte al Sistema Nacional de Planificación Pública. La conjugación de técnicas de análisis estadístico y geoespacial por un lado, y por el otro de las tecnologías de información con las ciencias y técnicas de gobierno, se traduce en una oportunidad para el despliegue de prácticas exitosas, de las que sin lugar a duda, se beneficiará la Nueva Gobernabilidad Bolivariana.</p>
+                <p>De esta primera experiencia derivará un saber-hacer que será muy útil en la transferencia de iniciativas del ámbito privado (cooperativas, EPS, entre otras) que quieran incursionar en propuestas similares desarrolladas por si mismos.</p>
+                <h3>Impacto de Inovación</h3>
+                <p>Éste proyecto ha de servir de plataforma para facilitar la aplicación de distintas técnicas duras y blandas, en particular para el diseño e implantación, en una primera instancia, de indicadores sociales adaptados al espíritu de la  Gobernabilidad Bolivariana. El diseño de la herramienta buscará ofrecer una plataforma flexible para la experimentación y aplicación de técnicas cuantitativas y cualitativas, tales como: la planificación basada escenarios, técnicas de prospectiva, análisis estadístico multivariante, análisis de redes sociales, dinámica de sistemas, modelado y simulación basado en agentes, etc.</p>
+                <p>Ello con el fin ultimo de fortalecer el ejercicio de la creatividad e innovación social en la instrumentación de métodos de gobierno que auxilien al sistema nacional de planificación pública en la construcción de la nueva geometría del poder, la ordenación del territorio y la determinación de regiones especiales de desarrollo socialistas.</p>
+                <h3>Impacto Político</h3>
+                <p>El SIGETP permitirá dar impulso a la organización social para la construcción del Estado Comunal, basado en el espíritu, propósito y razón de la Constitución de la República Bolivariana de Venezuela, el Proyecto Nacional Simón Bolívar y la recién promulgada Ley del Consejo Federal de Gobierno.</p>
+              </div>
+            </div>
+          {% endblock %}
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+      {% include 'base/footer.info.html' %}
+    </div>
+    <!-- ./wrapper -->
+    {% include 'base/footer.html' %}
+      <script type="text/javascript">
+        $(document).ready(function()
+        {
+          //controla el comportamiento del menu para saber cual esta activo e inactivo para el usuario
 
-            {% include 'base/footer.info.html' %}
-        </div>
-        <!-- ./wrapper -->
+          //obtiene la url actual del sistema
+          var ruta = "{{ request.path }}";
 
-        {% include 'base/footer.html' %}
-        <script type="text/javascript">
-            $(document).ready(function()
-            {
-                //controla el comportamiento del menu para saber cual esta activo e inactivo para el usuario
+          //rutas de la app usuario
+          var us = "/user/pollster/list/";
 
-                //obtiene la url actual del sistema
-                var ruta = "{{ request.path }}";
+          //rutas de la app vivienda
+          var li_1 = "/living-place/list/";
+          var li_2 = "/living-place/create/";
+          var li_3 = "/living-place/update/";
+          var li_4 = "/living-place/delete/";
+          var ph_1 = "/living-place/photograph/list/";
+          var ph_2 = "/living-place/photograph/create/"
 
-                //rutas de la app usuario
-                var us = "/usuario/encuestador/listar/";
+          //rutas de la app grupo_familiar
+          var fg_1 = "/living-place/family-group/list/";
+          var fg_2 = "/living-place/family-group/create/";
+          var fg_3 = "/living_place/family-group/update/";
+          var fg_4 = "/living-place/family-group/delete/";
 
-                //rutas de la app vivienda
-                var vi_1 = "/vivienda/";
-                var vi_2 = "/vivienda/registro/";
-                var vi_3 = "/vivienda/editar/";
-                var vi_4 = "/vivienda/eliminar/";
-                var im_1 = "/vivienda/imagen/";
-                var im_2 = "/vivienda/imagen/registro/"
+          //rutas de la app persona
+          var pe_1 = "/living-place/family-group/person/list/";
+          var pe_2 = "/living-place/family-group/person/create/";
+          var pe_3 = "/living-place/family-group/persona/update/";
+          var pe_4 = "/living-place/family-group/person/delete/";
 
-                //rutas de la app grupo_familiar
-                var gf_1 = "/vivienda/grupo-familiar/";
-                var gf_2 = "/vivienda/grupo-familiar/registro/";
-                var gf_3 = "/vivienda/grupo-familiar/editar/";
-                var gf_4 = "/vivienda/grupo-familiar/eliminar/";
-
-                //rutas de la app persona
-                var pe_1 = "/vivienda/grupo-familiar/persona/";
-                var pe_2 = "/vivienda/grupo-familiar/persona/registro/";
-                var pe_3 = "/vivienda/grupo-familiar/persona/editar/";
-                var pe_4 = "/vivienda/grupo-familiar/persona/eliminar/";
-
-                if( ruta == "/" )
-                {
-                    $("#in").addClass("active");
-                }
-                else if( ruta == us )
-                {
-                    $("#po").addClass("active");
-                }
-                else if( ruta == vi_1 || ruta == vi_2 || ruta == vi_3 || ruta == vi_4 )
-                {
-                    $("#vi").addClass("active");
-                    $("#viv").addClass("active");
-                    $("#angle").removeClass("fa-angle-left")
-                    $("#angle").addClass("fa-angle-down")
-                }
-                else if( ruta == im_1 || ruta == im_2 )
-                {
-                    $("#vi").addClass("active");
-                    $("#im").addClass("active");
-                    $("#angle").removeClass("fa-angle-left")
-                    $("#angle").addClass("fa-angle-down")
-                }
-                else if( ruta == gf_1 || ruta == gf_2 || ruta == gf_3 || ruta == gf_4 )
-                {
-                    $("#gf").addClass("active");
-                }
-                else if( ruta == pe_1 || ruta == pe_2 || ruta == pe_3 || ruta == pe_4 )
-                {
-                    $("#pe").addClass("active");
-                }
-            });
-        </script>
-        {% block extra_footer %}{% endblock %}
-    </body>
+          if( ruta == "/" )
+          {
+            $("#ho").addClass("active");
+          }
+          else if( ruta == us )
+          {
+            $("#po").addClass("active");
+          }
+          else if( ruta == li_1 || ruta == li_2 || ruta == li_3 || ruta == li_4 )
+          {
+            $("#li").addClass("active");
+            $("#liv").addClass("active");
+            $("#angle").removeClass("fa-angle-left")
+            $("#angle").addClass("fa-angle-down")
+          }
+          else if( ruta == ph_1 || ruta == ph_2 )
+          {
+            $("#li").addClass("active");
+            $("#ph").addClass("active");
+            $("#angle").removeClass("fa-angle-left")
+            $("#angle").addClass("fa-angle-down")
+          }
+          else if( ruta == fg_1 || ruta == fg_2 || ruta == fg_3 || ruta == fg_4 )
+          {
+            $("#fg").addClass("active");
+          }
+          else if( ruta == pe_1 || ruta == pe_2 || ruta == pe_3 || ruta == pe_4 )
+          {
+            $("#pe").addClass("active");
+          }
+        });
+      </script>
+    {% block extra_footer %}
+    {% endblock %}
+  </body>
 </html>

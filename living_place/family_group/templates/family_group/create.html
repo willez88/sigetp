@@ -1,0 +1,161 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block content_header_title %}{% trans 'Grupo Familiar' %}{% endblock %}
+{% block content_header_roadmap %}
+  <li><a href="{% url 'living_place:list' %}">{% trans 'Vivienda' %}</a></li>
+  <li><a href="{% url 'living_place:family_group:list' %}">{% trans 'Grupo Familiar' %}</a></li>
+  <li class="active">{% if not form.instance.pk %}{% trans 'Registro' %}{% else %}{% trans 'Actualizar' %}{% endif %}</li>
+{% endblock %}
+{% block content %}
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.living_place.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.living_place.auto_id }}">
+                {{ form.living_place.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.living_place }}
+                  <i class="ion ion-ios-medical item-required"></i>
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.living_place.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.family_last_name.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.family_last_name.auto_id }}">
+                {{ form.family_last_name.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.family_last_name }}
+                  <i class="ion ion-ios-medical item-required"></i>
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.family_last_name.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.tenure.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.tenure.auto_id }}">
+                {{ form.tenure.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.tenure }}
+                  <i class="ion ion-ios-medical item-required"></i>
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.tenure.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div id="block_rented" class="invisible">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.rented.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.rented.auto_id }}">
+                  {{ form.rented.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">
+                    {{ form.rented }}
+                  </div>
+                  {% include 'base/form.errors.html' with form_errors=form.rented.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.ticket.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ticket.auto_id }}">
+                {{ form.ticket.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.ticket }}
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.ticket.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.beneficiary_family.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.beneficiary_family.auto_id }}">
+                {{ form.beneficiary_family.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.beneficiary_family }}
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.beneficiary_family.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.observation.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.observation.auto_id }}">
+                {{ form.observation.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.observation }}
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.observation.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer text-right">
+          <a href="{% url 'living_place:family_group:list' %}" class="btn btn-primary btn-sm">Atrás</a>
+          <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
+          <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    $(document).ready(function() {
+      //mostrar campos dependientes del valor de otros a la hora de actualizar
+      var tenure = $("#id_tenure").val();
+      var br = $("#block_rented");
+      (tenure==2) ? br.removeClass('invisible') : br.addClass('invisible');
+    });
+
+    function __tenure(val)
+    {
+      if( val == 2)
+      {
+        $("#block_rented").removeClass('invisible');
+        $("#id_rented").attr('required', 'required');
+        $("#id_rented").attr('min', '1');
+      }
+      else
+      {
+        $("#block_rented").addClass('invisible');
+        $("#id_rented").removeAttr('required');
+        $("#id_rented").attr('min', '0');
+        $("#id_rented").val(0);
+      }
+    }
+  </script>
+{% endblock %}

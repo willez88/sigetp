@@ -38,25 +38,19 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 from django.utils.translation import ugettext_lazy as _
 
 ## Nombre del Sitio
-APP_NAME = "SIGETP"
+APP_NAME = 'SIGETP'
 
 ## Asunto del mensaje de bienvenida
-EMAIL_SUBJECT = "Bienvenido a %s" % APP_NAME
-
-## Establece los diferentes niveles de un usuario
-LEVEL = (
-    (1, 'Nivel Comunal'),
-    (2, 'Nivel Encuestador'),
-)
+EMAIL_SUBJECT = 'Bienvenido a %s' % APP_NAME
 
 ## Tipo de rif para consejos comunales y comunas
 RIF_TYPE = (
-    ("C", "C"),
+    ('C', 'C'),
 )
 
 ## Nacionalidades (ABREVIADO)
 NATIONALITY = (
-    ("V", "V"), ("E", "E")
+    ('V', 'V'), ('E', 'E')
 )
 
 ## Tipo de la vivienda
@@ -267,5 +261,5 @@ PHONE_PREFIX = (
 )
 
 ## Mensaje de error para peticiones AJAX
-MSG_NOT_AJAX = _("No se puede procesar la petición. "
-                 "Verifique que posea las opciones javascript habilitadas e intente nuevamente.")
+MSG_NOT_AJAX = _('No se puede procesar la petición. '
+                 'Verifique que posea las opciones javascript habilitadas e intente nuevamente.')

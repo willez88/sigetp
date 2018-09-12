@@ -4,9 +4,9 @@ Sistema Integrado de Información y Documentación Geoestadística y Tecnopolít
 
 # Pasos para crear el entorno de desarrollo
 
-Cuando somos un usuario normal del sistema, en el terminal se mostrará el siguiente símbolo: ~$
+    Cuando somos un usuario normal del sistema, en el terminal se mostrará el siguiente símbolo: ~$
 
-Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
+    Cuando accedemos al usuario root del sistema, en el terminal se mostrará el siguiente símbolo: ~#
 
 Probado en Debian y Ubuntu. Instalar los siguientes programas
 
@@ -20,23 +20,23 @@ Desde el terminal, moverse a la carpeta Programación y ejecutar
 
     ~$ cd Programación/
 
-    ~$ mkdir Python
+    ~$ mkdir python
 
-Entrar a la carpeta Python y hacer lo siguiente
+Entrar a la carpeta python y hacer lo siguiente
 
-    ~$ cd Python/
+    ~$ cd python/
 
-    ~$ mkdir EntornosVirtuales ProyectosDjango
+    ~$ mkdir entornos_virtuales proyectos_django
 
-Entrar a EntornosVirtuales
+Entrar a entornos_virtuales
 
-    ~$ cd EntornosVirtuales/
+    ~$ cd entornos_virtuales/
 
-    ~$ mkdir Django
+    ~$ mkdir django
 
-Desde el terminal, moverse a la carpeta Django y ejecutar
+Desde el terminal, moverse a la carpeta django y ejecutar
 
-    ~$ cd Django/
+    ~$ cd django/
 
     ~$ virtualenv -p python3 sigetp
 
@@ -44,9 +44,9 @@ Para activar el entorno
 
     ~$ source sigetp/bin/activate
 
-Nos movemos a la carpeta ProyectosDjango, descargamos el sistema y entramos a la carpeta con los siguientes comandos
+Nos movemos a la carpeta proyectos_django, descargamos el sistema y entramos a la carpeta con los siguientes comandos
 
-    (sigetp) ~$ cd ../../ProyectosDjango/
+    (sigetp) ~$ cd ../../proyectos_django/
 
     (sigetp) ~$ git clone https://github.com/willez88/sigetp.git
 
@@ -57,10 +57,10 @@ Nos movemos a la carpeta ProyectosDjango, descargamos el sistema y entramos a la
 Tendremos las carpetas estructuradas de la siguiente manera
 
     // Entorno virtual
-    Programación/Python/EntornosVirtuales/Django/sigetp
+    Programación/python/entornos_virtuales/django/sigetp
 
     // Servidor de desarrollo
-    Programación/Python/ProyectosDjango/sigetp
+    Programación/python/proyectos_django/sigetp
 
 Instalar las dependencias de css y js: moverse a la carpeta static y ejecutar
 
@@ -101,17 +101,17 @@ Instalamos los requemientos que el sistema necesita en el entorno virtual
 
     (sigetp) ~$ pip install -r requirements.txt
 
-Para instalar los requerimientos de forma local
+Para instalar los requerimientos de forma local (opcional)
 
     (sigetp) ~$ pip install requirements/pip/Django-2.0.3.tar.gz requirements/pip/django-extensions-2.0.6.tar.gz requirements/pip/Pillow-5.0.0.tar.gz requirements/pip/psycopg2-2.7.4.tar.gz
 
 Hacer las migraciones
 
-    (sigetp) ~$ python manage.py makemigrations base usuario vivienda grupo_familiar persona
+    (sigetp) ~$ python manage.py makemigrations base user living_place family_group person
 
     (sigetp) ~$ python manage.py migrate
 
-Crear usuario administrador del __SIGETP__
+Crear usuario administrador del __sigetp__
 
     (sigetp) ~$ python manage.py createsuperuser
 

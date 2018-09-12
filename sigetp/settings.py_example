@@ -80,11 +80,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'base',
-    'usuario',
-    'vivienda',
-    'vivienda.grupo_familiar',
-    'vivienda.grupo_familiar.persona',
-    'reporte',
+    'user',
+    'living_place',
+    'living_place.family_group',
+    'living_place.family_group.person',
+    #'reporte',
 ]
 
 MIDDLEWARE = [
@@ -99,21 +99,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sigetp.urls'
 
-## Directorio en donde se encuentran las plantillas en el root de la aplicación
-ROOT_TEMPLATES = os.path.join(BASE_DIR, "templates")
-
-## Directorio en donde se encuentran las plantillas del módulo base
-#BASE_TEMPLATES = os.path.join(BASE_DIR, "base/templates")
-#USUARIO_TEMPLATES = os.path.join(BASE_DIR, "usuario/templates")
-#VIVIENDA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/templates")
-#GRUPO_FAMILIAR_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/templates")
-#PERSONA_TEMPLATES = os.path.join(BASE_DIR, "vivienda/grupo_familiar/persona/templates")
-#REPORTE_TEMPLATES = os.path.join(BASE_DIR, "reporte/templates")
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ROOT_TEMPLATES],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,7 +129,7 @@ DATABASES = {
     #}
 
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sigetp',
         'USER': 'admin',
         'PASSWORD': '123',
@@ -194,12 +183,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-## Configuración de la raíz donde se encuentran los archivos estaticos del sistema (para entornos en producción)
-STATIC_ROOT = ''
-
 ## Configuración de la url que atenderá las peticiones de los archivos estáticos del sistema
 STATIC_URL = '/static/'
 
+## Configuración de la raíz donde se encuentran los archivos estaticos del sistema (para entornos en producción)
+STATIC_ROOT = ''
 #MEDIA_URL = 'media/'
 #MEDIA_ROOT = ''
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -211,11 +199,11 @@ STATICFILES_DIRS = (
 )
 
 ## URL de acceso al sistema
-LOGIN_URL = 'usuario:login'
+LOGIN_URL = 'user:login'
 
 LOGIN_REDIRECT_URL = 'base:home'
 
-LOGOUT_REDIRECT_URL = 'usuario:login'
+LOGOUT_REDIRECT_URL = 'user:login'
 
 ## configuración que permite obtener la ruta en donde se encuentran las traducciones de la aplicación a otros lenguajes
 LOCALE_PATHS = [

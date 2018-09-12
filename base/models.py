@@ -231,3 +231,273 @@ class CommunalCouncil(models.Model):
 
         verbose_name = _("Consejo Comunal")
         verbose_name_plural = _("Consejos Comunales")
+
+class LivingPlaceType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Vivienda')
+        verbose_name_plural = _('Tipos de Vivienda')
+
+class RoofType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Techo')
+        verbose_name_plural = _('Tipos de Techo')
+
+class WallType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Pared')
+        verbose_name_plural = _('Tipos de Pared')
+
+class FloorType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Piso')
+        verbose_name_plural = _('Tipos de Piso')
+
+class ElectricService(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Servicio Eléctrico')
+        verbose_name_plural = _('Servicios Eléctricos')
+
+class SanitarySituation(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Situación Sanitaria')
+        verbose_name_plural = _('Situaciones Sanitarias')
+
+class TrashDisposal(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Disposición de la Basura')
+        verbose_name_plural = _('Disposiciones de la Basura')
+
+class TenureType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de tenencia')
+        verbose_name_plural = _('Tipos de tenencia')
+
+class FamilyRelationship(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Parentesco Familiar')
+        verbose_name_plural = _('Parentescos Familiares')
+
+class MaritalStatus(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Estado Civil')
+        verbose_name_plural = _('Estados Civiles')
+
+class InstructionDegree(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Grado de Instrucción')
+        verbose_name_plural = _('Grados de Instrucción')
+
+class EducationalMission(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Misión Educativa')
+        verbose_name_plural = _('Misiones Educativas')
+
+class SocialMission(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Misión Social')
+        verbose_name_plural = _('Misiones Sociales')
+
+class IncomeType(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Ingreso')
+        verbose_name_plural = _('Tipos de Ingreso')
+
+class CommunityOrganization(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Organización Comunitaria')
+        verbose_name_plural = _('Organizaciones Comunitarias')
+
+class Sex(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Sexo')
+        verbose_name_plural = _('Sexos')
+
+class CementType(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Tipo de Cemento')
+        verbose_name_plural = _('Tipos de Cemento')
+
+class Valoration(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Valoración')
+        verbose_name_plural = _('Valoraciones')
+
+class Animal(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Animal')
+        verbose_name_plural = _('Animales')
+
+class Profession(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Profesión')
+        verbose_name_plural = _('Profesiones')
+
+class Occupation(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Ocupación')
+        verbose_name_plural = _('Ocupaciones')
+
+class Workplace(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Lugar de Trabajo')
+        verbose_name_plural = _('Lugares de Trabajo')
+
+class Sport(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Deporte')
+        verbose_name_plural = _('Deportes')
+
+class Disease(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Enfermedad')
+        verbose_name_plural = _('Enfermedades')
+
+class Disability(models.Model):
+    name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Discapacidad')
+        verbose_name_plural = _('Discapacidades')
+
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Curso')
+        verbose_name_plural = _('Cursos')
+
+class Risk(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Riesgo')
+        verbose_name_plural = _('Riesgos')

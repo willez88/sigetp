@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block content_header_title %}{% trans 'Imagen' %}{% endblock %}
+{% block content_header_roadmap %}
+  <li><a href="{% url 'living_place:list' %}">{% trans 'Vivienda' %}</a></li>
+  <li class="active">{% trans 'Imagen' %}</li>
+{% endblock %}
+{% block content %}
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Listar</h3><br>
+    </div>
+
+    <div class="box-header">
+      <a href="{% url 'living_place:photograph_create' %}" class="btn btn-success pull-left">Registrar</a>
+    </div>
+
+    <div class="box-body">
+      <div class="row box-body table-responsive">
+        <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+        <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="table" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Vivienda</th>
+              <th>Nombre de la imagen</th>
+              <th>Imagen</th>
+              <th>Operación</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for ph in object_list %}
+              <tr>
+                <td> {{ ph.living_place }} </td>
+                <td> {{ ph.picture }} </td>
+                <td> <a href="#" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var table = $('#table').DataTable();
+
+      button_datatable(table);
+    });
+  </script>
+{% endblock %}

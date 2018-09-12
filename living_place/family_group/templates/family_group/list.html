@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block content_header_title %}{% trans 'Grupo Familiar' %}{% endblock %}
+{% block content_header_roadmap %}
+  <li><a href="{% url 'living_place:list' %}">{% trans 'Vivienda' %}</a></li>
+  <li class="active">{% trans 'Grupo Familiar' %}</li>
+{% endblock %}
+{% block content %}
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Listar</h3><br>
+    </div>
+
+    <div class="box-header">
+      <a href="{% url 'living_place:family_group:create' %}" class="btn btn-success pull-left">Registrar</a>
+    </div>
+
+    <div class="box-body">
+      <div class="table-responsive">
+        <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
+        <table class="table table-striped table-hover table-bordered display dataTable blue-table" id="table" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Vivienda</th>
+              <th>Apellido de la Familia</th>
+              <th>¿La Familia ha sido beneficiada por el CLAP?</th>
+              <th>Tipo de Tenencia</th>
+              <th> Tiempo de Alquiler (Meses) </th>
+              <th>¿Cree Ud. que se deba consultar a las comunidades para los precios del pasaje?</th>
+              <th>Observación</th>
+              <th>Operación</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for family_group in object_list %}
+              <tr>
+                <td> {{ family_group.living_place }} </td>
+                <td> {{ family_group }} </td>
+
+                {% if family_group.beneficiary_family %}
+                  <td> Si </td>
+                {% else %}
+                  <td> No </td>
+                {% endif %}
+
+                {% if family_group.tenure.id == 2 %}
+                  <td> {{ family_group.tenure }} </td>
+                  <td> {{ family_group.rented }} </td>
+                {% else %}
+                  <td> {{ family_group.tenure }} </td>
+                  <td> </td>
+                {% endif %}
+
+                {% if family_group.ticket %}
+                  <td> Si </td>
+                {% else %}
+                  <td> No </td>
+                {% endif %}
+
+                <td> {{ family_group.observation }} </td>
+
+                <td> <a href="{% url 'living_place:family_group:update' family_group.id %}" title="Actualizar"><i class="fa fa-pencil"></i></a> <a href="{% url 'living_place:family_group:delete' family_group.id %}" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var table = $('#table').DataTable({
+        /*"autoWidth": false,
+        "columnDefs": [
+          { "width": "200px", "targets": 0 },
+          { "width": "200px", "targets": 1 },
+          { "width": "200px", "targets": 2 },
+          { "width": "200px", "targets": 3 },
+          { "width": "200px", "targets": 4 },
+          { "width": "350px", "targets": 5 },
+          { "width": "300px", "targets": 6 },
+          { "width": "100px", "targets": 7 },
+        ],*/
+      });
+
+      button_datatable(table);
+    });
+  </script>
+{% endblock %}

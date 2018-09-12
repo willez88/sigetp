@@ -36,7 +36,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.contrib import admin
-from .models import CommunalCouncil
+from .models import CommunalCouncil, Risk
 from .forms import CommunalCouncilAdminForm
 
 class CommunalCouncilAdmin(admin.ModelAdmin):
@@ -52,8 +52,20 @@ class CommunalCouncilAdmin(admin.ModelAdmin):
     change_form_template = 'base/admin/change_form.html'
     list_display = ('rif','name','parish',)
     list_filter = ('parish',)
-    list_per_page = 25
-    ordering = ('parish',)
-    #search_fields = ('rif','nombre','parroquia',)
+    ordering = ('parish__name',)
 
 admin.site.register(CommunalCouncil, CommunalCouncilAdmin)
+
+class RiskAdmin(admin.ModelAdmin):
+    """!
+    Clase que agrega modelo ConsejoComunal en el panel administrativo
+
+    @author William Páez (wpaez at cenditel.gob.ve)
+    @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
+    @date 24-05-2017
+    """
+
+    list_display = ('name',)
+    ordering = ('name',)
+
+admin.site.register(Risk, RiskAdmin)

@@ -1,0 +1,624 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% block content_header_title %}{% trans 'Vivienda' %}{% endblock %}
+{% block content_header_roadmap %}
+  <li><a href="{% url 'living_place:list' %}">{% trans 'Vivienda' %}</a></li>
+  <li class="active">{% if not form.instance.pk %}{% trans 'Registro' %}{% else %}{% trans 'Actualizar' %}{% endif %}</li>
+{% endblock %}
+{% block content %}
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      {{ hello }}
+      <form action="" role="form" class="form form-horizontal validate-form" method="post" autocomplete="off">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.date_time.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.date_time.auto_id }}">
+                {{ form.date_time.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.date_time }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.date_time.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.roof_type.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.roof_type.auto_id }}">
+                {{ form.roof_type.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.roof_type }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.roof_type.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.electric_service.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.electric_service.auto_id }}">
+                {{ form.electric_service.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.electric_service }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.electric_service.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.sanitary_situation.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.sanitary_situation.auto_id }}">
+                {{ form.sanitary_situation.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.sanitary_situation }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.sanitary_situation.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.trash_disposal.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.trash_disposal.auto_id }}">
+                {{ form.trash_disposal.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.trash_disposal }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.trash_disposal.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.living_place_type.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.living_place_type.auto_id }}">
+                {{ form.living_place_type.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.living_place_type }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.living_place_type.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.wall_type.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.wall_type.auto_id }}">
+                {{ form.wall_type.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.wall_type }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.wall_type.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div id="block_wall_frieze" class="invisible">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.wall_frieze.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.wall_frieze.auto_id }}">
+                  {{ form.wall_frieze.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">{{ form.wall_frieze }}</div>
+                  {% include 'base/form.errors.html' with form_errors=form.wall_frieze.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.floor_type.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.floor_type.auto_id }}">
+                {{ form.floor_type.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.floor_type }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.floor_type.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div id="block_cement" class="invisible">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.cement_type.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.cement_type.auto_id }}">
+                  {{ form.cement_type.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">{{ form.cement_type }}</div>
+                  {% include 'base/form.errors.html' with form_errors=form.cement_type.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.living_place_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.living_place_condition.auto_id }}">
+                {{ form.living_place_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.living_place_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.living_place_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.roof_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.roof_condition.auto_id }}">
+                {{ form.roof_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.roof_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.roof_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.wall_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.wall_condition.auto_id }}">
+                {{ form.wall_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.wall_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.wall_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.floor_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.floor_condition.auto_id }}">
+                {{ form.floor_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.floor_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.floor_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.ventilation_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ventilation_condition.auto_id }}">
+                {{ form.ventilation_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.ventilation_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.ventilation_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.ilumination_condition.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ilumination_condition.auto_id }}">
+                {{ form.ilumination_condition.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.ilumination_condition }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.ilumination_condition.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.ambulatory_accessibility.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.ambulatory_accessibility.auto_id }}">
+                {{ form.ambulatory_accessibility.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.ambulatory_accessibility }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.ambulatory_accessibility.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.school_accessibility.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.school_accessibility.auto_id }}">
+                {{ form.school_accessibility.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.school_accessibility }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.school_accessibility.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.lyceum_accessibility.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.lyceum_accessibility.auto_id }}">
+                {{ form.lyceum_accessibility.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.lyceum_accessibility }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.lyceum_accessibility.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.supply_center_accessibility.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.supply_center_accessibility.auto_id }}">
+                {{ form.supply_center_accessibility.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.supply_center_accessibility }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.supply_center_accessibility.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.rooms_number.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.rooms_number.auto_id }}">
+                {{ form.rooms_number.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.rooms_number }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.rooms_number.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.living_rooms_number.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.living_rooms_number.auto_id }}">
+                {{ form.living_rooms_number.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.living_rooms_number }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.living_rooms_number.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.bathrooms_number.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.bathrooms_number.auto_id }}">
+                {{ form.bathrooms_number.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.bathrooms_number }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.bathrooms_number.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.has_terrain.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.has_terrain.auto_id }}">
+                {{ form.has_terrain.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.has_terrain }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.has_terrain.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="block_terrain" class="invisible">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.square_meter.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.square_meter.auto_id }}">
+                  {{ form.square_meter.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">{{ form.square_meter }}</div>
+                  {% include 'base/form.errors.html' with form_errors=form.square_meter.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.productive.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.productive.auto_id }}">
+                  {{ form.productive.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">{{ form.productive }}</div>
+                  {% include 'base/form.errors.html' with form_errors=form.productive.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+              <div class="form-group {% if form.non_productive.errors %}has-error{% endif %}">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.non_productive.auto_id }}">
+                  {{ form.non_productive.label }}
+                </label>
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                  <div class="form-inline">{{ form.non_productive }}</div>
+                  {% include 'base/form.errors.html' with form_errors=form.non_productive.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.river_risk.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.river_risk.auto_id }}">
+                {{ form.river_risk.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.river_risk }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.river_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.gully_risk.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.gully_risk.auto_id }}">
+                {{ form.gully_risk.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.gully_risk }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.gully_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.landslides_risk.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.landslides_risk.auto_id }}">
+                {{ form.landslides_risk.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.landslides_risk }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.landslides_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.seismic_zone_risk.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.seismic_zone_risk.auto_id }}">
+                {{ form.seismic_zone_risk.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.seismic_zone_risk }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.seismic_zone_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.animals.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.animals.auto_id }}">
+                {{ form.animals.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.animals }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.animals.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.state.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.state.auto_id }}">
+                {{ form.state.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.state }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.state.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.municipality.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.municipality.auto_id }}">
+                {{ form.municipality.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.municipality }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.municipality.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.parish.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.parish.auto_id }}">
+                {{ form.parish.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.parish }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.parish.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.communal_council.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.communal_council.auto_id }}">
+                {{ form.communal_council.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.communal_council }}
+                  {{ form.communal_council_rif }}
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.communal_council.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.address.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.address.auto_id }}">
+                {{ form.address.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.address }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.address.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.living_place_number.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.living_place_number.auto_id }}">
+                {{ form.living_place_number.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">
+                  {{ form.living_place_number }}
+                </div>
+                {% include 'base/form.errors.html' with form_errors=form.living_place_number.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group {% if form.coordinate.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.coordinate.auto_id }}">
+                {{ form.coordinate.label }}
+              </label>
+              <div class="col-md-8 col-xs-8 col-sm-8 form-inline">
+                {{ form.coordinate }}
+                {% include 'base/form.errors.html' with form_errors=form.coordinate.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                <i class="btn btn-info btn-sm" data-toggle="tooltip"
+                title="{% trans 'Presione el botón para seleccionar su ubicación' %}"
+                onclick="coordinates_select('{% trans 'Seleccionar Coordenadas' %}',$('#sel-coordinate').html())">Agregar</i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group {% if form.observation.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.observation.auto_id }}">
+                {{ form.observation.label }}
+              </label>
+              <div class="col-md-9 col-xs-9 col-sm-9">
+                <div class="form-inline">{{ form.observation }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.observation.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-footer text-right">
+          <a href="{% url 'living_place:list' %}" class="btn btn-primary btn-sm">Atrás</a>
+          <button type="reset" class="btn btn-primary btn-sm" data-toggle="tooltip">{% trans 'Limpiar' %}</button>
+          <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip">{% if not form.instance.pk %}{% trans 'Registrar' %}{% else %}{% trans 'Actualizar' %}{% endif %}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      //mostrar campos dependientes del valor de otros a la hora de actualizar
+      var wall_type = $("#id_wall_type").val();
+      var bwf = $("#block_wall_frieze");
+      (wall_type==4) ? bwf.removeClass('invisible') : bwf.addClass('invisible');
+
+      var floor_type = $("#id_floor_type").val();
+      var bc = $("#block_cement");
+      (floor_type==2) ? bc.removeClass('invisible') : bc.addClass('invisible');
+
+      var has_terrain = $("#id_has_terrain").is(':checked');
+      var bt = $("#block_terrain");
+      (has_terrain) ? bt.removeClass('invisible') : bt.addClass('invisible');
+
+      var ap = [];
+      {% for al in animal_list %}
+        ap.push({{ al.id }});
+      {% endfor %}
+      $("#id_animals").val(ap).change();
+    });
+
+    function frieze(val)
+    {
+      if( val == 4)
+      {
+        $("#block_wall_frieze").removeClass('invisible');
+      }
+      else
+      {
+        $("#block_wall_frieze").addClass('invisible');
+      }
+    }
+
+    function cement(val)
+    {
+      if( val == 2)
+      {
+        $("#block_cement").removeClass('invisible');
+      }
+      else
+      {
+        $("#block_cement").addClass('invisible');
+      }
+    }
+
+    function terrain(option)
+    {
+      if( option )
+      {
+        $("#block_terrain").removeClass('invisible');
+
+        $("#id_square_meter").attr('required', 'required');
+        $("#id_square_meter").attr('min', '0.01');
+
+        $("#id_productive").attr('required', 'required');
+        $("#id_productive").attr('min', '0');
+
+        $("#id_non_productive").attr('required', 'required');
+        $("#id_non_productive").attr('min', '0');
+      }
+      else
+      {
+        $("#block_terrain").addClass('invisible');
+
+        $("#id_square_meter").removeAttr('required');
+        $("#id_square_meter").attr('min', '0');
+        $("#id_square_meter").val(0);
+
+        $("#id_productive").removeAttr('required');
+        $("#id_productive").attr('min', '0');
+        $("#id_productive").val(0);
+
+        $("#id_non_productive").removeAttr('required');
+        $("#id_non_productive").attr('min', '0');
+        $("#id_non_productive").val(0);
+      }
+    }
+  </script>
+{% endblock %}

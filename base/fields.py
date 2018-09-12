@@ -37,7 +37,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 
 from django import forms
 from .constant import NATIONALITY, RIF_TYPE, PHONE_PREFIX
-from .widgets import RifWidget, IdentificationCardWidget, CoordenateWidgetReadOnly, PhoneWidget
+from .widgets import RifWidget, IdentityCardWidget, CoordenateWidgetReadOnly, PhoneWidget
 from django.utils.translation import ugettext_lazy as _
 
 class RifField(forms.MultiValueField):
@@ -83,7 +83,7 @@ class RifField(forms.MultiValueField):
             return ''.join(data_list)
         return ''
 
-class IdentificationCardField(forms.MultiValueField):
+class IdentityCardField(forms.MultiValueField):
     """!
     Clase que agrupa los campos de la nacionalidad y número de cédula de identidad en un solo campo del formulario
 
@@ -92,7 +92,7 @@ class IdentificationCardField(forms.MultiValueField):
     @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
     @date 26-05-2017
     """
-    widget = IdentificationCardWidget
+    widget = IdentityCardWidget
     default_error_messages = {
         'invalid_choices': _("Debe seleccionar una nacionalidad válida")
     }
@@ -114,7 +114,7 @@ class IdentificationCardField(forms.MultiValueField):
 
         help_text=_("V-00000000 ó E-00000000")
 
-        super(IdentificationCardField, self).__init__(
+        super(IdentityCardField, self).__init__(
             error_messages=error_messages, fields=fields, label=label, help_text=help_text, require_all_fields=True, *args, **kwargs
         )
 
