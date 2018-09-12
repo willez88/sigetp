@@ -121,7 +121,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         self.object.email = form.cleaned_data['email']
         self.object.save()
 
-        profile = Profile.objects.get(user=self.object)
+        #profile = Profile.objects.get(user=self.object)
 
         if Profile.objects.filter(user=self.object):
             profile = Profile.objects.get(user=self.object)

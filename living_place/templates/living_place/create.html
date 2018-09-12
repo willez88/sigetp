@@ -359,49 +359,13 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.river_risk.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.river_risk.auto_id }}">
-                {{ form.river_risk.label }}
+            <div class="form-group {% if form.risks.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.risks.auto_id }}">
+                {{ form.risks.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
-                <div class="form-inline">{{ form.river_risk }}</div>
-                {% include 'base/form.errors.html' with form_errors=form.river_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.gully_risk.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.gully_risk.auto_id }}">
-                {{ form.gully_risk.label }}
-              </label>
-              <div class="col-md-9 col-xs-9 col-sm-9">
-                <div class="form-inline">{{ form.gully_risk }}</div>
-                {% include 'base/form.errors.html' with form_errors=form.gully_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.landslides_risk.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.landslides_risk.auto_id }}">
-                {{ form.landslides_risk.label }}
-              </label>
-              <div class="col-md-9 col-xs-9 col-sm-9">
-                <div class="form-inline">{{ form.landslides_risk }}</div>
-                {% include 'base/form.errors.html' with form_errors=form.landslides_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.seismic_zone_risk.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.seismic_zone_risk.auto_id }}">
-                {{ form.seismic_zone_risk.label }}
-              </label>
-              <div class="col-md-9 col-xs-9 col-sm-9">
-                <div class="form-inline">{{ form.seismic_zone_risk }}</div>
-                {% include 'base/form.errors.html' with form_errors=form.seismic_zone_risk.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                <div class="form-inline">{{ form.risks }}</div>
+                {% include 'base/form.errors.html' with form_errors=form.risks.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
@@ -556,6 +520,12 @@
       var has_terrain = $("#id_has_terrain").is(':checked');
       var bt = $("#block_terrain");
       (has_terrain) ? bt.removeClass('invisible') : bt.addClass('invisible');
+
+      var rl = [];
+      {% for ri in risk_list %}
+        rl.push({{ ri.id }});
+      {% endfor %}
+      $("#id_risks").val(rl).change();
 
       var ap = [];
       {% for al in animal_list %}

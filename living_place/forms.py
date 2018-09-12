@@ -40,7 +40,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import LivingPlace, Photograph
 from base.models import (
     State, Municipality, Parish, CommunalCouncil, ElectricService, SanitarySituation, TrashDisposal,
-    LivingPlaceType, RoofType, WallType, FloorType, CementType, Valoration, Animal,
+    LivingPlaceType, RoofType, WallType, FloorType, CementType, Valoration, Animal, Risk
 )
 from base.fields import CoordinateField
 from user.models import CommunalCouncilLevel, Pollster
@@ -70,6 +70,11 @@ class LivingPlaceForm(forms.ModelForm):
         user = kwargs.pop('user')
         super(LivingPlaceForm, self).__init__(*args, **kwargs)
         self.fields['date_time'].initial = datetime.datetime.now()
+
+        risk_list = []
+        for ri in Risk.objects.all():
+            risk_list.append( (ri.id,ri) )
+        self.fields['risks'].choices = risk_list
 
         animal_list = []
         for an in Animal.objects.all():
@@ -412,7 +417,7 @@ class LivingPlaceForm(forms.ModelForm):
     )
 
     ## Riesgo por río
-    river_risk = forms.BooleanField(
+    """river_risk = forms.BooleanField(
         label=_('¿Riesgo por Ríos?'),
         required = False
     )
@@ -433,6 +438,19 @@ class LivingPlaceForm(forms.ModelForm):
     seismic_zone_risk = forms.BooleanField(
         label=_('¿Riesgo por Zona Sísmica?'),
         required = False
+    )"""
+
+    ## Riesgos que presenta la vivienda
+    risks = forms.MultipleChoiceField(
+        label = ('Riesgos que presenta la vivienda:'),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'form-control select2-multiple','data-toggle': 'tooltip',
+                'multiple':'multiple', 'style': 'width:100%',
+                'title': _('Indique los riesgo que presenta la vivienda.'),
+            }
+        ),
+        required=False
     )
 
     ## Animales que hay en la vivienda

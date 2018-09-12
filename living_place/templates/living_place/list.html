@@ -46,10 +46,7 @@
               <th>Número de Baños</th>
               <th>¿Tiene Terreno?</th>
               <th title="Metros Cuadrados">Área | Productivo | Por Producir</th>
-              <th>¿Riego por Ríos?</th>
-              <th>¿Riego por Quebradas?</th>
-              <th>¿Riego por Derrumbes?</th>
-              <th>¿Riego por Zona Sísmica?</th>
+              <th>¿Qué Riegos Presenta la Vivienda?</th>
               <th>¿Qué Animales Tiene?</th>
               <th>Consejo Comunal</th>
               <th>Parroquia</th>
@@ -113,32 +110,8 @@
                   <td> </td>
                 {% endif %}
 
-                {% if living_place.river_risk %}
-                  <td> Si </td>
-                {% else %}
-                  <td> No </td>
-                {% endif %}
-
-                {% if living_place.gully_risk %}
-                  <td> Si </td>
-                {% else %}
-                  <td> No </td>
-                {% endif %}
-
-                {% if living_place.landslides_risk %}
-                  <td> Si </td>
-                {% else %}
-                  <td> No </td>
-                {% endif %}
-
-                {% if living_place.siesmic_zone_risk %}
-                  <td> Si </td>
-                {% else %}
-                  <td> No </td>
-                {% endif %}
-
+                <td> {{ living_place.risks }} </td>
                 <td> {{ living_place.animals }} </td>
-
                 <td> {{ living_place.communal_council }} </td>
                 <td> {{ living_place.communal_council.parish }} </td>
                 <td> {{ living_place.communal_council.parish.municipality }} </td>

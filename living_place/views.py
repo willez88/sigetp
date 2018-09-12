@@ -155,7 +155,7 @@ class LivingPlaceCreateView(CreateView):
             self.object.productive = form.cleaned_data['productive']
             self.object.non_productive = form.cleaned_data['non_productive']
 
-        if form.cleaned_data['river_risk']:
+        """if form.cleaned_data['river_risk']:
             self.object.river_risk = form.cleaned_data['river_risk']
 
         if form.cleaned_data['gully_risk']:
@@ -165,7 +165,7 @@ class LivingPlaceCreateView(CreateView):
             self.object.landslides_risk = form.cleaned_data['landslides_risk']
 
         if form.cleaned_data['seismic_zone_risk']:
-            self.object.seismic_zone_risk = form.cleaned_data['seismic_zone_risk']
+            self.object.seismic_zone_risk = form.cleaned_data['seismic_zone_risk']"""
 
         #print(form.cleaned_data['animals'][0])
         #animal = Animal.objects.get(id=form.cleaned_data['animals'][0])
@@ -250,6 +250,7 @@ class LivingPlaceUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(LivingPlaceUpdateView, self).get_context_data(**kwargs)
+        context['risk_list'] = self.object.risks.all()
         context['animal_list'] = self.object.animals.all()
         return context
 
@@ -267,7 +268,6 @@ class LivingPlaceUpdateView(UpdateView):
         initial_data = super(LivingPlaceUpdateView, self).get_initial()
         #vivienda = Vivienda.objects.get(pk=self.object.id)
         initial_data['date_time'] = self.object.date_time
-        print(self.object.animals.all())
         initial_data['coordinate'] = self.object.coordinate.split(',')
         return initial_data
 
