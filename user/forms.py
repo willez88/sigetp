@@ -216,6 +216,7 @@ class CommunalCouncilLevelUpdateForm(ProfileForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
+                'style': 'width:100%',
                 'title': _("Consejo Comunal que tiene asignado"),
             }
         ),required = False
@@ -232,10 +233,9 @@ class CommunalCouncilLevelUpdateForm(ProfileForm):
         pass
 
     class Meta:
-        model = User
+        model = Profile
         exclude = [
-            'profile','communal_council','password','date_joined','is_superuser',
-            'is_staff','is_active','last_login'
+            'user','communal_council','password','confirm_password'
         ]
 
 class PollsterForm(ProfileForm):
@@ -252,6 +252,7 @@ class PollsterForm(ProfileForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
+                'style': 'width:100%',
                 'title': _("Consejo Comunal que tiene asignado"),
             }
         ),required = False
@@ -285,6 +286,7 @@ class PollsterUpdateForm(ProfileForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip', 'readonly':'true',
+                'style': 'width:100%',
                 'title': _("Consejo Comunal que tiene asignado"),
             }
         ),required = False
@@ -309,10 +311,9 @@ class PollsterUpdateForm(ProfileForm):
         @date 25-06-2018
         """
 
-        model = User
+        model = Profile
         exclude = [
-            'profile','level','password','confirm_password','date_joined','last_login','is_active',
-            'is_superuser','is_staff','communal_council'
+            'user','password','confirm_password','communal_council'
         ]
 
 class PollsterStatusForm(forms.ModelForm):

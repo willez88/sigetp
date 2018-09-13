@@ -18,16 +18,14 @@
 
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-6">
-          <div class="form-group {% if form.communal_council.errors %}has-error{% endif %}">
+          <div class="form-group">
             <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.communal_council.auto_id }}">
               {{ form.communal_council.label }}
             </label>
             <div class="col-md-9 col-xs-9 col-sm-9">
               <div class="form-inline">
                 {{ form.communal_council }}
-                <i class="ion ion-ios-medical item-required"></i>
               </div>
-              {% include 'base/form.errors.html' with form_errors=form.communal_council.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
             </div>
           </div>
         </div>

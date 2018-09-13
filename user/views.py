@@ -57,7 +57,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
     @date 24-05-2017
     """
 
-    model = User
+    model = Profile
     form_class = CommunalCouncilLevelUpdateForm
     template_name = 'user/profile.create.html'
     success_url = reverse_lazy('base:home')
@@ -93,12 +93,11 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         """
 
         initial_data = super(CommunalCouncilLevelUpdateView, self).get_initial()
-        initial_data['username'] = self.object.username
-        initial_data['first_name'] = self.object.first_name
-        initial_data['last_name'] = self.object.last_name
-        initial_data['email'] = self.object.email
-        communal_council_level = CommunalCouncilLevel.objects.get(profile=self.object.profile)
-        initial_data['phone'] = communal_council_level.profile.phone
+        initial_data['username'] = self.object.user.username
+        initial_data['first_name'] = self.object.user.first_name
+        initial_data['last_name'] = self.object.user.last_name
+        initial_data['email'] = self.object.user.email
+        communal_council_level = CommunalCouncilLevel.objects.get(profile=self.object)
         initial_data['communal_council'] = communal_council_level.communal_council
         return initial_data
 
@@ -114,19 +113,16 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         @return Retorna el formulario validado
         """
 
-        self.object = form.save(commit=False)
-        self.object.username = form.cleaned_data['username']
-        self.object.first_name = form.cleaned_data['first_name']
-        self.object.last_name = form.cleaned_data['last_name']
-        self.object.email = form.cleaned_data['email']
+        self.object = form.save()
+        self.object.phone = form.cleaned_data['phone']
         self.object.save()
 
-        #profile = Profile.objects.get(user=self.object)
-
-        if Profile.objects.filter(user=self.object):
-            profile = Profile.objects.get(user=self.object)
-            profile.phone = form.cleaned_data['phone']
-            profile.save()
+        user = User.objects.get(username=self.object.user.username)
+        user.username = form.cleaned_data['username']
+        user.first_name = form.cleaned_data['first_name']
+        user.last_name = form.cleaned_data['last_name']
+        user.email = form.cleaned_data['email']
+        user.save()
 
         return super(CommunalCouncilLevelUpdateView, self).form_valid(form)
 
@@ -206,7 +202,7 @@ class PollsterFormView(FormView):
         return super(PollsterFormView, self).form_invalid(form)
 
 class PollsterUpdateView(UpdateView):
-    model = User
+    model = Profile
     form_class = PollsterUpdateForm
     template_name = 'user/profile.create.html'
     success_url = reverse_lazy('base:home')
@@ -219,28 +215,29 @@ class PollsterUpdateView(UpdateView):
 
     def get_initial(self):
         initial_data = super(PollsterUpdateView, self).get_initial()
-        initial_data['username'] = self.object.username
-        initial_data['first_name'] = self.object.first_name
-        initial_data['last_name'] = self.object.last_name
-        initial_data['email'] = self.object.email
-        initial_data['phone'] = self.object.profile.phone
-        if Pollster.objects.filter(profile=self.object.profile):
-            pollster = Pollster.objects.get(profile=self.object.profile)
+        initial_data['username'] = self.object.user.username
+        initial_data['first_name'] = self.object.user.first_name
+        initial_data['last_name'] = self.object.user.last_name
+        initial_data['email'] = self.object.user.email
+        if Pollster.objects.filter(profile=self.object):
+            pollster = Pollster.objects.get(profile=self.object)
             initial_data['communal_council'] = pollster.communal_council_level.communal_council
         return initial_data
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
+        self.object = form.save()
         self.object.username = form.cleaned_data['username']
         self.object.first_name = form.cleaned_data['first_name']
         self.object.last_name = form.cleaned_data['last_name']
         self.object.email = form.cleaned_data['email']
         self.object.save()
 
-        if Profile.objects.filter(user=self.object):
-            profile = Profile.objects.get(user=self.object)
-            profile.phone = form.cleaned_data['phone']
-            profile.save()
+        user = User.objects.get(username=self.object.user.username)
+        user.username = form.cleaned_data['username']
+        user.first_name = form.cleaned_data['first_name']
+        user.last_name = form.cleaned_data['last_name']
+        user.email = form.cleaned_data['email']
+        user.save()
 
         return super(PollsterUpdateView, self).form_valid(form)
 
