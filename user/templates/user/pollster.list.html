@@ -40,12 +40,14 @@
                   <td> {{ pollster.profile.phone }} </td>
                   {% if pollster.profile.user.is_active %}
                     <td>
-                      Desactivar <input type='checkbox' id='user-{{ pollster.profile.user.id }}' value='{{ pollster.profile.user.id }}' name='deactivate' onclick='$("#form_activate").submit();'/>
+                      <i class="fa fa-thumbs-o-up fa-3x text-green" title="Usuario Activo" aria-hidden="true"></i>
+                      <input type='checkbox' id='user-{{ pollster.profile.user.id }}' value='{{ pollster.profile.user.id }}' name='deactivate' onclick='$("#form_activate").submit();'/>
                     </td>
                   {% else %}
-                  <td>
-                    Activar <input type='checkbox' id='user-{{ pollster.profile.user.id }}' value='{{ pollster.profile.user.id }}' name='activate' onclick='$("#form_activate").submit();'/>
-                  </td>
+                    <td>
+                      <i class="fa fa-thumbs-o-down fa-3x text-red" title="Usuario Inactivo" aria-hidden="true"></i>
+                      <input type='checkbox' id='user-{{ pollster.profile.user.id }}' value='{{ pollster.profile.user.id }}' name='activate' onclick='$("#form_activate").submit();'/>
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}
