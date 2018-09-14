@@ -37,8 +37,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 
 from django.urls import path, include
 from .views import (
-    CommunalCouncilLevelUpdateView, PollsterListView, PollsterFormView, PollsterUpdateView,
-    PollsterStatusUpdateView
+    CommunalCouncilLevelUpdateView, PollsterListView, PollsterFormView, PollsterUpdateView
 )
 from django.contrib.auth import views
 from django.contrib.auth.decorators import login_required
@@ -67,5 +66,4 @@ urlpatterns = [
     path('pollster/list/', login_required(PollsterListView.as_view()), name='pollster_list'),
     path('pollster/create/', login_required(PollsterFormView.as_view()), name='pollster_create'),
     path('pollster/update/<int:pk>/', login_required(PollsterUpdateView.as_view()), name='pollster_update'),
-    path('pollster/status/<int:pk>/', login_required(PollsterStatusUpdateView.as_view()), name='pollster_status_update'),
 ]

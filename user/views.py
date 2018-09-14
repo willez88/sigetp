@@ -45,6 +45,7 @@ from django.conf import settings
 from base.constant import EMAIL_SUBJECT
 from base.functions import send_email
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib import messages
 
 # Create your views here.
 
@@ -132,6 +133,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
 class PollsterListView(ListView):
     model = Pollster
     template_name = 'user/pollster.list.html'
+    success_url = reverse_lazy('user:pollster_list')
 
     def dispatch(self, request, *args, **kwargs):
         if self.request.user.groups.get(name='Nivel Consejo Comunal'):
@@ -144,6 +146,36 @@ class PollsterListView(ListView):
             communal_council_level = CommunalCouncilLevel.objects.get(profile=self.request.user.profile)
             queryset = Pollster.objects.filter(communal_council_level=communal_council_level)
             return queryset
+
+    def post(self, *args, **kwargs):
+        '''
+        Cambia el estado activo a el usuario
+        @return: Dirige a la tabla que muestra los usuarios de la apliacion
+        '''
+
+        activate = self.request.POST.get('activate', None)
+        deactivate = self.request.POST.get('deactivate', None)
+        status = False
+
+        if activate is not None:
+            user = activate
+            status = True
+        elif deactivate is not None:
+            user = deactivate
+            status = False
+        else:
+            messages.error(self.request, 'Esta intentando hacer una accion incorrecta')
+        try:
+            user_activate = User.objects.get(pk=user)
+            user_activate.is_active = status
+            user_activate.save()
+            if status:
+                messages.success(self.request, 'Se ha activado el usuario: %s' % (str(user_active)))
+            else:
+                messages.warning(self.request, 'Se ha inactivado el usuario: %s' % (str(user_active)))
+        except:
+            messages.info(self.request, 'El usuario no existe')
+        return redirect(self.success_url)
 
 class PollsterFormView(FormView):
     model = User
@@ -244,34 +276,3 @@ class PollsterUpdateView(UpdateView):
     def form_invalid(self, form):
         print(form.errors)
         return super(PollsterUpdateView, self).form_invalid(form)
-
-class PollsterStatusUpdateView(UpdateView):
-
-    model = User
-    form_class = PollsterStatusForm
-    template_name = 'user/pollster.status.update.html'
-    success_url = reverse_lazy('user:pollster_list')
-
-    def dispatch(self, request, *args, **kwargs):
-        if CommunalCouncilLevel.objects.filter(profile=self.request.user.profile):
-            communal_council_level = CommunalCouncilLevel.objects.get(profile=self.request.user.profile)
-            pollster = Pollster.objects.filter(communal_council_level=communal_council_level,profile__user__pk=self.kwargs['pk'])
-        if pollster and self.request.user.groups.get(name='Nivel Consejo Comunal'):
-            return super(PollsterStatusUpdateView, self).dispatch(request, *args, **kwargs)
-        else:
-            return redirect('base:error_403')
-
-    def get_initial(self):
-        initial_data = super(PollsterStatusUpdateView, self).get_initial()
-        initial_data['is_active'] = self.object.is_active
-        return initial_data
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.is_active = form.cleaned_data['is_active']
-        self.object.save()
-        return super(PollsterStatusUpdateView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        print(form.errors)
-        return super(PollsterStatusUpdateView, self).form_invalid(form)
