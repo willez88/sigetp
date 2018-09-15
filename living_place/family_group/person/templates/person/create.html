@@ -359,28 +359,28 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.sport.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.sport.auto_id }}">
-                {{ form.sport.label }}
+            <div class="form-group {% if form.sports.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.sports.auto_id }}">
+                {{ form.sports.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.sport }}
+                  {{ form.sports }}
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.sport.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.sports.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.disease.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.disease.auto_id }}">
-                {{ form.disease.label }}
+            <div class="form-group {% if form.diseases.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.diseases.auto_id }}">
+                {{ form.diseases.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.disease }}
+                  {{ form.diseases }}
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.disease.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.diseases.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
@@ -388,15 +388,15 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.disability.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.disability.auto_id }}">
-                {{ form.disability.label }}
+            <div class="form-group {% if form.disabilities.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.disabilities.auto_id }}">
+                {{ form.disabilities.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.disability }}
+                  {{ form.disabilities }}
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.disability.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.disabilities.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
@@ -417,28 +417,28 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.course.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.course.auto_id }}">
-                {{ form.course.label }}
+            <div class="form-group {% if form.courses.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.courses.auto_id }}">
+                {{ form.courses.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.course }}
+                  {{ form.courses }}
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.course.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.courses.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.community_organization.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.community_organization.auto_id }}">
-                {{ form.community_organization.label }}
+            <div class="form-group {% if form.community_organizations.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.community_organizations.auto_id }}">
+                {{ form.community_organizations.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.community_organization }}
+                  {{ form.community_organizations }}
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.community_organization.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.community_organizations.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
@@ -548,6 +548,36 @@
           $("#block_identity_card").addClass('invisible');
         }
       {% endif %}
+
+      var sports = [];
+      {% for sl in sports_list %}
+        sports.push({{ sl.id }});
+      {% endfor %}
+      $("#id_sports").val(sports).change();
+
+      var diseases = [];
+      {% for dl in diseases_list %}
+        diseases.push({{ dl.id }});
+      {% endfor %}
+      $("#id_diseases").val(diseases).change();
+
+      var disabilities = [];
+      {% for di in disabilities_list %}
+        disabilities.push({{ di.id }});
+      {% endfor %}
+      $("#id_disabilities").val(disabilities).change();
+
+      var courses = [];
+      {% for cl in courses_list %}
+        courses.push({{ cl.id }});
+      {% endfor %}
+      $("#id_courses").val(courses).change();
+
+      var community_organizations = [];
+      {% for co in community_organizations_list %}
+        community_organizations.push({{ co.id }});
+      {% endfor %}
+      $("#id_community_organizations").val(community_organizations).change();
     });
 
     function _has_identity_card(option)

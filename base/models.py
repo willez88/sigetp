@@ -241,6 +241,7 @@ class LivingPlaceType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Vivienda')
         verbose_name_plural = _('Tipos de Vivienda')
+        ordering = ('name',)
 
 class RoofType(models.Model):
     name = models.CharField(max_length=20)
@@ -251,6 +252,7 @@ class RoofType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Techo')
         verbose_name_plural = _('Tipos de Techo')
+        ordering = ('name',)
 
 class WallType(models.Model):
     name = models.CharField(max_length=20)
@@ -261,6 +263,7 @@ class WallType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Pared')
         verbose_name_plural = _('Tipos de Pared')
+        ordering = ('name',)
 
 class FloorType(models.Model):
     name = models.CharField(max_length=20)
@@ -271,6 +274,7 @@ class FloorType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Piso')
         verbose_name_plural = _('Tipos de Piso')
+        ordering = ('name',)
 
 class ElectricService(models.Model):
     name = models.CharField(max_length=20)
@@ -281,6 +285,7 @@ class ElectricService(models.Model):
     class Meta:
         verbose_name = _('Servicio Eléctrico')
         verbose_name_plural = _('Servicios Eléctricos')
+        ordering = ('name',)
 
 class SanitarySituation(models.Model):
     name = models.CharField(max_length=20)
@@ -291,6 +296,7 @@ class SanitarySituation(models.Model):
     class Meta:
         verbose_name = _('Situación Sanitaria')
         verbose_name_plural = _('Situaciones Sanitarias')
+        ordering = ('name',)
 
 class TrashDisposal(models.Model):
     name = models.CharField(max_length=20)
@@ -301,6 +307,7 @@ class TrashDisposal(models.Model):
     class Meta:
         verbose_name = _('Disposición de la Basura')
         verbose_name_plural = _('Disposiciones de la Basura')
+        ordering = ('name',)
 
 class TenureType(models.Model):
     name = models.CharField(max_length=20)
@@ -311,6 +318,7 @@ class TenureType(models.Model):
     class Meta:
         verbose_name = _('Tipo de tenencia')
         verbose_name_plural = _('Tipos de tenencia')
+        ordering = ('name',)
 
 class FamilyRelationship(models.Model):
     name = models.CharField(max_length=20)
@@ -321,6 +329,7 @@ class FamilyRelationship(models.Model):
     class Meta:
         verbose_name = _('Parentesco Familiar')
         verbose_name_plural = _('Parentescos Familiares')
+        ordering = ('name',)
 
 class MaritalStatus(models.Model):
     name = models.CharField(max_length=30)
@@ -331,6 +340,7 @@ class MaritalStatus(models.Model):
     class Meta:
         verbose_name = _('Estado Civil')
         verbose_name_plural = _('Estados Civiles')
+        ordering = ('name',)
 
 class InstructionDegree(models.Model):
     name = models.CharField(max_length=50)
@@ -341,6 +351,7 @@ class InstructionDegree(models.Model):
     class Meta:
         verbose_name = _('Grado de Instrucción')
         verbose_name_plural = _('Grados de Instrucción')
+        ordering = ('name',)
 
 class EducationalMission(models.Model):
     name = models.CharField(max_length=50)
@@ -351,6 +362,7 @@ class EducationalMission(models.Model):
     class Meta:
         verbose_name = _('Misión Educativa')
         verbose_name_plural = _('Misiones Educativas')
+        ordering = ('name',)
 
 class SocialMission(models.Model):
     name = models.CharField(max_length=50)
@@ -361,6 +373,7 @@ class SocialMission(models.Model):
     class Meta:
         verbose_name = _('Misión Social')
         verbose_name_plural = _('Misiones Sociales')
+        ordering = ('name',)
 
 class IncomeType(models.Model):
     name = models.CharField(max_length=50)
@@ -371,6 +384,7 @@ class IncomeType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Ingreso')
         verbose_name_plural = _('Tipos de Ingreso')
+        ordering = ('name',)
 
 class CommunityOrganization(models.Model):
     name = models.CharField(max_length=100)
@@ -381,6 +395,7 @@ class CommunityOrganization(models.Model):
     class Meta:
         verbose_name = _('Organización Comunitaria')
         verbose_name_plural = _('Organizaciones Comunitarias')
+        ordering = ('name',)
 
 class Sex(models.Model):
     name = models.CharField(max_length=20)
@@ -391,6 +406,7 @@ class Sex(models.Model):
     class Meta:
         verbose_name = _('Sexo')
         verbose_name_plural = _('Sexos')
+        ordering = ('name',)
 
 class CementType(models.Model):
     name = models.CharField(max_length=20)
@@ -401,6 +417,7 @@ class CementType(models.Model):
     class Meta:
         verbose_name = _('Tipo de Cemento')
         verbose_name_plural = _('Tipos de Cemento')
+        ordering = ('name',)
 
 class Valoration(models.Model):
     name = models.CharField(max_length=20)
@@ -411,6 +428,7 @@ class Valoration(models.Model):
     class Meta:
         verbose_name = _('Valoración')
         verbose_name_plural = _('Valoraciones')
+        ordering = ('name',)
 
 class Animal(models.Model):
     name = models.CharField(max_length=20)
@@ -421,6 +439,7 @@ class Animal(models.Model):
     class Meta:
         verbose_name = _('Animal')
         verbose_name_plural = _('Animales')
+        ordering = ('name',)
 
 class Profession(models.Model):
     name = models.CharField(max_length=100)
@@ -431,6 +450,7 @@ class Profession(models.Model):
     class Meta:
         verbose_name = _('Profesión')
         verbose_name_plural = _('Profesiones')
+        ordering = ('name',)
 
 class Occupation(models.Model):
     name = models.CharField(max_length=100)
@@ -441,6 +461,7 @@ class Occupation(models.Model):
     class Meta:
         verbose_name = _('Ocupación')
         verbose_name_plural = _('Ocupaciones')
+        ordering = ('name',)
 
 class Workplace(models.Model):
     name = models.CharField(max_length=100)
@@ -451,6 +472,7 @@ class Workplace(models.Model):
     class Meta:
         verbose_name = _('Lugar de Trabajo')
         verbose_name_plural = _('Lugares de Trabajo')
+        ordering = ('name',)
 
 class Sport(models.Model):
     name = models.CharField(max_length=100)
@@ -461,6 +483,7 @@ class Sport(models.Model):
     class Meta:
         verbose_name = _('Deporte')
         verbose_name_plural = _('Deportes')
+        ordering = ('name',)
 
 class Disease(models.Model):
     name = models.CharField(max_length=150)
@@ -471,6 +494,7 @@ class Disease(models.Model):
     class Meta:
         verbose_name = _('Enfermedad')
         verbose_name_plural = _('Enfermedades')
+        ordering = ('name',)
 
 class Disability(models.Model):
     name = models.CharField(max_length=150)
@@ -481,6 +505,7 @@ class Disability(models.Model):
     class Meta:
         verbose_name = _('Discapacidad')
         verbose_name_plural = _('Discapacidades')
+        ordering = ('name',)
 
 class Course(models.Model):
     name = models.CharField(max_length=100)
@@ -491,6 +516,7 @@ class Course(models.Model):
     class Meta:
         verbose_name = _('Curso')
         verbose_name_plural = _('Cursos')
+        ordering = ('name',)
 
 class Risk(models.Model):
     name = models.CharField(max_length=100)
@@ -501,3 +527,4 @@ class Risk(models.Model):
     class Meta:
         verbose_name = _('Riesgo')
         verbose_name_plural = _('Riesgos')
+        ordering = ('name',)

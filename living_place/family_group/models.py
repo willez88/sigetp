@@ -36,6 +36,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from base.models import TenureType
 from living_place.models import LivingPlace
 # Create your models here.
@@ -82,3 +83,7 @@ class FamilyGroup(models.Model):
         """
 
         return self.family_last_name + ' | ' + str(self.id)
+
+    class Meta:
+        verbose_name = _('Grupo Familiar')
+        verbose_name_plural = _('Grupos Familiares')

@@ -146,13 +146,13 @@ class PersonCreateView(CreateView):
         if form.cleaned_data['retired']:
             self.object.retired = form.cleaned_data['retired']
         self.object.income_type = form.cleaned_data['income_type']
-        self.object.sport = form.cleaned_data['sport']
-        self.object.disease = form.cleaned_data['disease']
-        self.object.disability = form.cleaned_data['disability']
+        #self.object.sport = form.cleaned_data['sport']
+        #self.object.disease = form.cleaned_data['disease']
+        #self.object.disability = form.cleaned_data['disability']
         if form.cleaned_data['communal_council_law']:
             self.object.communal_council_law = form.cleaned_data['communal_council_law']
-        self.object.course = form.cleaned_data['course']
-        self.object.community_organization = form.cleaned_data['community_organization']
+        #self.object.course = form.cleaned_data['course']
+        #self.object.community_organization = form.cleaned_data['community_organization']
         self.object.leisure = form.cleaned_data['leisure']
         self.object.communication = form.cleaned_data['communication']
         self.object.insecurity = form.cleaned_data['insecurity']
@@ -177,7 +177,7 @@ class PersonUpdateView(UpdateView):
     model = Person
     form_class = PersonForm
     template_name = 'person/create.html'
-    success_url = reverse_lazy('person:list')
+    success_url = reverse_lazy('living_place:family_group:person:list')
 
     def get_form_kwargs(self):
         """!
@@ -220,6 +220,15 @@ class PersonUpdateView(UpdateView):
             return super(PersonUpdateView, self).dispatch(request, *args, **kwargs)
         else:
             return redirect('base:error_403')
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonUpdateView, self).get_context_data(**kwargs)
+        context['sports_list'] = self.object.sports.all()
+        context['diseases_list'] = self.object.diseases.all()
+        context['disabilities_list'] = self.object.disabilities.all()
+        context['courses_list'] = self.object.courses.all()
+        context['community_organizations_list'] = self.object.community_organizations.all()
+        return context
 
     def get_initial(self):
         """!
@@ -271,7 +280,7 @@ class PersonDeleteView(DeleteView):
 
     model = Person
     template_name = 'person/delete.html'
-    success_url = reverse_lazy('persona_lista')
+    success_url = reverse_lazy('living_place:family_group:person:list')
 
     def dispatch(self, request, *args, **kwargs):
         """!

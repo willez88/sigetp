@@ -416,36 +416,12 @@ class LivingPlaceForm(forms.ModelForm):
         ), required=False
     )
 
-    ## Riesgo por río
-    """river_risk = forms.BooleanField(
-        label=_('¿Riesgo por Ríos?'),
-        required = False
-    )
-
-    ## Riesgo por quebrada
-    gully_risk = forms.BooleanField(
-        label=_('¿Riesgo por Quebradas?'),
-        required = False
-    )
-
-    ## riesgo por derrumbe
-    landslides_risk = forms.BooleanField(
-        label=_('¿Riesgo por Derrumbes?'),
-        required = False
-    )
-
-    ## Riesgo por zona sísmica
-    seismic_zone_risk = forms.BooleanField(
-        label=_('¿Riesgo por Zona Sísmica?'),
-        required = False
-    )"""
-
     ## Riesgos que presenta la vivienda
     risks = forms.MultipleChoiceField(
         label = ('Riesgos que presenta la vivienda:'),
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control select2-multiple','data-toggle': 'tooltip',
+                'class': 'form-control select2','data-toggle': 'tooltip',
                 'multiple':'multiple', 'style': 'width:100%',
                 'title': _('Indique los riesgo que presenta la vivienda.'),
             }

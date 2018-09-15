@@ -83,6 +83,31 @@ class PersonForm(forms.ModelForm):
                 family_group_list.append( (fg.id,fg) )
         self.fields['family_group'].choices = family_group_list
 
+        sports_list = []
+        for sp in Sport.objects.all():
+            sports_list.append( (sp.id,sp) )
+        self.fields['sports'].choices = sports_list
+
+        diseases_list = []
+        for di in Disease.objects.all():
+            diseases_list.append( (di.id,di) )
+        self.fields['diseases'].choices = diseases_list
+
+        disabilities_list = []
+        for dis in Disability.objects.all():
+            disabilities_list.append( (dis.id,dis) )
+        self.fields['disabilities'].choices = disabilities_list
+
+        courses_list = []
+        for co in Course.objects.all():
+            courses_list.append( (co.id,co) )
+        self.fields['courses'].choices = courses_list
+
+        community_organizations_list = []
+        for com in CommunityOrganization.objects.all():
+            community_organizations_list.append( (com.id,com) )
+        self.fields['community_organizations'].choices = community_organizations_list
+
     ## Grupo familiar al que la persona pertenece
     family_group = forms.ChoiceField(
         label=_('Grupo Familiar:'),
@@ -325,24 +350,24 @@ class PersonForm(forms.ModelForm):
     )
 
     ## Deporte que practica la persona
-    sport = forms.ModelChoiceField(
-        label=_('Deporte que Practica:'), queryset=Sport.objects.all(), empty_label= _('Seleccione...'),
-        widget=forms.Select(
+    sports = forms.MultipleChoiceField(
+        label=_('Deporte que Practica:'),
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique el Deporte que practica de la Persona'),
+                'style': 'width:100%',
             }
         ),
         required = False
     )
 
     ## Enfermedad que presenta la persona
-    disease = forms.ModelChoiceField(
-        label=_('Enfermedad que Presenta:'), queryset=Disease.objects.all(),
-        empty_label= _('Seleccione...'),
-        widget=forms.Select(
+    diseases = forms.MultipleChoiceField(
+        label=_('Enfermedad que Presenta:'),
+        widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control select2', 'data-toggle': 'tooltip',
+                'class': 'form-control select2', 'data-toggle': 'tooltip', 'style': 'width:100%',
                 'title': _("Indique la Enfermedad que Presenta la Persona"),
             }
         ),
@@ -350,13 +375,13 @@ class PersonForm(forms.ModelForm):
     )
 
     ## Discapacidad que presenta la persona
-    disability = forms.ModelChoiceField(
-        label=_('Discapacidad que Presenta:'), queryset=Disability.objects.all(),
-        empty_label= _('Seleccione...'),
-        widget=forms.Select(
+    disabilities = forms.MultipleChoiceField(
+        label=_('Discapacidad que Presenta:'),
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique la Discapacidad que Presenta la Persona'),
+                'style': 'width:100%',
             }
         ),
         required = False
@@ -369,25 +394,25 @@ class PersonForm(forms.ModelForm):
     )
 
     ## Cursos que ha realizado la persona
-    course = forms.ModelChoiceField(
-        label=_('¿Qué Cursos le Gustaría Hacer?'), queryset=Course.objects.all(),
-        empty_label= _('Seleccione...'),
-        widget=forms.Select(
+    courses = forms.MultipleChoiceField(
+        label=_('¿Qué Cursos le Gustaría Hacer?'),
+        widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique los Cursos que le gustaría hacer'),
+                'style': 'width:100%',
             }
         ),
         required = False
     )
 
     ## Organización comunitaria que conoce la persona
-    community_organization = forms.ModelChoiceField(
-        label = ('Organizaciones Comunitarias que conoce:'), queryset=CommunityOrganization.objects.all(),
-        empty_label= _('Seleccione...'),
-        widget=forms.Select(attrs={
+    community_organizations = forms.MultipleChoiceField(
+        label = ('Organizaciones Comunitarias que conoce:'),
+        widget=forms.SelectMultiple(attrs={
             'class': 'form-control select2', 'data-toggle': 'tooltip',
             'title': _('Indique las organizaciones comunitarias que conoce'),
+            'style': 'width:100%',
         }),
         required=False,
     )
@@ -498,6 +523,24 @@ class PersonForm(forms.ModelForm):
         @date 24-05-2017
         """
 
+        model = Person
+        exclude = [
+            'family_group'
+        ]
+
+class PersonUpdateForm(PersonForm):
+
+    def clean_identity_card(self):
+        identity_card = self.cleaned_data['identity_card']
+        if Person.objects.all().exclude(identity_card=identity_card):
+            person = Person.objects.get(identity_card=identity_card)
+            communal_council_level = CommunalCouncilLevel.objects.get(communal_council=person.family_group.living_place.communal_council)
+            raise forms.ValidationError(_('La persona con esta cédula ya existe, se encuentra en '+str(communal_council_level.communal_council)+', '+str(communal_council_level.communal_council.parish)+', '+ \
+            str(communal_council_level.communal_council.parish.municipality)+', '+str(communal_council_level.communal_council.parish.municipality.state)+'. Administrador del Consejo Comunal: '+communal_council_level.profile.user.first_name+' '+ \
+            communal_council_level.profile.user.last_name+', '+communal_council_level.profile.user.email+', '+communal_council_level.profile.phone))
+        return identity_card
+
+    class Meta:
         model = Person
         exclude = [
             'family_group'

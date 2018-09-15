@@ -97,16 +97,36 @@
                 {% else %}
                   <td>No</td>
                 {% endif %}
-                <td>{{ person.sport }}</td>
-                <td>{{ person.disease }}</td>
-                <td>{{ person.disability }}</td>
+                <td>
+                  {% for s in person.sports.all %}
+                    {{ s }}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for d in person.diseases.all %}
+                    {{ d }}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for d in person.disabilities.all %}
+                    {{ d }}
+                  {% endfor %}
+                </td>
                 {% if person.communal_council_law %}
                   <td>Si</td>
                 {% else %}
                   <td>No</td>
                 {% endif %}
-                <td>{{ person.course }}</td>
-                <td>{{ person.communitary_organization }}</td>
+                <td>
+                  {% for c in person.courses.all %}
+                    {{ c }}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for c in person.community_organizations.all %}
+                    {{ c }}
+                  {% endfor %}
+                </td>
                 <td>{{ person.leisure }}</td>
                 <td>{{ person.communication }}</td>
                 <td>{{ person.insecurity }}</td>

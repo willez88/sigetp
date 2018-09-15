@@ -123,22 +123,22 @@ class Person(models.Model):
     retired = models.BooleanField()
 
     ## Establece el Deporte que practica la Persona (sin categoria de momento)
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+    sports = models.ManyToManyField(Sport)
 
     ## Establece la Enfermedad que presenta la Persona
-    disease = models.ForeignKey(Disease, on_delete=models.CASCADE)
+    diseases = models.ManyToManyField(Disease)
 
     ## Establece la Discapacidad que tiene la Persona
-    disability = models.ForeignKey(Disability, on_delete=models.CASCADE)
+    disabilities = models.ManyToManyField(Disability)
 
     ## Establece si la Persona ha leido la ley de los consejos comunales
     communal_council_law = models.BooleanField(default=False)
 
     ## Establece que cursos le gustaría hacer a la Persona (sin categoria de momento)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Course)
 
     ## Establece todas las organizaciones que la Persona conoce (las preguntas de arriba se redondean en esta)
-    community_organization = models.ForeignKey(CommunityOrganization, on_delete=models.CASCADE)
+    community_organizations = models.ManyToManyField(CommunityOrganization)
 
     ## Estable que hace la Persona en sus horas de ocio
     leisure = models.CharField(max_length=500)
@@ -184,3 +184,7 @@ class Person(models.Model):
         """
 
         return self.first_name + ' ' + self.last_name + ', ' + str(self.identity_card)
+
+    class Meta:
+        verbose_name = _('Persona')
+        verbose_name_plural = _('Personas')

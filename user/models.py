@@ -138,7 +138,7 @@ class CommunalCouncilLevel(models.Model):
 
         verbose_name = _('Nivel Consejo Comunal')
         verbose_name_plural = _('Nivel Consejos Comunales')
-        ordering = ('communal_council__name',)
+        #ordering = ('communal_council__name',)
 
 class Pollster(models.Model):
     """!

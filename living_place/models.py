@@ -36,6 +36,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @version 1.0
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from base.models import (
     CommunalCouncil, ElectricService, SanitarySituation, TrashDisposal, LivingPlaceType,
     RoofType, WallType, FloorType, CementType, Valoration, Animal, Risk
@@ -82,7 +83,7 @@ class LivingPlace(models.Model):
     floor_type = models.ForeignKey(FloorType,on_delete=models.CASCADE)
 
     ## Tipo del cemento del piso
-    cement_type = models.ForeignKey(CementType,on_delete=models.CASCADE)
+    cement_type = models.ForeignKey(CementType,on_delete=models.CASCADE,null=True)
 
     ## Condición de la vivienda
     living_place_condition = models.ForeignKey(Valoration,on_delete=models.CASCADE)
@@ -138,18 +139,6 @@ class LivingPlace(models.Model):
     ## Terreno que está por producir
     non_productive = models.DecimalField(max_digits=18, decimal_places=2, default=0.0)
 
-    ## Riesgo por río
-    #river_risk = models.BooleanField()
-
-    ## Riesgo por quebrada
-    #gully_risk = models.BooleanField()
-
-    ## Riesgo por derrumbe
-    #landslides_risk = models.BooleanField()
-
-    ## Riesgo por zona sísmica
-    #seismic_zone_risk = models.BooleanField()
-
     ## Riesgo que presenta la vivienda
     risks = models.ManyToManyField(Risk)
 
@@ -186,6 +175,11 @@ class LivingPlace(models.Model):
         """
 
         return self.living_place_number + ' | ' + str(self.id)
+
+    class Meta:
+        verbose_name = _('Vivienda')
+        verbose_name_plural = _('Viviendas')
+        #ordering = ('user__username',)
 
 class Photograph(models.Model):
     """!
