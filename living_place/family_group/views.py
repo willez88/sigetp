@@ -125,7 +125,7 @@ class FamilyGroupCreateView(CreateView):
         if form.cleaned_data['beneficiary_family']:
             self.object.beneficiary_family = form.cleaned_data['beneficiary_family']
         self.object.tenure = form.cleaned_data['tenure']
-        if form.cleaned_data['tenure'] == 'AL':
+        if form.cleaned_data['tenure'].id == 2:
             self.object.rented = form.cleaned_data['rented']
         if form.cleaned_data['ticket']:
             self.object.ticket= form.cleaned_data['ticket']

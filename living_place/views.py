@@ -127,13 +127,15 @@ class LivingPlaceCreateView(CreateView):
         self.object.living_place_type = form.cleaned_data['living_place_type']
         self.object.wall_type = form.cleaned_data['wall_type']
 
-        if form.cleaned_data['wall_type'] == 'BL':
+        if form.cleaned_data['wall_type'] == 4:
             self.object.wall_frieze = form.cleaned_data['wall_frieze']
 
         self.object.floor_type = form.cleaned_data['floor_type']
 
-        if form.cleaned_data['floor_type'] == 'CE':
+        if form.cleaned_data['floor_type'].id == 2:
             self.object.cement_type = form.cleaned_data['cement_type']
+        else:
+            self.object.cement_type = None
 
         self.object.living_place_condition = form.cleaned_data['living_place_condition']
         self.object.roof_condition = form.cleaned_data['roof_condition']
@@ -155,23 +157,6 @@ class LivingPlaceCreateView(CreateView):
             self.object.productive = form.cleaned_data['productive']
             self.object.non_productive = form.cleaned_data['non_productive']
 
-        """if form.cleaned_data['river_risk']:
-            self.object.river_risk = form.cleaned_data['river_risk']
-
-        if form.cleaned_data['gully_risk']:
-            self.object.gully_risk = form.cleaned_data['gully_risk']
-
-        if form.cleaned_data['landslides_risk']:
-            self.object.landslides_risk = form.cleaned_data['landslides_risk']
-
-        if form.cleaned_data['seismic_zone_risk']:
-            self.object.seismic_zone_risk = form.cleaned_data['seismic_zone_risk']"""
-
-        #print(form.cleaned_data['animals'][0])
-        #animal = Animal.objects.get(id=form.cleaned_data['animals'][0])
-        #print(animal)
-        #self.object.animals.add(animal)
-
         if CommunalCouncilLevel.objects.filter(profile=self.request.user.profile):
             communal_council_level = CommunalCouncilLevel.objects.get(profile=self.request.user.profile)
             self.object.communal_council = communal_council_level.communal_council
@@ -185,7 +170,6 @@ class LivingPlaceCreateView(CreateView):
         self.object.observation = form.cleaned_data['observation']
         self.object.user = self.request.user
         self.object.save()
-        #self.object.animals.add(animal)
         return super(LivingPlaceCreateView, self).form_valid(form)
 
     def form_invalid(self, form):
@@ -246,7 +230,7 @@ class LivingPlaceUpdateView(UpdateView):
         if LivingPlace.objects.filter(pk=self.kwargs['pk'],user=self.request.user):
             return super(LivingPlaceUpdateView, self).dispatch(request, *args, **kwargs)
         else:
-            return redirect('base_403')
+            return redirect('base:error_403')
 
     def get_context_data(self, **kwargs):
         context = super(LivingPlaceUpdateView, self).get_context_data(**kwargs)
@@ -266,7 +250,6 @@ class LivingPlaceUpdateView(UpdateView):
         """
 
         initial_data = super(LivingPlaceUpdateView, self).get_initial()
-        #vivienda = Vivienda.objects.get(pk=self.object.id)
         initial_data['date_time'] = self.object.date_time
         initial_data['coordinate'] = self.object.coordinate.split(',')
         return initial_data
@@ -285,6 +268,12 @@ class LivingPlaceUpdateView(UpdateView):
 
         self.object = form.save(commit=False)
         self.object.coordinate = form.cleaned_data['coordinate']
+        if form.cleaned_data['wall_type'] == 4:
+            self.object.wall_frieze = form.cleaned_data['wall_frieze']
+        if form.cleaned_data['floor_type'].id == 2:
+            self.object.cement_type = form.cleaned_data['cement_type']
+        else:
+            self.object.cement_type = None
         self.object.save()
         return super(LivingPlaceUpdateView, self).form_valid(form)
 

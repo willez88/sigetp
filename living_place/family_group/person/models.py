@@ -70,9 +70,9 @@ class Person(models.Model):
         null=True
     )
 
-    # +058-416-0708340
+    # +58-416-0708340
     phone = models.CharField(
-        max_length=18,
+        max_length=15,
     )
 
     ## Establece el correo de la persona

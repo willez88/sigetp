@@ -422,7 +422,7 @@ class LivingPlaceForm(forms.ModelForm):
         widget=forms.SelectMultiple(
             attrs={
                 'class': 'form-control select2','data-toggle': 'tooltip',
-                'multiple':'multiple', 'style': 'width:100%',
+                'style': 'width:100%',
                 'title': _('Indique los riesgo que presenta la vivienda.'),
             }
         ),
@@ -434,8 +434,8 @@ class LivingPlaceForm(forms.ModelForm):
         label = ('Animales que tiene:'),
         widget=forms.SelectMultiple(
             attrs={
-                'class': 'form-control select2-multiple','data-toggle': 'tooltip',
-                'multiple':'multiple', 'style': 'width:100%',
+                'class': 'form-control select2','data-toggle': 'tooltip',
+                'style': 'width:100%',
                 'title': _('Indique los animales que tiene'),
             }
         ),

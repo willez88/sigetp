@@ -110,8 +110,16 @@
                   <td> </td>
                 {% endif %}
 
-                <td> {{ living_place.risks }} </td>
-                <td> {{ living_place.animals }} </td>
+                <td>
+                  {% for lp in living_place.risks.all %}
+                    {{ lp }}
+                  {% endfor %}
+                </td>
+                <td>
+                  {% for an in living_place.animals.all %}
+                    {{ an }}
+                  {% endfor %}
+                </td>
                 <td> {{ living_place.communal_council }} </td>
                 <td> {{ living_place.communal_council.parish }} </td>
                 <td> {{ living_place.communal_council.parish.municipality }} </td>
