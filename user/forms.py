@@ -234,8 +234,8 @@ class CommunalCouncilLevelUpdateForm(ProfileForm):
 
     class Meta:
         model = Profile
-        exclude = [
-            'user','communal_council','password','confirm_password'
+        fields = [
+            'username','first_name','last_name','email','phone'
         ]
 
 class PollsterForm(ProfileForm):
@@ -268,8 +268,8 @@ class PollsterForm(ProfileForm):
         """
 
         model = User
-        exclude = [
-            'date_joined','last_login','is_active','is_superuser','is_staff','communal_council'
+        fields = [
+            'username','first_name','last_name','email','phone','password','confirm_password'
         ]
 
 class PollsterUpdateForm(ProfileForm):
@@ -312,20 +312,6 @@ class PollsterUpdateForm(ProfileForm):
         """
 
         model = Profile
-        exclude = [
-            'user','password','confirm_password','communal_council'
-        ]
-
-class PollsterStatusForm(forms.ModelForm):
-
-    is_active = forms.BooleanField(
-        label=_("¿Está Activo?"), required=False
-    )
-
-    class Meta:
-
-        model = User
-        exclude = [
-            'username','first_name','last_name','email','password','date_joined',
-            'last_login','is_superuser','is_staff',
+        fields = [
+            'username','first_name','last_name','email','phone'
         ]

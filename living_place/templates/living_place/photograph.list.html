@@ -22,7 +22,6 @@
           <thead>
             <tr>
               <th>Vivienda</th>
-              <th>Nombre de la imagen</th>
               <th>Imagen</th>
               <th>Operación</th>
             </tr>
@@ -31,8 +30,8 @@
             {% for ph in object_list %}
               <tr>
                 <td> {{ ph.living_place }} </td>
-                <td> {{ ph.picture }} </td>
-                <td> <a href="#" data-toggle="tooltip" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
+                <td> <img src="/living-place/media/{{ ph.picture }}" width="200px" height="200px"> </td>
+                <td> <a href="{% url 'living_place:photograph_delete' ph.id %}" title="Eliminar"><i class="fa fa-remove"></i></a> </td>
               </tr>
             {% endfor %}
           </tbody>

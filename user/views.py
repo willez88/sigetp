@@ -39,7 +39,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User, Group
 from django.views.generic import UpdateView, ListView, CreateView, FormView
-from .forms import CommunalCouncilLevelUpdateForm, PollsterForm, PollsterUpdateForm, PollsterStatusForm
+from .forms import CommunalCouncilLevelUpdateForm, PollsterForm, PollsterUpdateForm
 from .models import Profile, CommunalCouncilLevel, Pollster
 from django.conf import settings
 from base.constant import EMAIL_SUBJECT

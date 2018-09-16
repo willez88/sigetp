@@ -555,7 +555,7 @@ class LivingPlaceForm(forms.ModelForm):
             self.add_error('productive', msg)
             self.add_error('non_productive', msg)
 
-        if floor_type == 'CE':
+        if floor_type.id == 2:
             if floor_type == '':
                 msg = str(_('Este campo es obligatorio.'))
                 self.add_error('cement_type', msg)

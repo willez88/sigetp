@@ -41,13 +41,13 @@ from .models import LivingPlace, Photograph
 class LivingPlaceAdmin(admin.ModelAdmin):
     list_display = ('user','communal_council',)
     list_filter = ('user','communal_council',)
-    list_per_page = 25
+    #list_per_page = 25
     ordering = ('communal_council',)
 admin.site.register(LivingPlace, LivingPlaceAdmin)
 
 class PhotographAdmin(admin.ModelAdmin):
-    list_display = ('living_place','name',)
+    list_display = ('living_place','picture')
     list_filter = ('living_place',)
-    list_per_page = 25
+    #list_per_page = 25
     ordering = ('living_place',)
 admin.site.register(Photograph, PhotographAdmin)

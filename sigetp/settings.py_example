@@ -187,15 +187,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 ## Configuración de la raíz donde se encuentran los archivos estaticos del sistema (para entornos en producción)
-STATIC_ROOT = ''
-#MEDIA_URL = 'media/'
-#MEDIA_ROOT = ''
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ## Configuración de los directorios en donde se encuentran los archivos estáticos
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
-    #os.path.join(BASE_DIR, 'media/'),
+    os.path.join(BASE_DIR, 'media/'),
 )
 
 ## URL de acceso al sistema

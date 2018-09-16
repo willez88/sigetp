@@ -191,7 +191,7 @@ class Photograph(models.Model):
     """
 
     ## Nombre de la imagen
-    name = models.CharField(max_length=100)
+    #name = models.CharField(max_length=100)
 
     ## Nombre de la imagen
     picture = models.ImageField(upload_to='living_place/')
@@ -210,4 +210,8 @@ class Photograph(models.Model):
         @return Una cadena de caracteres con el nombre de la imagen
         """
 
-        return self.photo
+        return str(self.picture)
+
+    class Meta:
+        verbose_name = _('Fotografía')
+        verbose_name_plural = _('Fotografías')
