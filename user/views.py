@@ -77,7 +77,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         @return Redirecciona al usuario a la página de error de permisos si no es su perfil
         """
 
-        if int(self.request.user.pk) == int(self.kwargs['pk']) and self.request.user.groups.get(name='Nivel Consejo Comunal'):
+        if int(self.request.user.profile.pk) == int(self.kwargs['pk']) and self.request.user.groups.get(name='Nivel Consejo Comunal'):
             return super(CommunalCouncilLevelUpdateView, self).dispatch(request, *args, **kwargs)
         else:
             return redirect('base:error_403')
@@ -240,7 +240,7 @@ class PollsterUpdateView(UpdateView):
     success_url = reverse_lazy('base:home')
 
     def dispatch(self, request, *args, **kwargs):
-        if self.request.user.id == self.kwargs['pk'] and self.request.user.groups.get(name='Nivel Encuestador'):
+        if self.request.user.profile.pk == self.kwargs['pk'] and self.request.user.groups.get(name='Nivel Encuestador'):
             return super(PollsterUpdateView, self).dispatch(request, *args, **kwargs)
         else:
             return redirect('base:error_403')
