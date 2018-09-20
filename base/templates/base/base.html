@@ -48,9 +48,9 @@
                     <li class="user-footer">
                       <div class="pull-left">
                         {% if request.user|has_group:'Nivel Consejo Comunal' %}
-                          <a href="{% url 'user:communal_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
+                          <a href="{% url 'user:communal_council_level_update' request.user.profile.id %}" class="btn btn-default btn-flat">Perfil</a>
                         {% elif request.user|has_group:'Nivel Encuestador' %}
-                          <a href="{% url 'user:pollster_update' request.user.id %}" class="btn btn-default btn-flat">Perfil</a>
+                          <a href="{% url 'user:pollster_update' request.user.profile.id %}" class="btn btn-default btn-flat">Perfil</a>
                         {% endif %}
                       </div>
                       <div class="pull-right">

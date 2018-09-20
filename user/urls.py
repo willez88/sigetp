@@ -61,7 +61,7 @@ urlpatterns = [
     path('password-change/', views.PasswordChangeView.as_view(template_name='user/password_change_form.html'), name='password_change'),
     path('password-change-done/', views.PasswordChangeDoneView.as_view(template_name='user/password_change_done.html'), name='password_change_done'),
 
-    path('comunal-council-level/update/<int:pk>/', login_required(CommunalCouncilLevelUpdateView.as_view()), name='communal_update'),
+    path('communal-council-level/update/<int:pk>/', login_required(CommunalCouncilLevelUpdateView.as_view()), name='communal_council_level_update'),
 
     path('pollster/list/', login_required(PollsterListView.as_view()), name='pollster_list'),
     path('pollster/create/', login_required(PollsterFormView.as_view()), name='pollster_create'),
