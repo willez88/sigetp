@@ -35,7 +35,7 @@ http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/
 # @date 24-05-2017
 # @version 1.0
 
-from django.urls import path, include
+from django.urls import path, include, reverse_lazy
 from .views import (
     CommunalCouncilLevelUpdateView, PollsterListView, PollsterFormView, PollsterUpdateView
 )
@@ -49,17 +49,18 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(template_name='user/login.html'), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('reset/password_reset/', views.PasswordResetView.as_view(template_name='user/password_reset_form.html',
-        email_template_name='password_reset_email.html'),
+        email_template_name='user/password_reset_email.html',success_url = reverse_lazy('user:password_reset_done')),
         name='password_reset'),
     path('password_reset_done/', views.PasswordResetDoneView.as_view(template_name='user/password_reset_done.html'),
         name='password_reset_done'),
-    path('reset/<uidb64>/<token>/',
-        views.PasswordResetConfirmView.as_view(template_name='user/password_reset_confirm.html'),
-        name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/',views.PasswordResetConfirmView.as_view(template_name='user/password_reset_confirm.html',
+        success_url = reverse_lazy('user:password_reset_complete')),name='password_reset_confirm'),
     path('reset/done/', views.PasswordResetCompleteView.as_view(template_name='user/password_reset_complete.html'),
         name='password_reset_complete'),
-    path('password-change/', views.PasswordChangeView.as_view(template_name='user/password_change_form.html'), name='password_change'),
-    path('password-change-done/', views.PasswordChangeDoneView.as_view(template_name='user/password_change_done.html'), name='password_change_done'),
+    path('password-change/', login_required(views.PasswordChangeView.as_view(template_name='user/password_change_form.html',
+        success_url = reverse_lazy('user:password_change_done'))), name='password_change'),
+    path('password-change-done/', login_required(views.PasswordChangeDoneView.as_view(template_name='user/password_change_done.html')),
+        name='password_change_done'),
 
     path('communal-council-level/update/<int:pk>/', login_required(CommunalCouncilLevelUpdateView.as_view()), name='communal_council_level_update'),
 
