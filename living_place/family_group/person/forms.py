@@ -297,8 +297,7 @@ class PersonForm(forms.ModelForm):
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique la Profesión de la Persona'),
             }
-        ),
-        required = False
+        )
     )
 
     ## Ocupación
@@ -309,8 +308,7 @@ class PersonForm(forms.ModelForm):
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique la Ocupación de la Persona'),
             }
-        ),
-        required = False
+        )
     )
 
     ## Lugar de trabajo
@@ -321,8 +319,7 @@ class PersonForm(forms.ModelForm):
                 'class': 'form-control select2', 'data-toggle': 'tooltip',
                 'title': _('Indique el lugar de trabajo de la persona'),
             }
-        ),
-        required = False
+        )
     )
 
     ## Ingresos

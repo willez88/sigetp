@@ -90,7 +90,7 @@ class PersonCreateView(CreateView):
     model = Person
     form_class = PersonForm
     template_name = 'person/create.html'
-    success_url = reverse_lazy('person:list')
+    success_url = reverse_lazy('living_place:family_group:person:list')
 
     def get_form_kwargs(self):
         """!
