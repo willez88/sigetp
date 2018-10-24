@@ -23,6 +23,28 @@
           {% if request.user.is_authenticated %}
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav">
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="dropdown notifications-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning">2</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header">Notificaciones del sistema</li>
+                    <li>
+                      <!-- inner menu: contains the actual data -->
+                      <ul class="menu">
+                        <li>
+                          <a href="#" data-toggle="modal" data-target="#modal-default">
+                            <i class="fa fa-warning text-yellow"></i> Listas desplegables
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="footer"><a href="#">Ver Todos</a></li>
+                  </ul>
+                </li>
+
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -233,5 +255,32 @@
       </script>
     {% block extra_footer %}
     {% endblock %}
+    <div class="modal fade" id="modal-default">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Listas desplegables</h4>
+          </div>
+          <div class="modal-body">
+            <p>En el sistema muchas de las preguntas del censo son seleccionadas desde una lista. En caso que no se encuentre algún dato
+              notificarlo al administrador indicando nombre del módulo, nombre del campo y valor que se agregará.
+            </p>
+            <p>Por ejemplo:</p>
+            <p>Módulo: Personas</p>
+            <p>Campo: Profesiones</p>
+            <p>Valor para agregar: Ingeniero Mecánico</p>
+            <p>Enviar los datos al correo del administrador: <a href="mailto:wpaez@cenditel.gob.ve">William Páez</a></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
   </body>
 </html>

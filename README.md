@@ -52,7 +52,7 @@ Nos movemos a la carpeta proyectos_django, descargamos el sistema y entramos a l
 
     (sigetp) ~$ cd sigetp/
 
-    (sigetp) ~$ cp sigetp/settings.py_example sigetp/settings.py
+    (sigetp) ~$ cp sigetp/settings.default.py sigetp/settings.py
 
 Tendremos las carpetas estructuradas de la siguiente manera
 
