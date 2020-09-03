@@ -101,10 +101,6 @@ Instalamos los requemientos que el sistema necesita en el entorno virtual
 
     (sigetp) ~$ pip install -r requirements.txt
 
-Para instalar los requerimientos de forma local (opcional)
-
-    (sigetp) ~$ pip install requirements/pip/Django-2.0.3.tar.gz requirements/pip/django-extensions-2.0.6.tar.gz requirements/pip/Pillow-5.0.0.tar.gz requirements/pip/psycopg2-2.7.4.tar.gz
-
 Hacer las migraciones
 
     (sigetp) ~$ python manage.py makemigrations base user living_place family_group person
