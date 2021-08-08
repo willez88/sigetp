@@ -28,7 +28,7 @@
               <th>Cédula</th>
               <th>Teléfono</th>
               <th>correo</th>
-              <th>Sexo</th>
+              <th>Género</th>
               <th>Fecha de nacimiento</th>
               <th>Edad</th>
               <th>Parentesco</th>
@@ -70,10 +70,10 @@
                 {% endif %}
                 <td>{{ person.phone }}</td>
                 <td>{{ person.email }}</td>
-                <td>{{ person.sex }}</td>
+                <td>{{ person.gender }}</td>
                 <td>{{ person.birthdate }}</td>
                 <td>{{ person.age }}</td>
-                <td>{{ person.family_relationship }}</td>
+                <td>{{ person.relationship }}</td>
                 {% if person.family_head %}
                   <td>Si</td>
                 {% else %}

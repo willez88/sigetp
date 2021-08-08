@@ -127,16 +127,16 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.sex.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.sex.auto_id }}">
-                {{ form.sex.label }}
+            <div class="form-group {% if form.gender.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.gender.auto_id }}">
+                {{ form.gender.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.sex }}
+                  {{ form.gender }}
                   <i class="ion ion-ios-medical item-required"></i>
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.sex.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.gender.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>
@@ -178,16 +178,16 @@
 
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
-            <div class="form-group {% if form.family_relationship.errors %}has-error{% endif %}">
-              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.family_relationship.auto_id }}">
-                {{ form.family_relationship.label }}
+            <div class="form-group {% if form.relationship.errors %}has-error{% endif %}">
+              <label class="col-md-3 col-xs-3 col-sm-3 control-label" for="{{ form.relationship.auto_id }}">
+                {{ form.relationship.label }}
               </label>
               <div class="col-md-9 col-xs-9 col-sm-9">
                 <div class="form-inline">
-                  {{ form.family_relationship }}
+                  {{ form.relationship }}
                   <i class="ion ion-ios-medical item-required"></i>
                 </div>
-                {% include 'base/form.errors.html' with form_errors=form.family_relationship.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
+                {% include 'base/form.errors.html' with form_errors=form.relationship.errors col_title_error='col-sm-2' col_msg_error='col-sm-10' %}
               </div>
             </div>
           </div>

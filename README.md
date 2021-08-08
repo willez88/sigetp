@@ -64,13 +64,13 @@ Tendremos las carpetas estructuradas de la siguiente manera
 
 Instalar las dependencias de css y js: moverse a la carpeta static y ejecutar
 
-    (sofi) ~$ cd static/
+    (sigetp) ~$ cd static/
 
     // Usa el archivo package.json para instalar lo que está configurado allí
-    (sofi) ~$ npm install
+    (sigetp) ~$ npm install
 
     // Terminado el proceso volver a la carpeta raíz del proyecto
-    (sofi) ~$ cd ../
+    (sigetp) ~$ cd ../
 
 Crear la base de datos para el __SIGETP__
 
@@ -99,7 +99,7 @@ Puedes crear la base de datos usando la interfaz gráfica phppgadmin
 
 Instalamos los requemientos que el sistema necesita en el entorno virtual
 
-    (sigetp) ~$ pip install -r requirements.txt
+    (sigetp) ~$ pip install -r requirements/dev.txt
 
 Hacer las migraciones
 
@@ -113,7 +113,7 @@ Crear usuario administrador del __sigetp__
 
 Poblar las tablas de la base de datos que lo requieran
 
-    (sigetp) ~$ python manage.py loaddata initial_data.json initial_data_group.json
+    (sigetp) ~$ python manage.py loaddata initial_data.json initial_data_group.json 1_country.json 2_state.json 3_city.json 4_municipality.json 5_parish.json 6_communal_council.json
 
 Ejecutar el servidor de django
 

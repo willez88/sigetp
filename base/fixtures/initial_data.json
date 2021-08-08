@@ -322,119 +322,119 @@
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 1,
     "fields": {
         "name": "Madre"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 2,
     "fields": {
         "name": "Padre"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 3,
     "fields": {
         "name": "Esposo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 4,
     "fields": {
         "name": "Concubino(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 5,
     "fields": {
         "name": "Hijo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 6,
     "fields": {
         "name": "Yerno(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 7,
     "fields": {
         "name": "Suegro(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 8,
     "fields": {
         "name": "Abuelo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 9,
     "fields": {
         "name": "Nieto(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 10,
     "fields": {
         "name": "Hermano(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 11,
     "fields": {
         "name": "Cu\u00f1ado(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 12,
     "fields": {
         "name": "Bisabuelo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 13,
     "fields": {
         "name": "Bisnieto(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 14,
     "fields": {
         "name": "T\u00edo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 15,
     "fields": {
         "name": "Sobrino(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 16,
     "fields": {
         "name": "Primo(a)"
     }
 },
 {
-    "model": "base.familyrelationship",
+    "model": "base.relationship",
     "pk": 17,
     "fields": {
         "name": "Tio(a) Abuelo(a)"
@@ -840,14 +840,14 @@
     }
 },
 {
-    "model": "base.sex",
+    "model": "base.gender",
     "pk": 1,
     "fields": {
         "name": "Masculino"
     }
 },
 {
-    "model": "base.sex",
+    "model": "base.gender",
     "pk": 2,
     "fields": {
         "name": "Femenino"
