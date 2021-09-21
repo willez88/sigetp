@@ -158,7 +158,7 @@ class CommunalCouncil(models.Model):
                 números.'
             ),
         ],
-        primary_key=True
+        unique=True
     )
 
     # Nombre del Consejo Comunal
