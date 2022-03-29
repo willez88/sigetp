@@ -8,10 +8,9 @@ class RifWidget(forms.MultiWidget):
     Clase que agrupa los widgets de los campos del tipo de rif, número de rif y
     dígito validador del rif
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @author Ing. Roldan Vargas <rvargas@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def __init__(self, attrs=None, *args, **kwargs):
@@ -57,10 +56,9 @@ class IdentityCardWidget(forms.MultiWidget):
     Clase que agrupa los widgets de los campos de nacionalidad y número de
     cédula de identidad
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @author Ing. Roldan Vargas <rvargas@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def __init__(self, *args, **kwargs):
@@ -96,10 +94,9 @@ class CoordenateWidgetReadOnly(forms.MultiWidget):
     Clase que agrupa los widgets de los campos para las coordenadas
     geográficas, latitud y longitud
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @author Ing. Roldan Vargas <rvargas@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def __init__(self, attrs=None, *args, **kwargs):
@@ -135,9 +132,9 @@ class PhoneWidget(forms.MultiWidget):
     """!
     Clase que agrupa los widgets de los campos de un número telefónico
 
-    @author William Páez (wpaez at cenditel.gob.ve)
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def __init__(self, *args, **kwargs):

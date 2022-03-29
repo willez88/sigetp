@@ -12,9 +12,9 @@ class CommunalCouncilLevelAdminForm(forms.ModelForm):
     Clase que contiene los campos del formulario del perfil usado en el
     panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Estado donde se ecnuetra ubicado el municipio
@@ -64,9 +64,9 @@ class ProfileForm(forms.ModelForm):
     """!
     Clase que contiene los campos del formulario de perfil del usuario
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Username para identificar al usuario, en este caso se usa la cédula
@@ -164,7 +164,7 @@ class ProfileForm(forms.ModelForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         # model = User
@@ -227,7 +227,7 @@ class PollsterForm(ProfileForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control input-sm', 'data-toggle': 'tooltip',
-                'readonly':'true', 'style': 'width:100%',
+                'readonly': 'true', 'style': 'width:100%',
                 'title': 'Consejo Comunal que tiene asignado',
             }
         ), required=False

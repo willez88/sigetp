@@ -8,9 +8,9 @@ class ProfileAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Profile al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Mostrar los campos
@@ -33,9 +33,9 @@ class CommunalCouncilLevelAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo CommunalCouncilLevel al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     form = CommunalCouncilLevelAdminForm
@@ -51,9 +51,9 @@ class PollsterAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Pollster al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('profile', 'communal_council_level',)

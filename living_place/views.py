@@ -11,9 +11,9 @@ class LivingPlaceListView(ListView):
     """!
     Clase que permite listar todas las viviendas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = LivingPlace
@@ -23,7 +23,7 @@ class LivingPlaceListView(ListView):
         """!
         Método que obtiene la lista de viviendas que están asociadas al usuario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Lista de objetos vivienda que pertenecen al usuario
         """
@@ -47,9 +47,9 @@ class LivingPlaceCreateView(CreateView):
     """!
     Clase que permite registrar viviendas y asociarlas al usuario
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = LivingPlace
@@ -61,7 +61,7 @@ class LivingPlaceCreateView(CreateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -74,7 +74,7 @@ class LivingPlaceCreateView(CreateView):
         """!
         Método que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -170,9 +170,9 @@ class LivingPlaceUpdateView(UpdateView):
     """!
     Clase que permite actualizar los datos de viviendas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = LivingPlace
@@ -184,7 +184,7 @@ class LivingPlaceUpdateView(UpdateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -198,7 +198,7 @@ class LivingPlaceUpdateView(UpdateView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -238,7 +238,7 @@ class LivingPlaceUpdateView(UpdateView):
         """!
         Método que agrega valores predeterminados a los campos del formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con los valores predeterminados
         """
@@ -252,7 +252,7 @@ class LivingPlaceUpdateView(UpdateView):
         """!
         Metodo que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -278,9 +278,9 @@ class LivingPlaceDeleteView(DeleteView):
     """!
     Clase que permite borrar los datos de las vivienda
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = LivingPlace
@@ -292,7 +292,7 @@ class LivingPlaceDeleteView(DeleteView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -327,9 +327,9 @@ class PhotographListView(ListView):
     """!
     Clase que permite listar todas las imágenes de las viviendas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Photograph
@@ -339,7 +339,7 @@ class PhotographListView(ListView):
         """!
         Método que obtiene la consulta según algún filtro especificado
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Lista de objetos imágenes que pertenecen al usuario
         """
@@ -366,9 +366,9 @@ class PhotographCreateView(CreateView):
     """!
     Clase que permite registrar imágenes y asociarlas a las viviendas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Photograph
@@ -380,7 +380,7 @@ class PhotographCreateView(CreateView):
         """!
         Método que permite pasar valores de la vista al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna los datos en un diccionario
         """
@@ -393,7 +393,7 @@ class PhotographCreateView(CreateView):
         """!
         Metodo que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -419,9 +419,9 @@ class PhotographDeleteView(DeleteView):
     """!
     Clase que permite eliminar los datos de las imágenes
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Photograph
@@ -433,7 +433,7 @@ class PhotographDeleteView(DeleteView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia

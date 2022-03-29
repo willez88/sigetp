@@ -19,9 +19,9 @@ class CommunalCouncilLevelUpdateView(UpdateView):
     Clase que permite a un usuario registrado en el sistema actualizar sus
     datos de perfil
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Profile
@@ -34,7 +34,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -53,7 +53,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         """!
         Metodo que agrega valores predeterminados a los campos del formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con los valores predeterminados
         """
@@ -75,7 +75,7 @@ class CommunalCouncilLevelUpdateView(UpdateView):
         """!
         Metodo que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -205,7 +205,7 @@ class PollsterFormView(FormView):
             admin = settings.ADMINS[0][0]
             admin_email = settings.ADMINS[0][1]
 
-        sent = send_email(
+        send_email(
             self.object.email, 'user/welcome.mail', EMAIL_SUBJECT,
             {
                 'first_name': self.request.user.first_name,

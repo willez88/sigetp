@@ -11,9 +11,9 @@ class LivingPlace(models.Model):
     """!
     Clase que contiene los datos de la vivienda
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Fecha y hora del registro de la vivienda
@@ -166,7 +166,7 @@ class LivingPlace(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Devuelve una cadena de caracteres con el número de
             identificación y el id de la vivienda
@@ -178,7 +178,7 @@ class LivingPlace(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Vivienda'
@@ -190,9 +190,9 @@ class Photograph(models.Model):
     """!
     Clase que contiene los datos de imágenes de la vivienda
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Nombre de la imagen
@@ -208,7 +208,7 @@ class Photograph(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Una cadena de caracteres con el nombre de la imagen
         """
@@ -219,7 +219,7 @@ class Photograph(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Fotografía'

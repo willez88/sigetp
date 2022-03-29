@@ -7,9 +7,9 @@ class Profile(models.Model):
     """!
     Clase que contiene los datos del perfil de un usuario
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Número telefónico del usuario
@@ -24,7 +24,7 @@ class Profile(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Perfil'
@@ -35,7 +35,7 @@ class Profile(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Devuelve una cadena de caracteres con el nombre y apellido
             del usuario
@@ -48,9 +48,9 @@ class CommunalCouncilLevel(models.Model):
     """!
     Clase que contiene los datos de un usuario del nivel consejo comunal
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Establece la relación entre el modelo ConsejoComunal y el modelo Comunal
@@ -67,7 +67,7 @@ class CommunalCouncilLevel(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Devuelve una cadena de caracteres con el nombre, apellido del
             usuario y el consejo comunal que administra
@@ -82,7 +82,7 @@ class CommunalCouncilLevel(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Nivel Consejo Comunal'
@@ -94,9 +94,9 @@ class Pollster(models.Model):
     """!
     Clase que contiene los datos del perfil de un usuario del nivel encuestador
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     communal_council_level = models.ForeignKey(
@@ -111,7 +111,7 @@ class Pollster(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Devuelve una cadena de caracteres con el nombre y apellido del
             usuario
@@ -126,7 +126,7 @@ class Pollster(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Nivel Encuestador'

@@ -15,9 +15,9 @@ class CommunalCouncilAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo CommunalCouncil al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     form = CommunalCouncilAdminForm
@@ -31,9 +31,9 @@ class RiskAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Risk al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -44,9 +44,9 @@ class LivingPlaceTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo LivingPlaceType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -57,9 +57,9 @@ class RoofTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo RoofType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -70,9 +70,9 @@ class WallTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo WallType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -83,9 +83,9 @@ class ElectricServiceAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo ElectricService al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -96,9 +96,9 @@ class SanitarySituationAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo SanitarySituation al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -109,9 +109,9 @@ class TrashDisposalAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo TrashDisposal al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -122,9 +122,9 @@ class TenureTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo TenureType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -135,9 +135,9 @@ class RelationshipAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Relationship al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -148,9 +148,9 @@ class MaritalStatusAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo MaritalStatus al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -161,9 +161,9 @@ class InstructionDegreeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo InstructionDegree al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -174,9 +174,9 @@ class EducationalMissionAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo EducationalMission al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -187,9 +187,9 @@ class SocialMissionAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo SocialMission al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -200,9 +200,9 @@ class IncomeTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo IncomeType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -213,9 +213,9 @@ class CommunityOrganizationAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo CommunityOrganization al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -226,9 +226,9 @@ class GenderAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Gender al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -239,9 +239,9 @@ class CementTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo CementType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -252,9 +252,9 @@ class ValorationAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Valoration al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -265,9 +265,9 @@ class AnimalAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Animal al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -278,9 +278,9 @@ class ProfessionAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Profession al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -291,9 +291,9 @@ class OccupationAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Occupation al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -304,9 +304,9 @@ class WorkplaceAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Workplace al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -317,9 +317,9 @@ class SportAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Sport al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -330,9 +330,9 @@ class DiseaseAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Disease al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -343,9 +343,9 @@ class DisabilityAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Disability al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -356,9 +356,9 @@ class CourseAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo Course al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)
@@ -369,9 +369,9 @@ class FloorTypeAdmin(admin.ModelAdmin):
     """!
     Clase que agrega modelo FloorType al panel administrativo
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     list_display = ('name',)

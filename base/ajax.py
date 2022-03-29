@@ -12,10 +12,9 @@ class ComboUpdateView(View):
     Clase que actualiza los datos de un select dependiente de los datos de otro
     select
 
-    @author Ing. Roldan Vargas <rvargas@cenditel.gob.ve>
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def get(self, request, *args, **kwargs):
