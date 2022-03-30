@@ -14,9 +14,9 @@ class PersonListView(ListView):
     """!
     Clase que permite listar todas las personas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Person
@@ -26,7 +26,7 @@ class PersonListView(ListView):
         """!
         Método que obtiene la lista de personas que están asociadas al usuario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna la lista de objetos persona que pertenecen al
             grupo familiar
@@ -54,9 +54,9 @@ class PersonCreateView(CreateView):
     """!
     Clase que permite registrar personas y asociarlos a los grupos familiares
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Person
@@ -68,7 +68,7 @@ class PersonCreateView(CreateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -81,9 +81,7 @@ class PersonCreateView(CreateView):
         """!
         Método que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
-        @copyright <a href='https://tinyurl.com/y3tfnema'>
-            Licencia de Software CENDITEL versión 1.2</a>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -153,9 +151,9 @@ class PersonUpdateView(UpdateView):
     """!
     Clase que permite actualizar los datos de las personas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Person
@@ -167,7 +165,7 @@ class PersonUpdateView(UpdateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -181,7 +179,7 @@ class PersonUpdateView(UpdateView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -228,9 +226,7 @@ class PersonUpdateView(UpdateView):
         """!
         Método que agrega valores predeterminados a los campos del formulario
 
-        @author William Páez (wpaez at cenditel.gob.ve)
-        @copyright <a href='http://conocimientolibre.cenditel.gob.ve/licencia-de-software-v-1-3/'>Licencia de Software CENDITEL versión 1.2</a>
-        @date 24-05-2017
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con los valores predeterminados
         """
@@ -244,7 +240,7 @@ class PersonUpdateView(UpdateView):
         """!
         Método que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -262,13 +258,14 @@ class PersonUpdateView(UpdateView):
     def form_invalid(self, form):
         return super().form_invalid(form)
 
+
 class PersonDeleteView(DeleteView):
     """!
     Clase que permite borrar los datos de las personas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = Person
@@ -280,7 +277,7 @@ class PersonDeleteView(DeleteView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -317,9 +314,9 @@ class PersonReportTemplateView(TemplateView):
     """!
     Clase que permite hacer un reporte
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     template_name = 'person/report.html'

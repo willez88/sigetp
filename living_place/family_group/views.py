@@ -12,9 +12,9 @@ class FamilyGroupListView(ListView):
     """!
     Clase que permite listar todos los grupos familiares
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = FamilyGroup
@@ -25,7 +25,7 @@ class FamilyGroupListView(ListView):
         Método que obtiene la lista de grupos familiares que están asociados al
         usuario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna la lista de objetos grupo familiar que pertenecen a la
             vivienda
@@ -53,9 +53,9 @@ class FamilyGroupCreateView(CreateView):
     """!
     Clase que permite registrar grupos familiares y asociarlos a las viviendas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = FamilyGroup
@@ -67,7 +67,7 @@ class FamilyGroupCreateView(CreateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -80,7 +80,7 @@ class FamilyGroupCreateView(CreateView):
         """!
         Método que valida si el formulario es correcto
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param form <b>{object}</b> Objeto que contiene el formulario de
             registro
@@ -114,9 +114,9 @@ class FamilyGroupUpdateView(UpdateView):
     """!
     Clase que permite actualizar los datos del grupo familiar
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = FamilyGroup
@@ -128,7 +128,7 @@ class FamilyGroupUpdateView(UpdateView):
         """!
         Método que permite pasar el usuario actualmente logueado al formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con el usuario actualmente logueado
         """
@@ -142,7 +142,7 @@ class FamilyGroupUpdateView(UpdateView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
@@ -177,7 +177,7 @@ class FamilyGroupUpdateView(UpdateView):
         """!
         Método que agrega valores predeterminados a los campos del formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un diccionario con los valores predeterminados
         """
@@ -191,9 +191,9 @@ class FamilyGroupDeleteView(DeleteView):
     """!
     Clase que permite borrar los datos de los grupos familiares
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     model = FamilyGroup
@@ -205,7 +205,7 @@ class FamilyGroupDeleteView(DeleteView):
         Metodo que valida si el usuario del sistema tiene permisos para entrar
         a esta vista
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param request <b>{object}</b> Objeto que contiene la petición
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia

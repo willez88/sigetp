@@ -16,16 +16,16 @@ class PersonForm(forms.ModelForm):
     """!
     Clase que contiene los campos del formulario de persona
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     def __init__(self, *args, **kwargs):
         """!
         Método que permite inicializar el formulario
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @param *args <b>{tupla}</b> Tupla de valores, inicialmente vacia
         @param *kwargs <b>{dict}</b> Diccionario de datos, inicialmente vacio
@@ -502,7 +502,7 @@ class PersonForm(forms.ModelForm):
         """!
         Método que permite validar el formulario incluyendo varios campos
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna el formulario con los rectpectivos errores
         """
@@ -526,7 +526,7 @@ class PersonForm(forms.ModelForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         model = Person
@@ -567,7 +567,7 @@ class PersonUpdateForm(PersonForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         model = Person

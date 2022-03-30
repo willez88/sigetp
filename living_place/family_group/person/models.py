@@ -13,9 +13,9 @@ class Person(models.Model):
     """!
     Clase que contiene los datos de las personas
 
-    @author William Páez <wpaez@cenditel.gob.ve>
-    @copyright <a href='https://tinyurl.com/y3tfnema'>
-        Licencia de Software CENDITEL versión 1.2</a>
+    @author William Páez (paez.william8 at gmail.com)
+    @copyright <a href='​http://www.gnu.org/licenses/gpl-2.0.html'>
+        GNU Public License versión 2 (GPLv2)</a>
     """
 
     # Nombre de la Persona
@@ -133,7 +133,7 @@ class Person(models.Model):
         """!
         Método que calcula la edad de la persona
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Retorna un número entero que representa la edad
         """
@@ -144,7 +144,7 @@ class Person(models.Model):
         """!
         Método para representar la clase de forma amigable
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         @param self <b>{object}</b> Objeto que instancia la clase
         @return Devuelve una cadena de caracteres con el nombre, apellido y
             cédula de la persona
@@ -157,7 +157,7 @@ class Person(models.Model):
         """!
         Meta clase del modelo que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         verbose_name = 'Persona'

@@ -53,7 +53,7 @@ class CommunalCouncilLevelAdminForm(forms.ModelForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         model = User
@@ -237,7 +237,7 @@ class PollsterForm(ProfileForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         model = User
@@ -281,7 +281,7 @@ class PollsterUpdateForm(ProfileForm):
         """!
         Meta clase del formulario que establece algunas propiedades
 
-        @author William Páez <wpaez@cenditel.gob.ve>
+        @author William Páez (paez.william8 at gmail.com)
         """
 
         model = Profile
