@@ -11,7 +11,7 @@
     "jquery-mask-plugin": "1.14.13",
     "jszip": "3.1.5",
     "pdfmake": "0.1.35",
-    "select2": "4.0.6-rc.1",
+    "select2": "4.0.6",
     "bootstrap-datepicker": "1.8.0",
     "bootbox": "v4.4.0",
     "highcharts": "6.1.1"
