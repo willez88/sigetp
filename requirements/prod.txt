@@ -1,7 +1,7 @@
 # Para Despliegues en https://www.pythonanywhere.com/
 django==4.0.*
 django-extensions==3.1.5
-pillow==9.0.1
+pillow==9.3.0
 npm==0.1.1
 ndg-httpsclient==0.5.1
 pyopenssl==22.0.0
